@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://rkl71.github.io</id>
-    <title></title>
+    <title> • Posts by &#34;java&#34; category</title>
     <link href="http://rkl71.github.io" />
     <updated>2023-04-28T15:00:00.000Z</updated>
     <category term="JDBC" />
