@@ -1,4 +1,4 @@
-var CONFIG = {"version":"0.2.5","hostname":"http://rkl71.github.io","root":"/","statics":"/","favicon":{"normal":"images/favicon.ico","hidden":"images/failure.ico"},"darkmode":true,"auto_scroll":true,"js":{"valine":"gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js","chart":"npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js","copy_tex":"npm/katex@0.12.0/dist/contrib/copy-tex.min.js","fancybox":"combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"},"css":{"valine":"css/comment.css","katex":"npm/katex@0.12.0/dist/katex.min.css","mermaid":"css/mermaid.css","fancybox":"combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"},"loader":{"start":true,"switch":false},"search":{"appID":"8W5209DB0N","apiKey":"35ef266402be24a5350c670285b75bcf","indexName":"myblog","hits":{"per_page":10}},"valine":{"appId":"29YIUcfpPQRJxzAgeW4u1FGE-gzGzoHsz","appKey":"pGyL54EfCcU8OKFkbcHUnsiO","placeholder":"ヽ(○´∀`)ﾉ♪","avatar":"mp","pageSize":10,"lang":"en","visitor":true,"NoRecordIP":false,"serverURLs":null,"powerMode":true,"tagMeta":{"visitor":"新朋友","master":"主人","friend":"小伙伴","investor":"金主粑粑"},"tagColor":{"master":"var(--color-orange)","friend":"var(--color-aqua)","investor":"var(--color-pink)"},"tagMember":{"master":null,"friend":null,"investor":null}},"quicklink":{"timeout":3000,"priority":true},"audio":[{"title":"列表1","list":["https://music.163.com/#/my/m/music/playlist?id=7832254673"]}],"fireworks":["rgba(255,182,185,.9)","rgba(250,227,217,.9)","rgba(187,222,214,.9)","rgba(138,198,209,.9)"]};const getRndInteger = function (min, max) {
+var CONFIG = {"version":"0.2.5","hostname":"http://rkl71.github.io","root":"/","statics":"/","favicon":{"normal":"images/favicon.ico","hidden":"images/failure.ico"},"darkmode":true,"auto_scroll":true,"js":{"valine":"gh/amehime/MiniValine@4.2.2-beta10/dist/MiniValine.min.js","chart":"npm/frappe-charts@1.5.0/dist/frappe-charts.min.iife.min.js","copy_tex":"npm/katex@0.12.0/dist/contrib/copy-tex.min.js","fancybox":"combine/npm/jquery@3.5.1/dist/jquery.min.js,npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js,npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"},"css":{"valine":"css/comment.css","katex":"npm/katex@0.12.0/dist/katex.min.css","mermaid":"css/mermaid.css","fancybox":"combine/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css,npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"},"loader":{"start":true,"switch":false},"search":{"appID":"8W5209DB0N","apiKey":"35ef266402be24a5350c670285b75bcf","indexName":"myblog","hits":{"per_page":10}},"valine":{"appId":"29YIUcfpPQRJxzAgeW4u1FGE-gzGzoHsz","appKey":"pGyL54EfCcU8OKFkbcHUnsiO","placeholder":"ヽ(○´∀`)ﾉ♪","avatar":"mp","pageSize":10,"lang":"en","visitor":true,"NoRecordIP":false,"serverURLs":null,"powerMode":true,"tagMeta":{"visitor":"新朋友","master":"主人","friend":"小伙伴","investor":"金主粑粑"},"tagColor":{"master":"var(--color-orange)","friend":"var(--color-aqua)","investor":"var(--color-pink)"},"tagMember":{"master":null,"friend":null,"investor":null}},"quicklink":{"timeout":3000,"priority":true},"audio":[{"title":"列表1","list":["https://music.163.com/#/my/m/music/playlist?id=8403269793"]}],"fireworks":["rgba(255,182,185,.9)","rgba(250,227,217,.9)","rgba(187,222,214,.9)","rgba(138,198,209,.9)"]};const getRndInteger = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -1123,6 +1123,7 @@ const sideBar = $('#sidebar');
 const siteBrand = $('#brand');
 var toolBtn = $('#tool'), toolPlayer, backToTop, goToComment, showContents;
 var siteSearch = $('#search');
+var angleBtn = $('#angle');
 var siteNavHeight, headerHightInner, headerHight;
 var oWinHeight = window.innerHeight;
 var oWinWidth = window.innerWidth;
@@ -1613,6 +1614,9 @@ const goToBottomHandle = function () {
 
 const goToCommentHandle = function () {
   pageScroll($('#comments'));
+}
+const headertopdown = function () {
+  pageScroll($('#main'));
 }
 
 const menuActive = function () {
@@ -2207,6 +2211,15 @@ const domInit = function() {
       innerHTML: '<div class="item player"></div><div class="item contents"><i class="ic i-list-ol"></i></div><div class="item chat"><i class="ic i-comments"></i></div><div class="item back-to-top"><i class="ic i-arrow-up"></i><span>0%</span></div>'
     });
   }
+
+  if(!angleBtn) {
+    angleBtn = siteHeader.createChild('div', {
+      id: 'angle',
+      innerHTML: '<span><i class="ic i-angle-down" aria-hidden="true"></i></span>'
+    });
+  }
+
+  angleBtn.addEventListener('click',headertopdown);
 
   toolPlayer = toolBtn.child('.player');
   backToTop = toolBtn.child('.back-to-top');
