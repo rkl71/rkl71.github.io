@@ -69,7 +69,7 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">本文字数</span>
-    <span>6k</span>
+    <span>5.8k</span>
     <span class="text">字</span>
   </span>
   <span class="item" title="阅读时长">
@@ -420,8 +420,7 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 </li>
 <li>
 <p>实现方式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">resp.setStatus(<span class="number">302</span>);</span><br><span class="line">resp.setHeader(<span class="string">&quot;location&quot;</span>, <span class="string">&quot;资源B的路径&quot;</span>);</span><br><span class="line"></span><br><span class="line">resp.sendRedirect(<span class="string">&quot;资源B的路径&quot;</span>);</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre>resp<span class="token punctuation">.</span><span class="token function">setStatus</span><span class="token punctuation">(</span><span class="token number">302</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="2"></td><td><pre>resp<span class="token punctuation">.</span><span class="token function">setHeader</span><span class="token punctuation">(</span><span class="token string">"location"</span><span class="token punctuation">,</span> <span class="token string">"资源B的路径"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>resp<span class="token punctuation">.</span><span class="token function">sendRedirect</span><span class="token punctuation">(</span><span class="token string">"资源B的路径"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
 <li>
 <p>重定向特点：</p>
 <ol>
@@ -505,8 +504,7 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 </li>
 <li>
 <p>Cookie 使用</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.创建Cookie对象</span></span><br><span class="line"><span class="type">Cookie</span> <span class="variable">cookie</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Cookie</span>(<span class="string">&quot;username&quot;</span>, <span class="string">&quot;password&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.发送Cookie, response</span></span><br><span class="line">response.addCookie(cookie);</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.获取Cookie数组</span></span><br><span class="line">Cookie[] cookies = request.getCookies();</span><br><span class="line"></span><br><span class="line"><span class="comment">//4.遍历数组</span></span><br><span class="line"><span class="keyword">for</span> (Cookie cookie1 : cookies) &#123;</span><br><span class="line">            <span class="comment">//5.获取数据</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> cookie1.getName();</span><br><span class="line">    <span class="keyword">if</span> (<span class="string">&quot;username&quot;</span>.equals(name)) &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> cookie1.getValue();</span><br><span class="line">        System.out.println(name + <span class="string">&quot;:&quot;</span> + value);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">//1. 创建 Cookie 对象</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token class-name">Cookie</span> cookie <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Cookie</span><span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">,</span> <span class="token string">"password"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment">//2. 发送 Cookie, response</span></pre></td></tr><tr><td data-num="5"></td><td><pre>response<span class="token punctuation">.</span><span class="token function">addCookie</span><span class="token punctuation">(</span>cookie<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="6"></td><td><pre></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment">//3. 获取 Cookie 数组</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token class-name">Cookie</span><span class="token punctuation">[</span><span class="token punctuation">]</span> cookies <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">getCookies</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="9"></td><td><pre></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token comment">//4. 遍历数组</span></pre></td></tr><tr><td data-num="11"></td><td><pre><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Cookie</span> cookie1 <span class="token operator">:</span> cookies<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>            <span class="token comment">//5. 获取数据</span></pre></td></tr><tr><td data-num="13"></td><td><pre>    <span class="token class-name">String</span> name <span class="token operator">=</span> cookie1<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="14"></td><td><pre>    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"username"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>        <span class="token class-name">String</span> value <span class="token operator">=</span> cookie1<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="16"></td><td><pre>        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>name <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token keyword">break</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="原理"><a class="markdownIt-Anchor" href="#原理">#</a> 原理</h3>
 <p>Cookie 的实现是基于 HTTP 协议的</p>
@@ -581,8 +579,7 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 <ul>
 <li>默认情况下，无操作，30 分钟自动销毁</li>
 </ul>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">session-config</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">session-timeout</span>&gt;</span>30<span class="tag">&lt;/<span class="name">session-timeout</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">session-config</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>session-config</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>session-timeout</span><span class="token punctuation">></span></span>30<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>session-timeout</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>session-config</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><ul>
 <li>调用 Session 对象的 invalidate () 方法</li>
 </ul>
 </li>
@@ -606,8 +603,7 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 <ul>
 <li>
 <p>Filter 可以根据需求，配置不同的拦截资源路径</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebFilter(&quot;/*&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FilterDemo</span></span><br></pre></td></tr></table></figure>
-<ul>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@WebFilter</span><span class="token punctuation">(</span><span class="token string">"/*"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FilterDemo</span></pre></td></tr></table></figure><ul>
 <li>拦截具体的资源：/index.jsp：只有访问 index.jsp 时才会被拦截</li>
 <li>目录拦截：/user/*：访问 /user 下的所有资源，都会被拦截</li>
 <li>后缀名拦截：*.jsp：访问后缀名为 jsp 的资源，都会被拦截</li>
@@ -638,12 +634,10 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 <ul>
 <li>
 <p>定义：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var 变量名 = &#123;&quot;key1&quot;:value1,</span><br><span class="line">			 &quot;key2&quot;:value2,</span><br><span class="line">			 ...</span><br><span class="line">			&#125;;</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight html"><figcaption data-lang="HTML"></figcaption><table><tr><td data-num="1"></td><td><pre>var 变量名 = &#123;"key1":value1,</pre></td></tr><tr><td data-num="2"></td><td><pre>			 "key2":value2,</pre></td></tr><tr><td data-num="3"></td><td><pre>			 ...</pre></td></tr><tr><td data-num="4"></td><td><pre>			&#125;;</pre></td></tr></table></figure></li>
 <li>
 <p>获取数据</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">变量名.key</span><br><span class="line">json.name</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight html"><figcaption data-lang="HTML"></figcaption><table><tr><td data-num="1"></td><td><pre>变量名.key</pre></td></tr><tr><td data-num="2"></td><td><pre>json.name</pre></td></tr></table></figure></li>
 </ul>
 <h3 id="json数据和java对象转换"><a class="markdownIt-Anchor" href="#json数据和java对象转换">#</a> JSON 数据和 Java 对象转换</h3>
 <ul>
@@ -652,16 +646,13 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 <ol>
 <li>导入坐标</li>
 </ol>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.62<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ol start="2">
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>fastjson<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.2.62<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><ol start="2">
 <li>Java 对象转 JSON</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">jsonStr</span> <span class="operator">=</span> JSON.toJSONString(obj);</span><br></pre></td></tr></table></figure>
-<ol start="3">
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">String</span> jsonStr <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure><ol start="3">
 <li>JSON 字符串转 Java 对象</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">User</span> <span class="variable">user</span> <span class="operator">=</span> JSON.parseObject(jsonStr, User.class);</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token class-name">User</span> user <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parseObject</span><span class="token punctuation">(</span>jsonStr<span class="token punctuation">,</span> <span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr></table></figure></li>
 </ul>
 <h2 id="vue"><a class="markdownIt-Anchor" href="#vue">#</a> Vue</h2>
 <ul>
@@ -936,6 +927,11 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
   </ul>
     
   <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+    
+  <li class="item">
     <a href="/statistics/" rel="section"><i class="ic i-clock"></i>统计</a>
   </li>
 
@@ -988,26 +984,6 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 <a href="/categories/java/" title="分类于 Java">Java</a>
 </div>
 
-    <span><a href="/2023/03/16/java/SSM/" title="SSM">SSM</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/java/" title="分类于 Java">Java</a>
-</div>
-
-    <span><a href="/2023/01/06/java/JDBC/" title="JDBC">JDBC</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/java/" title="分类于 Java">Java</a>
-</div>
-
     <span><a href="/2023/02/03/java/JavaWeb/" title="JavaWeb">JavaWeb</a></span>
   </li>
 
@@ -1019,6 +995,26 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 </div>
 
     <span><a href="/2023/04/29/java/JavaWeb%E6%9C%80%E6%96%B0/" title="JavaWeb newest">JavaWeb newest</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/03/16/java/SSM/" title="SSM">SSM</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/01/06/java/JDBC/" title="JDBC">JDBC</a></span>
   </li>
 
   </ul>
