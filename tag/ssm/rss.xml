@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <rss version="2.0">
     <channel>
-        <title>就叫这个吧 • Posts by &#34;ssm&#34; tag</title>
+        <title> • Posts by &#34;ssm&#34; tag</title>
         <link>http://rkl71.github.io</link>
         <description>在心里种花，人生才不会荒芜🌹</description>
         <language>zh-CN</language>
@@ -10,9 +10,10 @@
         <category>JDBC</category>
         <category>JavaWeb</category>
         <category>Java</category>
+        <category>SSM</category>
+        <category>Linux</category>
         <category>JavaWeb newest</category>
         <category>Spring</category>
-        <category>SSM</category>
         <item>
             <guid isPermalink="true">http://rkl71.github.io/2023/03/16/java/SSM/</guid>
             <title>SSM</title>
