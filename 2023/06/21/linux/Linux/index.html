@@ -829,7 +829,8 @@ chown [-R] 属主名：属组名 文件名
 <p>2、将文件移动到 /usr/tomcat/ 下，并解压！</p>
 <figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token punctuation">[</span>root@kuangshen kuangshen<span class="token punctuation">]</span><span class="token comment"># mv apache-tomcat-9.0.22.tar.gz /usr</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token punctuation">[</span>root@kuangshen kuangshen<span class="token punctuation">]</span><span class="token comment"># cd /usr</span></pre></td></tr><tr><td data-num="3"></td><td><pre><span class="token punctuation">[</span>root@kuangshen usr<span class="token punctuation">]</span><span class="token comment"># ls</span></pre></td></tr><tr><td data-num="4"></td><td><pre>apache-tomcat-9.0.22.tar.gz</pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token punctuation">[</span>root@kuangshen usr<span class="token punctuation">]</span><span class="token comment"># tar -zxvf apache-tomcat-9.0.22.tar.gz   # 解压</span></pre></td></tr></table></figure><p>3、运行 Tomcat，进入 bin 目录，和我们以前在 Windows 下看的都是一样的</p>
 <figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 执行：startup.sh --> 启动 tomcat</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token comment"># 执行：shutdown.sh --> 关闭 tomcat</span></pre></td></tr><tr><td data-num="3"></td><td><pre>./startup.sh</pre></td></tr><tr><td data-num="4"></td><td><pre>./shutdown.sh</pre></td></tr></table></figure><p>4、确保 Linux 的防火墙端口是开启的，如果是阿里云，需要保证阿里云的安全组策略是开放的！</p>
-<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 查看 firewall 服务状态</span></pre></td></tr><tr><td data-num="2"></td><td><pre>systemctl status firewalld</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 开启、重启、关闭、firewalld.service 服务</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment"># 开启</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">service</span> firewalld start</pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment"># 重启</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token function">service</span> firewalld restart</pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment"># 关闭</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token function">service</span> firewalld stop</pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token comment"># 查看防火墙规则</span></pre></td></tr><tr><td data-num="13"></td><td><pre>firewall-cmd --list-all    <span class="token comment"># 查看全部信息</span></pre></td></tr><tr><td data-num="14"></td><td><pre>firewall-cmd --list-ports  <span class="token comment"># 只看端口信息</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token comment"># 开启端口</span></pre></td></tr><tr><td data-num="17"></td><td><pre>开端口命令：firewall-cmd <span class="token parameter variable">--zone</span><span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">80</span>/tcp <span class="token parameter variable">--permanent</span></pre></td></tr><tr><td data-num="18"></td><td><pre>重启防火墙：systemctl restart firewalld.service</pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre>命令含义：</pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token parameter variable">--zone</span> <span class="token comment">#作用域</span></pre></td></tr><tr><td data-num="22"></td><td><pre>--add-port<span class="token operator">=</span><span class="token number">80</span>/tcp  <span class="token comment">#添加端口，格式为：端口 / 通讯协议</span></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token parameter variable">--permanent</span>   <span class="token comment">#永久生效，没有此参数重启后失效</span></pre></td></tr></table></figure><h3 id="docker安装yum"><a class="markdownIt-Anchor" href="#docker安装yum">#</a> Docker 安装（yum）</h3>
+<figure class="highlight bash"><figcaption data-lang="bash"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment"># 查看 firewall 服务状态</span></pre></td></tr><tr><td data-num="2"></td><td><pre>systemctl status firewalld</pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token comment"># 开启、重启、关闭、firewalld.service 服务</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token comment"># 开启</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token function">service</span> firewalld start</pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token comment"># 重启</span></pre></td></tr><tr><td data-num="8"></td><td><pre><span class="token function">service</span> firewalld restart</pre></td></tr><tr><td data-num="9"></td><td><pre><span class="token comment"># 关闭</span></pre></td></tr><tr><td data-num="10"></td><td><pre><span class="token function">service</span> firewalld stop</pre></td></tr><tr><td data-num="11"></td><td><pre></pre></td></tr><tr><td data-num="12"></td><td><pre><span class="token comment"># 查看防火墙规则</span></pre></td></tr><tr><td data-num="13"></td><td><pre>firewall-cmd --list-all    <span class="token comment"># 查看全部信息</span></pre></td></tr><tr><td data-num="14"></td><td><pre>firewall-cmd --list-ports  <span class="token comment"># 只看端口信息</span></pre></td></tr><tr><td data-num="15"></td><td><pre></pre></td></tr><tr><td data-num="16"></td><td><pre><span class="token comment"># 开启端口</span></pre></td></tr><tr><td data-num="17"></td><td><pre>开端口命令：firewall-cmd <span class="token parameter variable">--zone</span><span class="token operator">=</span>public --add-port<span class="token operator">=</span><span class="token number">80</span>/tcp <span class="token parameter variable">--permanent</span></pre></td></tr><tr><td data-num="18"></td><td><pre>重启防火墙：systemctl restart firewalld.service</pre></td></tr><tr><td data-num="19"></td><td><pre></pre></td></tr><tr><td data-num="20"></td><td><pre>命令含义：</pre></td></tr><tr><td data-num="21"></td><td><pre><span class="token parameter variable">--zone</span> <span class="token comment">#作用域</span></pre></td></tr><tr><td data-num="22"></td><td><pre>--add-port<span class="token operator">=</span><span class="token number">80</span>/tcp  <span class="token comment">#添加端口，格式为：端口 / 通讯协议</span></pre></td></tr><tr><td data-num="23"></td><td><pre><span class="token parameter variable">--permanent</span>   <span class="token comment">#永久生效，没有此参数重启后失效</span></pre></td></tr></table></figure><p><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FpamluZzE5OTkxMjEwL2FydGljbGUvZGV0YWlscy8xMTkwMjU3ODM=">linux 下配置 tomcat (详细)_linux tomcat_Jamie Chyi 的博客 - CSDN 博客</span></p>
+<h3 id="docker安装yum"><a class="markdownIt-Anchor" href="#docker安装yum">#</a> Docker 安装（yum）</h3>
 <blockquote>
 <p>基于 CentOS 7 安装</p>
 </blockquote>
@@ -879,7 +880,7 @@ chown [-R] 属主名：属组名 文件名
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-06-21 23:21:37" itemprop="dateModified" datetime="2023-06-21T23:21:37+09:00">2023-06-21</time>
+    <time title="修改时间：2023-06-23 16:18:16" itemprop="dateModified" datetime="2023-06-23T16:18:16+09:00">2023-06-23</time>
   </span>
   <span id="2023/06/21/linux/Linux/" class="item leancloud_visitors" data-flag-title="Linux常用命令" title="阅读次数">
       <span class="icon">
@@ -1060,10 +1061,20 @@ chown [-R] 属主名：属组名 文件名
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/linux/" title="分类于 Linux">Linux</a>
+<a href="/categories/java/" title="分类于 Java">Java</a>
 </div>
 
-    <span><a href="/2023/06/21/linux/Linux/" title="Linux常用命令">Linux常用命令</a></span>
+    <span><a href="/2023/04/29/java/JavaWeb%E6%9C%80%E6%96%B0/" title="JavaWeb newest">JavaWeb newest</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/01/01/java/Java/" title="Java基础">Java基础</a></span>
   </li>
 
       
@@ -1083,7 +1094,7 @@ chown [-R] 属主名：属组名 文件名
 <a href="/categories/java/" title="分类于 Java">Java</a>
 </div>
 
-    <span><a href="/2023/01/01/java/Java/" title="Java基础">Java基础</a></span>
+    <span><a href="/2023/03/16/java/SSM/" title="SSM">SSM</a></span>
   </li>
 
       
@@ -1110,20 +1121,10 @@ chown [-R] 属主名：属组名 文件名
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/java/" title="分类于 Java">Java</a>
+<a href="/categories/linux/" title="分类于 Linux">Linux</a>
 </div>
 
-    <span><a href="/2023/04/29/java/JavaWeb%E6%9C%80%E6%96%B0/" title="JavaWeb newest">JavaWeb newest</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/java/" title="分类于 Java">Java</a>
-</div>
-
-    <span><a href="/2023/03/16/java/SSM/" title="SSM">SSM</a></span>
+    <span><a href="/2023/06/21/linux/Linux/" title="Linux常用命令">Linux常用命令</a></span>
   </li>
 
   </ul>

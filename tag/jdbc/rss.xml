@@ -7,13 +7,13 @@
         <language>zh-CN</language>
         <pubDate>Fri, 06 Jan 2023 00:00:00 +0900</pubDate>
         <lastBuildDate>Fri, 06 Jan 2023 00:00:00 +0900</lastBuildDate>
-        <category>JDBC</category>
-        <category>JavaWeb</category>
-        <category>Java</category>
-        <category>SSM</category>
         <category>Linux</category>
-        <category>JavaWeb newest</category>
+        <category>Java</category>
+        <category>JavaWeb</category>
+        <category>JDBC</category>
         <category>Spring</category>
+        <category>SSM</category>
+        <category>JavaWeb newest</category>
         <item>
             <guid isPermalink="true">http://rkl71.github.io/2023/01/06/java/JDBC/</guid>
             <title>JDBC</title>
