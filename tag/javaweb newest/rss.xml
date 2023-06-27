@@ -7,13 +7,14 @@
         <language>zh-CN</language>
         <pubDate>Sat, 29 Apr 2023 00:00:00 +0900</pubDate>
         <lastBuildDate>Sat, 29 Apr 2023 00:00:00 +0900</lastBuildDate>
-        <category>Linux</category>
-        <category>Java</category>
-        <category>JavaWeb</category>
         <category>JDBC</category>
-        <category>Spring</category>
+        <category>JavaWeb</category>
+        <category>Java</category>
         <category>SSM</category>
         <category>JavaWeb newest</category>
+        <category>Linux</category>
+        <category>SpringBoot2</category>
+        <category>Spring</category>
         <item>
             <guid isPermalink="true">http://rkl71.github.io/2023/04/29/java/JavaWeb%E6%9C%80%E6%96%B0/</guid>
             <title>JavaWeb newest</title>
