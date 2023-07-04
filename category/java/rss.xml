@@ -8,18 +8,15 @@
         <pubDate>Sat, 29 Apr 2023 00:00:00 +0900</pubDate>
         <lastBuildDate>Sat, 29 Apr 2023 00:00:00 +0900</lastBuildDate>
         <category>Java</category>
-        <category>JDBC</category>
         <category>JavaWeb</category>
         <category>Linux</category>
-        <category>JavaWeb newest</category>
-        <category>SSM</category>
-        <category>SpringBoot2</category>
+        <category>Redis</category>
         <category>Spring</category>
         <item>
             <guid isPermalink="true">http://rkl71.github.io/2023/04/29/java/JavaWeb%E6%9C%80%E6%96%B0/</guid>
             <title>JavaWeb newest</title>
             <link>http://rkl71.github.io/2023/04/29/java/JavaWeb%E6%9C%80%E6%96%B0/</link>
-            <category>JavaWeb newest</category>
+            <category>JavaWeb</category>
             <pubDate>Sat, 29 Apr 2023 00:00:00 +0900</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;javaweb最新&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#javaweb最新&#34;&gt;#&lt;/a&gt; JavaWeb 最新&lt;/h1&gt;
 &lt;h2 id=&#34;html和css&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#html和css&#34;&gt;#&lt;/a&gt; HTML 和 CSS&lt;/h2&gt;
@@ -3129,7 +3126,7 @@ order  by  字段1  排序方式1 , 字段2  排序方式2 … ;
             <guid isPermalink="true">http://rkl71.github.io/2023/03/16/java/SSM/</guid>
             <title>SSM</title>
             <link>http://rkl71.github.io/2023/03/16/java/SSM/</link>
-            <category>SSM</category>
+            <category>Java</category>
             <pubDate>Thu, 16 Mar 2023 00:00:00 +0900</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;spring&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#spring&#34;&gt;#&lt;/a&gt; Spring&lt;/h1&gt;
 &lt;h2 id=&#34;spring系统框架&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#spring系统框架&#34;&gt;#&lt;/a&gt; Spring 系统框架&lt;/h2&gt;
@@ -4823,7 +4820,7 @@ order  by  字段1  排序方式1 , 字段2  排序方式2 … ;
             <guid isPermalink="true">http://rkl71.github.io/2023/01/06/java/JDBC/</guid>
             <title>JDBC</title>
             <link>http://rkl71.github.io/2023/01/06/java/JDBC/</link>
-            <category>JDBC</category>
+            <category>Java</category>
             <pubDate>Fri, 06 Jan 2023 00:00:00 +0900</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;jdbc&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#jdbc&#34;&gt;#&lt;/a&gt; JDBC&lt;/h1&gt;
 &lt;h2 id=&#34;介绍&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#介绍&#34;&gt;#&lt;/a&gt; 介绍&lt;/h2&gt;

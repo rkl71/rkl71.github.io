@@ -8,18 +8,15 @@
         <pubDate>Tue, 27 Jun 2023 00:00:00 +0900</pubDate>
         <lastBuildDate>Tue, 27 Jun 2023 00:00:00 +0900</lastBuildDate>
         <category>Java</category>
-        <category>JDBC</category>
         <category>JavaWeb</category>
         <category>Linux</category>
-        <category>JavaWeb newest</category>
-        <category>SSM</category>
-        <category>SpringBoot2</category>
+        <category>Redis</category>
         <category>Spring</category>
         <item>
             <guid isPermalink="true">http://rkl71.github.io/2023/06/27/spring/SpringBoot2/</guid>
             <title>SpringBoot2</title>
             <link>http://rkl71.github.io/2023/06/27/spring/SpringBoot2/</link>
-            <category>SpringBoot2</category>
+            <category>Spring</category>
             <pubDate>Tue, 27 Jun 2023 00:00:00 +0900</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;springboot2&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#springboot2&#34;&gt;#&lt;/a&gt; SpringBoot2&lt;/h1&gt;
 &lt;h2 id=&#34;基础篇&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#基础篇&#34;&gt;#&lt;/a&gt; 基础篇&lt;/h2&gt;
