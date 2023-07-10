@@ -69,7 +69,7 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">本文字数</span>
-    <span>8.5k</span>
+    <span>13k</span>
     <span class="text">字</span>
   </span>
   <span class="item" title="阅读时长">
@@ -77,7 +77,7 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
       <i class="ic i-clock"></i>
     </span>
     <span class="text">阅读时长</span>
-    <span>8 分钟</span>
+    <span>12 分钟</span>
   </span>
 </div>
 
@@ -505,6 +505,315 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 <li>代码维护成本</li>
 <li>运维成本</li>
 </ul>
+<h3 id="更新策略"><a class="markdownIt-Anchor" href="#更新策略">#</a> 更新策略</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>内存淘汰</th>
+<th>超时剔除</th>
+<th>主动更新</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>说明</td>
+<td>不用自己维护，利用 Redis 的内存淘汰机制，当内存不足时自动淘汰部分数据。下次查询时更新缓存</td>
+<td>给缓存数据添加 TTL 时间，到期后自动删除缓存。下次查询时更新缓存</td>
+<td>编写业务逻辑，在修改数据库的同时，更新缓存</td>
+</tr>
+<tr>
+<td>一致性</td>
+<td>差</td>
+<td>一般</td>
+<td>好</td>
+</tr>
+<tr>
+<td>维护成本</td>
+<td>无</td>
+<td>低</td>
+<td>高</td>
+</tr>
+</tbody>
+</table>
+<p>业务场景：</p>
+<ul>
+<li>低一致性需求：使用内存淘汰机制。例如店铺类型的查询缓存</li>
+<li>高一致性需求：主动更新，并以超时剔除作为兜底方案。例如店铺详情查询的缓存</li>
+</ul>
+<h4 id="主动更新策略"><a class="markdownIt-Anchor" href="#主动更新策略">#</a> 主动更新策略</h4>
+<ol>
+<li><strong>Cache Aside Pattern（主流）</strong>：由缓存的调用者，在更新数据库的同时更新缓存</li>
+<li><strong>Read/Write Through Pattern</strong>：缓存与数据库整合为一个服务，由服务来维护一致性。调用者调用该服务，无需关心缓存一致性问题</li>
+<li><strong>Write Behind Caching Pattern</strong>：调用者只操作缓存，由其他线程异步的将缓存数据持久化到数据库，保证最终一致</li>
+</ol>
+<h4 id="问题"><a class="markdownIt-Anchor" href="#问题">#</a> 问题</h4>
+<ol>
+<li>删除缓存还是更新缓存？</li>
+</ol>
+<ul>
+<li>更新缓存：每次更新数据库都更新缓存，无效写操作较多❌</li>
+<li>删除缓存：更新数据库时让缓存失效，查询时再更新缓存✔</li>
+</ul>
+<ol start="2">
+<li>如何保证缓存与数据库的操作同时成功或失败？</li>
+</ol>
+<ul>
+<li>单体系统，将缓存与数据库操作放在一个事务</li>
+<li>分布式系统，利用 TCC 等分布式事务方案</li>
+</ul>
+<ol start="3">
+<li>先操作缓存还是先操作数据库？</li>
+</ol>
+<ul>
+<li>先删除缓存，再操作数据库</li>
+<li>先操作数据库，再删除缓存（<strong>胜出</strong>）</li>
+</ul>
+<h3 id="缓存穿透"><a class="markdownIt-Anchor" href="#缓存穿透">#</a> 缓存穿透</h3>
+<p>缓存穿透是指客户端请求的数据再缓存中和数据库中都不存在，这样缓存永远不会生效，这些请求都会打到数据库</p>
+<ul>
+<li>缓存空对象
+<ul>
+<li>优点：实现简单，维护方便</li>
+<li>缺点：
+<ul>
+<li>额外的内存消耗</li>
+<li>可能造成短期的不一致</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>布隆过滤
+<ul>
+<li>优点：内存占用较少，没有多余 key</li>
+<li>缺点：
+<ul>
+<li>实现复杂</li>
+<li>存在误判可能</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>缓存穿透产生的原因是什么？</p>
+<ul>
+<li>用户请求的数据在缓存中和数据库中都不存在，不断发起这样的请求，给数据库带来巨大压力</li>
+</ul>
+<p>缓存穿透的解决方案有哪些？</p>
+<ul>
+<li>缓存 null 值</li>
+<li>布隆过滤</li>
+<li>增强 id 的复杂度，避免被猜测 id 规律</li>
+<li>做好数据的基础格式校验</li>
+<li>加强用户权限校验</li>
+<li>做好热点参数的限流</li>
+</ul>
+<h3 id="缓存雪崩"><a class="markdownIt-Anchor" href="#缓存雪崩">#</a> 缓存雪崩</h3>
+<p>缓存雪崩是指同一时间段大量的缓存 key 同时失效或者 Redis 服务宕机，导致大量请求到达数据库，带来巨大压力</p>
+<ul>
+<li>给不同的 key 的 TTL 添加随机值</li>
+<li>利用 Redis 集群提高服务的可用性</li>
+<li>给缓存业务添加降级限流策略</li>
+<li>给业务添加多级缓存</li>
+</ul>
+<h3 id="缓存击穿"><a class="markdownIt-Anchor" href="#缓存击穿">#</a> 缓存击穿</h3>
+<p>缓存击穿问题也叫热点 key 问题，就是一个被高并发访问并且缓存重建业务较复杂的 key 突然失效了，无数的请求访问会在瞬间给数据库带来巨大的冲击</p>
+<ul>
+<li>
+<p>互斥锁</p>
+<ul>
+<li>优点：
+<ul>
+<li>没有额外的内存消耗</li>
+<li>保证一致性</li>
+<li>实现简单</li>
+</ul>
+</li>
+<li>缺点：
+<ul>
+<li>线程需要等待，性能受影响</li>
+<li>可能有死锁风险</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>逻辑过期</p>
+<ul>
+<li>优点：线程无需等待，性能较好</li>
+<li>缺点：
+<ul>
+<li>不保证一致性</li>
+<li>有额外内存消耗</li>
+<li>实现复杂</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="全局唯一id"><a class="markdownIt-Anchor" href="#全局唯一id">#</a> 全局唯一 ID</h2>
+<h3 id="生成器"><a class="markdownIt-Anchor" href="#生成器">#</a> 生成器</h3>
+<p>全局 ID 生成器，是一种在分布式系统下用来生成全局唯一 ID 的工具</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/rkl71/pic-bed@main/img/202307052053131.png" alt=""></p>
+<p>ID 的组成部分</p>
+<ul>
+<li>符号位：1bit，永远为 0</li>
+<li>时间戳：31bit，以秒为单位，可以使用 69 年</li>
+<li>序列号：32bit，秒内的计数器，支持每秒产生 2^32 个不同 ID</li>
+</ul>
+<h2 id="库存超卖问题"><a class="markdownIt-Anchor" href="#库存超卖问题">#</a> 库存超卖问题</h2>
+<p>超卖问题是典型的多线程安全问题，常见解决方案就是加锁</p>
+<h3 id="悲观锁"><a class="markdownIt-Anchor" href="#悲观锁">#</a> 悲观锁</h3>
+<p>认为线程安全问题一定会发生，因此在操作数据之前先获取锁，确保线程串行执行</p>
+<ul>
+<li>例如 Synchronized、Lock 都属于悲观锁</li>
+</ul>
+<h3 id="乐观锁"><a class="markdownIt-Anchor" href="#乐观锁">#</a> 乐观锁</h3>
+<p>认为线程安全问题不一定会发生，因此不加锁，只是在更新数据时去判断有没有其他线程对数据做了修改</p>
+<ul>
+<li>如果没有修改则认为是安全的，自己才更新数据</li>
+<li>如果已经被其他线程修改说明发生了安全问题，此时可以重试或异常</li>
+</ul>
+<h2 id="分布式锁"><a class="markdownIt-Anchor" href="#分布式锁">#</a> 分布式锁</h2>
+<p>满足分布式系统或集群模式下多进程可见并且互斥的锁</p>
+<p>分布式锁的核心是实现多进程之间互斥，常见有三种</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>MySQL</th>
+<th>Redis</th>
+<th>Zookeeper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>互斥</td>
+<td>利用 mysql 本身的互斥锁机制</td>
+<td>利用 setnx 互斥命令</td>
+<td>利用节点的唯一性和有序性实现互斥</td>
+</tr>
+<tr>
+<td>高可用</td>
+<td>好</td>
+<td>好</td>
+<td>好</td>
+</tr>
+<tr>
+<td>高性能</td>
+<td>一般</td>
+<td>好</td>
+<td>一般</td>
+</tr>
+<tr>
+<td>安全性</td>
+<td>断开连接，自动释放锁</td>
+<td>利用锁超时时间，到期释放</td>
+<td>临时节点，断开连接自动释放</td>
+</tr>
+</tbody>
+</table>
+<h3 id="基于redis的分布式锁"><a class="markdownIt-Anchor" href="#基于redis的分布式锁">#</a> 基于 Redis 的分布式锁</h3>
+<ul>
+<li>
+<p>获取锁</p>
+<ul>
+<li>
+<p>互斥：确保只能有一个线程获取锁</p>
+<pre><code class="language-cmd"># 添加锁，利用setnx的互斥特性
+SETNX lock thread1
+# 添加锁过期时间，避免服务宕机引起的死锁
+EXPIRE lock 10
+</code></pre>
+</li>
+<li>
+<p>非阻塞：尝试一次，成功返回 true，失败返回 false</p>
+<pre><code class="language-cmd"># 添加锁，NX是互斥，EX是设置超时时间
+SET lock thread1 NX EX 10
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>释放锁</p>
+<ul>
+<li>
+<p>手动释放</p>
+</li>
+<li>
+<p>超时释放：获取锁是添加一个超时时间</p>
+<pre><code class="language-cmd"># 释放锁，删除即可
+DEL key
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>分布式锁误删问题</strong></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/rkl71/pic-bed@main/img/202307101659204.png" alt=""></p>
+<p><strong>分布式锁的原子性问题</strong></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/rkl71/pic-bed@main/img/202307101713204.png" alt=""></p>
+<h4 id="lua脚本"><a class="markdownIt-Anchor" href="#lua脚本">#</a> Lua 脚本</h4>
+<p>Redis 提供了 Lua 脚本功能，在一个脚本中编写多条 Redis 命令，确保多条命令执行时的原子性。</p>
+<p>Lua 是一种编程语言，<span class="exturl" data-url="aHR0cHM6Ly93d3cucnVub29iLmNvbS9sdWEvbHVhLXR1dG9yaWFsLmh0bWw=">网站</span></p>
+<figure class="highlight lua"><figcaption data-lang="lua"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token operator">#</span> 执行redis命令</pre></td></tr><tr><td data-num="2"></td><td><pre>redis<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'命令名称'</span><span class="token punctuation">,</span> <span class="token string">'key'</span><span class="token punctuation">,</span> <span class="token string">'其他参数'</span><span class="token punctuation">,</span> <span class="token punctuation">...</span><span class="token punctuation">)</span></pre></td></tr></table></figure><p>释放锁的业务流程</p>
+<ol>
+<li>获取锁中的线程标示</li>
+<li>判断是否与指定的标示（当前线程标示）一致</li>
+<li>如果一致则释放锁（删除）</li>
+<li>如果不一致则什么都不用做</li>
+</ol>
+<figure class="highlight lua"><figcaption data-lang="lua"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token comment">-- 比较线程标示与锁中的标示是否一致</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">if</span><span class="token punctuation">(</span>redis<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'get'</span><span class="token punctuation">,</span> KEYS<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">==</span> ARGV<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token keyword">then</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token comment">-- 释放锁 del key</span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token keyword">return</span> redis<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'del'</span><span class="token punctuation">,</span> KEYS<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">end</span></pre></td></tr><tr><td data-num="6"></td><td><pre><span class="token keyword">return</span> <span class="token number">0</span></pre></td></tr></table></figure><p>基于 setnx 实现的分布式锁存在问题</p>
+<ul>
+<li>不可重入：同一个线程无法多次获取同一把锁</li>
+<li>不可重试：获取锁只尝试一次就返回 false，没有重试机制</li>
+<li>超时释放：锁超时释放虽然可以避免死锁，但如果是业务执行耗时较长，也会导致锁释放，存在安全隐患</li>
+<li>主从一致性：如果 Redis 提供了主从集群，当我们向集群写数据时，主机需要异步的将数据同步给从机，而万一在同步过去之前，主机宕机了，就会出现死锁问题</li>
+</ul>
+<h4 id="redisson"><a class="markdownIt-Anchor" href="#redisson">#</a> Redisson</h4>
+<ul>
+<li>Redisson 是一个在 Redis 的基础上实现的 Java 驻内存数据网格（In-Memory Data Grid）。它不仅提供了一系列的分布式的 Java 常用对象，还提供了许多分布式服务，其中就包含了各种分布式锁的实现。</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9yZWRpc3Nvbi5vcmc=">官网</span></li>
+</ul>
+<ol>
+<li>引入依赖：</li>
+</ol>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre>	<span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>org<span class="token punctuation">.</span>redisson<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span></pre></td></tr><tr><td data-num="3"></td><td><pre>	<span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>redisson<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span></pre></td></tr><tr><td data-num="4"></td><td><pre>	<span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">3.13</span><span class="token number">.6</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span></pre></td></tr></table></figure><ol start="2">
+<li>配置 Redisson 客户端：</li>
+</ol>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Configuration</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedissonConfig</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token annotation punctuation">@Bean</span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token keyword">public</span> <span class="token class-name">RedissonClient</span> <span class="token function">redissonClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token comment">// 配置</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token class-name">Config</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        config<span class="token punctuation">.</span><span class="token function">useSingleServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setAddress</span><span class="token punctuation">(</span><span class="token string">"redis://192.168.150.101:6379"</span><span class="token punctuation">)</span></pre></td></tr><tr><td data-num="9"></td><td><pre>            <span class="token punctuation">.</span><span class="token function">setPassword</span><span class="token punctuation">(</span><span class="token string">"123321"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>        <span class="token comment">// 创建 RedissonClient 对象</span></pre></td></tr><tr><td data-num="11"></td><td><pre>        <span class="token keyword">return</span> <span class="token class-name">Redisson</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><ol start="3">
+<li>使用 Redission 的分布式锁</li>
+</ol>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Resource</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">private</span> <span class="token class-name">RedissionClient</span> redissonClient<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token annotation punctuation">@Test</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">void</span> <span class="token function">testRedisson</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Exception</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token comment">// 获取锁 (可重入)，指定锁的名称</span></pre></td></tr><tr><td data-num="7"></td><td><pre>    <span class="token class-name">RLock</span> lock <span class="token operator">=</span> redissonClient<span class="token punctuation">.</span><span class="token function">getLock</span><span class="token punctuation">(</span><span class="token string">"anyLock"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>    <span class="token comment">// 尝试获取锁，参数分别是：获取锁的最大等待时间 (期间会重试)，锁自动释放时间，时间单位</span></pre></td></tr><tr><td data-num="9"></td><td><pre>    <span class="token keyword">boolean</span> isLock <span class="token operator">=</span> lock<span class="token punctuation">.</span><span class="token function">tryLock</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span><span class="token class-name">TimeUnit</span><span class="token punctuation">.</span><span class="token constant">SECONDS</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>    <span class="token comment">// 判断获取锁成功</span></pre></td></tr><tr><td data-num="11"></td><td><pre>    <span class="token keyword">if</span><span class="token punctuation">(</span>isLock<span class="token punctuation">)</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token keyword">try</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"执行业务"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          </pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token punctuation">&#125;</span><span class="token keyword">finally</span><span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            <span class="token comment">// 释放锁</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token punctuation">&#125;</span>  </pre></td></tr><tr><td data-num="18"></td><td><pre>    <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="19"></td><td><pre><span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p>在 VoucherOrderServiceImpl 注入 RedissonClient</p>
+<figure class="highlight java"><figcaption data-lang="java"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token annotation punctuation">@Resource</span></pre></td></tr><tr><td data-num="2"></td><td><pre><span class="token keyword">private</span> <span class="token class-name">RedissonClient</span> redissonClient<span class="token punctuation">;</span></pre></td></tr><tr><td data-num="3"></td><td><pre></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token annotation punctuation">@Override</span></pre></td></tr><tr><td data-num="5"></td><td><pre><span class="token keyword">public</span> <span class="token class-name">Result</span> <span class="token function">seckillVoucher</span><span class="token punctuation">(</span><span class="token class-name">Long</span> voucherId<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="6"></td><td><pre>        <span class="token comment">// 1. 查询优惠券</span></pre></td></tr><tr><td data-num="7"></td><td><pre>        <span class="token class-name">SeckillVoucher</span> voucher <span class="token operator">=</span> seckillVoucherService<span class="token punctuation">.</span><span class="token function">getById</span><span class="token punctuation">(</span>voucherId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="8"></td><td><pre>        <span class="token comment">// 2. 判断秒杀是否开始</span></pre></td></tr><tr><td data-num="9"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>voucher<span class="token punctuation">.</span><span class="token function">getBeginTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isAfter</span><span class="token punctuation">(</span><span class="token class-name">LocalDateTime</span><span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="10"></td><td><pre>            <span class="token comment">// 尚未开始</span></pre></td></tr><tr><td data-num="11"></td><td><pre>            <span class="token keyword">return</span> <span class="token class-name">Result</span><span class="token punctuation">.</span><span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"秒杀尚未开始！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="12"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="13"></td><td><pre>        <span class="token comment">// 3. 判断秒杀是否已经结束</span></pre></td></tr><tr><td data-num="14"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>voucher<span class="token punctuation">.</span><span class="token function">getEndTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">isBefore</span><span class="token punctuation">(</span><span class="token class-name">LocalDateTime</span><span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="15"></td><td><pre>            <span class="token comment">// 尚未开始</span></pre></td></tr><tr><td data-num="16"></td><td><pre>            <span class="token keyword">return</span> <span class="token class-name">Result</span><span class="token punctuation">.</span><span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"秒杀已经结束！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="17"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="18"></td><td><pre>        <span class="token comment">// 4. 判断库存是否充足</span></pre></td></tr><tr><td data-num="19"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span>voucher<span class="token punctuation">.</span><span class="token function">getStock</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="20"></td><td><pre>            <span class="token comment">// 库存不足</span></pre></td></tr><tr><td data-num="21"></td><td><pre>            <span class="token keyword">return</span> <span class="token class-name">Result</span><span class="token punctuation">.</span><span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"库存不足！"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="22"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="23"></td><td><pre>        <span class="token class-name">Long</span> userId <span class="token operator">=</span> <span class="token class-name">UserHolder</span><span class="token punctuation">.</span><span class="token function">getUser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="24"></td><td><pre>        <span class="token comment">// 创建锁对象 这个代码不用了，因为我们现在要使用分布式锁</span></pre></td></tr><tr><td data-num="25"></td><td><pre>        <span class="token comment">//SimpleRedisLock lock = new SimpleRedisLock("order:" + userId, stringRedisTemplate);</span></pre></td></tr><tr><td data-num="26"></td><td><pre>        <span class="token class-name">RLock</span> lock <span class="token operator">=</span> redissonClient<span class="token punctuation">.</span><span class="token function">getLock</span><span class="token punctuation">(</span><span class="token string">"lock:order:"</span> <span class="token operator">+</span> userId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="27"></td><td><pre>        <span class="token comment">// 获取锁对象</span></pre></td></tr><tr><td data-num="28"></td><td><pre>        <span class="token keyword">boolean</span> isLock <span class="token operator">=</span> lock<span class="token punctuation">.</span><span class="token function">tryLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="29"></td><td><pre>       </pre></td></tr><tr><td data-num="30"></td><td><pre>		<span class="token comment">// 加锁失败</span></pre></td></tr><tr><td data-num="31"></td><td><pre>        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isLock<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="32"></td><td><pre>            <span class="token keyword">return</span> <span class="token class-name">Result</span><span class="token punctuation">.</span><span class="token function">fail</span><span class="token punctuation">(</span><span class="token string">"不允许重复下单"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="33"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="34"></td><td><pre>        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="35"></td><td><pre>            <span class="token comment">// 获取代理对象 (事务)</span></pre></td></tr><tr><td data-num="36"></td><td><pre>            <span class="token class-name">IVoucherOrderService</span> proxy <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">IVoucherOrderService</span><span class="token punctuation">)</span> <span class="token class-name">AopContext</span><span class="token punctuation">.</span><span class="token function">currentProxy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="37"></td><td><pre>            <span class="token keyword">return</span> proxy<span class="token punctuation">.</span><span class="token function">createVoucherOrder</span><span class="token punctuation">(</span>voucherId<span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="38"></td><td><pre>        <span class="token punctuation">&#125;</span> <span class="token keyword">finally</span> <span class="token punctuation">&#123;</span></pre></td></tr><tr><td data-num="39"></td><td><pre>            <span class="token comment">// 释放锁</span></pre></td></tr><tr><td data-num="40"></td><td><pre>            lock<span class="token punctuation">.</span><span class="token function">unlock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre></td></tr><tr><td data-num="41"></td><td><pre>        <span class="token punctuation">&#125;</span></pre></td></tr><tr><td data-num="42"></td><td><pre> <span class="token punctuation">&#125;</span></pre></td></tr></table></figure><p><strong>Redisson 分布式锁原理</strong></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/rkl71/pic-bed@main/img/202307102200866.png" alt=""></p>
+<ul>
+<li>可重入：利用 hash 结构记录线程 id 和重入次数</li>
+<li>可重式：利用信号和 PubSub 功能实现等待、唤醒，获取锁失败的重试机制</li>
+<li>超时续约：利用 watchDog，每隔一段时间（releaseTime / 3），重置超时时间</li>
+</ul>
+<p><strong>总结</strong></p>
+<ol>
+<li>不可重入 Redis 分布式锁</li>
+</ol>
+<ul>
+<li>原理：利用 setnx 的互斥性；利用 ex 避免死锁；释放锁时判断线程标示</li>
+<li>缺陷：不可重入、无法重试、锁超时失效</li>
+</ul>
+<ol start="2">
+<li>可重入的 Redis 分布式锁</li>
+</ol>
+<ul>
+<li>原理：利用 hash 结构，记录线程标示和重入次数；利用 watchDog 延续锁时间；利用信号量控制锁重试等待</li>
+<li>缺陷：redis 宕机引起锁失效问题</li>
+</ul>
+<ol start="3">
+<li>Redission 的 multiLock</li>
+</ol>
+<ul>
+<li>原理：多个独立的 Redis 节点，必须在所有节点都获取重入锁，才算获取锁成功</li>
+<li>缺陷：运维成本高、实现复杂</li>
+</ul>
 
       <div class="tags">
           <a href="/tags/Redis/" rel="tag"><i class="ic i-tag"></i> Redis</a>
@@ -519,7 +828,7 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
       <i class="ic i-calendar-check"></i>
     </span>
     <span class="text">更新于</span>
-    <time title="修改时间：2023-07-04 22:30:38" itemprop="dateModified" datetime="2023-07-04T22:30:38+09:00">2023-07-04</time>
+    <time title="修改时间：2023-07-10 22:24:42" itemprop="dateModified" datetime="2023-07-10T22:24:42+09:00">2023-07-10</time>
   </span>
   <span id="2023/07/04/redis/Redis/" class="item leancloud_visitors" data-flag-title="Redis" title="阅读次数">
       <span class="icon">
@@ -567,6 +876,14 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 
     </div>
     <div class="item right">
+      
+
+  <a href="/2023/07/10/springcloud/SpringCloud/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;rkl71&#x2F;pic-bed@main&#x2F;img&#x2F;202307102239642.jpg" title="SpringCloud">
+  <span class="type">下一篇</span>
+  <span class="category"><i class="ic i-flag"></i> SpringCloud</span>
+  <h3>SpringCloud</h3>
+  </a>
+
     </div>
 </div>
 
@@ -583,7 +900,7 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
   <div class="panels">
     <div class="inner">
       <div class="contents panel pjax" data-title="文章目录">
-          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#redis"><span class="toc-number">1.</span> <span class="toc-text"> Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E8%AF%86redis"><span class="toc-number">1.1.</span> <span class="toc-text"> 初识 Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%BE%81"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 特征</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text"> Redis 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 通用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text"> String 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#key%E7%9A%84%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.4.</span> <span class="toc-text"> Key 的层级结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hash%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.5.</span> <span class="toc-text"> Hash 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.6.</span> <span class="toc-text"> List 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.7.</span> <span class="toc-text"> Set 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sortedset%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.8.</span> <span class="toc-text"> SortedSet 类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis%E7%9A%84java%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">1.3.</span> <span class="toc-text"> Redis 的 Java 客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jedis"><span class="toc-number">1.3.1.</span> <span class="toc-text"> Jedis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jedis%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="toc-number">1.3.2.</span> <span class="toc-text"> Jedis 连接池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#springdataredis"><span class="toc-number">1.3.3.</span> <span class="toc-text"> SpringDataRedis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redistemplate"><span class="toc-number">1.3.4.</span> <span class="toc-text"> RedisTemplate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8"><span class="toc-number">1.3.5.</span> <span class="toc-text"> 数据序列化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stringredistemplate"><span class="toc-number">1.3.6.</span> <span class="toc-text"> StringRedisTemplate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hash%E7%BB%93%E6%9E%84%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.7.</span> <span class="toc-text"> Hash 结构操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98"><span class="toc-number">1.4.</span> <span class="toc-text"> 缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E6%9C%AC"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 成本</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#redis"><span class="toc-number">1.</span> <span class="toc-text"> Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E8%AF%86redis"><span class="toc-number">1.1.</span> <span class="toc-text"> 初识 Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%B9%E5%BE%81"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 特征</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.</span> <span class="toc-text"> Redis 命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.1.</span> <span class="toc-text"> 数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.2.</span> <span class="toc-text"> 通用命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#string%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.3.</span> <span class="toc-text"> String 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#key%E7%9A%84%E5%B1%82%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="toc-number">1.2.4.</span> <span class="toc-text"> Key 的层级结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hash%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.5.</span> <span class="toc-text"> Hash 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#list%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.6.</span> <span class="toc-text"> List 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#set%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.7.</span> <span class="toc-text"> Set 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sortedset%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.8.</span> <span class="toc-text"> SortedSet 类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis%E7%9A%84java%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">1.3.</span> <span class="toc-text"> Redis 的 Java 客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jedis"><span class="toc-number">1.3.1.</span> <span class="toc-text"> Jedis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jedis%E8%BF%9E%E6%8E%A5%E6%B1%A0"><span class="toc-number">1.3.2.</span> <span class="toc-text"> Jedis 连接池</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#springdataredis"><span class="toc-number">1.3.3.</span> <span class="toc-text"> SpringDataRedis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#redistemplate"><span class="toc-number">1.3.4.</span> <span class="toc-text"> RedisTemplate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%8F%E5%88%97%E5%8C%96%E5%99%A8"><span class="toc-number">1.3.5.</span> <span class="toc-text"> 数据序列化器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stringredistemplate"><span class="toc-number">1.3.6.</span> <span class="toc-text"> StringRedisTemplate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hash%E7%BB%93%E6%9E%84%E6%93%8D%E4%BD%9C"><span class="toc-number">1.3.7.</span> <span class="toc-text"> Hash 结构操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%93%E5%AD%98"><span class="toc-number">1.4.</span> <span class="toc-text"> 缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E6%9C%AC"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 成本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 更新策略</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E5%8A%A8%E6%9B%B4%E6%96%B0%E7%AD%96%E7%95%A5"><span class="toc-number">1.4.3.1.</span> <span class="toc-text"> 主动更新策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number">1.4.3.2.</span> <span class="toc-text"> 问题</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E7%A9%BF%E9%80%8F"><span class="toc-number">1.4.4.</span> <span class="toc-text"> 缓存穿透</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E9%9B%AA%E5%B4%A9"><span class="toc-number">1.4.5.</span> <span class="toc-text"> 缓存雪崩</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%93%E5%AD%98%E5%87%BB%E7%A9%BF"><span class="toc-number">1.4.6.</span> <span class="toc-text"> 缓存击穿</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%94%AF%E4%B8%80id"><span class="toc-number">1.5.</span> <span class="toc-text"> 全局唯一 ID</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 生成器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%93%E5%AD%98%E8%B6%85%E5%8D%96%E9%97%AE%E9%A2%98"><span class="toc-number">1.6.</span> <span class="toc-text"> 库存超卖问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 悲观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">1.6.2.</span> <span class="toc-text"> 乐观锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-number">1.7.</span> <span class="toc-text"> 分布式锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8Eredis%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="toc-number">1.7.1.</span> <span class="toc-text"> 基于 Redis 的分布式锁</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lua%E8%84%9A%E6%9C%AC"><span class="toc-number">1.7.1.1.</span> <span class="toc-text"> Lua 脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#redisson"><span class="toc-number">1.7.1.2.</span> <span class="toc-text"> Redisson</span></a></li></ol></li></ol></li></ol></li></ol>
       </div>
       <div class="related panel pjax" data-title="系列文章">
         <ul>
@@ -601,19 +918,19 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 <nav class="state">
     <div class="item posts">
       <a href="/archives/">
-        <span class="count">10</span>
+        <span class="count">11</span>
         <span class="name">文章</span>
       </a>
     </div>
     <div class="item categories">
       <a href="/categories/">
-        <span class="count">4</span>
+        <span class="count">5</span>
         <span class="name">分类</span>
       </a>
     </div>
     <div class="item tags">
       <a href="/tags/">
-        <span class="count">5</span>
+        <span class="count">6</span>
         <span class="name">标签</span>
       </a>
     </div>
@@ -675,10 +992,12 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 
   <ul id="quick">
     <li class="prev pjax">
+        <a href="/2023/07/02/linux/Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" rel="prev" title="上一篇"><i class="ic i-chevron-left"></i></a>
     </li>
     <li class="up"><i class="ic i-arrow-up"></i></li>
     <li class="down"><i class="ic i-arrow-down"></i></li>
     <li class="next pjax">
+        <a href="/2023/07/10/springcloud/SpringCloud/" rel="next" title="下一篇"><i class="ic i-chevron-right"></i></a>
     </li>
     <li class="percent"></li>
   </ul>
@@ -700,10 +1019,10 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/spring/" title="分类于 Spring">Spring</a>
+<a href="/categories/java/" title="分类于 Java">Java</a>
 </div>
 
-    <span><a href="/2023/06/27/spring/SpringBoot2/" title="SpringBoot2">SpringBoot2</a></span>
+    <span><a href="/2023/01/06/java/JDBC/" title="JDBC">JDBC</a></span>
   </li>
 
       
@@ -720,50 +1039,10 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
   <li class="item">
     
 <div class="breadcrumb">
-<a href="/categories/linux/" title="分类于 Linux">Linux</a>
+<a href="/categories/spring/" title="分类于 Spring">Spring</a>
 </div>
 
-    <span><a href="/2023/07/02/linux/Linux%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" title="Linux软件安装">Linux软件安装</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/java/" title="分类于 Java">Java</a>
-</div>
-
-    <span><a href="/2023/01/06/java/JDBC/" title="JDBC">JDBC</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/java/" title="分类于 Java">Java</a>
-</div>
-
-    <span><a href="/2023/01/01/java/Java/" title="Java基础">Java基础</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/Redis/" title="分类于 Redis">Redis</a>
-</div>
-
-    <span><a href="/2023/07/04/redis/Redis/" title="Redis">Redis</a></span>
-  </li>
-
-      
-  <li class="item">
-    
-<div class="breadcrumb">
-<a href="/categories/linux/" title="分类于 Linux">Linux</a>
-</div>
-
-    <span><a href="/2023/06/21/linux/Linux/" title="Linux常用命令">Linux常用命令</a></span>
+    <span><a href="/2023/06/27/spring/SpringBoot2/" title="SpringBoot2">SpringBoot2</a></span>
   </li>
 
       
@@ -793,7 +1072,47 @@ Crush =  = 这世界很喧嚣 做你自己就好</title>
 <a href="/categories/java/" title="分类于 Java">Java</a>
 </div>
 
+    <span><a href="/2023/01/01/java/Java/" title="Java基础">Java基础</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 Java">Java</a>
+</div>
+
     <span><a href="/2023/02/03/java/JavaWeb/" title="JavaWeb">JavaWeb</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/06/21/linux/Linux/" title="Linux常用命令">Linux常用命令</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/SpringCloud/" title="分类于 SpringCloud">SpringCloud</a>
+</div>
+
+    <span><a href="/2023/07/10/springcloud/SpringCloud/" title="SpringCloud">SpringCloud</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Redis/" title="分类于 Redis">Redis</a>
+</div>
+
+    <span><a href="/2023/07/04/redis/Redis/" title="Redis">Redis</a></span>
   </li>
 
   </ul>

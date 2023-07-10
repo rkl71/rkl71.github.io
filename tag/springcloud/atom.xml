@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>http://rkl71.github.io</id>
+    <title> • Posts by &#34;springcloud&#34; tag</title>
+    <link href="http://rkl71.github.io" />
+    <updated>2023-07-09T15:00:00.000Z</updated>
+    <category term="Java" />
+    <category term="JavaWeb" />
+    <category term="Linux" />
+    <category term="Redis" />
+    <category term="SpringCloud" />
+    <category term="Spring" />
+    <entry>
+        <id>http://rkl71.github.io/2023/07/10/springcloud/SpringCloud/</id>
+        <title>SpringCloud</title>
+        <link rel="alternate" href="http://rkl71.github.io/2023/07/10/springcloud/SpringCloud/"/>
+        <content type="html">&lt;h1 id=&#34;springcloud&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#springcloud&#34;&gt;#&lt;/a&gt; SpringCloud&lt;/h1&gt;
+&lt;h2 id=&#34;服务架构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#服务架构&#34;&gt;#&lt;/a&gt; 服务架构&lt;/h2&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/rkl71/pic-bed@main/img/202305221208281.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;单体架构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#单体架构&#34;&gt;#&lt;/a&gt; 单体架构&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;将业务的所有功能集中在一个项目中开发，打成一个包部署&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;架构简单&lt;/li&gt;
+&lt;li&gt;部署成本低&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;耦合度高&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;分布式架构&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#分布式架构&#34;&gt;#&lt;/a&gt; 分布式架构&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;根据业务功能对系统进行拆分，每个业务模块作为独立项目开发，称为一个服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;优点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;降低服务耦合&lt;/li&gt;
+&lt;li&gt;有利于服务升级拓展&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;问题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务拆分粒度如何&lt;/li&gt;
+&lt;li&gt;服务集群地址如何维护&lt;/li&gt;
+&lt;li&gt;服务之间如何实现远程调用&lt;/li&gt;
+&lt;li&gt;服务健康状态如何感知&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;认识微服务&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#认识微服务&#34;&gt;#&lt;/a&gt; 认识微服务&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;微服务是一种经过良好架构设计的&lt;strong&gt;分布式&lt;/strong&gt;架构方案&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;特征：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;单一职责：微服务拆分粒度更小，每一个服务对应唯一的业务能力，做到单一职责，避免重复业务开发&lt;/li&gt;
+&lt;li&gt;面向服务：微服务对外暴露接口需求&lt;/li&gt;
+&lt;li&gt;自治：团队、技术、数据、部署独立&lt;/li&gt;
+&lt;li&gt;隔离性强：服务调用做好隔离、容错、降级，避免出现级联问题&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;服务拆分&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#服务拆分&#34;&gt;#&lt;/a&gt; 服务拆分&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;不同微服务，不重复开发相同业务&lt;/li&gt;
+&lt;li&gt;微服务数据独立，不访问其他微服务的数据库&lt;/li&gt;
+&lt;li&gt;微服务可将自身的业务暴露为接口，供其他微服务调用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;eureka&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#eureka&#34;&gt;#&lt;/a&gt; Eureka&lt;/h2&gt;
+&lt;h3 id=&#34;服务调用关系&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#服务调用关系&#34;&gt;#&lt;/a&gt; 服务调用关系&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;服务提供者：暴露接口给其他微服务调用&lt;/li&gt;
+&lt;li&gt;服务消费者：调用其他微服务提供的接口&lt;/li&gt;
+&lt;li&gt;提供者与消费者角色是&lt;strong&gt;相对&lt;/strong&gt;的&lt;/li&gt;
+&lt;li&gt;一个服务可以同时是服务提供者和服务消费者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;作用&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#作用&#34;&gt;#&lt;/a&gt; 作用&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;消费者如何获取服务提供者具体信息？
+&lt;ul&gt;
+&lt;li&gt;服务提供者启动时向 eureka 注册自己的信息&lt;/li&gt;
+&lt;li&gt;eureka 保存这些信息&lt;/li&gt;
+&lt;li&gt;消费者根据服务名称向 eureka 拉取提供者信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;如果有多个服务提供者，消费者如何选择？
+&lt;ul&gt;
+&lt;li&gt;服务消费者利用负载均衡算法，从服务列表中挑选一个&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;消费者如何感知服务提供者健康状态？
+&lt;ul&gt;
+&lt;li&gt;服务提供者每隔 30s 向 EurekaServer 发送心跳请求，报告健康状态&lt;/li&gt;
+&lt;li&gt;eureka 会更新记录服务列表信息，心跳不正常会被剔除&lt;/li&gt;
+&lt;li&gt;消费者可以拉取到最新的信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;总结&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#总结&#34;&gt;#&lt;/a&gt; 总结&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;EurekaServer：服务端，注册中心
+&lt;ul&gt;
+&lt;li&gt;记录服务信息&lt;/li&gt;
+&lt;li&gt;心跳监控&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;EurekaClient：客户端
+&lt;ul&gt;
+&lt;li&gt;Provider：服务提供者
+&lt;ul&gt;
+&lt;li&gt;注册自己的信息到 EurekaServer&lt;/li&gt;
+&lt;li&gt;每隔 30s 向 EurekaServer 发送心跳&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;consumer：服务消费者
+&lt;ul&gt;
+&lt;li&gt;根据服务名称从 EurekaServer 拉取服务列表&lt;/li&gt;
+&lt;li&gt;基于服务列表做负载均衡，选中一个微服务后发起远程调用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;注册中心&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#注册中心&#34;&gt;#&lt;/a&gt; 注册中心&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;搭建 EurekaServer
+&lt;ul&gt;
+&lt;li&gt;引入 eureka-server 依赖&lt;/li&gt;
+&lt;li&gt;添加 @EnableEurekaServer 注解&lt;/li&gt;
+&lt;li&gt;在 application.yml 中配置 eureka 地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;服务注册
+&lt;ul&gt;
+&lt;li&gt;引入 eureka-client 依赖&lt;/li&gt;
+&lt;li&gt;在 application.yml 中配置 eureka 地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;服务发现
+&lt;ul&gt;
+&lt;li&gt;引入 eureka-client 依赖&lt;/li&gt;
+&lt;li&gt;在 application.yml 中配置 eureka 地址&lt;/li&gt;
+&lt;li&gt;给 RestTemplate 添加 @LodeBalanced 注解&lt;/li&gt;
+&lt;li&gt;用服务提供者的服务名称远程调用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;ribbon&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#ribbon&#34;&gt;#&lt;/a&gt; Ribbon&lt;/h2&gt;
+&lt;h3 id=&#34;负载均衡&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#负载均衡&#34;&gt;#&lt;/a&gt; 负载均衡&lt;/h3&gt;
+&lt;p&gt;&lt;img data-src=&#34;https://cdn.jsdelivr.net/gh/rkl71/pic-bed@main/img/202305221639554.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;规则&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#规则&#34;&gt;#&lt;/a&gt; 规则&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;规则接口是 IRule&lt;/li&gt;
+&lt;li&gt;默认实现是 ZoneAvoidanceRule，根据 zone 选择服务列表，然后轮询&lt;/li&gt;
+&lt;/ul&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;内置负载均衡规则类&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;规则描述&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;RoundRobinRule&lt;/td&gt;
+&lt;td&gt;简单轮询服务列表来选择服务器，它是 Ribbon 默认的负载均衡规则&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;AvailabilityFilteringRule&lt;/td&gt;
+&lt;td&gt;对以下两种服务器进行忽略：（1）在默认情况下，这台服务器如果 3 次连接失败，这台服务器就会被设置为 “短路” 状态。短路状态将持续 30 秒，如果再次连接失败，短路的持续时间就会几何级地增加（2）并发数过高的服务器。如果一个服务器的并发连接数过高，配置了 AvailabilityFilteringRule 规则的客户端也会将其忽略。并发连接数的上限，可以由客户端的&lt;clientName&gt;.&lt;clientConfigNameSpace&gt;.ActiveConnectionsLimit 属性进行配置&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;WeightedResponseTimeRule&lt;/td&gt;
+&lt;td&gt;为每一个服务器赋予一个权重值。服务器响应时间越长，这个服务器的权重就越小。这个规则会随机选择服务器，这个权重值会影响服务器的选择&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;ZoneAvoidanceRule&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;以区域可用的服务器为基础进行服务器的选择。使用 Zone 对服务器进行分类，这个 Zone 可以理解为一个机房、一个机架等。而后再对 Zone 内的多个服务做轮询&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;BestAvailableRule&lt;/td&gt;
+&lt;td&gt;忽略那些短路的服务器，并选择并发数较低的服务器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RandomRule&lt;/td&gt;
+&lt;td&gt;随机选择一个可用的服务器&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RetryRule&lt;/td&gt;
+&lt;td&gt;重试机制的选择逻辑&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4 id=&#34;自定义方式&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#自定义方式&#34;&gt;#&lt;/a&gt; 自定义方式&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;代码方式：配置灵活，但修改时需要重新打包发布&lt;/li&gt;
+&lt;li&gt;配置方式：直观、方便，无需重新打包发布，但无法做全局配置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;饥饿加载&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#饥饿加载&#34;&gt;#&lt;/a&gt; 饥饿加载&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Ribbon 默认采用懒加载，即第一次访问时会创建 LoadBalanceClient，请求时间会很长&lt;/li&gt;
+&lt;li&gt;饥饿加载则会在项目启动时创建，降低第一次访问的耗时&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight yml&#34;&gt;&lt;figcaption data-lang=&#34;YAML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;ribbon&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;	&lt;span class=&#34;token key atrule&#34;&gt;eager-load&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token key atrule&#34;&gt;enabled&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;token boolean important&#34;&gt;true&lt;/span&gt; &lt;span class=&#34;token comment&#34;&gt;#开启饥饿加载&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;		&lt;span class=&#34;token key atrule&#34;&gt;clients&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; userservice &lt;span class=&#34;token comment&#34;&gt;#指定对 userservice 这个服务器饥饿加载&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h2 id=&#34;nacos&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nacos&#34;&gt;#&lt;/a&gt; Nacos&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;引入依赖&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;在 cloud-demo 父工程的 pom 文件中的 &lt;code&gt;&amp;lt;dependencyManagement&amp;gt;&lt;/code&gt;  中引入 SpringCloudAlibaba 的依赖&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight xml&#34;&gt;&lt;figcaption data-lang=&#34;XML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;com.alibaba.cloud&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;spring-cloud-alibaba-dependencies&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;version&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;2.2.6.RELEASE&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;version&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;5&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;type&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;pom&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;type&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;6&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;scope&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;import&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;scope&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;7&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ul&gt;
+&lt;li&gt;在 user-service 和 order-service 中的 pom 文件中引入 nacos-discovery 依赖&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight xml&#34;&gt;&lt;figcaption data-lang=&#34;XML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;com.alibaba.cloud&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;groupId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;artifactId&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token tag&#34;&gt;&lt;span class=&#34;token punctuation&#34;&gt;&amp;lt;/&lt;/span&gt;dependency&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;配置 nacos 地址&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;在 user-service 和 order-service 的 application.yml 中添加 nacos 地址&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&#34;highlight yaml&#34;&gt;&lt;figcaption data-lang=&#34;YAML&#34;&gt;&lt;/figcaption&gt;&lt;table&gt;&lt;tr&gt;&lt;td data-num=&#34;1&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;&lt;span class=&#34;token key atrule&#34;&gt;spring&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;2&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;  &lt;span class=&#34;token key atrule&#34;&gt;cloud&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;3&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;    &lt;span class=&#34;token key atrule&#34;&gt;nacos&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td data-num=&#34;4&#34;&gt;&lt;/td&gt;&lt;td&gt;&lt;pre&gt;      &lt;span class=&#34;token key atrule&#34;&gt;server-addr&lt;/span&gt;&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt; localhost&lt;span class=&#34;token punctuation&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;token number&#34;&gt;8848&lt;/span&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;h3 id=&#34;服务多级存储模型&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#服务多级存储模型&#34;&gt;#&lt;/a&gt; 服务多级存储模型&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一级是服务，例如 userservice&lt;/li&gt;
+&lt;li&gt;二级是集群，例如杭州或上海&lt;/li&gt;
+&lt;li&gt;三级是实例，例如杭州机房的某台部署了 userservice 的服务器&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;设置实例的集群属性&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改 application.yml 文件，添加 spring.cloud.nacos.discovery.cluster-name 属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;nacosrule负载均衡&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nacosrule负载均衡&#34;&gt;#&lt;/a&gt; NacosRule 负载均衡&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;优先选择同集群的服务实例列表&lt;/li&gt;
+&lt;li&gt;本地集群找不到提供者，才去其它集群寻找，并且会报警告&lt;/li&gt;
+&lt;li&gt;确定了可用实例列表后，再采取负载均衡挑选实例&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;服务实例的权重设置&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#服务实例的权重设置&#34;&gt;#&lt;/a&gt; 服务实例的权重设置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Nacos 控制台可以设置实例的权重值，0~1 之间&lt;/li&gt;
+&lt;li&gt;同集群内的多个实例，权重越高被访问的频率越高&lt;/li&gt;
+&lt;li&gt;权重设置为 0 则完全不会被访问&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;环境隔离&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#环境隔离&#34;&gt;#&lt;/a&gt; 环境隔离&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;namespace 用来做环境隔离&lt;/li&gt;
+&lt;li&gt;每个 namespace 都有唯一 id&lt;/li&gt;
+&lt;li&gt;不同 namespace 下的服务不可见&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;nacos和eureka对比&#34;&gt;&lt;a class=&#34;markdownIt-Anchor&#34; href=&#34;#nacos和eureka对比&#34;&gt;#&lt;/a&gt; Nacos 和 Eureka 对比&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;共同点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;都支持服务注册和服务拉取&lt;/li&gt;
+&lt;li&gt;都支持服务提供者心跳方式做健康检测&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;区别&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;Nacos 支持服务端主动检测提供者状态：临时实例采用心跳模式，非临时实例采用主动检测模式&lt;/li&gt;
+&lt;li&gt;临时实例心跳不正常会被剔除，非临时实例则不会被剔除&lt;/li&gt;
+&lt;li&gt;Nacos 支持服务列表变更的消息推送方式，服务列表更新更及时&lt;/li&gt;
+&lt;li&gt;Nacos 集群默认采用 AP 方式，当集群中存在非临时实例时，采用 CP 模式；Eureka 采用 AP 方式&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="SpringCloud" />
+        <updated>2023-07-09T15:00:00.000Z</updated>
+    </entry>
+</feed>

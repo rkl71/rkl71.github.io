@@ -1,0 +1,793 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="" href="http://rkl71.github.io/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="" href="http://rkl71.github.io/atom.xml" />
+<link rel="alternate" type="application/json" title="" href="http://rkl71.github.io/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="SpringCloud" />
+
+
+<link rel="canonical" href="http://rkl71.github.io/2023/07/10/springcloud/SpringCloud/">
+
+
+
+  <title>
+SpringCloud - SpringCloud |
+Crush =  = 这世界很喧嚣 做你自己就好</title>
+<meta name="generator" content="Hexo 6.3.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+      <div class='loader'>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--dot'></div>
+          <div class='loader--text'></div>
+        </div>
+    </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">SpringCloud
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2023-07-10 00:00:00">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2023-07-10T00:00:00+09:00">2023-07-10</time>
+  </span>
+  <span class="item" title="本文字数">
+    <span class="icon">
+      <i class="ic i-pen"></i>
+    </span>
+    <span class="text">本文字数</span>
+    <span>3.1k</span>
+    <span class="text">字</span>
+  </span>
+  <span class="item" title="阅读时长">
+    <span class="icon">
+      <i class="ic i-clock"></i>
+    </span>
+    <span class="text">阅读时长</span>
+    <span>3 分钟</span>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Crush</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+          <img src="https://cdn.jsdelivr.net/gh/rkl71/pic-bed@main/img/202307102239642.jpg">
+      </div>
+
+
+    <div id="waves">
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+          <defs>
+            <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0" />
+            <use xlink:href="#gentle-wave" x="48" y="3" />
+            <use xlink:href="#gentle-wave" x="48" y="5" />
+            <use xlink:href="#gentle-wave" x="48" y="7" />
+          </g>
+        </svg>
+      </div>
+
+    </header>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/SpringCloud/" itemprop="item" rel="index" title="分类于 SpringCloud"><span itemprop="name">SpringCloud</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://rkl71.github.io/2023/07/10/springcloud/SpringCloud/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="renkelin">
+    <meta itemprop="description" content="这世界很喧嚣 做你自己就好, 在心里种花，人生才不会荒芜🌹">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <h1 id="springcloud"><a class="markdownIt-Anchor" href="#springcloud">#</a> SpringCloud</h1>
+<h2 id="服务架构"><a class="markdownIt-Anchor" href="#服务架构">#</a> 服务架构</h2>
+<p><img data-src="https://cdn.jsdelivr.net/gh/rkl71/pic-bed@main/img/202305221208281.png" alt=""></p>
+<h3 id="单体架构"><a class="markdownIt-Anchor" href="#单体架构">#</a> 单体架构</h3>
+<ul>
+<li>将业务的所有功能集中在一个项目中开发，打成一个包部署</li>
+</ul>
+<p>优点</p>
+<ul>
+<li>架构简单</li>
+<li>部署成本低</li>
+</ul>
+<p>缺点</p>
+<ul>
+<li>耦合度高</li>
+</ul>
+<h3 id="分布式架构"><a class="markdownIt-Anchor" href="#分布式架构">#</a> 分布式架构</h3>
+<ul>
+<li>根据业务功能对系统进行拆分，每个业务模块作为独立项目开发，称为一个服务</li>
+</ul>
+<p>优点</p>
+<ul>
+<li>降低服务耦合</li>
+<li>有利于服务升级拓展</li>
+</ul>
+<p>问题</p>
+<ul>
+<li>服务拆分粒度如何</li>
+<li>服务集群地址如何维护</li>
+<li>服务之间如何实现远程调用</li>
+<li>服务健康状态如何感知</li>
+</ul>
+<h2 id="认识微服务"><a class="markdownIt-Anchor" href="#认识微服务">#</a> 认识微服务</h2>
+<ul>
+<li>微服务是一种经过良好架构设计的<strong>分布式</strong>架构方案</li>
+</ul>
+<p>特征：</p>
+<ul>
+<li>单一职责：微服务拆分粒度更小，每一个服务对应唯一的业务能力，做到单一职责，避免重复业务开发</li>
+<li>面向服务：微服务对外暴露接口需求</li>
+<li>自治：团队、技术、数据、部署独立</li>
+<li>隔离性强：服务调用做好隔离、容错、降级，避免出现级联问题</li>
+</ul>
+<h2 id="服务拆分"><a class="markdownIt-Anchor" href="#服务拆分">#</a> 服务拆分</h2>
+<ol>
+<li>不同微服务，不重复开发相同业务</li>
+<li>微服务数据独立，不访问其他微服务的数据库</li>
+<li>微服务可将自身的业务暴露为接口，供其他微服务调用</li>
+</ol>
+<h2 id="eureka"><a class="markdownIt-Anchor" href="#eureka">#</a> Eureka</h2>
+<h3 id="服务调用关系"><a class="markdownIt-Anchor" href="#服务调用关系">#</a> 服务调用关系</h3>
+<ul>
+<li>服务提供者：暴露接口给其他微服务调用</li>
+<li>服务消费者：调用其他微服务提供的接口</li>
+<li>提供者与消费者角色是<strong>相对</strong>的</li>
+<li>一个服务可以同时是服务提供者和服务消费者</li>
+</ul>
+<h3 id="作用"><a class="markdownIt-Anchor" href="#作用">#</a> 作用</h3>
+<ul>
+<li>消费者如何获取服务提供者具体信息？
+<ul>
+<li>服务提供者启动时向 eureka 注册自己的信息</li>
+<li>eureka 保存这些信息</li>
+<li>消费者根据服务名称向 eureka 拉取提供者信息</li>
+</ul>
+</li>
+<li>如果有多个服务提供者，消费者如何选择？
+<ul>
+<li>服务消费者利用负载均衡算法，从服务列表中挑选一个</li>
+</ul>
+</li>
+<li>消费者如何感知服务提供者健康状态？
+<ul>
+<li>服务提供者每隔 30s 向 EurekaServer 发送心跳请求，报告健康状态</li>
+<li>eureka 会更新记录服务列表信息，心跳不正常会被剔除</li>
+<li>消费者可以拉取到最新的信息</li>
+</ul>
+</li>
+</ul>
+<h4 id="总结"><a class="markdownIt-Anchor" href="#总结">#</a> 总结</h4>
+<ul>
+<li>EurekaServer：服务端，注册中心
+<ul>
+<li>记录服务信息</li>
+<li>心跳监控</li>
+</ul>
+</li>
+<li>EurekaClient：客户端
+<ul>
+<li>Provider：服务提供者
+<ul>
+<li>注册自己的信息到 EurekaServer</li>
+<li>每隔 30s 向 EurekaServer 发送心跳</li>
+</ul>
+</li>
+<li>consumer：服务消费者
+<ul>
+<li>根据服务名称从 EurekaServer 拉取服务列表</li>
+<li>基于服务列表做负载均衡，选中一个微服务后发起远程调用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="注册中心"><a class="markdownIt-Anchor" href="#注册中心">#</a> 注册中心</h3>
+<ol>
+<li>搭建 EurekaServer
+<ul>
+<li>引入 eureka-server 依赖</li>
+<li>添加 @EnableEurekaServer 注解</li>
+<li>在 application.yml 中配置 eureka 地址</li>
+</ul>
+</li>
+<li>服务注册
+<ul>
+<li>引入 eureka-client 依赖</li>
+<li>在 application.yml 中配置 eureka 地址</li>
+</ul>
+</li>
+<li>服务发现
+<ul>
+<li>引入 eureka-client 依赖</li>
+<li>在 application.yml 中配置 eureka 地址</li>
+<li>给 RestTemplate 添加 @LodeBalanced 注解</li>
+<li>用服务提供者的服务名称远程调用</li>
+</ul>
+</li>
+</ol>
+<h2 id="ribbon"><a class="markdownIt-Anchor" href="#ribbon">#</a> Ribbon</h2>
+<h3 id="负载均衡"><a class="markdownIt-Anchor" href="#负载均衡">#</a> 负载均衡</h3>
+<p><img data-src="https://cdn.jsdelivr.net/gh/rkl71/pic-bed@main/img/202305221639554.png" alt=""></p>
+<h4 id="规则"><a class="markdownIt-Anchor" href="#规则">#</a> 规则</h4>
+<ul>
+<li>规则接口是 IRule</li>
+<li>默认实现是 ZoneAvoidanceRule，根据 zone 选择服务列表，然后轮询</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><strong>内置负载均衡规则类</strong></th>
+<th><strong>规则描述</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RoundRobinRule</td>
+<td>简单轮询服务列表来选择服务器，它是 Ribbon 默认的负载均衡规则</td>
+</tr>
+<tr>
+<td>AvailabilityFilteringRule</td>
+<td>对以下两种服务器进行忽略：（1）在默认情况下，这台服务器如果 3 次连接失败，这台服务器就会被设置为 “短路” 状态。短路状态将持续 30 秒，如果再次连接失败，短路的持续时间就会几何级地增加（2）并发数过高的服务器。如果一个服务器的并发连接数过高，配置了 AvailabilityFilteringRule 规则的客户端也会将其忽略。并发连接数的上限，可以由客户端的<clientName>.<clientConfigNameSpace>.ActiveConnectionsLimit 属性进行配置</td>
+</tr>
+<tr>
+<td>WeightedResponseTimeRule</td>
+<td>为每一个服务器赋予一个权重值。服务器响应时间越长，这个服务器的权重就越小。这个规则会随机选择服务器，这个权重值会影响服务器的选择</td>
+</tr>
+<tr>
+<td><strong>ZoneAvoidanceRule</strong></td>
+<td>以区域可用的服务器为基础进行服务器的选择。使用 Zone 对服务器进行分类，这个 Zone 可以理解为一个机房、一个机架等。而后再对 Zone 内的多个服务做轮询</td>
+</tr>
+<tr>
+<td>BestAvailableRule</td>
+<td>忽略那些短路的服务器，并选择并发数较低的服务器</td>
+</tr>
+<tr>
+<td>RandomRule</td>
+<td>随机选择一个可用的服务器</td>
+</tr>
+<tr>
+<td>RetryRule</td>
+<td>重试机制的选择逻辑</td>
+</tr>
+</tbody>
+</table>
+<h4 id="自定义方式"><a class="markdownIt-Anchor" href="#自定义方式">#</a> 自定义方式</h4>
+<ul>
+<li>代码方式：配置灵活，但修改时需要重新打包发布</li>
+<li>配置方式：直观、方便，无需重新打包发布，但无法做全局配置</li>
+</ul>
+<h3 id="饥饿加载"><a class="markdownIt-Anchor" href="#饥饿加载">#</a> 饥饿加载</h3>
+<ul>
+<li>Ribbon 默认采用懒加载，即第一次访问时会创建 LoadBalanceClient，请求时间会很长</li>
+<li>饥饿加载则会在项目启动时创建，降低第一次访问的耗时</li>
+</ul>
+<figure class="highlight yml"><figcaption data-lang="YAML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token key atrule">ribbon</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>	<span class="token key atrule">eager-load</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>		<span class="token key atrule">enabled</span><span class="token punctuation">:</span> <span class="token boolean important">true</span> <span class="token comment">#开启饥饿加载</span></pre></td></tr><tr><td data-num="4"></td><td><pre>		<span class="token key atrule">clients</span><span class="token punctuation">:</span> userservice <span class="token comment">#指定对 userservice 这个服务器饥饿加载</span></pre></td></tr></table></figure><h2 id="nacos"><a class="markdownIt-Anchor" href="#nacos">#</a> Nacos</h2>
+<ol>
+<li>引入依赖</li>
+</ol>
+<ul>
+<li>在 cloud-demo 父工程的 pom 文件中的 <code>&lt;dependencyManagement&gt;</code>  中引入 SpringCloudAlibaba 的依赖</li>
+</ul>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-alibaba-dependencies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.2.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="5"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>type</span><span class="token punctuation">></span></span>pom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>type</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="6"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>import<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="7"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><ul>
+<li>在 user-service 和 order-service 中的 pom 文件中引入 nacos-discovery 依赖</li>
+</ul>
+<figure class="highlight xml"><figcaption data-lang="XML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="2"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba.cloud<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-cloud-starter-alibaba-nacos-discovery<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span></pre></td></tr><tr><td data-num="4"></td><td><pre><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span></pre></td></tr></table></figure><ol start="2">
+<li>配置 nacos 地址</li>
+</ol>
+<ul>
+<li>在 user-service 和 order-service 的 application.yml 中添加 nacos 地址</li>
+</ul>
+<figure class="highlight yaml"><figcaption data-lang="YAML"></figcaption><table><tr><td data-num="1"></td><td><pre><span class="token key atrule">spring</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="2"></td><td><pre>  <span class="token key atrule">cloud</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="3"></td><td><pre>    <span class="token key atrule">nacos</span><span class="token punctuation">:</span></pre></td></tr><tr><td data-num="4"></td><td><pre>      <span class="token key atrule">server-addr</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">8848</span></pre></td></tr></table></figure><h3 id="服务多级存储模型"><a class="markdownIt-Anchor" href="#服务多级存储模型">#</a> 服务多级存储模型</h3>
+<ul>
+<li>一级是服务，例如 userservice</li>
+<li>二级是集群，例如杭州或上海</li>
+<li>三级是实例，例如杭州机房的某台部署了 userservice 的服务器</li>
+</ul>
+<p>设置实例的集群属性</p>
+<ul>
+<li>修改 application.yml 文件，添加 spring.cloud.nacos.discovery.cluster-name 属性</li>
+</ul>
+<h3 id="nacosrule负载均衡"><a class="markdownIt-Anchor" href="#nacosrule负载均衡">#</a> NacosRule 负载均衡</h3>
+<ul>
+<li>优先选择同集群的服务实例列表</li>
+<li>本地集群找不到提供者，才去其它集群寻找，并且会报警告</li>
+<li>确定了可用实例列表后，再采取负载均衡挑选实例</li>
+</ul>
+<h3 id="服务实例的权重设置"><a class="markdownIt-Anchor" href="#服务实例的权重设置">#</a> 服务实例的权重设置</h3>
+<ul>
+<li>Nacos 控制台可以设置实例的权重值，0~1 之间</li>
+<li>同集群内的多个实例，权重越高被访问的频率越高</li>
+<li>权重设置为 0 则完全不会被访问</li>
+</ul>
+<h3 id="环境隔离"><a class="markdownIt-Anchor" href="#环境隔离">#</a> 环境隔离</h3>
+<ul>
+<li>namespace 用来做环境隔离</li>
+<li>每个 namespace 都有唯一 id</li>
+<li>不同 namespace 下的服务不可见</li>
+</ul>
+<h2 id="nacos和eureka对比"><a class="markdownIt-Anchor" href="#nacos和eureka对比">#</a> Nacos 和 Eureka 对比</h2>
+<ol>
+<li>共同点</li>
+</ol>
+<ul>
+<li>都支持服务注册和服务拉取</li>
+<li>都支持服务提供者心跳方式做健康检测</li>
+</ul>
+<ol start="2">
+<li>区别</li>
+</ol>
+<ul>
+<li>Nacos 支持服务端主动检测提供者状态：临时实例采用心跳模式，非临时实例采用主动检测模式</li>
+<li>临时实例心跳不正常会被剔除，非临时实例则不会被剔除</li>
+<li>Nacos 支持服务列表变更的消息推送方式，服务列表更新更及时</li>
+<li>Nacos 集群默认采用 AP 方式，当集群中存在非临时实例时，采用 CP 模式；Eureka 采用 AP 方式</li>
+</ul>
+
+      <div class="tags">
+          <a href="/tags/SpringCloud/" rel="tag"><i class="ic i-tag"></i> SpringCloud</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2023-07-10 22:39:42" itemprop="dateModified" datetime="2023-07-10T22:39:42+09:00">2023-07-10</time>
+  </span>
+  <span id="2023/07/10/springcloud/SpringCloud/" class="item leancloud_visitors" data-flag-title="SpringCloud" title="阅读次数">
+      <span class="icon">
+        <i class="ic i-eye"></i>
+      </span>
+      <span class="text">阅读次数</span>
+      <span class="leancloud-visitors-count"></span>
+      <span class="text">次</span>
+  </span>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>renkelin <i class="ic i-at"><em>@</em></i>
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://rkl71.github.io/2023/07/10/springcloud/SpringCloud/" title="SpringCloud">http://rkl71.github.io/2023/07/10/springcloud/SpringCloud/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC96aC1DTg=="><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2023/07/04/redis/Redis/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;rkl71&#x2F;pic-bed@main&#x2F;img&#x2F;202307042215602.png" title="Redis">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> Redis</span>
+  <h3>Redis</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+          <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#springcloud"><span class="toc-number">1.</span> <span class="toc-text"> SpringCloud</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.</span> <span class="toc-text"> 服务架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text"> 单体架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E6%9E%B6%E6%9E%84"><span class="toc-number">1.1.2.</span> <span class="toc-text"> 分布式架构</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%A4%E8%AF%86%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.2.</span> <span class="toc-text"> 认识微服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%8B%86%E5%88%86"><span class="toc-number">1.3.</span> <span class="toc-text"> 服务拆分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eureka"><span class="toc-number">1.4.</span> <span class="toc-text"> Eureka</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8%E5%85%B3%E7%B3%BB"><span class="toc-number">1.4.1.</span> <span class="toc-text"> 服务调用关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E7%94%A8"><span class="toc-number">1.4.2.</span> <span class="toc-text"> 作用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.2.1.</span> <span class="toc-text"> 总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">1.4.3.</span> <span class="toc-text"> 注册中心</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ribbon"><span class="toc-number">1.5.</span> <span class="toc-text"> Ribbon</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.5.1.</span> <span class="toc-text"> 负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E5%88%99"><span class="toc-number">1.5.1.1.</span> <span class="toc-text"> 规则</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F"><span class="toc-number">1.5.1.2.</span> <span class="toc-text"> 自定义方式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A5%A5%E9%A5%BF%E5%8A%A0%E8%BD%BD"><span class="toc-number">1.5.2.</span> <span class="toc-text"> 饥饿加载</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nacos"><span class="toc-number">1.6.</span> <span class="toc-text"> Nacos</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%A4%9A%E7%BA%A7%E5%AD%98%E5%82%A8%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.6.1.</span> <span class="toc-text"> 服务多级存储模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#nacosrule%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.6.2.</span> <span class="toc-text"> NacosRule 负载均衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%AE%9E%E4%BE%8B%E7%9A%84%E6%9D%83%E9%87%8D%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.6.3.</span> <span class="toc-text"> 服务实例的权重设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%9A%94%E7%A6%BB"><span class="toc-number">1.6.4.</span> <span class="toc-text"> 环境隔离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nacos%E5%92%8Ceureka%E5%AF%B9%E6%AF%94"><span class="toc-number">1.7.</span> <span class="toc-text"> Nacos 和 Eureka 对比</span></a></li></ol></li></ol>
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2023/07/10/springcloud/SpringCloud/" rel="bookmark" title="SpringCloud">SpringCloud</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="renkelin"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">renkelin</p>
+  <div class="description" itemprop="description">在心里种花，人生才不会荒芜🌹</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">11</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">5</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">6</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL3JrbDcx" title="https:&#x2F;&#x2F;github.com&#x2F;rkl71"><i class="ic i-github"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/about/" rel="section"><i class="ic i-user"></i>关于</a>
+  </li>
+
+        
+  <li class="item dropdown">
+      <a href="javascript:void(0);"><i class="ic i-feather"></i>文章</a>
+    <ul class="submenu">
+
+        
+  <li class="item">
+    <a href="/archives/" rel="section"><i class="ic i-list-alt"></i>归档</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/categories/" rel="section"><i class="ic i-th"></i>分类</a>
+  </li>
+
+        
+  <li class="item">
+    <a href="/tags/" rel="section"><i class="ic i-tags"></i>标签</a>
+  </li>
+
+  </ul>
+    
+  <li class="item">
+    <a href="/friends/" rel="section"><i class="ic i-heart"></i>友链</a>
+  </li>
+
+    
+  <li class="item">
+    <a href="/statistics/" rel="section"><i class="ic i-clock"></i>统计</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/03/16/java/SSM/" title="SSM">SSM</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/spring/" title="分类于 Spring">Spring</a>
+</div>
+
+    <span><a href="/2023/06/27/spring/SpringBoot2/" title="SpringBoot2">SpringBoot2</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/04/29/java/JavaWeb%E6%9C%80%E6%96%B0/" title="JavaWeb newest">JavaWeb newest</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/Redis/" title="分类于 Redis">Redis</a>
+</div>
+
+    <span><a href="/2023/07/04/redis/Redis/" title="Redis">Redis</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/spring/" title="分类于 Spring">Spring</a>
+</div>
+
+    <span><a href="/2023/06/11/spring/Spring/" title="Spring6">Spring6</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/02/03/java/JavaWeb/" title="JavaWeb">JavaWeb</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/01/01/java/Java/" title="Java基础">Java基础</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/java/" title="分类于 Java">Java</a>
+</div>
+
+    <span><a href="/2023/01/06/java/JDBC/" title="JDBC">JDBC</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/linux/" title="分类于 Linux">Linux</a>
+</div>
+
+    <span><a href="/2023/06/21/linux/Linux/" title="Linux常用命令">Linux常用命令</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/SpringCloud/" title="分类于 SpringCloud">SpringCloud</a>
+</div>
+
+    <span><a href="/2023/07/10/springcloud/SpringCloud/" title="SpringCloud">SpringCloud</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2022 – 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">renkelin @ Crush</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+    <br>
+      <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" data-pjax-state>
+        <img src="https://cdn.jsdelivr.net/gh/rkl71/pic-bed@main/img/beian.png" style="display:initial;position:relative;top:.5vh" data-loaded="true" class="lozaded">
+        苏ICP备2023015457号-1
+      </a>
+  </div>
+
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2023/07/10/springcloud/SpringCloud/',
+    favicon: {
+      show: "被发现了~",
+      hide: "看不见我！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,
+    copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v3/polyfill.js"></script>
+	
+		<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/pace/1.0.2/pace.min.js"></script>
+	
+		<script src="https://lib.baomitu.com/pjax/0.2.8/pjax.min.js"></script>
+	
+		<script src="https://unpkg.com/whatwg-fetch@3.4.0/dist/fetch.umd.js"></script>
+	
+		<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/animejs/3.2.0/anime.min.js"></script>
+	
+		<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/algoliasearch/4.12.1/algoliasearch-lite.umd.min.js"></script>
+	
+		<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/instantsearch.js/4.39.0/instantsearch.production.min.js"></script>
+	
+		<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/lozad.js/1.16.0/lozad.min.js"></script>
+	
+		<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/quicklink/2.2.0/quicklink.umd.min.js"></script>
+	
+		<script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/??jquery/3.5.1/jquery.min.js,fancybox/3.5.7/jquery.fancybox.min.js,justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js" async></script>
+	
+		<script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/KaTeX/0.12.0/contrib/copy-tex.min.js" async></script>
+	
+		<script src="https://unpkg.com/frappe-charts@1.5.0/dist/frappe-charts.min.iife.js"></script>
+	
+		<script src="https://unpkg.com/echarts@5.2.2/dist/echarts.min.js"></script>
+	
+<script src="/js/app.js?v=0.2.5"></script>
+
+  <script data-pjax>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f9ff3831b79de8693b768cf5b0b1e14d";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+</body>
+</html>
