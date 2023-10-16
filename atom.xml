@@ -6,7 +6,7 @@
   <link href="https://rkl71.github.io/atom.xml" rel="self"/>
   
   <link href="https://rkl71.github.io/"/>
-  <updated>2023-10-07T08:14:18.882Z</updated>
+  <updated>2023-10-16T14:05:42.037Z</updated>
   <id>https://rkl71.github.io/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JVM</title>
+    <link href="https://rkl71.github.io/2023/10/16/JVM/"/>
+    <id>https://rkl71.github.io/2023/10/16/JVM/</id>
+    <published>2023-10-15T15:00:00.000Z</published>
+    <updated>2023-10-16T14:05:42.037Z</updated>
+    
+    
+    <summary type="html">初始JVM，字节码文件详解，Java内存结构，垃圾回收，类的生命周期</summary>
+    
+    
+    
+    <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
+    
+    
+    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    
+    <category term="JVM" scheme="https://rkl71.github.io/tags/JVM/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker</title>
@@ -31,9 +52,9 @@
     <category term="微服务" scheme="https://rkl71.github.io/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
     
-    <category term="Docker" scheme="https://rkl71.github.io/tags/Docker/"/>
-    
     <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    
+    <category term="Docker" scheme="https://rkl71.github.io/tags/Docker/"/>
     
   </entry>
   
@@ -42,7 +63,7 @@
     <link href="https://rkl71.github.io/2023/07/10/SpringCloud/"/>
     <id>https://rkl71.github.io/2023/07/10/SpringCloud/</id>
     <published>2023-07-09T15:00:00.000Z</published>
-    <updated>2023-09-30T11:59:50.706Z</updated>
+    <updated>2023-10-16T14:01:51.467Z</updated>
     
     
     <summary type="html">微服务治理，Docker，异步通信，分布式搜索</summary>
@@ -94,9 +115,9 @@
     <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
     
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
-    
     <category term="JavaWeb" scheme="https://rkl71.github.io/tags/JavaWeb/"/>
+    
+    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
     
   </entry>
   
