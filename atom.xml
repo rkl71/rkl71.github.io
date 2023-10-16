@@ -31,9 +31,9 @@
     <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
     
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
-    
     <category term="JVM" scheme="https://rkl71.github.io/tags/JVM/"/>
+    
+    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
     
   </entry>
   
@@ -115,9 +115,9 @@
     <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
     
     
-    <category term="JavaWeb" scheme="https://rkl71.github.io/tags/JavaWeb/"/>
-    
     <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    
+    <category term="JavaWeb" scheme="https://rkl71.github.io/tags/JavaWeb/"/>
     
   </entry>
   
