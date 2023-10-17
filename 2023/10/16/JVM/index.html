@@ -36,11 +36,13 @@
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310162237525.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310162244209.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310162244147.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310172139369.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310172200815.png">
 <meta property="article:published_time" content="2023-10-15T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-16T14:05:42.037Z">
+<meta property="article:modified_time" content="2023-10-17T13:13:51.837Z">
 <meta property="article:author" content="Kolin">
-<meta property="article:tag" content="JVM">
 <meta property="article:tag" content="Backend">
+<meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310121708080.png">
   
@@ -238,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3k words
+          3.9k words
         
       </span>
     
@@ -249,7 +251,7 @@
         
         
         
-          25 mins
+          33 mins
         
       </span>
     
@@ -499,7 +501,53 @@
 <h3 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h3><ul>
 <li>类加载器（ClassLoader）是 Java 虚拟机提供给应用程序去实现获取类和接口字节码数据的技术。 类加载器只参与加载过程中的字节码获取并加载到内存这一部分</li>
 </ul>
-<h4 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h4><h4 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h4><h4 id="打破双亲委派机制"><a href="#打破双亲委派机制" class="headerlink" title="打破双亲委派机制"></a>打破双亲委派机制</h4><h4 id="JDK9之后的类加载器"><a href="#JDK9之后的类加载器" class="headerlink" title="JDK9之后的类加载器"></a>JDK9之后的类加载器</h4>
+<h4 id="类加载器的分类"><a href="#类加载器的分类" class="headerlink" title="类加载器的分类"></a>类加载器的分类</h4><ul>
+<li>类加载器分为两类，一类是Java代码中实现的，一类是Java虚拟机底层源码实现的</li>
+<li>类加载器的设计JDK8和8之后的版本差别较大，<font color='#DC143C'><strong>JDK8及之前的版本中默认的类加载器有如下几种</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310172139369.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>类加载器的详细信息可以通过classloader命令查看：</li>
+</ul>
+<p>classloader - 查看 classloader 的继承树，urls，类加载信息，使用 classloader 去 getResource</p>
+<h5 id="启动类加载器"><a href="#启动类加载器" class="headerlink" title="启动类加载器"></a>启动类加载器</h5><ul>
+<li>启动类加载器（BootstrapClassLoader）是由 Hotspot 虚拟机提供的，使用C++编写的类加载器</li>
+<li>默认加载Java安装目录&#x2F;jre&#x2F;lib下的类文件，比如 rt.jar， tools.jar，resources.jar 等</li>
+</ul>
+<blockquote>
+<p>通过启动类加载器去加载用户 jar 包</p>
+</blockquote>
+<ul>
+<li><p>放入 jre&#x2F;lib 下进行扩展</p>
+<p>不推荐，尽可能不要去更改 JDK 安装目录中的内容，会出现即使放进去由于文件名不匹配的问题也不会正常的被加载</p>
+</li>
+<li><p><font color='#DC143C'><strong>使用参数进行扩展</strong></font></p>
+<p>推荐，使用 -Xbootclasspath&#x2F;a:jar 包目录 &#x2F;jar 包名进行扩展</p>
+</li>
+</ul>
+<h5 id="默认类加载器"><a href="#默认类加载器" class="headerlink" title="默认类加载器"></a>默认类加载器</h5><ul>
+<li>扩展类加载器和应用程序类加载器都是JDK中提供的、使用Java编写的类加载器</li>
+<li><font color='#DC143C'><strong>它们的源码都位于 sun.misc.Launcher 中，是一个静态内部类。继承自 URLClassLoader。具备通过目录或者指定 jar 包将字节码文件加载到内存中</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310172200815.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="扩展类加载器"><a href="#扩展类加载器" class="headerlink" title="扩展类加载器"></a>扩展类加载器</h5><ul>
+<li>扩展类加载器（Extension Class Loader）是JDK中提供的，使用 Java 编写的类加载器</li>
+<li>默认加载Java安装目录&#x2F;jre&#x2F;lib&#x2F;ext下的类文件</li>
+</ul>
+<blockquote>
+<p>通过扩展类加载器去加载用户 jar 包</p>
+</blockquote>
+<ul>
+<li><p>放入 jre&#x2F;lib 下进行扩展</p>
+<p>不推荐，尽可能不要去更改 JDK 安装目录中的内容，会出现即使放进去由于文件名不匹配的问题也不会正常的被加载</p>
+</li>
+<li><p><font color='#DC143C'><strong>使用参数进行扩展</strong></font></p>
+<p>推荐，使用 -Djava.ext.dirs&#x3D;jar 包目录进行扩展,这种方式会覆盖掉原始目录，可以用 ;(windows):(macos&#x2F;linux) 追加上原始目录</p>
+</li>
+<li><p>类加载器的加载路径可以通过 classloader–c hash 值查看</p>
+</li>
+</ul>
+<h4 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h4><h4 id="打破双亲委派机制"><a href="#打破双亲委派机制" class="headerlink" title="打破双亲委派机制"></a>打破双亲委派机制</h4><h4 id="JDK9之后的类加载器"><a href="#JDK9之后的类加载器" class="headerlink" title="JDK9之后的类加载器"></a>JDK9之后的类加载器</h4>
                 
               </div>
             
@@ -532,9 +580,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/JVM/" class="print-no-link">#JVM</a>
-      
         <a href="/tags/Backend/" class="print-no-link">#Backend</a>
+      
+        <a href="/tags/JVM/" class="print-no-link">#JVM</a>
       
     </div>
   

@@ -6,7 +6,7 @@
   <link href="https://rkl71.github.io/atom.xml" rel="self"/>
   
   <link href="https://rkl71.github.io/"/>
-  <updated>2023-10-16T14:05:42.037Z</updated>
+  <updated>2023-10-17T13:13:51.837Z</updated>
   <id>https://rkl71.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://rkl71.github.io/2023/10/16/JVM/"/>
     <id>https://rkl71.github.io/2023/10/16/JVM/</id>
     <published>2023-10-15T15:00:00.000Z</published>
-    <updated>2023-10-16T14:05:42.037Z</updated>
+    <updated>2023-10-17T13:13:51.837Z</updated>
     
     
     <summary type="html">初始JVM，字节码文件详解，Java内存结构，垃圾回收，类的生命周期</summary>
@@ -31,9 +31,9 @@
     <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
     
     
-    <category term="JVM" scheme="https://rkl71.github.io/tags/JVM/"/>
-    
     <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    
+    <category term="JVM" scheme="https://rkl71.github.io/tags/JVM/"/>
     
   </entry>
   
@@ -115,9 +115,9 @@
     <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
     
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
-    
     <category term="JavaWeb" scheme="https://rkl71.github.io/tags/JavaWeb/"/>
+    
+    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
     
   </entry>
   
