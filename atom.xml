@@ -52,9 +52,9 @@
     <category term="微服务" scheme="https://rkl71.github.io/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
-    
     <category term="Docker" scheme="https://rkl71.github.io/tags/Docker/"/>
+    
+    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
     
   </entry>
   
@@ -115,9 +115,9 @@
     <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
     
     
-    <category term="JavaWeb" scheme="https://rkl71.github.io/tags/JavaWeb/"/>
-    
     <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    
+    <category term="JavaWeb" scheme="https://rkl71.github.io/tags/JavaWeb/"/>
     
   </entry>
   
