@@ -38,8 +38,20 @@
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310162244147.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310172139369.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310172200815.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310181405826.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310182038710.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310182038723.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310182038149.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310182038351.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310182043837.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202125245.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202152913.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202207518.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202234545.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202307859.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202322731.png">
 <meta property="article:published_time" content="2023-10-15T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-20T10:40:13.162Z">
+<meta property="article:modified_time" content="2023-10-20T14:22:42.224Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
@@ -251,7 +263,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.9k words
+          8k words
         
       </span>
     
@@ -262,7 +274,7 @@
         
         
         
-          33 mins
+          68 mins
         
       </span>
     
@@ -558,7 +570,247 @@
 <li><p>类加载器的加载路径可以通过 classloader–c hash 值查看</p>
 </li>
 </ul>
-<h4 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h4><h4 id="打破双亲委派机制"><a href="#打破双亲委派机制" class="headerlink" title="打破双亲委派机制"></a>打破双亲委派机制</h4><h4 id="JDK9之后的类加载器"><a href="#JDK9之后的类加载器" class="headerlink" title="JDK9之后的类加载器"></a>JDK9之后的类加载器</h4>
+<h4 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h4><blockquote>
+<p>在Java中如何使用代码的方式去主动加载一个类呢？</p>
+</blockquote>
+<p>方式1：使用Class.forName方法，使用当前类的类加载器去加载指定的类</p>
+<p>方式2：获取到类加载器，通过类加载器的loadClass方法指定某个类加载器加载</p>
+<ul>
+<li><p>每个Java实现的类加载器中保存了一个成员变量叫“父”（Parent）类加载器，可以理解为它的上级， 并不是继承关系</p>
+</li>
+<li><p>应用程序类加载器的parent父类加载器是扩展类加载器，而扩展类加载器的parent是空。</p>
+</li>
+<li><p>启动类加载器使用C++编写，没有上级类加载器</p>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310181405826.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>类加载器的继承关系可以通过 classloader–t 查看</p>
+</li>
+<li><p>在类加载的过程中，每个类加载器都会先检查是否已经加载了该类，如果已经加载则直接返回，否则会将加载请求委派给父类加载器</p>
+</li>
+<li><p><font color='#DC143C'><strong>如果类加载的parent为null，则会提交给启动类加载器处理</strong></font></p>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310182038710.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>如果所有的父类加载器都无法加载该类，则由当前类加载器自己尝试加载。所以看上去是自顶向下尝试加载</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310182038723.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>第二次再去加载相同的类，仍然会向上进行委派，如果某个类加载器加载过就会直接返回</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310182038149.png" srcset="/img/loading.gif" lazyload></p>
+<p>双亲委派机制指的是：<font color='#DC143C'><strong>自底向上查找是否加载过，再由顶向下进行加载</strong></font></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310182038351.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>另一个案例：com.itheima.my.B这个类在当前程序的classpath中，看看是如何加载的</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310182043837.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h5><ol>
+<li>重复的类：如果一个类重复出现在三个类加载器的加载位置，应该由谁来加载？</li>
+</ol>
+<ul>
+<li>启动类加载器加载，根据双亲委派机制，它的优先级是最高的</li>
+</ul>
+<ol start="2">
+<li>String类能覆盖吗？在自己的项目中去创建一个java.lang.String类，会被加载吗？</li>
+</ol>
+<ul>
+<li>不能，会交由启动类加载器加载在 rt.jar 包中的 String 类</li>
+</ul>
+<ol start="3">
+<li>类加载器的关系：这几个加载器彼此之间存在关系吗？</li>
+</ol>
+<ul>
+<li>应用类加载器的父类加载器是扩展类加载器，扩展类加载器没有父类加载器，但是会委派给启动类加载器加载</li>
+</ul>
+<h5 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h5><p>双亲委派机制有什么用？</p>
+<ol>
+<li>保证类加载的安全性</li>
+</ol>
+<ul>
+<li>通过双亲委派机制，让顶层的类加载器去加载核心类，避免恶意代码替换 JDK 中的核心类库，比如 java.lang.String，确保核心类库的完整性和安全性</li>
+</ul>
+<ol start="2">
+<li>避免重复加载</li>
+</ol>
+<ul>
+<li>双亲委派机制可以避免同一个类被多次加载，上层的类加载器如果记载过类，就会直接返回该类，避免重复加载</li>
+</ul>
+<h4 id="打破双亲委派机制"><a href="#打破双亲委派机制" class="headerlink" title="打破双亲委派机制"></a>打破双亲委派机制</h4><ul>
+<li>三种方式</li>
+</ul>
+<ol>
+<li>自定义类加载器</li>
+</ol>
+<ul>
+<li>自定义类加载器并且重写 loadClass 方法，就可以将双亲委派机制的代码去除</li>
+<li>Tomcat 通过这种方式实现应用之间类隔离</li>
+</ul>
+<ol start="2">
+<li>线程上下文类加载器</li>
+</ol>
+<ul>
+<li>利用上下文类加载器类，比如 JDBC 和 JNDI</li>
+</ul>
+<ol start="3">
+<li>Osgi 框架的类加载器</li>
+</ol>
+<ul>
+<li>历史上 Osgi 框架实现了一套新的类加载器机制，允许同级之间委托进行类的加载</li>
+</ul>
+<h5 id="自定义类加载器"><a href="#自定义类加载器" class="headerlink" title="自定义类加载器"></a>自定义类加载器</h5><ul>
+<li>一个Tomcat程序中是可以运行多个Web应用的，如果这两个应用中出现了相同限定名的类，比如 Servlet 类，Tomcat 要保证这两个类都能加载并且它们应该是不同的类</li>
+<li>如果不打破双亲委派机制，当应用类加载器加载 Web 应用1中的 MyServlet 之后，Web 应用2中相同限定名的 MyServlet 类就无法被加载了</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202125245.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>Tomcat 使用了自定义类加载器来实现应用之间类的隔离。每一个应用会有一个独立的类加载器加载对应的类</p>
+</li>
+<li><p>ClassLoader中包含了4个核心方法，双亲委派机制的核心代码就位于loadClass方法中</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//类加载的入口，提供了双亲委派机制。内部会调用findClass</span><br><span class="hljs-keyword">public</span> Class&lt;?&gt; loadClass(String name) <br><br><span class="hljs-comment">//由类加载器子类实现,获取二进制数据调用defineClass，比如URLClassLoader会根据文件路径去获取类文件中的二进制数据</span><br><span class="hljs-keyword">protected</span> Class&lt;?&gt; findClass(String name) <br>    <br><span class="hljs-comment">//做一些类名的校验，然后调用虚拟机底层的方法将字节码信息加载到虚拟机内存中</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> Class&lt;?&gt; defineClass(String name, <span class="hljs-type">byte</span>[] b, <span class="hljs-type">int</span> off, <span class="hljs-type">int</span> len) <span class="hljs-comment">//</span><br>   <br><span class="hljs-comment">//执行类生命周期中的连接阶段</span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">resolveClass</span><span class="hljs-params">(Class&lt;?&gt; c)</span><br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>打破双亲委派机制的核心就是将下边这一段代码重新实现</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//parent等于null说明父类加载器是启动类加载器，直接调用findBootstrapClassOrNull</span><br><span class="hljs-comment">//否则调用父类加载器的加载方法</span><br><span class="hljs-keyword">if</span> (parent != <span class="hljs-literal">null</span>) &#123;<br>    c = parent.loadClass(name, <span class="hljs-literal">false</span>);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    c = findBootstrapClassOrNull(name);<br>&#125;<br><span class="hljs-comment">//父类加载器爱莫能助，我来加载！</span><br><span class="hljs-keyword">if</span> (c == <span class="hljs-literal">null</span>) <br>    c = findClass(name);<br></code></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>问题</p>
+</blockquote>
+<ol>
+<li>自定义加载器父类怎么是AppClassLoader呢？</li>
+</ol>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202152913.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>以 Jdk8 为例，ClassLoader 类中提供了构造方法设置 parent 的内容</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-title function_">ClassLoader</span><span class="hljs-params">(Void unused, ClassLoader paarent)</span>&#123;<br>    <span class="hljs-built_in">this</span>.parent = parent;<br>    <span class="hljs-keyword">if</span>(ParallelLoaders.isRegistered(<span class="hljs-built_in">this</span>.getClass()))&#123;<br>        parallelLockMap = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcurrentHashMap</span>&lt;&gt;();<br>        package2certs = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcurrentHashMap</span>&lt;&gt;();<br>        domains = <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>这个构造方法由另外一个构造方法调用，其中父类加载器由 getSystemClassLoader 方法设置，该方法返回的 是 AppClassLoader</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> <span class="hljs-title function_">ClassLoader</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-built_in">this</span>(checkCreateClassLoader(), getSystemClassLoader());<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>两个自定义类加载器加载相同限定名的类，不会冲突吗？</li>
+</ol>
+<ul>
+<li><font color='#DC143C'><strong>不会冲突</strong></font>，在同一个 Java 虚拟机中，只有<font color='#DC143C'><strong>相同类加载器 + 相同的类限定名</strong></font>才会被认为是同一个类</li>
+<li>在 Arthas 中使用 sc–d 类名的方式查看具体的情况</li>
+</ul>
+<h5 id="线程上下文类加载器"><a href="#线程上下文类加载器" class="headerlink" title="线程上下文类加载器"></a>线程上下文类加载器</h5><ul>
+<li><p>JDBC 中使用了 DriverManager 来管理项目中引入的不同数据库的驱动，比如 mysql 驱动、oracle 驱动</p>
+</li>
+<li><p>DriverManager 类位于 rt.jar 包中，由启动类加载器加载</p>
+</li>
+<li><p>依赖中的 mysql 驱动对应的类，由应用程序类加载器来加载</p>
+</li>
+<li><p>DriverManager 属于 rt.jar 是启动类加载器加载的。而用户 jar 包中的驱动需要由应用类加载器加载，这就违反了双亲委派机制</p>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202207518.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>问题</p>
+</blockquote>
+<ol>
+<li>DriverManager 怎么知道 jar 包中要加载的驱动在哪儿？</li>
+</ol>
+<ul>
+<li>spi 全称为（Service Provider Interface），是 JDK 内置的一种服务提供发现机制</li>
+<li>spi 的工作原理<ol>
+<li>在 ClassPath 路径下的 META-INF&#x2F;services 文件夹中，以接口的全限定名来命名文件名，对应的文件里面写该接口的实现</li>
+<li>使用 ServiceLoader 加载实现类</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//获取Driver对象</span><br>ServiceLoader&lt;Driver&gt; loaderDrivers = ServiceLoader.Load(Driver.class);<br></code></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>总结</p>
+</blockquote>
+<ol>
+<li><p>启动类加载器加载 DriverManager。</p>
+</li>
+<li><p>在初始化 DriverManager 时，通过 SPI 机制加载 jar 包中的 myql 驱动</p>
+</li>
+<li><p>SPI 中利用了线程上下文类加载器（应用程序类加载器）去加载类并创建对象</p>
+</li>
+</ol>
+<ul>
+<li>这种由启动类加载器加载的类，委派应用程序类加载器去加载类的方式，打破了双亲委派机制</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202234545.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="Osgi-框架的类加载器"><a href="#Osgi-框架的类加载器" class="headerlink" title="Osgi 框架的类加载器"></a>Osgi 框架的类加载器</h5><ul>
+<li>历史上，OSGi 模块化框架。它存在同级之间的类加载器的委托加载。 OSGi 还使用类加载器实现了<font color='#DC143C'><strong>热部署</strong></font>的功能</li>
+<li>热部署指的是在服务不停止的情况下，动态地更新字节码文件到内存中</li>
+</ul>
+<h4 id="JDK9之后的类加载器"><a href="#JDK9之后的类加载器" class="headerlink" title="JDK9之后的类加载器"></a>JDK9之后的类加载器</h4><ul>
+<li>JDK8 及之前的版本中，扩展类加载器和应用程序类加载器的源码位于 rt.jar 包中的 sun.misc.Launcher.java</li>
+</ul>
+<p>由于JDK9引入了module的概念，类加载器在设计上发生了很多变化</p>
+<ol>
+<li>启动类加载器使用Java编写，位 jdk.internal.loader.ClassLoaders类中</li>
+</ol>
+<ul>
+<li><p>Java中的 BootClassLoader 继承自 BuiltinClassLoader 实现从模块中找到要加载的字节码资源文件</p>
+</li>
+<li><p><font color='#DC143C'><strong>启动类加载器依然无法通过 java 代码获取到，返回的仍然是 null，保持了统一</strong></font></p>
+</li>
+</ul>
+<ol start="2">
+<li>扩展类加载器被替换成了平台类加载器（Platform Class Loader）</li>
+</ol>
+<ul>
+<li>平台类加载器遵循模块化方式加载字节码文件，所以继承关系从URLClassLoader 变成了 BuiltinClassLoader，BuiltinClassLoader 实现了从模块中加载字节码文件。<font color='#DC143C'><strong>平台类加载器的存在更多的是为了与老版本的设计方案兼容，自身没有特殊的逻辑</strong></font></li>
+</ul>
+<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><ol>
+<li>类加载器的作用是什么？</li>
+</ol>
+<ul>
+<li>类加载器（ClassLoader）负责在类加载过程中的字节码获取并加载到内存这一部分。通过加载字节码数据放入内存转换成 byte[]，接下来调用虚拟机底层方法将 byte[] 转换成方法区和堆中的数据</li>
+</ul>
+<ol start="2">
+<li>有几种类加载器？</li>
+</ol>
+<ul>
+<li>启动类加载器（BootstrapClassLoader）加载核心类</li>
+<li>扩展类加载器（Extension ClassLoader）加载扩展类</li>
+<li>应用程序类加载器（Application ClassLoader）加载应用 classpath 中的类</li>
+<li>自定义类加载器，重写 findClass 方法。</li>
+<li>JDK9 及之后扩展类加载器（Extension ClassLoader）变成了平台类加载器（Platform  ClassLoader）</li>
+</ul>
+<ol start="3">
+<li>什么是双亲委派机制？</li>
+</ol>
+<ul>
+<li>每个 Java 实现的类加载器中保存了一个成员变量叫“父”（Parent）类加载器。 <font color='#DC143C'><strong>自底向上查找是否加载过，再由顶向下进行加载。避免了核心类被应用程序重写并覆盖的问题，提升了安全性</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202307859.png" srcset="/img/loading.gif" lazyload></p>
+<ol start="4">
+<li>怎么打破双亲委派机制？</li>
+</ol>
+<ul>
+<li>重写loadClass方法，不再实现双亲委派机制</li>
+<li>JNDI、JDBC、JCE、JAXB 和 JBI 等框架使用了 SPI 机制 + 线程上下文类加载器</li>
+<li>OSGi 实现了一整套类加载机制，允许同级类加载器之间互相调用</li>
+</ul>
+<h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><ul>
+<li>Java 虚拟机在运行 Java 程序过程中管理的内存区域，称之为<font color='#DC143C'><strong>运行时数据区</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202322731.png" srcset="/img/loading.gif" lazyload></p>
+
                 
               </div>
             
