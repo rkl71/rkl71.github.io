@@ -6,7 +6,7 @@
   <link href="https://rkl71.github.io/atom.xml" rel="self"/>
   
   <link href="https://rkl71.github.io/"/>
-  <updated>2023-10-17T13:13:51.837Z</updated>
+  <updated>2023-10-20T10:40:13.167Z</updated>
   <id>https://rkl71.github.io/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Algorithm</title>
+    <link href="https://rkl71.github.io/2023/10/20/Algorithm/"/>
+    <id>https://rkl71.github.io/2023/10/20/Algorithm/</id>
+    <published>2023-10-19T15:00:00.000Z</published>
+    <updated>2023-10-20T10:40:13.167Z</updated>
+    
+    
+    <summary type="html">介绍了算法和数据结构的相关概念，数组、链表、栈、队列、哈希表的概念，树和二叉树的概念，几种典型的排序算法，流行的算法面试题</summary>
+    
+    
+    
+    <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
+    
+    
+    <category term="Algorithm" scheme="https://rkl71.github.io/tags/Algorithm/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JVM</title>
     <link href="https://rkl71.github.io/2023/10/16/JVM/"/>
     <id>https://rkl71.github.io/2023/10/16/JVM/</id>
     <published>2023-10-15T15:00:00.000Z</published>
-    <updated>2023-10-17T13:13:51.837Z</updated>
+    <updated>2023-10-20T10:40:13.162Z</updated>
     
     
     <summary type="html">初始JVM，字节码文件详解，Java内存结构，垃圾回收，类的生命周期</summary>
@@ -30,8 +49,6 @@
     
     <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
     
-    
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
     
     <category term="JVM" scheme="https://rkl71.github.io/tags/JVM/"/>
     
