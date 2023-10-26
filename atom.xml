@@ -6,7 +6,7 @@
   <link href="https://rkl71.github.io/atom.xml" rel="self"/>
   
   <link href="https://rkl71.github.io/"/>
-  <updated>2023-10-21T06:09:27.008Z</updated>
+  <updated>2023-10-26T14:34:14.585Z</updated>
   <id>https://rkl71.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Computer Network</title>
+    <link href="https://rkl71.github.io/2023/10/26/Network/"/>
+    <id>https://rkl71.github.io/2023/10/26/Network/</id>
+    <published>2023-10-25T15:00:00.000Z</published>
+    <updated>2023-10-26T14:34:14.585Z</updated>
+    
+    
+    <summary type="html">深入浅出计算机网络</summary>
+    
+    
+    
+    <category term="计算机网络" scheme="https://rkl71.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+    <category term="Network" scheme="https://rkl71.github.io/tags/Network/"/>
+    
+  </entry>
   
   <entry>
     <title>Algorithm</title>
