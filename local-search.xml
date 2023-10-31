@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Hadoop</title>
+    <link href="/2023/11/01/Hadoop/"/>
+    <url>/2023/11/01/Hadoop/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h1><h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="Hadoop-是什么"><a href="#Hadoop-是什么" class="headerlink" title="Hadoop 是什么"></a>Hadoop 是什么</h3><ul><li>Hadoop 是一个由 Apache 基金会所开发的<font color = '#DC143C'><strong>分布式系统基础架构</strong></font></li><li>主要解决，海量数据的<font color = '#DC143C'><strong>存储</strong></font>和海量数据的<font color = '#DC143C'><strong>分析计算</strong></font>问题</li><li>广义上来说，Hadoop 通常是指一个更广泛的概念——<font color = '#DC143C'><strong>Hadoop 生态圈</strong></font></li></ul><h3 id="Hadoop-优势"><a href="#Hadoop-优势" class="headerlink" title="Hadoop 优势"></a>Hadoop 优势</h3><ul><li>高可靠性：Hadoop 底层维护多个数据副本，所以即使 Hadoop 某个计算元素或存储出现故障，也不会导致数据的丢失</li><li>高扩展性：在集群间分配任务数据，可方便的扩展数以千计的节点</li><li>高效性：在 MapReduce 的思想下，Hadoop 是并行工作的，以加快任务处理速度</li><li>高容错性：能够自动将失败的任务重新分配</li></ul><h3 id="Hadoop1-x、2-x、3-x-区别"><a href="#Hadoop1-x、2-x、3-x-区别" class="headerlink" title="Hadoop1.x、2.x、3.x 区别"></a>Hadoop1.x、2.x、3.x 区别</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312044806.png"></p><h3 id="HDFS-概述"><a href="#HDFS-概述" class="headerlink" title="HDFS 概述"></a>HDFS 概述</h3><blockquote><p>Hadoop Distributed File System，简称 HDFS，是一个分布式文件系统</p></blockquote><ul><li>NameNode（nn）：存储文件的<font color = '#DC143C'><strong>元数据</strong></font>，如<font color = '#DC143C'><strong>文件名</strong></font>，<font color = '#DC143C'><strong>文件目录结构</strong></font>，<font color = '#DC143C'><strong>文件属性</strong></font>（生成时间、副本数、 文件权限），以及每个文件的<font color = '#DC143C'><strong>块列表</strong></font>和<font color = '#DC143C'><strong>块所在的DataNode</strong></font>等</li><li>DataNode(dn)：在本地文件系统<font color = '#DC143C'><strong>存储文件块数据</strong></font>，以及<font color = '#DC143C'><strong>块数据的校验和</strong></font></li><li>Secondary NameNode(2nn)：<font color = '#DC143C'><strong>每隔一段时间对NameNode元数据备份</strong></font></li></ul><h3 id="YARN-概述"><a href="#YARN-概述" class="headerlink" title="YARN 概述"></a>YARN 概述</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312217693.png"></p><h3 id="MapReduce-概述"><a href="#MapReduce-概述" class="headerlink" title="MapReduce 概述"></a>MapReduce 概述</h3><blockquote><p>MapReduce 将计算过程分为两个阶段：Map 和 Reduce</p></blockquote><ul><li>Map 阶段并行处理输入数据</li><li>Reduce 阶段对 Map 结果进行汇总</li></ul><h3 id="HDFS、YARN、MapReduce-三者关系"><a href="#HDFS、YARN、MapReduce-三者关系" class="headerlink" title="HDFS、YARN、MapReduce 三者关系"></a>HDFS、YARN、MapReduce 三者关系</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312231879.png"></p><h3 id="大数据技术生态体系"><a href="#大数据技术生态体系" class="headerlink" title="大数据技术生态体系"></a>大数据技术生态体系</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312231289.png"></p><ul><li>Sqoop： Sqoop 是一款开源的工具，主要用于在 Hadoop、Hive 与传统的数据库（MySQL）间进行数据的传递，可以将一个关系型数据库（例如 ：MySQL，Oracle 等）中的数据导进到 Hadoop 的 HDFS 中，也可以将 HDFS 的数据导进到关系型数据库中</li><li>Flume： Flume 是一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统，Flume 支持在日志系统中定制各类数据发送方，用于收集数据</li><li>Kafka： Kafka 是一种高吞吐量的分布式发布订阅消息系统</li><li>Spark： Spark 是当前最流行的开源大数据内存计算框架。可以基于 Hadoop 上存储的大数据进行计算</li><li>Flink： Flink 是当前最流行的开源大数据内存计算框架。用于实时计算的场景较多</li><li>Oozie： Oozie 是一个管理 Hadoop 作业（job）的工作流程调度管理系统</li><li>Hbase： HBase 是一个分布式的、面向列的开源数据库。HBase 不同于一般的关系数据库，它是一个适合于非结构化数据存储的数据库</li><li>Hive： Hive 是基于 Hadoop 的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表，并提供简单的 SQL 查询功能，可以将 SQL 语句转换为 MapReduce 任务进行运行。其优点是学习成本低，可以通过类 SQL 语句快速实现简单的 MapReduce 统计，不必开发专门的 MapReduce 应用，十分适合数据仓库的统计分析</li><li>ZooKeeper： 它是一个针对大型分布式系统的可靠协调系统，提供的功能包括：配置维护、名字服务、分布式同步、组服务等</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>框架</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Hadoop</tag>
+      
+      <tag>Big Data</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Computer Network</title>
     <link href="/2023/10/26/Network/"/>
     <url>/2023/10/26/Network/</url>
