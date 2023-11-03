@@ -72,8 +72,36 @@
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310302135783.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310302229145.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310302246888.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311022338331.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311022343344.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311022351562.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311022351906.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311030005371.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311030011796.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311030054409.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031055022.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031112666.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031113524.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031116801.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031117632.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031118300.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031122721.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031723083.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031732120.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031735560.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031737470.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031739554.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031740472.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031804364.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031807591.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031819664.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032309952.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032321651.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032346999.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032349618.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032354037.png">
 <meta property="article:published_time" content="2023-10-25T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-30T13:51:08.077Z">
+<meta property="article:modified_time" content="2023-11-03T14:57:03.101Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary_large_image">
@@ -285,7 +313,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.1k words
+          13k words
         
       </span>
     
@@ -296,7 +324,7 @@
         
         
         
-          68 mins
+          110 mins
         
       </span>
     
@@ -859,7 +887,226 @@
 <li><font color = '#DC143C'><strong>可靠传输服务并不局限于数据链路层</strong></font>，其他各层均可选择实现可靠传输</li>
 <li>可靠传输的实现比较复杂，开销比较大，是否使用可靠传输取决于应用需求</li>
 </ul>
-<h4 id="停止-等待协议的实现原理"><a href="#停止-等待协议的实现原理" class="headerlink" title="停止-等待协议的实现原理"></a>停止-等待协议的实现原理</h4>
+<h4 id="停止-等待协议"><a href="#停止-等待协议" class="headerlink" title="停止-等待协议"></a>停止-等待协议</h4><h5 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h5><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311022338331.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>接收方收不到数据分组，就不会发送相应的ACK或NAK</li>
+<li>如果不采取措施，发送方就会一致处于等待接收方ACK或NAK的状态</li>
+<li>为解决上述问题，发送方可在每发送完一个数据分组时就启动一个<font color = '#DC143C'><strong>超时计时器</strong></font>（Timeout Timer）</li>
+<li>若到了超时计时器所设置的<font color = '#DC143C'><strong>超时计重传时间</strong></font>（Retranmission Time-Out，RTO），但发送方仍未收到接收方的ACK或NAK，就<font color = '#DC143C'><strong>重传</strong></font>之前已发送过的数据分组</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311022343344.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>为了<font color = '#DC143C'><strong>避免分组重复</strong></font>这种传输错误，必须<font color = '#DC143C'><strong>给每个分组带上序号</strong></font></li>
+<li>对于停止-等待协议，由于每发送一个数据分组就停止等待，只要保证每发送一个新的数据分组，其序号与上次发送的数据分组的序号不同就可以，因此<font color = '#DC143C'><strong>用一个比特来编号就够了，序号有0和1这两个</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311022351562.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311022351906.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<ul>
+<li>使用超时重传机制后，就可以不使用否认机制了，这样可使协议实现起来更加简单。但是，如果点对点链路的误码率较高，<font color = '#DC143C'><strong>使用否认机制可以使发送方在超时计时器超时前就尽快重传</strong></font></li>
+<li>为了让接收方能够判断所收到的数据分组是否是重复的，需要给<font color = '#DC143C'><strong>数据分组编号</strong></font>。由于<font color = '#DC143C'><strong>停止-等待协议</strong></font>的特性，<font color = '#DC143C'><strong>只需1个比特编序号</strong></font>即可，即序号0和序号1</li>
+<li>为了让发送方能够判断所收到的确认分组是否是重复的，需要给<font color = '#DC143C'><strong>确认分组编号</strong></font>，所用比特数量<font color = '#DC143C'><strong>与数据分组所用比特数量一样</strong></font><ul>
+<li>数据链路层一般不会出现确认分组迟到的情况，因此在<font color = '#DC143C'><strong>数据链路层实现停止-等待协议可以不用给确认分组编号</strong></font></li>
+</ul>
+</li>
+<li>给超时计时器设置的超时重传时间RTO应当仔细选择，<font color = '#DC143C'><strong>一般将RTO设置为略大于收发双方的平均往返时间RTT</strong></font><ul>
+<li>在数据链路层，点对点的往返时间RTT比较固定，RTO就比较好设定</li>
+<li>在运输层，由于端到端往返时间非常不确定，设置合适的超时重传时间RTO有时并不容易</li>
+</ul>
+</li>
+<li>停止等待协议属于自动请求重传（Automatic Repeat Request，ARQ）协议。即重传的请求是发送方自动进行的，而不是接收方请求发送方重传某个误码的数据分组</li>
+</ul>
+<h5 id="信道利用率"><a href="#信道利用率" class="headerlink" title="信道利用率"></a>信道利用率</h5><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311030005371.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>若出现超时重传，对于传送有用的数据信息来说，信道利用率还要降低</li>
+<li>在往返时间RTT相对较大的情况下，为了提高信道利用率，收发双方不适合采用停止-等待协议，而可以选择使用回退N帧（GBN）协议或选择重传（SR）协议</li>
+</ul>
+<h4 id="回退N帧协议"><a href="#回退N帧协议" class="headerlink" title="回退N帧协议"></a>回退N帧协议</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311030011796.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="发送方"><a href="#发送方" class="headerlink" title="发送方"></a>发送方</h5><ul>
+<li>发送窗口W_T的取值范围是1 &lt; W_T &lt;&#x3D; (2^n -1)，其中，n是构成分组序号的比特数量<ul>
+<li>如果W_T &#x3D; 1             变成了停止-等待协议</li>
+<li>如果W_T &gt; (2^n -1)  接收方<font color = '#DC143C'><strong>无法分辨新旧数据分组</strong></font></li>
+</ul>
+</li>
+<li>可在未收到的接收方确认分组的情况下，将序号落入发送窗口内的多个数据分组全部发送出去</li>
+<li>只有收到对已发送数据分组的确认分组时，发送窗口才能向前滑动到相应位置</li>
+<li>收到多个重复确认时，可在重传计时器超时前尽早开始重传，由具体实现决定</li>
+<li>发送窗口内某个已发送的数据分组产生超时重传时，发送窗口内该数据分组的后续已发送的数据分组也必须全部重传，这就是回退N帧（Go-back-N，GBN）协议名称的由来</li>
+</ul>
+<h5 id="接收方"><a href="#接收方" class="headerlink" title="接收方"></a>接收方</h5><ul>
+<li>接收窗口W_R &#x3D; 1的，因此只能按序接收数据分组</li>
+<li>只接收序号落入接收窗口内且无误码的数据分组，并且将接收窗口向前滑动一个位置，与此同时给发送方发送相应的确认分组</li>
+<li>为了减小开销，接收方不必每收到一个按序到达且无误码的数据分组就给发送方发送一个相应的确认分组<ul>
+<li>可以在连续收到多个按序到达且无误码的数据分组后（数量由具体实现决定），才针对最后一个数据分组发送确认分组，这称为<font color = '#DC143C'><strong>累计确认</strong></font></li>
+<li>或者可以在自己有数据分组要发送时才对之前按序接收且无误码的数据分组进行稍待确认</li>
+</ul>
+</li>
+<li>接收方收到未按序到达的数据分组后，除丢弃外，还可对之前最后一个按序到达的数据分组进行重复确认，以便发送方尽快重传</li>
+</ul>
+<h4 id="选择重传协议"><a href="#选择重传协议" class="headerlink" title="选择重传协议"></a>选择重传协议</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311030054409.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="发送方-1"><a href="#发送方-1" class="headerlink" title="发送方"></a>发送方</h5><ul>
+<li>可在未收到接收方确认分组的情况下，将序号落入发送窗口内的多个数据分组全部发送出去</li>
+<li>只有按序收到对已发送数据分组的确认分组时，发送窗口才能向前滑动到相应位置</li>
+<li>如果收到未按序到达的确认分组，应对其进行记录，以防止其相应数据分组的超时重发，但发送窗口不能向前滑动</li>
+</ul>
+<h5 id="接收方-1"><a href="#接收方-1" class="headerlink" title="接收方"></a>接收方</h5><ul>
+<li>可接收未按序到达但没有误码并且序号落入接收窗口内的数据分组</li>
+<li>为了使发送方仅重传出现差错的分组，接收方不再采用累积确认，而需要对每一个正确接收到的数据分组进行逐一确认</li>
+<li>只有在按序接收数据分组后，接收窗口才能向前滑动到相应位置</li>
+</ul>
+<h3 id="点对点协议PPP"><a href="#点对点协议PPP" class="headerlink" title="点对点协议PPP"></a>点对点协议PPP</h3><h4 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>点对点协议（Point-to-point Protocol，PPP）是目前使用最广泛的点对点数据链路层协议</li>
+<li>点对点协议PPP是因特网工程任务组（Internet Engineering Task Force，IETF）于1992年制定的。经过多次修订，目前PPP已成为因特网的正式标准[RFC1661，RFC1662]</li>
+<li>点对点协议PPP主要有两种应用</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031055022.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>从网络体系结构的角度看点对点协议PPP的组成</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031112666.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="PPP的帧格式"><a href="#PPP的帧格式" class="headerlink" title="PPP的帧格式"></a>PPP的帧格式</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031113524.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="PPP帧的透明传输"><a href="#PPP帧的透明传输" class="headerlink" title="PPP帧的透明传输"></a>PPP帧的透明传输</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031116801.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031117632.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="PPP帧的差错检测"><a href="#PPP帧的差错检测" class="headerlink" title="PPP帧的差错检测"></a>PPP帧的差错检测</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031118300.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>接收方每收到一个PPP帧，就进行CRC检验。若CRC检验正确，就收下这个帧；否则，就丢弃这个帧</li>
+<li>使用PPP的数据链路层，<font color = '#DC143C'><strong>向上提供的是不可靠数据传输服务</strong></font></li>
+</ul>
+<h4 id="PPP的工作状态"><a href="#PPP的工作状态" class="headerlink" title="PPP的工作状态"></a>PPP的工作状态</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031122721.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="共享式以太网"><a href="#共享式以太网" class="headerlink" title="共享式以太网"></a>共享式以太网</h3><ul>
+<li>以太网（Ethernet）以曾经被假想的电磁波传输介质<font color = '#DC143C'><strong>以太</strong></font>（Ether）来命名</li>
+<li>以太网最初采用无源电缆（不包含电源线）作为共享总线来传输帧，属于基带总线局域网，传输速率为2.94Mb&#x2F;s</li>
+<li>以太网目前已经从传统的<font color = '#DC143C'><strong>共享式以太网</strong></font>发展到<font color = '#DC143C'><strong>交换式以太网</strong></font>，传输速率已经从10Mb&#x2F;s提高到100Mb&#x2F;s、1Gb&#x2F;s甚至10Gb&#x2F;s</li>
+</ul>
+<h3 id="网络适配器和MAC地址"><a href="#网络适配器和MAC地址" class="headerlink" title="网络适配器和MAC地址"></a>网络适配器和MAC地址</h3><h4 id="网络适配器"><a href="#网络适配器" class="headerlink" title="网络适配器"></a>网络适配器</h4><ul>
+<li>要将计算机连接到以太网，需要使用相应的<font color = '#DC143C'><strong>网络适配器</strong></font>（Adapter），网络适配器一般简称为 “<font color = '#DC143C'><strong>网卡</strong></font>“</li>
+<li>在计算机内部，<font color = '#DC143C'><strong>网卡与CPU</strong></font>之间的通信，一般都是通过计算机主板上的I&#x2F;O总线以<font color = '#DC143C'><strong>并行传输</strong></font>方式进行</li>
+<li><font color = '#DC143C'><strong>网卡与外部以太网</strong></font>（局域网）之间的通信，一般都是通过传输媒体（同轴电缆、双绞线电缆、光纤）以<font color = '#DC143C'><strong>串行方式</strong></font>进行的</li>
+<li>网卡除要<font color = '#DC143C'><strong>实现物理层和数据链路层功能</strong></font>，其另外一个重要功能就是要进行<font color = '#DC143C'><strong>并行传输和串行传输</strong></font>的转换。由于网络的传输速率和计算机内部总线上的传输速率并不相同，因此在网卡的核心芯片中都会包含用于缓存数据的存储器</li>
+<li>在确保网卡硬件正确的情况下，为了使网卡正常工作，还必须要在计算机的操作系统中为网卡安装相应的设备驱动程序。<font color = '#DC143C'><strong>驱动程序</strong></font>负责驱动网卡发送和接收帧</li>
+</ul>
+<h4 id="MAC地址"><a href="#MAC地址" class="headerlink" title="MAC地址"></a>MAC地址</h4><ul>
+<li>当多个主机连接在同一个广播信道上，要想实现两个主机之间的通信，则每个主机都必须要有一个<font color = '#DC143C'><strong>唯一的标识</strong></font>，即一个<font color = '#DC143C'><strong>数据链路层地址</strong></font></li>
+<li>在每个主机发送的<font color = '#DC143C'><strong>帧的首部</strong></font>中，都<font color = '#DC143C'><strong>携带</strong></font>有发送主机（源主机）和接收主机（目的主机）的<font color = '#DC143C'><strong>数据链路层地址</strong></font>。由于这类地址是用于<font color = '#DC143C'><strong>媒体接入控制</strong></font>（Medium Access Control，MAC）的，因此被称为<font color = '#DC143C'><strong>MAC</strong></font>地址</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031723083.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p><font color = '#DC143C'><strong>MAC地址</strong></font>一般被固化在网卡的电可擦可编程只读存储器EEPROM中，因此MAC地址也被称为<font color = '#DC143C'><strong>硬件地址</strong></font></p>
+</li>
+<li><p>MAC地址有时也被称为<font color = '#DC143C'><strong>物理地址</strong></font></p>
+</li>
+<li><p><font color = '#DC143C'><strong>物理地址</strong></font>属于数据链路层范畴</p>
+</li>
+<li><p>一般情况下，普通用户计算机中往往会包含两块网卡</p>
+<ul>
+<li>一块是用于接入有限局域网的<font color = '#DC143C'><strong>以太网卡</strong></font></li>
+<li>另一块是用于接入无线局域网的<font color = '#DC143C'><strong>Wi-Fi网卡</strong></font></li>
+</ul>
+</li>
+<li><p>每块网卡都有一个<font color = '#DC143C'><strong>全球唯一的MAC地址</strong></font></p>
+</li>
+<li><p>交换机和路由器往往具有更多的网络接口，所以会拥有更多的MAC地址</p>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031732120.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031735560.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031737470.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="广播MAC地址举例"><a href="#广播MAC地址举例" class="headerlink" title="广播MAC地址举例"></a>广播MAC地址举例</h5><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031739554.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="多播MAC地址举例"><a href="#多播MAC地址举例" class="headerlink" title="多播MAC地址举例"></a>多播MAC地址举例</h5><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031740472.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><p>网卡从网络上每收到一个无误码的帧，就检查帧首部中的目的MAC地址，按以下情况处理</p>
+<p>(1) 如果目的MAC地址是广播地址（FF-FF-FF-FF-FF-FF），则接受该帧</p>
+<p>(2) 如果目的MAC地址与网卡上固化的全球单播MAC地址相同，则接受该帧</p>
+<p>(3) 如果目的MAC地址是网卡支持的多播地址，则接受该帧</p>
+<p>(4) 除上述（1）、（2）和（3）情况外，丢弃该帧</p>
+</li>
+<li><p>网卡还可被设置为一种特殊的工作方式：<font color = '#DC143C'><strong>混杂方式</strong></font>（Promiscuous Mode）。工作在混杂方式的网卡，只要收到共享媒体上传来的帧就会收下，而不管帧的目的MAC地址是什么</p>
+<ul>
+<li>对于网络维护和管理人员，这种方式可以监视和分析局域网上的流量，以便找出提高网络性能的具体措施</li>
+<li><font color = '#DC143C'><strong>嗅探器</strong></font>（Sniffer）就是一种工作在混杂方式的网卡，再配合相应的工具软件（WireShark），就可以作为一种非常有用的网络工具来学习和分析网络</li>
+<li>混杂方式就像一把 “双刃剑”，黑客常利用这种方式非法获取网络用户的口令</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<ul>
+<li>全球单播MAC地址就如同身份证上的身份号码，具有唯一性，它往往与用户个人信息绑定在一起。因此，用户应尽量<font color = '#DC143C'><strong>确保自己拥有的全球单播MAC地址不被泄露</strong></font></li>
+<li>为了避免用户设备连接Wi-Fi热点时MAC地址泄露的安全问题，目前大多数移动设备都已采用了<font color = '#DC143C'><strong>随机MAC地址技术</strong></font></li>
+</ul>
+<h3 id="CSMA-CD协议"><a href="#CSMA-CD协议" class="headerlink" title="CSMA&#x2F;CD协议"></a>CSMA&#x2F;CD协议</h3><h4 id="基本原理-1"><a href="#基本原理-1" class="headerlink" title="基本原理"></a>基本原理</h4><ul>
+<li>在以太网的发展初期，人们普遍认为 “无源的电缆线比有源器件可靠”，因此将多个站点连接在一条总线上来构建<font color = '#DC143C'><strong>共享总线以太网</strong></font></li>
+<li>共享总线以太网具有<font color = '#DC143C'><strong>天然的广播特性</strong></font>，即使总线上某个站点给另一个站点发送单播帧，表示帧的信号也会沿着总线传播到总线上的其他各站点</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031804364.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>当某个站点在总线上发送帧时，总线资源会被该站点独占。此时，如果总线上的其他站点也要在总线上发送帧，就会产生<font color = '#DC143C'><strong>信号碰撞</strong></font></li>
+<li>当两个或多个站点同时使用总线发送帧时，就会产生信号碰撞</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031807591.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>为了解决各站点争用总线的问题，共享总线以太网使用了一种专用协议<font color = '#DC143C'><strong>CSMA&#x2F;CD</strong></font>，它是<font color = '#DC143C'><strong>载波监听多址接入&#x2F;碰撞检测</strong></font>（Carrier Sense Multiple Access Collision Detection）的英文缩写词</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311031819664.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>多址接入MA</p>
+<p>载波监听CS</p>
+<p>碰撞检测CD</p>
+</blockquote>
+<ul>
+<li>载波监听检测到总线空闲，但<font color = '#DC143C'><strong>总线并不一定空闲</strong></font></li>
+<li>使用CSMA&#x2F;CD协议的共享总线以太网上的各站点，只是尽量避免碰撞并在出现碰撞时做出退避后重发的处理，但<font color = '#DC143C'><strong>不能完全避免碰撞</strong></font></li>
+<li>在使用CSMA&#x2F;CD协议时，由于正在发送帧的站点必须 “边发送帧边检测碰撞”，因此站点不可能同时进行发送和接收，也就是不可能进行全双工通信，而<font color = '#DC143C'><strong>只能进行半双工通信</strong></font>（双向交替通信）</li>
+</ul>
+<h3 id="共享式以太网-1"><a href="#共享式以太网-1" class="headerlink" title="共享式以太网"></a>共享式以太网</h3><h4 id="争用期"><a href="#争用期" class="headerlink" title="争用期"></a>争用期</h4><ul>
+<li>使用CSMA&#x2F;CD协议的共享总线以太网上的任意站点在发送帧的过程中都可能会遭遇碰撞</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032309952.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>站点从发送帧开始，最多经过时长2τ（即δ -&gt; 0）就可以检测出所发送的帧是否遭遇了碰撞</li>
+<li>因此，共享总线以太网的<font color = '#DC143C'><strong>端到端往返时间2τ</strong></font>被称为<font color = '#DC143C'><strong>争用期</strong></font>（Contension Period）或<font color = '#DC143C'><strong>碰撞窗口</strong></font>（Collision Window），它是一个非常重要的参数<ul>
+<li>站点从发送帧开始，<font color = '#DC143C'><strong>经过争用期2τ这段时间还没有检测到碰撞</strong></font>，<font color = '#DC143C'><strong>就可以肯定这次发送不会产生碰撞</strong></font></li>
+</ul>
+</li>
+<li>从争用期的概念可以看出，共享总线以太网上的每一个站点从发送帧开始，到之后的一小段时间内，都有可能遭遇碰撞，而<font color = '#DC143C'><strong>这一小段的长短时不确定</strong></font>的，它<font color = '#DC143C'><strong>取决于另一个发送帧的站点与本站点的距离</strong></font>，但不会超过总线的端到端往返传播时延，即一个争用期2τ<ul>
+<li>很显然，总线的长度越长（单程端到端传播时延越大），网络中站点数量越多，发生碰撞的概率就越大</li>
+<li>因此，共享以太网的总线长度不能太长，接入的站点数量也不能太多</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032321651.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="最小帧长"><a href="#最小帧长" class="headerlink" title="最小帧长"></a>最小帧长</h4><ul>
+<li>为了确保共享总线以太网上的每一个站点在发送完一个完整的帧之前，能够检测出是否产生了碰撞，<font color = '#DC143C'><strong>帧的发送时延就不能少于共享总线以太网端到端的往返时间</strong></font>，即一个争用期2τ</li>
+<li>对于10Mb&#x2F;s的共享总线以太网，其争用期2的值规定为51.2μs，因此其<font color = '#DC143C'><strong>最小帧长为512b，即64B</strong></font></li>
+</ul>
+<p>$$<br>10Mb&#x2F;s \times 51.2μs &#x3D; 512b &#x3D; 64B<br>$$</p>
+<ul>
+<li>当某个站点在发送帧时，如果帧的前64B没有遭遇碰撞，那么帧的后续部分也就不会遭遇碰撞。也就是说，如果遭遇碰撞，就一定时在帧的前64B之内</li>
+<li>由于发送帧的站点边发送帧边检测碰撞，一旦检测到碰撞就立即中止帧的发送，此时已发送的数据量一定小于64B。因此，接收站点收到<font color = '#DC143C'><strong>长度小于64B的帧</strong></font>，就可判定这是一个<font color = '#DC143C'><strong>遭遇了碰撞而异常中止的无效帧</strong></font>，将其丢弃即可</li>
+</ul>
+<h4 id="最大帧长"><a href="#最大帧长" class="headerlink" title="最大帧长"></a>最大帧长</h4><ul>
+<li>一般来说，<font color = '#DC143C'><strong>帧的数据载荷的长度应远大于帧首部和尾部的总长度</strong></font>，这样可以<font color = '#DC143C'><strong>提高帧的传输效率</strong></font></li>
+<li>然而，如果不限制数据载荷的长度上限，就可能使得<font color = '#DC143C'><strong>帧的长度太长</strong></font>，这会<font color = '#DC143C'><strong>带来一些问题</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032346999.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="退避算法"><a href="#退避算法" class="headerlink" title="退避算法"></a>退避算法</h4><ul>
+<li>如果来纳许多次发生碰撞，就表明可能有较多的站点参与竞争信道。但使用上述退避算法可<font color = '#DC143C'><strong>使重传需要推迟的平均时间随重传次数而增大</strong></font>（即<font color = '#DC143C'><strong>动态退避</strong></font>），因而<font color = '#DC143C'><strong>减小产生碰撞的概率</strong></font></li>
+<li><font color = '#DC143C'><strong>当重传达16次仍不能成功时</strong></font>，就表明同时打算发送帧的站点太多了，以至于连续产生碰撞，此时应<font color = '#DC143C'><strong>放弃重传</strong></font>并向高层报告</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032349618.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="信道利用率-1"><a href="#信道利用率-1" class="headerlink" title="信道利用率"></a>信道利用率</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032354037.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>考虑以下理想情况<ul>
+<li>总线一旦空闲就有某个站点立即发送帧</li>
+<li>各站点发送帧都不会产生碰撞</li>
+<li>发送一帧占用总线的时间为T0 + τ，而帧本身的发送时间时T0</li>
+</ul>
+</li>
+</ul>
+
                 
               </div>
             
