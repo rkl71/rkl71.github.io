@@ -100,8 +100,18 @@
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032346999.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032349618.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032354037.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311040009777.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311040020983.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042130438.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042135295.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042143501.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042148048.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042154336.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042224465.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042235348.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042238352.png">
 <meta property="article:published_time" content="2023-10-25T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-03T14:57:03.101Z">
+<meta property="article:modified_time" content="2023-11-04T13:52:32.660Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary_large_image">
@@ -313,7 +323,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k words
+          17k words
         
       </span>
     
@@ -324,7 +334,7 @@
         
         
         
-          110 mins
+          141 mins
         
       </span>
     
@@ -1092,11 +1102,11 @@
 <li>然而，如果不限制数据载荷的长度上限，就可能使得<font color = '#DC143C'><strong>帧的长度太长</strong></font>，这会<font color = '#DC143C'><strong>带来一些问题</strong></font></li>
 </ul>
 <p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032346999.png" srcset="/img/loading.gif" lazyload></p>
-<h4 id="退避算法"><a href="#退避算法" class="headerlink" title="退避算法"></a>退避算法</h4><ul>
-<li>如果来纳许多次发生碰撞，就表明可能有较多的站点参与竞争信道。但使用上述退避算法可<font color = '#DC143C'><strong>使重传需要推迟的平均时间随重传次数而增大</strong></font>（即<font color = '#DC143C'><strong>动态退避</strong></font>），因而<font color = '#DC143C'><strong>减小产生碰撞的概率</strong></font></li>
+<h4 id="退避算法"><a href="#退避算法" class="headerlink" title="退避算法"></a>退避算法</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032349618.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>如果连续多次发生碰撞，就表明可能有较多的站点参与竞争信道。但使用上述退避算法可<font color = '#DC143C'><strong>使重传需要推迟的平均时间随重传次数而增大</strong></font>（即<font color = '#DC143C'><strong>动态退避</strong></font>），因而<font color = '#DC143C'><strong>减小产生碰撞的概率</strong></font></li>
 <li><font color = '#DC143C'><strong>当重传达16次仍不能成功时</strong></font>，就表明同时打算发送帧的站点太多了，以至于连续产生碰撞，此时应<font color = '#DC143C'><strong>放弃重传</strong></font>并向高层报告</li>
 </ul>
-<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032349618.png" srcset="/img/loading.gif" lazyload></p>
 <h4 id="信道利用率-1"><a href="#信道利用率-1" class="headerlink" title="信道利用率"></a>信道利用率</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311032354037.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 <li>考虑以下理想情况<ul>
@@ -1106,7 +1116,170 @@
 </ul>
 </li>
 </ul>
-
+<p>$$<br>极限信道利用率\ S_{max} &#x3D; \frac{T_0}{T_0 + \tau} &#x3D; \frac{1}{1 + \frac{\tau}{T_0}} &#x3D; \frac{1}{1+a}<br>$$</p>
+<h3 id="使用集线器的共享式以太网"><a href="#使用集线器的共享式以太网" class="headerlink" title="使用集线器的共享式以太网"></a>使用集线器的共享式以太网</h3><ul>
+<li>早期的传统以太网是使用<font color = '#DC143C'><strong>粗同轴电缆</strong></font>的共享<font color = '#DC143C'><strong>总线</strong></font>以太网，后来发展到使用价格相对便宜的<font color = '#DC143C'><strong>细同轴电缆</strong></font></li>
+<li>当初认为这种连接方法既简单又可靠，因为在那个时代普遍认为<font color = '#DC143C'><strong>有源器件不可靠</strong></font>，而<font color = '#DC143C'><strong>无源的电缆线才是最可靠的</strong></font><ul>
+<li>然而，实践证明这种使用<font color = '#DC143C'><strong>无源电缆线和大量机械接口</strong></font>的总线型以太网<font color = '#DC143C'><strong>并不</strong></font>像人们想象的那么<font color = '#DC143C'><strong>可靠</strong></font></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311040009777.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>在使用细同轴电缆的共享总线以太网之后，以太网发展出来了一种使用大规模集成电路来替代总线、并且可靠性非常高的设备，叫作<font color = '#DC143C'><strong>集线器（Hub）</strong></font></p>
+</li>
+<li><p>站点连接到集线器的传输媒体也转而使用更便宜、更灵活的<font color = '#DC143C'><strong>双绞线电缆</strong></font></p>
+</li>
+<li><p>集线器的一些主要特点如下</p>
+<ul>
+<li>使用集线器的以太网虽然<font color = '#DC143C'><strong>物理拓扑是星型</strong></font>的，但在逻辑上仍然是一个<font color = '#DC143C'><strong>总线网</strong></font>。总线上的各站点共享总线资源，<font color = '#DC143C'><strong>使用的还是CSMA&#x2F;CD协议</strong></font></li>
+<li>集线器<font color = '#DC143C'><strong>只工作在物理层</strong></font>，它的每个接口仅简单地转发比特，并不进行碰撞检测。碰撞检测的xingxin任务由各站点中的网卡负责</li>
+<li>集线器一般都<font color = '#DC143C'><strong>有少量的容错能力和网络管理功能</strong></font>。例如，若网络中某个站点的网卡出现了故障而不停地发送帧，集线器可以检测到这个问题，在内部断开与出故障网卡的连线，使整个以太网能正常工作</li>
+</ul>
+</li>
+<li><p>IEEE于1990年制定了<font color = '#DC143C'><strong>10BASE-T</strong></font>星型以太网的标准802.3i，这种以太网是局域网发展史上的一座非常重要的里程碑，它为<font color = '#DC143C'><strong>以太网在局域网中的统治地位</strong></font>奠定了牢固的基础</p>
+</li>
+<li><p>10BASE-T以太网的通信距离较短，每个<font color = '#DC143C'><strong>站点到集线器的距离不能超过100m</strong></font></p>
+</li>
+<li><p>IEEE 802.3以太网还可使用光纤作为传输媒体，相应的标准为10BASE-F，“F”表示光纤。光纤主要用作集线器之间的远程连接</p>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311040020983.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="在物理层扩展以太网"><a href="#在物理层扩展以太网" class="headerlink" title="在物理层扩展以太网"></a>在物理层扩展以太网</h3><h4 id="扩展站点与集线器之间的距离"><a href="#扩展站点与集线器之间的距离" class="headerlink" title="扩展站点与集线器之间的距离"></a>扩展站点与集线器之间的距离</h4><ul>
+<li>共享总线以太网中两站点之间的<font color = '#DC143C'><strong>距离不能太远</strong></font>，否则它们之间所传输的<font color = '#DC143C'><strong>信号就会衰减到使CSMA&#x2F;CD协议无法正常工作</strong></font></li>
+<li>在早期广泛使用粗同轴电缆或细同轴电缆共享总线以太网时，为了提高网络的地理覆盖范围，常用的是<font color = '#DC143C'><strong>工作在物理层的转发器</strong></font></li>
+<li>IEEE 802.3标准规定，两个网段可用一个转发器连接起来，任意两个站点之间最多可以经过三个网段</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042130438.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>在10BASE-T星型以太网中，可使用<font color = '#DC143C'><strong>光纤</strong></font>和一对<font color = '#DC143C'><strong>光纤调制解调器</strong></font>来<font color = '#DC143C'><strong>扩展站点与集线器之间的距离</strong></font><ul>
+<li>这种扩展方法比较简单，所需付出的代价是：为站点和集线器各增加一个用于电信号和光信号转换的光纤调制解调器，以及它们之间的一对通信光纤</li>
+</ul>
+</li>
+<li>信号在光纤上的衰减和失真很小，因此使用这种方法可以很简单地将站点与集线器之间的距离扩展到1000m以上</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042135295.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="扩展共享式以太网的覆盖范围和站点数量"><a href="#扩展共享式以太网的覆盖范围和站点数量" class="headerlink" title="扩展共享式以太网的覆盖范围和站点数量"></a>扩展共享式以太网的覆盖范围和站点数量</h4><ul>
+<li>以太网集线器一般具有8~32个接口，如果要连接的站点数量超过了单个集线器能够提供的接口数量，就需要使用多个集线器，这样就可以连接成覆盖更大的范围、连接更多站点的多级星型以太网</li>
+<li>采用多个集线器连接而成的多级星型以太网，在扩展了网络覆盖范围和站点数量的同时，也带来了一些负面因素</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042143501.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="在数据链路层扩展以太网"><a href="#在数据链路层扩展以太网" class="headerlink" title="在数据链路层扩展以太网"></a>在数据链路层扩展以太网</h3><h4 id="使用网桥"><a href="#使用网桥" class="headerlink" title="使用网桥"></a>使用网桥</h4><ul>
+<li>网桥（bridge）工作在数据链路层（包含其下的物理层），因此<font color = '#DC143C'><strong>网桥具备属于数据链路层范畴的相关能力</strong></font><ul>
+<li>网桥可以<font color = '#DC143C'><strong>识别帧的结构</strong></font></li>
+<li>网桥可以根据帧首部中的<font color = '#DC143C'><strong>目的MAC地址</strong></font>和网桥自身的<font color = '#DC143C'><strong>帧转发表</strong></font>来转发或丢弃所收到的帧</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042148048.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="网桥的主要结构和基本工作原理"><a href="#网桥的主要结构和基本工作原理" class="headerlink" title="网桥的主要结构和基本工作原理"></a>网桥的主要结构和基本工作原理</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042154336.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="透明网桥的自学习和转发帧的流程"><a href="#透明网桥的自学习和转发帧的流程" class="headerlink" title="透明网桥的自学习和转发帧的流程"></a>透明网桥的自学习和转发帧的流程</h4><ul>
+<li><p>透明网桥（Transparent Bridge）通过<font color = '#DC143C'><strong>自学习</strong></font>算法建立转发表</p>
+</li>
+<li><p>透明网桥中的 “<font color = '#DC143C'><strong>透明</strong></font>“，是指以太网中的各站点并不知道自己所发送的帧将会经过哪些网桥的转发，最终到达目的站点。也就是说，<font color = '#DC143C'><strong>以太网中的各网桥对于各站点而言是看不见的</strong></font></p>
+</li>
+<li><p>透明网桥的标准是IEEE 802.1D，它通过一种自学习算法<font color = '#DC143C'><strong>基于以太网中各站点间的相互通信</strong></font>逐步建立起自己的转发表</p>
+<p>1、网桥收到帧后进行<font color = '#DC143C'><strong>登记（即自学习）</strong></font>，登记的内容为帧的<font color = '#DC143C'><strong>源MAC地址</strong></font>和进入网桥的<font color = '#DC143C'><strong>接口号</strong></font></p>
+<p>2、网桥根据帧的目的MAC地址和网桥的转发表对帧进行转发，包含以下三种情况</p>
+<ul>
+<li><font color = '#DC143C'><strong>明确转发</strong></font>：网桥知道应当从哪个接口转发帧</li>
+<li><font color = '#DC143C'><strong>盲目转发</strong></font>：网桥不知道应当从哪个接口转发帧，只能将其通过除进入网桥的接口外的其他所有接口转发</li>
+<li><font color = '#DC143C'><strong>丢弃</strong></font>：网桥知道不应该转发该帧，将其丢弃</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>注意</p>
+</blockquote>
+<ol>
+<li>如果网桥收到有<font color = '#DC143C'><strong>误码的帧</strong></font>则直接<font color = '#DC143C'><strong>丢弃</strong></font></li>
+<li>如果网桥收到一个无误码的<font color = '#DC143C'><strong>广播帧</strong></font>，则不用进行查表，而是直接从除接收该广播帧的接口的<font color = '#DC143C'><strong>其他接口转发</strong></font>该广播帧</li>
+<li>转发表中的每条记录都有其<font color = '#DC143C'><strong>有效时间，到期后自动删除</strong></font>！这是因为各站点的MAC地址与网桥接口的对应关系并不是永久性的，例如某个站点更换了网卡，其MAC地址就会改变</li>
+</ol>
+<h4 id="透明网桥的生成树协议STP"><a href="#透明网桥的生成树协议STP" class="headerlink" title="透明网桥的生成树协议STP"></a>透明网桥的生成树协议STP</h4><ul>
+<li>为了提高以太网的<font color = '#DC143C'><strong>可靠性</strong></font>，有时需要在两个以太网之间使用多个透明网桥来提供<font color = '#DC143C'><strong>冗余链路</strong></font></li>
+<li>在增加冗余链路提高以太网可靠性的同时，却给网络引入了<font color = '#DC143C'><strong>环路</strong></font></li>
+<li>网络中的<font color = '#DC143C'><strong>广播帧将在环路中永久兜圈</strong></font>，造成广播帧充斥整个网络，<font color = '#DC143C'><strong>网络资源被白白浪费</strong></font>，而网络中的主机之间无法正常通信！</li>
+<li>为了避免广播帧在环路中永久兜圈，透明网桥使用<font color = '#DC143C'><strong>生成树协议</strong></font>(Spanning Tree Protocol，STP)，可以在增加冗余链路提高网络可靠性的同时，又避免环路带来的问题<ul>
+<li>不管网桥之间连接成了怎样复杂的带环拓扑，网桥之间通过<font color = '#DC143C'><strong>交互网桥协议单元</strong></font>（Bridge Protocol Data Unit，BPDU），<font color = '#DC143C'><strong>找出原网络拓扑的一个连通子集（即生成树）</strong></font>，在这个子集里整个连通的网络中<font color = '#DC143C'><strong>不存在环路</strong></font></li>
+<li>当首次连接网桥或网络拓扑发生变化时（人为改变或出现故障），网桥都会重新构造生成树，以确保网络的连通</li>
+</ul>
+</li>
+</ul>
+<h3 id="交换式以太网"><a href="#交换式以太网" class="headerlink" title="交换式以太网"></a>交换式以太网</h3><ul>
+<li>网桥的<font color = '#DC143C'><strong>接口数量很少</strong></font>，通常只有2~4个，一般只用来<font color = '#DC143C'><strong>连接不同的网段</strong></font></li>
+<li>1990年面世的<font color = '#DC143C'><strong>交换式集线器</strong></font>（Switching Hub），实质上是<font color = '#DC143C'><strong>具有多个接口的网桥</strong></font>，常称为以<font color = '#DC143C'><strong>太网交换机</strong></font>（Switch）或二层交换机<ul>
+<li>“二层” 是指以太网交换机工作在数据链路层（包括物理层）</li>
+<li>与网桥相同，交换机内部的转发表也是通过自学习算法，基于网络中各主机间的通信，自动地逐步建立起来的</li>
+<li>另外，交换机也使用生成树协议STP，来产生能够连通全网但不产生环路的通信路径</li>
+</ul>
+</li>
+<li>仅使用交换机（而不使用集线器）的以太网就是交换式以太网</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042224465.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="以太网交换机"><a href="#以太网交换机" class="headerlink" title="以太网交换机"></a>以太网交换机</h3><ul>
+<li><p>以太网<font color = '#DC143C'><strong>交换机</strong></font>（以下简称交换机）本质上就是一个<font color = '#DC143C'><strong>多接口的网桥</strong></font></p>
+<ul>
+<li>交换机自学习和转发帧的流程与网桥是相同的</li>
+<li>另外，交换机也使用生成树协议STP，来产生能够连通全网但不产生环路的通信路径</li>
+</ul>
+</li>
+<li><p>交换机的每个接口可以连接<font color = '#DC143C'><strong>计算机</strong></font>，也可以连接<font color = '#DC143C'><strong>集线器</strong></font>或另一个<font color = '#DC143C'><strong>交换机</strong></font></p>
+<ul>
+<li>当交换机的<font color = '#DC143C'><strong>接口与计算机或交换机连接</strong></font>时，可以工作在<font color = '#DC143C'><strong>全双工方式</strong></font>，并能<font color = '#DC143C'><strong>在自身内部同时连通多对接口</strong></font>，使每一对相互通信的计算机都能像独占传输媒体那样，无碰撞地传输数据，这样就<font color = '#DC143C'><strong>不需要使用CSMA&#x2F;CD协议</strong></font>了</li>
+<li>当交换机的<font color = '#DC143C'><strong>接口连接的是集线器</strong></font>时，该接口就<font color = '#DC143C'><strong>只能使用CSMA&#x2F;CD协议</strong></font>并只能工作在<font color = '#DC143C'><strong>半双工方式</strong></font></li>
+<li>现在的交换机和计算机中的网卡都能自动识别上述两种情况，并自动切换到相应的工作方式</li>
+</ul>
+</li>
+<li><p>交换机一般都具有多种速率的接口，例如10Mb&#x2F;s、100Mb&#x2F;s、1Gb&#x2F;s甚至10Gb&#x2F;s的接口，大部分接口支持多速率自适应</p>
+</li>
+<li><p>一般的交换机都采用 “<font color = '#DC143C'><strong>存储转发</strong></font>“ 方式，为了减小交换机的转发时延，某些交换机采用了<font color = '#DC143C'><strong>直通</strong></font>（Cut-Through）交换方式</p>
+</li>
+<li><p>采用<font color = '#DC143C'><strong>直通交换方式</strong></font>的交换机，在<font color = '#DC143C'><strong>接收帧的同时就立即按帧的目的MAC地址决定该帧的转发接口</strong></font>，然后通过其内部<font color = '#DC143C'><strong>基于硬件的交叉矩阵</strong></font>进行转发，而不必把整个帧先缓存后再进行处理</p>
+<ul>
+<li>直通交换的<font color = '#DC143C'><strong>时延非常小</strong></font></li>
+<li>直通交换<font color = '#DC143C'><strong>不检查差错就直接将帧转发出去</strong></font>，有可能会将一些无效帧转发给其他主机</li>
+</ul>
+</li>
+</ul>
+<h3 id="共享式以太网与交换式以太网的对比"><a href="#共享式以太网与交换式以太网的对比" class="headerlink" title="共享式以太网与交换式以太网的对比"></a>共享式以太网与交换式以太网的对比</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042235348.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>交换式以太网的网络性能远高于共享式以太网，集线器早已被交换机取代</li>
+</ul>
+<h3 id="以太网的MAC帧格式"><a href="#以太网的MAC帧格式" class="headerlink" title="以太网的MAC帧格式"></a>以太网的MAC帧格式</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042238352.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="虚拟局域网VLAN"><a href="#虚拟局域网VLAN" class="headerlink" title="虚拟局域网VLAN"></a>虚拟局域网VLAN</h3><h4 id="诞生背景"><a href="#诞生背景" class="headerlink" title="诞生背景"></a>诞生背景</h4><ul>
+<li>将多个站点通过一个或多个<font color = '#DC143C'><strong>以太网交换机</strong></font>连接起来就构建出了<font color = '#DC143C'><strong>交换式以太网</strong></font></li>
+<li>交换式以太网中的所有站点都属于<font color = '#DC143C'><strong>同一个广播域</strong></font></li>
+<li>随着交换式以太网规模的扩大，广播域也相应扩大。<font color = '#DC143C'><strong>巨大的广播域会带来一系列问题</strong></font><ul>
+<li><font color = '#DC143C'><strong>广播风暴</strong></font>	广播风暴会浪费网络资源和各主机的CPU资源	</li>
+<li>难以管理和维护，带来潜在的安全问题</li>
+</ul>
+</li>
+<li>网络中会频繁出现广播信息<ul>
+<li>TCP&#x2F;IP协议栈中的很多协议都会使用广播（例如地址解析协议ARP，路由信息协议RIPv1，动态主机配置协议DHCP）</li>
+<li>NetBEUI: Windows下使用的广播型协议 </li>
+<li>IPX&#x2F;SPX: Novell网络的协议栈</li>
+<li>Apple Talk: Apple公司的网络协议栈</li>
+</ul>
+</li>
+<li><font color = '#DC143C'><strong>分割广播域</strong></font>的方法<ul>
+<li>使用路由器可以隔离广播域（成本较高）</li>
+<li>虚拟局域网技术应运而生</li>
+</ul>
+</li>
+</ul>
+<h4 id="概述-4"><a href="#概述-4" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>虚拟局域网（Virtual Local Area Network，VLAN）是一种将局域网内的站点划分成<font color = '#DC143C'><strong>与物理位置无关的逻辑组</strong></font>的技术，一个逻辑组就是一个VLAN，VLAN中的各站点具有某些共同的应用需求</li>
+<li>属于同一VLAN的站点之间可以直接进行通信，而不同VLAN中的站点之间不能直接通信</li>
+<li>网络管理员可对局域网中的各交换机进行配置来建立多个逻辑上独立的VLAN<ul>
+<li>连接在同一交换机上的多个站点可以属于不同的VLAN，而属于同一VLAN的多个站点可以连接在不同的交换机上</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>虚拟局域网VALN并不是一种新型网络，它只是局域网能够提供给用户的一种服务</p>
+</blockquote>
+<h4 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h4>
                 
               </div>
             
