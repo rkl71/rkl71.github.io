@@ -6,7 +6,7 @@
   <link href="https://rkl71.github.io/atom.xml" rel="self"/>
   
   <link href="https://rkl71.github.io/"/>
-  <updated>2023-10-31T16:07:40.378Z</updated>
+  <updated>2023-11-05T07:16:22.616Z</updated>
   <id>https://rkl71.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Newsletter</title>
+    <link href="https://rkl71.github.io/2023/11/05/Newsletter/"/>
+    <id>https://rkl71.github.io/2023/11/05/Newsletter/</id>
+    <published>2023-11-04T15:00:00.000Z</published>
+    <updated>2023-11-05T07:16:22.616Z</updated>
+    
+    
+    <summary type="html">收集一些有用的小知识</summary>
+    
+    
+    
+    <category term="知识宝库" scheme="https://rkl71.github.io/categories/%E7%9F%A5%E8%AF%86%E5%AE%9D%E5%BA%93/"/>
+    
+    
+    <category term="Q&amp;A" scheme="https://rkl71.github.io/tags/Q-A/"/>
+    
+  </entry>
   
   <entry>
     <title>Hadoop</title>
