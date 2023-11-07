@@ -110,8 +110,34 @@
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042224465.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042235348.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311042238352.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311070950535.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311070950617.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311070956717.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311070959617.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071014671.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071014172.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071028380.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071031861.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071031926.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071328410.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071332642.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071332719.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071337269.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071846737.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071850257.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071905484.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071907977.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071913954.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071914763.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071922767.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071925393.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311072211310.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311072231298.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311072234032.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311072317966.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311072323069.png">
 <meta property="article:published_time" content="2023-10-25T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-04T13:52:32.660Z">
+<meta property="article:modified_time" content="2023-11-07T14:36:23.664Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary_large_image">
@@ -323,7 +349,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k words
+          20k words
         
       </span>
     
@@ -334,7 +360,7 @@
         
         
         
-          141 mins
+          171 mins
         
       </span>
     
@@ -1279,7 +1305,202 @@
 <blockquote>
 <p>虚拟局域网VALN并不是一种新型网络，它只是局域网能够提供给用户的一种服务</p>
 </blockquote>
-<h4 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h4>
+<h4 id="实现机制"><a href="#实现机制" class="headerlink" title="实现机制"></a>实现机制</h4><ul>
+<li>虚拟局域网VLAN有多种实现技术，最常见的就是<font color = '#DC143C'><strong>基于以太网交换机的接口来实现VLAN</strong></font>。这就需要交换机能够实现以下两个功能<ul>
+<li>能够处理带有VLAN标记的帧，也就是<font color = '#DC143C'><strong>IEEE 802.1Q帧</strong></font></li>
+<li>交换机的各接口可以支持<font color = '#DC143C'><strong>不同的接口类型</strong></font>，不同接口类型的接口对帧的处理方式有所不同</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>IEEE 802.1Q帧</p>
+</blockquote>
+<ul>
+<li>IEEE 802.1Q帧也称为Dot One Q帧，它对以太网V2的MAC帧格式进行了扩展：在源地址字段和类型字段之间插入了<font color = '#DC143C'><strong>4字节的VLAN标签</strong></font>（tag）字段</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311070950535.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311070950617.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>802.1Q帧一般不由用户主机处理，而是由以太网交换机来处理<ul>
+<li>当交换机<font color = '#DC143C'><strong>收到普通的以太网MAC帧时</strong></font>，会给其<font color = '#DC143C'><strong>插入4字节的VLAN标签使之成为802.1Q帧</strong></font>，该处理简称为 “<font color = '#DC143C'><strong>打标签</strong></font>“</li>
+<li>当交换机<font color = '#DC143C'><strong>转发802.1Q帧</strong></font>时，<font color = '#DC143C'><strong>可能会删除其4字节的VLAN标签使之成为普通的以太网MAC帧</strong></font>，该处理简称为 “<font color = '#DC143C'><strong>去标签</strong></font>“。交换机转发802.1Q帧时也有可能不进行 “去标签” 处理，是否进行 “去标签” 处理取决于交换机的接口类型</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>以太网交换机的接口类型</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311070956717.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="以太网的发展"><a href="#以太网的发展" class="headerlink" title="以太网的发展"></a>以太网的发展</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311070959617.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>都使用<font color = '#DC143C'><strong>IEEE 802.3的帧格式</strong></font></li>
+<li>都遵守<font color = '#DC143C'><strong>IEEE 802.3的最小帧长和最大帧长</strong></font>的规定</li>
+<li>10吉比特以太网（10GE）和40&#x2F;100吉比特以太网（40GE&#x2F;100GE）<font color = '#DC143C'><strong>只工作在全双工方式</strong></font>而不存在争用媒体的问题，因此<font color = '#DC143C'><strong>不需要使用CSMA&#x2F;CD协议</strong></font>，这样传输距离就不再受碰撞检测的限制</li>
+<li>都有<font color = '#DC143C'><strong>多种不同的物理层标准</strong></font>，10吉比特以太网（10GE）和40&#x2F;100吉比特以太网（40GE&#x2F;100GE）还增加了<font color = '#DC143C'><strong>支持城域网和广域网的物理层标准</strong></font></li>
+</ul>
+<h3 id="无线局域网"><a href="#无线局域网" class="headerlink" title="无线局域网"></a>无线局域网</h3><h4 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h4><ul>
+<li>随着移动通信技术的发展，<font color = '#DC143C'><strong>无线局域网</strong></font>（Wireless Local Area Network，WLAN）自20世纪80年代末以来逐步进入市场</li>
+<li>IEEE于1997年制定出了无线局域网的协议标准802.11，<font color = '#DC143C'><strong>802.11无线局域网</strong></font>是目前应用最广泛的无线局域网之一，更多地将其简称为<font color = '#DC143C'><strong>Wi-Fi</strong></font>（Wireless Fidelity，无线保真度）</li>
+<li>802.11无线局域网可分为以下两类<ul>
+<li>有固定基础设施的</li>
+<li>无固定基础设施的</li>
+</ul>
+</li>
+<li><font color = '#DC143C'><strong>固定基础设施</strong></font>是指预先建立的、能够覆盖一定地理范围的、<font color = '#DC143C'><strong>多个固定的通信基站</strong></font></li>
+<li>802.11无线局域网使用最多的是它的固定基础设施的组网方式</li>
+</ul>
+<h4 id="物理层-1"><a href="#物理层-1" class="headerlink" title="物理层"></a>物理层</h4><ul>
+<li>802.11无线局域网的物理层非常复杂，根据<font color = '#DC143C'><strong>工作频段</strong></font>、<font color = '#DC143C'><strong>调制方式</strong></font>、<font color = '#DC143C'><strong>传输速率</strong></font>等，可将其分为多种物理层标准：</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071014671.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>802.11无线网卡一般会被做成<font color = '#DC143C'><strong>多模</strong></font>的，以便能适应多种不同的物理层标准，例如支持802.11b&#x2F;g&#x2F;n</li>
+<li>无线局域网最初还使用红外技术（infrared，IR）和跳频扩频（Frequency Hopping Spread Spectrum，FHSS）技术，但目前很少使用了</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071014172.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="数据链路层-1"><a href="#数据链路层-1" class="headerlink" title="数据链路层"></a>数据链路层</h4><blockquote>
+<p>使用CSMA&#x2F;CA协议的原因</p>
+</blockquote>
+<ul>
+<li>对于802.11无线局域网，其使用无线信道传输数据，这与共享总线以太网使用有线<font color = '#DC143C'><strong>传输介质不同</strong></font>。因此，802.11无线局域网<font color = '#DC143C'><strong>不能简单照搬</strong></font>共享总线以太网使用的<font color = '#DC143C'><strong>CSMA&#x2F;CD协议</strong></font></li>
+<li>802.11无线局域网采用了另一种称为CSMA&#x2F;CA的协议，也就是<font color = '#DC143C'><strong>载波监听多址接入&#x2F;碰撞避免</strong></font>（Carrier Sense Multiple Access&#x2F;Collision Avoidance，CSMA&#x2F;CA）</li>
+<li>CSMA&#x2F;CA协议<font color = '#DC143C'><strong>仍然采用</strong></font>CSMA&#x2F;CD协议中的<font color = '#DC143C'><strong>CSMA</strong></font>，以 “先听后说” 的方式来减少碰撞的发生，但是<font color = '#DC143C'><strong>将 “碰撞检测CD” 改为了 “碰撞避免CA”</strong></font></li>
+</ul>
+<blockquote>
+<p>不采用 “碰撞检测CD” 的原因</p>
+</blockquote>
+<ol>
+<li>由于<font color = '#DC143C'><strong>无线信道的传输环境复杂</strong></font>且信号强度的动态范围非常大，在802.11无线网卡上<font color = '#DC143C'><strong>接收到的信号强度一般都远远小于发送信号的强度</strong></font>，信号强度甚至相差百万倍。因此，<font color = '#DC143C'><strong>如果要在802.11无线网卡上实现碰撞检测</strong></font>，<font color = '#DC143C'><strong>对硬件的要求非常高</strong></font></li>
+<li>即使能够在硬件上实现碰撞检测功能，但由于无线电波传播的特殊性（<font color = '#DC143C'><strong>存在隐蔽站问题</strong></font>），<font color = '#DC143C'><strong>还会出现无法检测到碰撞的情况</strong></font>，因此实现<font color = '#DC143C'><strong>碰撞检测并没有意义</strong></font></li>
+</ol>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071028380.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>CSMA&#x2F;CA协议的基本工作原理</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071031861.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071031926.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="MAC帧"><a href="#MAC帧" class="headerlink" title="MAC帧"></a>MAC帧</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071328410.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071332642.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071332719.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h2><h3 id="概述-5"><a href="#概述-5" class="headerlink" title="概述"></a>概述</h3><h4 id="分组转发和路由选择"><a href="#分组转发和路由选择" class="headerlink" title="分组转发和路由选择"></a>分组转发和路由选择</h4><ul>
+<li>网络层的主要任务就是<font color = '#DC143C'><strong>将分组从源主机经过多个网络和多段链路传输到目的主机</strong></font>，可以将任务划分为<font color = '#DC143C'><strong>分组转发</strong></font>和<font color = '#DC143C'><strong>路由选择</strong></font>两种重要的功能</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071337269.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="网路层向其上层提供的两种服务"><a href="#网路层向其上层提供的两种服务" class="headerlink" title="网路层向其上层提供的两种服务"></a>网路层向其上层提供的两种服务</h4><blockquote>
+<p>面向连接的虚电路服务</p>
+</blockquote>
+<ul>
+<li>核心思想是 “<font color = '#DC143C'><strong>可靠通信应由网络自身来保证</strong></font>“</li>
+<li>必须首先<font color = '#DC143C'><strong>建立网络层连接</strong></font> <font color = '#DC143C'><strong>虚电路</strong></font>（Virtual Circuit，VC），以保证通信双方所需的一切网络资源</li>
+<li>通信双方<font color = '#DC143C'><strong>沿着已建立的虚电路发送分组</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071846737.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>无连接的数据报服务</p>
+</blockquote>
+<ul>
+<li>核心思想是 “<font color = '#DC143C'><strong>可靠通信应由用户主机来保证</strong></font>“</li>
+<li><font color = '#DC143C'><strong>不需要建立网络层连接</strong></font></li>
+<li><font color = '#DC143C'><strong>每个分组可走不同的路径</strong></font>。因此，每个分组的首部都必须携带目的主机的完整地址</li>
+<li>通信结束后，<font color = '#DC143C'><strong>没有需要释放的连接</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071850257.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="网际协议和异构网络互连"><a href="#网际协议和异构网络互连" class="headerlink" title="网际协议和异构网络互连"></a>网际协议和异构网络互连</h3><h4 id="网际协议IP"><a href="#网际协议IP" class="headerlink" title="网际协议IP"></a>网际协议IP</h4><ul>
+<li>网际协议（Internet Protocol，IP）是TCP&#x2F;IP体系结构<font color = '#DC143C'><strong>网际层中的核心协议</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071905484.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="异构网络互连"><a href="#异构网络互连" class="headerlink" title="异构网络互连"></a>异构网络互连</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071907977.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>当IP网上的主机进行通信时，就好像在一个单个网络上通信一样，它们看不见互连的各网络的具体异构细节</li>
+</ul>
+<h3 id="IPv4地址及其编址方法"><a href="#IPv4地址及其编址方法" class="headerlink" title="IPv4地址及其编址方法"></a>IPv4地址及其编址方法</h3><h4 id="概述-6"><a href="#概述-6" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>IPv4地址是给因特网（Internet）上的<font color = '#DC143C'><strong>每一个主机（或路由器）的每一个接口</strong></font>分配的一个在全世界范围内<font color = '#DC143C'><strong>唯一的32比特的标识符</strong></font></li>
+<li>IPv4地址由<font color = '#DC143C'><strong>因特网名字和数字分配机构</strong></font>（Internet Corporation For Assigned Names And Numbers，ICANN）进行分配</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071913954.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><font color = '#DC143C'><strong>IPv4地址的编址方法</strong></font>经历了三个历史阶段</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071914763.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="表示方法"><a href="#表示方法" class="headerlink" title="表示方法"></a>表示方法</h4><ul>
+<li>由于IPv4地址由32比特构成，不方便阅读、记录以及输入等，因此IPv4地址采用<font color = '#DC143C'><strong>点分十进制表示方法</strong></font>以方便用户使用</li>
+</ul>
+<h4 id="分类编址方法"><a href="#分类编址方法" class="headerlink" title="分类编址方法"></a>分类编址方法</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071922767.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><font color = '#DC143C'><strong>A类</strong></font>、<font color = '#DC143C'><strong>B类</strong></font>和<font color = '#DC143C'><strong>C类</strong></font>地址都是<font color = '#DC143C'><strong>单播地址</strong></font>，只有单播地址可以<font color = '#DC143C'><strong>分配给网络中的主机（或路由器）的各接口</strong></font></li>
+<li><font color = '#DC143C'><strong>主机号为 “全0”</strong></font> 的地址是<font color = '#DC143C'><strong>网络地址</strong></font>，<font color = '#DC143C'><strong>不能分配</strong></font>给主机（或路由器）的各接口</li>
+<li><font color = '#DC143C'><strong>主机号为 “全1”</strong></font> 的地址是<font color = '#DC143C'><strong>广播地址</strong></font>，<font color = '#DC143C'><strong>不能分配</strong></font>给主机（或路由器）的各接口</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311071925393.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311072211310.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="划分子网编址方法"><a href="#划分子网编址方法" class="headerlink" title="划分子网编址方法"></a>划分子网编址方法</h4><ul>
+<li>随着更多的中小网络加入因特网，<font color = '#DC143C'><strong>IPv4分类编址方法不够灵活</strong></font>、<font color = '#DC143C'><strong>容易造成大量IPv4地址资源浪费</strong></font>的缺点就暴露出来了</li>
+<li>为新增网络申请新的网络号存在以下弊端<ul>
+<li>需要等待时间和花费更多的费用</li>
+<li>会增加其他路由器中路由条目的数量</li>
+<li>浪费原有网络号中剩余的大量地址</li>
+</ul>
+</li>
+<li><font color = '#DC143C'><strong>子网掩码</strong></font>可以表明分类IPv4地址的主机号部分被借用了几个比特作为子网号</li>
+<li>与IPv4地址类似，子网掩码也是由<font color = '#DC143C'><strong>32比特</strong></font>构成的<ul>
+<li>用左起多个<font color = '#DC143C'><strong>连续的比特1</strong></font>对应IPv4地址中的<font color = '#DC143C'><strong>网络号和子网号</strong></font></li>
+<li>之后的多个<font color = '#DC143C'><strong>连续的比特0</strong></font>对应IPv4地址中的<font color = '#DC143C'><strong>主机号</strong></font></li>
+</ul>
+</li>
+<li>将划分子网的<font color = '#DC143C'><strong>IPv4地址与相应的子网掩码</strong></font>进行逐比特的<font color = '#DC143C'><strong>逻辑和运算</strong></font>，就可<font color = '#DC143C'><strong>得到</strong></font>该IPv4地址所在<font color = '#DC143C'><strong>子网的网络地址</strong></font></li>
+<li>给定一个分类的IPv4地址和其相应的子网掩码，就可以得出子网划分的细节<ul>
+<li>划分出的子网数量</li>
+<li>每个子网可分配的地址数量</li>
+<li>每个子网的网络地址和广播地址</li>
+<li>每个子网可分配的最小地址和最大地址</li>
+</ul>
+</li>
+<li><font color = '#DC143C'><strong>默认子网掩码</strong></font>是指在<font color = '#DC143C'><strong>未划分子网的情况下使用的子网掩码</strong></font><ul>
+<li>A类：255.0.0.0</li>
+<li>B类：255.255.0.0</li>
+<li>C类：255.255.255.0</li>
+</ul>
+</li>
+</ul>
+<h4 id="无分类编址方法"><a href="#无分类编址方法" class="headerlink" title="无分类编址方法"></a>无分类编址方法</h4><ul>
+<li><p>无分类编址方法使用的<font color = '#DC143C'><strong>地址掩码</strong></font>与划分子网使用的<font color = '#DC143C'><strong>子网掩码</strong></font>类似，由32比特构成</p>
+<ul>
+<li>用左起多个<font color = '#DC143C'><strong>连续的比特1</strong></font>对应IPv4地址中的<font color = '#DC143C'><strong>网络前缀</strong></font></li>
+<li>之后的多个<font color = '#DC143C'><strong>连续的比特0</strong></font>对应IPv4地址中的<font color = '#DC143C'><strong>主机号</strong></font></li>
+</ul>
+</li>
+<li><p>为了简便起见，可以不明确给出配套的地址掩码的点分十进制形式，而是在无分类编址的IPv4地址后面加上斜线 “&#x2F;“，在斜线之后写上网络前缀所占的比特数量（也就是地址掩码中左起连续比特1的数量），这种记法称为<font color = '#DC143C'><strong>斜线记法</strong></font></p>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311072231298.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="应用规划"><a href="#应用规划" class="headerlink" title="应用规划"></a>应用规划</h4><ul>
+<li>IPv4地址的应用规划是将给定的IPv4地址块（或分类网络）划分成若干个更小的地址块（或子网），并将这些地址块（或子网）分配给互联网中的不同网络，进而可以给给网络中的主机和路由器的接口分配IPv4地址</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311072234032.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="IPv4地址与MAC地址的封装位置"><a href="#IPv4地址与MAC地址的封装位置" class="headerlink" title="IPv4地址与MAC地址的封装位置"></a>IPv4地址与MAC地址的封装位置</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311072317966.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="数据包传送过程中IPv4地址与MAC地址的变化情况"><a href="#数据包传送过程中IPv4地址与MAC地址的变化情况" class="headerlink" title="数据包传送过程中IPv4地址与MAC地址的变化情况"></a>数据包传送过程中IPv4地址与MAC地址的变化情况</h4><ul>
+<li>在数据包的传送过程中，数据包的<font color = '#DC143C'><strong>源IP地址和目的IP地址保持不变</strong></font></li>
+<li>在数据包的传送过程中，数据包的<font color = '#DC143C'><strong>源MAC地址和目的MAC地址逐链路（或逐网络）改变</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311072323069.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="IPv4地址与MAC地址的关系"><a href="#IPv4地址与MAC地址的关系" class="headerlink" title="IPv4地址与MAC地址的关系"></a>IPv4地址与MAC地址的关系</h4><ul>
+<li><p>如果仅使用MAC地址进行通信，则会出现以下主要问题</p>
+<ul>
+<li><p>因特网中的每台路由器的<font color = '#DC143C'><strong>路由表</strong></font>中就必须<font color = '#DC143C'><strong>记录</strong></font>因特网上<font color = '#DC143C'><strong>所有主机和路由器各接口的MAC地址</strong></font></p>
+</li>
+<li><p>手工给路由器配置路由器几乎是不可能完成的任务，即使使用路由协议让路由器通过相互交换路由信息来自动构建路由表，也会因为<font color = '#DC143C'><strong>路由信息需要包含海量的MAC地址信息而严重占用通信资源</strong></font></p>
+</li>
+<li><p><font color = '#DC143C'><strong>包含海量MAC地址的路由信息需要路由器具备极大的存储空间</strong></font>，并且会给分组的<font color = '#DC143C'><strong>查表转发带来非常大的时延</strong></font></p>
+</li>
+</ul>
+</li>
+<li><p>因特网的网际层<font color = '#DC143C'><strong>使用IP地址进行寻址</strong></font>，就可使因特网中各<font color = '#DC143C'><strong>路由器</strong></font>的路由表中的路由记录的数量大大减少，因为<font color = '#DC143C'><strong>只需记录部分网络的网络地址</strong></font>，而不是记录每个网络中各通信设备的各接口的MAC地址</p>
+<ul>
+<li>路由器收到IP数据报后，根据其首部中的目的IP地址的网络号部分，基于自己的路由表进行查表转发</li>
+</ul>
+</li>
+</ul>
+
                 
               </div>
             
