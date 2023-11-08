@@ -50,8 +50,31 @@
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202234545.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202307859.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202322731.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081014463.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081014726.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081015830.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081015699.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081015258.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081029185.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081032381.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081034505.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081035684.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081035811.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081039738.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081039859.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081409233.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081414971.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081413940.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081417737.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081433924.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081434647.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081439988.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081440957.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311082238139.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311082238772.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311082238731.png">
 <meta property="article:published_time" content="2023-10-15T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-20T14:22:42.224Z">
+<meta property="article:modified_time" content="2023-11-08T13:50:47.473Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary_large_image">
@@ -263,7 +286,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8k words
+          11k words
         
       </span>
     
@@ -274,7 +297,7 @@
         
         
         
-          68 mins
+          94 mins
         
       </span>
     
@@ -802,7 +825,7 @@
 <li>怎么打破双亲委派机制？</li>
 </ol>
 <ul>
-<li>重写loadClass方法，不再实现双亲委派机制</li>
+<li>重写 loadClass 方法，不再实现双亲委派机制</li>
 <li>JNDI、JDBC、JCE、JAXB 和 JBI 等框架使用了 SPI 机制 + 线程上下文类加载器</li>
 <li>OSGi 实现了一整套类加载机制，允许同级类加载器之间互相调用</li>
 </ul>
@@ -810,6 +833,177 @@
 <li>Java 虚拟机在运行 Java 程序过程中管理的内存区域，称之为<font color='#DC143C'><strong>运行时数据区</strong></font></li>
 </ul>
 <p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310202322731.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="程序计数器"><a href="#程序计数器" class="headerlink" title="程序计数器"></a>程序计数器</h3><ul>
+<li>程序计数器（Program Counter Register）也叫 <strong>PC</strong> 寄存器，每个线程会通过程序计数器记录当前要执行的的字节码指令的地址</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081014463.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>在加载阶段，虚拟机将字节码文件中的指令读取到内存之后，会将原文件中的偏移量转换成内存地址。每一条字节码指令都会拥有一个内存地址</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081014726.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>在代码执行过程中，程序计数器会记录下一行字节码指令的地址。执行完当前指令之后，虚拟机的执行引擎根据程序计数器执行下一行指令</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081015830.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081015699.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>程序计数器可以控制程序指令的进行，实现分支、跳转、异常等逻辑</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081015258.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>在多线程执行情况下，Java虚拟机需要通过程序计数器记录CPU切换前解释执行到那一句指令并继续解释运行</li>
+</ul>
+<h4 id="问题-2"><a href="#问题-2" class="headerlink" title="问题"></a>问题</h4><blockquote>
+<p>程序计数器在运行中会出现内存溢出吗？</p>
+</blockquote>
+<ul>
+<li><font color='#DC143C'><strong>内存溢出</strong></font>指的是程序在使用某一块内存区域时，存放的数据需要占用的内存大小超过了虚拟机能提供的内存上限</li>
+<li>因为每个线程只存储一个固定长度的内存地址，<font color='#DC143C'><strong>程序计数器是不会发生内存溢出的</strong></font></li>
+<li><font color='#DC143C'><strong>程序员无需对程序计数器做任何处理</strong></font></li>
+</ul>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><ul>
+<li><strong>Java</strong> 虚拟机栈（Java Virtual Machine Stack）采用栈的数据结构来管理方法调用中的基本数据，先进后出（First In Last Out），每一个方法的调用使用一个栈帧（Stack Frame）来保存</li>
+<li>Java虚拟机栈随着线程的创建而创建，而回收则会在线程的销毁时进行。由于方法可能会在不同线 程中执行，每个线程都会包含一个自己的虚拟机栈</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081029185.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="局部变量表"><a href="#局部变量表" class="headerlink" title="局部变量表"></a>局部变量表</h4><ul>
+<li>局部变量表的作用是在方法执行过程中存放所有的局部变量。编译成字节码文件时就可以确定局部变量表的内容</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081032381.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>栈帧中的局部变量表是一个数组，数组中每一个位置称之为槽(slot) ， long 和 double 类型占用两个槽，其他类型占用一个槽</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081034505.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>实例方法中的序号为 0 的位置存放的是 this，指的是当前调用方法的对象，运行时会在内存中存放实例对象的地址</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081035684.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>方法参数也会保存在局部变量表中，其顺序与方法中参数定义的顺序一致</li>
+<li>局部变量表保存的内容有：实例方法的this对象，方法的参数，方法体中声明的局部变量</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081035811.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>为了节省空间，局部变量表中的槽是可以复用的，一旦某个局部变量不再生效，当前槽就可以再次被使用</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081039738.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081039859.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="操作数栈"><a href="#操作数栈" class="headerlink" title="操作数栈"></a>操作数栈</h4><ul>
+<li>操作数栈是栈帧中虚拟机在执行指令过程中用来存放中间数据的一块区域。它是一种栈式的数据结构，如果一条指令将一个值压入操作数栈，则后面的指令可以弹出并使用该值</li>
+<li>在<font color='#DC143C'><strong>编译期</strong></font>就可以确定操作数栈的最大深度，从而在执行时正确的分配内存大小</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081409233.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="帧数据"><a href="#帧数据" class="headerlink" title="帧数据"></a>帧数据</h4><ul>
+<li>当前类的字节码指令引用了其他类的属性或者方法时，需要将符号引用（编号）转换成对应的运行时常量池中的内存地址。动态链接就保存了编号到运行时常量池的内存地址的映射关系</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081414971.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>方法出口指的是方法在正确或者异常结束时，当前栈帧会被弹出，同时程序计数器应该指向上一个栈帧中的下一条指令的地址。所以在当前栈帧中，需要存储此方法出口的地址</li>
+<li>异常表存放的是代码中异常的处理信息，包含了异常捕获的生效范围以及异常发生后跳转到的字节码指令位置</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081413940.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="内存溢出"><a href="#内存溢出" class="headerlink" title="内存溢出"></a>内存溢出</h4><ul>
+<li><p>Java 虚拟机栈如果栈帧过多，占用内存超过栈内存可以分配的最大大小就会出现<font color='#DC143C'><strong>内存溢出</strong></font></p>
+</li>
+<li><p>Java 虚拟机栈内存溢出时会出现 StackOverflowError 的错误</p>
+</li>
+<li><p>如果我们不指定栈的大小，JVM 将创建一个 具有<font color='#DC143C'><strong>默认大小的栈</strong></font>。大小取决于操作系统和计算机的体系结构</p>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081417737.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="虚拟机栈"><a href="#虚拟机栈" class="headerlink" title="虚拟机栈"></a>虚拟机栈</h5><blockquote>
+<p>注意事项</p>
+</blockquote>
+<ol>
+<li><p>与 -Xss类似，也可以使用 -XX:ThreadStackSize 调整标志来配置堆栈大小</p>
+<p>格式为： -XX:ThreadStackSize&#x3D;1024</p>
+</li>
+<li><p><font color='#DC143C'><strong>HotSpot JVM对栈大小的最大值和最小值有要求</strong></font>： </p>
+<p>比如测试如下两个参数: </p>
+<p>-Xss1k </p>
+<p>-Xss1025m </p>
+<p>Windows（64位）下的JDK8测试最小值为180k，最大值为1024m</p>
+</li>
+<li><p>局部变量过多、操作数栈深度过大也会影响栈内存的大小</p>
+</li>
+</ol>
+<blockquote>
+<p>总结</p>
+</blockquote>
+<p>一般情况下，工作中即便使用了递归进行操作，栈的深度最多也只能到几百,不会出现栈的溢出。所以此参数 可以手动指定为 -Xss256k 节省内存</p>
+<h5 id="本地方法栈"><a href="#本地方法栈" class="headerlink" title="本地方法栈"></a>本地方法栈</h5><ul>
+<li>Java 虚拟机栈存储了 Java 方法调用时的栈帧，而本地方法栈存储的是 native 本地方法的栈帧</li>
+<li>在 Hotspot 虚拟机中，<font color='#DC143C'><strong>Java 虚拟机栈和本地方法栈实现上使用了同一个栈空间</strong></font>。本地方法栈会在栈内存上生成一个栈帧，临时保存方法的参数同时方便出现异常时也把本地方法的栈信息打印出来</li>
+</ul>
+<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><ul>
+<li>一般 Java 程序中堆内存是空间最大的一块内存区域。创建出来的对象都存在于堆上</li>
+<li>栈上的局部变量表中，可以存放堆上对象的引用。静态变量也可以存放堆对象的引用，通过静态变量就可以实现对象在线程之间共享</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081433924.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>堆空间有三个需要关注的值，used total max</li>
+<li>used 指的是当前已使用的堆内存，total 是 Java 虚拟机已经分配的可用堆内存，max 是 Java 虚拟机可以分配的最大堆内存</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081434647.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>堆内存 used total max 三个值可以通过 dashboard 命令看到</p>
+</li>
+<li><p>手动指定刷新频率（不指定默认5秒一次）：dashboard –i 刷新频率（毫秒）</p>
+</li>
+<li><p>随着堆中的对象增多，当 total 可以使用的内存即将不足时，Java 虚拟机会继续分配内存给堆</p>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081439988.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>如果堆内存不足，Java 虚拟机就会不断的分配内存，total 值会变大。 total 最多只能与 max 相等</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311081440957.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>如果不设置任何的虚拟机参数，max 默认是系统内存的 1&#x2F;4，total 默认是系统内存的1&#x2F;64。在实际应用中一般都需要设置 total 和 max 的值</li>
+<li><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html">Oracle官方文档</a></li>
+<li>Java 服务端程序开发时，<font color='#DC143C'><strong>建议将 -Xmx 和 -Xms 设置为相同的值</strong></font>，这样在程序启动之后可使用的总内存就是最大内存，而无需向 Java 虚拟机再次申请，减少了申请并分配内存时间上的开销，同时也不会出现内存过剩之后堆收缩的情况</li>
+</ul>
+<h4 id="设置大小"><a href="#设置大小" class="headerlink" title="设置大小"></a>设置大小</h4><ul>
+<li>要修改堆的大小，可以使用虚拟机参数 –Xmx（max最大值）和-Xms （初始的total）</li>
+<li>语法：-Xmx 值 -Xms 值 </li>
+<li>单位：字节（默认，必须是 1024 的倍数）、k或者K（KB）、m或者M（MB）、g或者G（GB）</li>
+<li>限制：Xmx 必须大于 2 MB，Xms 必须大于 1MB</li>
+</ul>
+<h4 id="问题-3"><a href="#问题-3" class="headerlink" title="问题"></a>问题</h4><p>为什么arthas中显示的heap堆大小与设置的值不一样呢？</p>
+<ul>
+<li>arthas 中的 heap 堆内存使用了 JMX 技术中内存获取方式，这种方式与垃圾回收器有关，计算的是<font color='#DC143C'><strong>可以分配对象的内存</strong></font>，而不是整个内存</li>
+</ul>
+<h3 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h3><ul>
+<li>方法区是存放基础信息的位置，线程共享，主要包含三部分内容：<ul>
+<li>类的元信息：保存了所有类的基本信息</li>
+<li>运行时常量池：保存了字节码文件中的常量池内容</li>
+<li>字符串常量池：保存了字符串常量</li>
+</ul>
+</li>
+<li>方法区是用来存储每个类的<font color='#DC143C'><strong>基本信息（元信息）</strong></font>，一般称之为 InstanceClass 对象。在类的<font color='#DC143C'><strong>加载阶段</strong></font>完成</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311082238139.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>方法区除了存储类的元信息之外，还存放了运行时常量池。常量池中存放的是字节码中的常量池内容</li>
+<li>字节码文件中通过编号查表的方式找到常量，这种常量池称为<font color='#DC143C'><strong>静态常量池</strong></font>。当常量池加载到内存中之后，可以通过内存地址快速的定位到常量池中的内容，这种常量池称为<font color='#DC143C'><strong>运行时常量池</strong></font></li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311082238772.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>方法区是《Java虚拟机规范》中设计的虚拟概念，每款 Java 虚拟机在实现上都各不相同。Hotspot 设计如下： <ul>
+<li>JDK7 及之前的版本将方法区存放在堆区域中的永久代空间，堆的大小由虚拟机参数来控制</li>
+<li>JDK8 及之后的版本将方法区存放在元空间中，元空间位于操作系统维护的直接内存中，默认情况下只要不超过操作系统承受的上限，可以一直分配</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311082238731.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>JDK7 将方法区存放在<font color='#DC143C'><strong>堆区域中的永久代空间</strong></font>，堆的大小由虚拟机参数<font color='#DC143C'><strong>-XX:MaxPermSize&#x3D;值</strong></font>来控制</li>
+<li>JDK8 将方法区存放在<font color='#DC143C'><strong>元空间</strong></font>中，元空间位于操作系统维护的直接内存中，默认情况下只要不超过操作系统承受的上限，可以一直分配。可以使用<font color='#DC143C'><strong>-XX:MaxMetaspaceSize&#x3D;值</strong></font>将元空间最大大小进行限制</li>
+</ul>
+<h4 id="字符串常量池"><a href="#字符串常量池" class="headerlink" title="字符串常量池"></a>字符串常量池</h4><ul>
+<li>方法区中除了类的元信息、运行时常量池之外，还有一块区域叫字符串常量池（StringTable）</li>
+<li>字符串常量池存储在代码中定义的常量字符串内容。比如 “123” 这个123 就会被放入字符串常量池</li>
+</ul>
 
                 
               </div>
