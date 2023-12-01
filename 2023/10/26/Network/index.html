@@ -148,8 +148,18 @@
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311132025212.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311132030817.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202311132032419.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012124856.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012128759.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012152888.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012156884.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012157701.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012200758.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012219123.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012225913.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012225538.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012236511.png">
 <meta property="article:published_time" content="2023-10-25T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-11-13T12:10:01.313Z">
+<meta property="article:modified_time" content="2023-12-01T13:37:59.190Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="Network">
 <meta name="twitter:card" content="summary_large_image">
@@ -361,7 +371,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          26k words
+          29k words
         
       </span>
     
@@ -372,7 +382,7 @@
         
         
         
-          220 mins
+          245 mins
         
       </span>
     
@@ -1755,7 +1765,123 @@
 </ul>
 </li>
 </ul>
-<h3 id="在局域网上进行硬件多播"><a href="#在局域网上进行硬件多播" class="headerlink" title="在局域网上进行硬件多播"></a>在局域网上进行硬件多播</h3>
+<h3 id="在局域网上进行硬件多播"><a href="#在局域网上进行硬件多播" class="headerlink" title="在局域网上进行硬件多播"></a>在局域网上进行硬件多播</h3><ul>
+<li>由于MAC地址（也称为硬件地址）有多播MAC地址这种类型，因此只要<font color = '#DC143C'><strong>把IPv4多播地址映射成多播MAC地址</strong></font>，即可将IP多播数据报封装在局域网的MAC帧中，而MAC帧首部中的目的MAC地址字段的值，就设置为由IPv4多播地址映射成的多播MAC地址。这样，可以很方便地<font color = '#DC143C'><strong>利用硬件多播来实现局域网内的IP多播</strong></font>。</li>
+<li>当给某个多播组的成员主机配置其所属多播组的IP多播地址时，系统就会根据映射规则从该IP多播地址生成相应的局域网多播MAC地址。</li>
+<li>因特网号码指派管理局IANA，将自己从IEEE注册管理机构申请到的以太网MAC地址块中从<font color = '#DC143C'><strong>01-00-5E-00-00-00到01-00-5E-7F-FF-FF</strong></font>的多播MAC地址，用于映射IPv4多播地址。<ul>
+<li>这些多播MAC地址的<font color = '#DC143C'><strong>左起前25个比特都是相同的</strong></font>，<font color = '#DC143C'><strong>剩余23个比特可以任意变化</strong></font>，因此共有223个。</li>
+</ul>
+</li>
+<li>由于IP多播地址可变化的28比特的前5个比特无法映射到MAC多播地址的低23比特，这会造成<font color = '#DC143C'><strong>IP多播地址与多播MAC地址的映射关系并不是唯一的</strong></font>。</li>
+<li>由于IP多播地址与多播MAC地址的映射关系不是唯一的，因此<font color = '#DC143C'><strong>收到IP多播数据报的主机还要在网际层利用软件进行过滤</strong></font>，把不是主机要接收的IP多播数据报丢弃。</li>
+</ul>
+<h3 id="在因特网上进行IP多播需要的两种协议"><a href="#在因特网上进行IP多播需要的两种协议" class="headerlink" title="在因特网上进行IP多播需要的两种协议"></a>在因特网上进行IP多播需要的两种协议</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012124856.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="网际组管理协议IGMP"><a href="#网际组管理协议IGMP" class="headerlink" title="网际组管理协议IGMP"></a>网际组管理协议IGMP</h3><h4 id=""><a href="#" class="headerlink" title=""></a></h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012128759.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="多播路由选择协议"><a href="#多播路由选择协议" class="headerlink" title="多播路由选择协议"></a>多播路由选择协议</h3><ul>
+<li>多播路由选择协议的主要任务是：<font color = '#DC143C'><strong>在多播路由器之间为每个多播组建立一个多播转发树</strong></font><ul>
+<li>多播转发树连接多播源和所拥有该多播组成员的路由器</li>
+</ul>
+</li>
+<li>目前有以下两种方法来构建多播转发树：<ul>
+<li><font color = '#DC143C'><strong>基于源树</strong></font>（Source-Base Tree）多播路由选择</li>
+<li><font color = '#DC143C'><strong>组共享树</strong></font>（Group-Shared Tree）多播路由选择</li>
+</ul>
+</li>
+</ul>
+<h4 id="基于源树多播路由选择"><a href="#基于源树多播路由选择" class="headerlink" title="基于源树多播路由选择"></a>基于源树多播路由选择</h4><ul>
+<li>基于源树的多播路由选择的最典型算法是<font color = '#DC143C'><strong>反向路径多播</strong></font>（Reverse Path Multicasting，RPM）算法</li>
+<li>RPM算法包含以下两个步骤：<ol>
+<li>利用<font color = '#DC143C'><strong>反向路径广播</strong></font>（Reverse Path Broadcasting，RPB）算法建立一个<font color = '#DC143C'><strong>广播转发树</strong></font></li>
+<li>利用<font color = '#DC143C'><strong>剪枝</strong></font>（Pruning）算法，剪除广播转发树中的下游非成员路由器，获得一个<font color = '#DC143C'><strong>多播转发树</strong></font></li>
+</ol>
+</li>
+<li>要建立广播转发树，可以使用<font color = '#DC143C'><strong>洪泛</strong></font>（Flooding）法</li>
+<li>利用<font color = '#DC143C'><strong>反向路径广播RPB算法</strong></font>生成的<font color = '#DC143C'><strong>广播转发树</strong></font>，不会存在环路，因此可以避免广播分组在环路中兜圈。 </li>
+<li>RPB算法的要点是：每一台路由器在收到一个广播分组时，先<font color = '#DC143C'><strong>检查该广播分组是否是从源点经最短路径传送来的</strong></font>。<ul>
+<li>若是，本路由器就从自己除刚才接收该广播分组的接口的所有其他接口转发该广播分组。</li>
+<li>否则，丢弃该广播分组。</li>
+<li>如果本路由器有好几个邻居路由器都处在到源点的最短路径上，也就是<font color = '#DC143C'><strong>存在好几条同样长度的最短路径</strong></font>，那么只能选取一条最短路径。选取的规则是这几条最短路径中的<font color = '#DC143C'><strong>邻居路由器的IP地址最小的那条最短路径</strong></font>。</li>
+</ul>
+</li>
+<li>RPB中 “反向路径” 的意思是：<font color = '#DC143C'><strong>在计算最短路径时把源点当作终点</strong></font>。</li>
+</ul>
+<h4 id="组共享树多播路由选择"><a href="#组共享树多播路由选择" class="headerlink" title="组共享树多播路由选择"></a>组共享树多播路由选择</h4><ul>
+<li>组共享树多播路由选择采用<font color = '#DC143C'><strong>基于核心的分布式生成树算法</strong></font>来建立共享树。<ul>
+<li>该方法在<font color = '#DC143C'><strong>每个多播组</strong></font>中指定一个<font color = '#DC143C'><strong>核心（core）路由器</strong></font>，以该路由器为<font color = '#DC143C'><strong>根</strong></font>，建立一棵<font color = '#DC143C'><strong>连接多播组的所有成员路由器的生成树</strong></font>，作为多播转发树。</li>
+</ul>
+</li>
+<li>每个多播组中除了核心路由器，其他所有成员路由器都会向自己多播组中的核心路由器单播<font color = '#DC143C'><strong>加入报文</strong></font>。<ul>
+<li>加入报文通过单播朝着核心路由器转发，直到它到达已经属于<font color = '#DC143C'><strong>该多播生成树的某个节点</strong></font>或者<font color = '#DC143C'><strong>直接到达该核心路由器</strong></font>。</li>
+<li>加入报文所经过的路径，就确定了一条<font color = '#DC143C'><strong>从单播该报文的边缘节点到核心路由器之间的分支</strong></font>，而这个新分支就被<font color = '#DC143C'><strong>嫁接</strong></font>到现有的<font color = '#DC143C'><strong>多播转发树</strong></font>上。</li>
+</ul>
+</li>
+</ul>
+<h4 id="因特网的多播路由选择协议"><a href="#因特网的多播路由选择协议" class="headerlink" title="因特网的多播路由选择协议"></a>因特网的多播路由选择协议</h4><ul>
+<li><font color = '#DC143C'><strong>目前还没有在整个因特网范围使用的多播路由选择协议</strong></font>。下面是一些建议使用的多播路由选择协议:<ul>
+<li>距离向量多播路由选择协议(Distance Vector Multicast Routing Protocol，DVMRP)[RFC 1075]。</li>
+<li>开放最短路径优先的多播扩展(Multicast Extensions to OSPF，MOSPF) [RFC 1585]。</li>
+<li>协议无关多播-稀疏方式(Protocol Independent Multicast-Sparse Mode，PIM-SM) [RFC 2362]。</li>
+<li>协议无关多播-密集方式(Protocol Independent Multicast-Dense Mode， PIM-DM) [RFC 3973]。</li>
+<li>基于核心的转发树(Core Based Tree，CBT)[RFC 2189，RFC 2201]。</li>
+</ul>
+</li>
+<li>尽管因特网工程任务组IETF努力推动着因特网上的<font color = '#DC143C'><strong>全球多播主干网</strong></font>(Multicast Backbone On the Internet, MBONE)的建设，但至今在因特网上的IP多播还没有得到大规模的应用。<ul>
+<li>主要原因是：<font color = '#DC143C'><strong>改变一个已成功运行且广泛部署的网络层协议是一件极其困难的事情</strong></font>。</li>
+<li>目前IP多播主要应用在一些局部的园区网络、专用网络或者虚拟专用网中。</li>
+</ul>
+</li>
+</ul>
+<h3 id="移动IP技术概述"><a href="#移动IP技术概述" class="headerlink" title="移动IP技术概述"></a>移动IP技术概述</h3><h4 id="移动性对因特网应用的影响"><a href="#移动性对因特网应用的影响" class="headerlink" title="移动性对因特网应用的影响"></a>移动性对因特网应用的影响</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012152888.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="相关基本概念"><a href="#相关基本概念" class="headerlink" title="相关基本概念"></a>相关基本概念</h4><ul>
+<li><font color = '#DC143C'><strong>移动IP</strong></font>（Mobile IP）是因特网工程任务组IETF开发的一种技术[RFC 3344]，该技术使得<font color = '#DC143C'><strong>移动主机在各网络之间漫游时，仍然能够保持其原来的IP地址不变</strong></font></li>
+<li>移动IP技术还为因特网中的非移动主机提供了相应机制，使得它们能够将IP数据报正确发送到移动主机</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012156884.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="基本工作原理"><a href="#基本工作原理" class="headerlink" title="基本工作原理"></a>基本工作原理</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012157701.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="IPv6引进的主要变化"><a href="#IPv6引进的主要变化" class="headerlink" title="IPv6引进的主要变化"></a>IPv6引进的主要变化</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012200758.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="IPv6地址"><a href="#IPv6地址" class="headerlink" title="IPv6地址"></a>IPv6地址</h3><h4 id="地址空间大小"><a href="#地址空间大小" class="headerlink" title="地址空间大小"></a>地址空间大小</h4><ul>
+<li>在IPv6中，每个地址占<font color = '#DC143C'><strong>128个比特</strong></font><ul>
+<li>如果<font color = '#DC143C'><strong>整个地球表面</strong></font>（包括陆地和水面）都覆盖着需要IPv6地址的通信设备，那么IPv6允许<font color = '#DC143C'><strong>每平方米拥有7 * 10^23个IPv6地址</strong></font></li>
+<li>如果IPv6地址的分配速率是<font color = '#DC143C'><strong>每微秒分配100万个IPv6地址</strong></font>，则需要10^19年的时间才能将所有可能的地址分配完毕</li>
+</ul>
+</li>
+<li>很显然，这样巨大的地址空间在<font color = '#DC143C'><strong>采用合理编址方法</strong></font>的情况下，<font color = '#DC143C'><strong>在可预见的未来是不会用完的</strong></font></li>
+</ul>
+<h4 id="表示方法-1"><a href="#表示方法-1" class="headerlink" title="表示方法"></a>表示方法</h4><ul>
+<li>在IPv6地址的冒号十六进制记法的基础上，再使用 <font color = '#DC143C'><strong>“左侧零” 省略和 “连续零” 压缩</strong></font>，可使IPv6地址的表示更加简洁。<ul>
+<li>“左侧零” 省略是指两个冒号间的十六进制数中最前面的一串0可以省略不写。</li>
+<li>“连续零” 压缩是指一连串连续的0可以用一对冒号取代。</li>
+</ul>
+</li>
+<li><font color = '#DC143C'><strong>在一个IPv6地址中只能使用一次“连续零”压缩</strong></font>，否则会导致歧义。</li>
+<li><font color = '#DC143C'><strong>冒号十六进制记法还可结合点分十进制的后缀</strong></font>。这在IPv4向IPv6过渡阶段非常有用。</li>
+<li>CIDR的斜线表示法在IPv6中仍然可用。</li>
+</ul>
+<h4 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012219123.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="从IPv4向IPv6过渡"><a href="#从IPv4向IPv6过渡" class="headerlink" title="从IPv4向IPv6过渡"></a>从IPv4向IPv6过渡</h3><ul>
+<li>因特网上使用IPv4的路由器的数量太大，要让所有路由器都改用IPv6并不能一蹴而就。因此，<font color = '#DC143C'><strong>从IPv4转变到IPv6只能采用逐步演进的办法</strong></font></li>
+<li>另外，<font color = '#DC143C'><strong>新部署的IPv6系统必须能够向后兼容</strong></font>，也就是IPv6系统必须能够接收和转发IPv4数据报，并且能够为IPv4数据报选择路由</li>
+<li>下面介绍两种由IPv4向IPv6过渡的策略：<ul>
+<li><font color = '#DC143C'><strong>使用双协议栈</strong></font></li>
+<li><font color = '#DC143C'><strong>使用隧道技术</strong></font></li>
+</ul>
+</li>
+</ul>
+<h4 id="使用双协议栈"><a href="#使用双协议栈" class="headerlink" title="使用双协议栈"></a>使用双协议栈</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012225913.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="使用隧道技术"><a href="#使用隧道技术" class="headerlink" title="使用隧道技术"></a>使用隧道技术</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012225538.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="网际控制报文协议ICMPv6"><a href="#网际控制报文协议ICMPv6" class="headerlink" title="网际控制报文协议ICMPv6"></a>网际控制报文协议ICMPv6</h3><h4 id="概述-7"><a href="#概述-7" class="headerlink" title="概述"></a>概述</h4><ul>
+<li>由于IPv6与IPv4一样，都<font color = '#DC143C'><strong>不确保数据报的可靠交付</strong></font>，因此IPv6也需要使用网际控制报文协议ICMP来向发送IPv6数据报的源主机<font color = '#DC143C'><strong>反馈一些差错信息</strong></font>，相应的ICMP版本为ICMPv6</li>
+<li>ICMPv6比ICMPv4要复杂的多，它<font color = '#DC143C'><strong>合并了原来的地址解析协议ARP和网际组管理协议IGMP的功能</strong></font>。因此与IPv6配套使用的网际层协议就只有ICMPv6这一个协议</li>
+</ul>
+<h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><ul>
+<li><font color = '#DC143C'><strong>ICMPv6报文需要封装成IPv6数据报进行发送</strong></font></li>
+</ul>
+<h4 id="分类-2"><a href="#分类-2" class="headerlink" title="分类"></a>分类</h4><ul>
+<li>ICMP报文可被用来报告差错、获取信息、探测邻站或管理多播通信</li>
+<li>在对ICMPv6报文进行分类时，不同的RFC文档使用了不同的策略</li>
+</ul>
+<h3 id="软件定义网络"><a href="#软件定义网络" class="headerlink" title="软件定义网络"></a>软件定义网络</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202312012236511.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="运输层"><a href="#运输层" class="headerlink" title="运输层"></a>运输层</h2>
                 
               </div>
             
