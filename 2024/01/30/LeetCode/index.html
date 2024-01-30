@@ -19,7 +19,7 @@
     <meta name="description" content="每日刷题记录与心得">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode">
-<meta property="og:url" content="https://rkl71.github.io/2024/01/27/LeetCode/index.html">
+<meta property="og:url" content="https://rkl71.github.io/2024/01/30/LeetCode/index.html">
 <meta property="og:site_name" content="Kolin&#39;s space">
 <meta property="og:description" content="每日刷题记录与心得">
 <meta property="og:locale" content="en_US">
@@ -36,8 +36,8 @@
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png">
 <meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png">
 <meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png">
-<meta property="article:published_time" content="2024-01-26T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-30T14:37:04.349Z">
+<meta property="article:published_time" content="2024-01-29T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-30T15:09:41.617Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="LeetCode">
@@ -238,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-27 00:00" pubdate>
-          January 27, 2024 am
+        <time datetime="2024-01-30 00:00" pubdate>
+          January 30, 2024 am
         </time>
       </span>
     
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k words
+          22k words
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          145 mins
+          182 mins
         
       </span>
     
@@ -745,6 +745,94 @@
 
 
 
+<h1 id="第七天-力扣-454-383-15-18"><a href="#第七天-力扣-454-383-15-18" class="headerlink" title="第七天 | 力扣 454 &amp; 383 &amp; 15 &amp;  18"></a>第七天 | 力扣 454 &amp; 383 &amp; 15 &amp;  18</h1><h2 id="454、四数相加"><a href="#454、四数相加" class="headerlink" title="454、四数相加"></a>454、四数相加</h2><h3 id="题目-16"><a href="#题目-16" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给你四个整数数组 <code>nums1</code>、<code>nums2</code>、<code>nums3</code> 和 <code>nums4</code> ，数组长度都是 <code>n</code> ，请你计算有多少个元组 <code>(i, j, k, l)</code> 能满足：</p>
+<ul>
+<li><code>0 &lt;= i, j, k, l &lt; n</code></li>
+<li><code>nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0</code></li>
+</ul>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum-ii/">https://leetcode.cn/problems/4sum-ii/</a></p>
+</blockquote>
+<h3 id="示例-16"><a href="#示例-16" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：nums1 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], nums2 = [-<span class="hljs-number">2</span>,-<span class="hljs-number">1</span>], nums3 = [-<span class="hljs-number">1</span>,<span class="hljs-number">2</span>], nums4 = [<span class="hljs-number">0</span>,<span class="hljs-number">2</span>]<br>输出：<span class="hljs-number">2</span><br>解释：<br>两个元组如下：java<br><span class="hljs-number">1.</span> (<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>) -&gt; nums1[<span class="hljs-number">0</span>] + nums2[<span class="hljs-number">0</span>] + nums3[<span class="hljs-number">0</span>] + nums4[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span> + (-<span class="hljs-number">2</span>) + (-<span class="hljs-number">1</span>) + <span class="hljs-number">2</span> = <span class="hljs-number">0</span><br><span class="hljs-number">2.</span> (<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>) -&gt; nums1[<span class="hljs-number">1</span>] + nums2[<span class="hljs-number">1</span>] + nums3[<span class="hljs-number">0</span>] + nums4[<span class="hljs-number">0</span>] = <span class="hljs-number">2</span> + (-<span class="hljs-number">1</span>) + (-<span class="hljs-number">1</span>) + <span class="hljs-number">0</span> = <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：nums1 = [<span class="hljs-number">0</span>], nums2 = [<span class="hljs-number">0</span>], nums3 = [<span class="hljs-number">0</span>], nums4 = [<span class="hljs-number">0</span>]<br>输出：<span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-11"><a href="#题解-11" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">fourSumCount</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums1, <span class="hljs-type">int</span>[] nums2, <span class="hljs-type">int</span>[] nums3, <span class="hljs-type">int</span>[] nums4)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>        Map&lt;Integer, Integer&gt; map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;Integer, Integer&gt;();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i : nums1)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j : nums2)&#123;<br>                <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> i + j;<br>                map.put(sum, map.getOrDefault(sum, <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i : nums3)&#123;<br>            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j : nums4)&#123;<br>                res += map.getOrDefault(<span class="hljs-number">0</span> - i - j, <span class="hljs-number">0</span>);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span>  res;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="383、赎金信"><a href="#383、赎金信" class="headerlink" title="383、赎金信"></a>383、赎金信</h2><h3 id="题目-17"><a href="#题目-17" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给你两个字符串：<code>ransomNote</code> 和 <code>magazine</code> ，判断 <code>ransomNote</code> 能不能由 <code>magazine</code> 里面的字符构成。</p>
+<p>如果可以，返回 <code>true</code> ；否则返回 <code>false</code> 。</p>
+<p><code>magazine</code> 中的每个字符只能在 <code>ransomNote</code> 中使用一次。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/ransom-note/">https://leetcode.cn/problems/ransom-note/</a></p>
+</blockquote>
+<h3 id="示例-17"><a href="#示例-17" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：ransomNote = <span class="hljs-string">&quot;a&quot;</span>, magazine = <span class="hljs-string">&quot;b&quot;</span><br>输出：<span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：ransomNote = <span class="hljs-string">&quot;aa&quot;</span>, magazine = <span class="hljs-string">&quot;ab&quot;</span><br>输出：<span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：ransomNote = <span class="hljs-string">&quot;aa&quot;</span>, magazine = <span class="hljs-string">&quot;aab&quot;</span><br>输出：<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-12"><a href="#题解-12" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">canConstruct</span><span class="hljs-params">(String ransomNote, String magazine)</span> &#123;<br>        <span class="hljs-type">int</span>[] hash = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">26</span>];<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; ransomNote.length(); i++)&#123;<br>            hash[ransomNote.charAt(i) - <span class="hljs-string">&#x27;a&#x27;</span>]++;<br>        &#125;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; magazine.length(); i++)&#123;<br>            hash[magazine.charAt(i) - <span class="hljs-string">&#x27;a&#x27;</span>]--;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">26</span>; i++) &#123;<br>            <span class="hljs-keyword">if</span> (hash[i] &gt; <span class="hljs-number">0</span>) &#123;           <br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="15、三数之和"><a href="#15、三数之和" class="headerlink" title="15、三数之和"></a>15、三数之和</h2><h3 id="题目-18"><a href="#题目-18" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给你一个整数数组 <code>nums</code> ，判断是否存在三元组 <code>[nums[i], nums[j], nums[k]]</code> 满足 <code>i != j</code>、<code>i != k</code> 且 <code>j != k</code> ，同时还满足 <code>nums[i] + nums[j] + nums[k] == 0</code> 。请</p>
+<p>你返回所有和为 <code>0</code> 且不重复的三元组。</p>
+<p><strong>注意：</strong>答案中不可以包含重复的三元组。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/">https://leetcode.cn/problems/3sum/</a></p>
+</blockquote>
+<h3 id="示例-18"><a href="#示例-18" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：nums = [-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,-<span class="hljs-number">1</span>,-<span class="hljs-number">4</span>]<br>输出：[[-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]]<br>解释：<br>nums[<span class="hljs-number">0</span>] + nums[<span class="hljs-number">1</span>] + nums[<span class="hljs-number">2</span>] = (-<span class="hljs-number">1</span>) + <span class="hljs-number">0</span> + <span class="hljs-number">1</span> = <span class="hljs-number">0</span> 。<br>nums[<span class="hljs-number">1</span>] + nums[<span class="hljs-number">2</span>] + nums[<span class="hljs-number">4</span>] = <span class="hljs-number">0</span> + <span class="hljs-number">1</span> + (-<span class="hljs-number">1</span>) = <span class="hljs-number">0</span> 。<br>nums[<span class="hljs-number">0</span>] + nums[<span class="hljs-number">3</span>] + nums[<span class="hljs-number">4</span>] = (-<span class="hljs-number">1</span>) + <span class="hljs-number">2</span> + (-<span class="hljs-number">1</span>) = <span class="hljs-number">0</span> 。<br>不同的三元组是 [-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>] 和 [-<span class="hljs-number">1</span>,-<span class="hljs-number">1</span>,<span class="hljs-number">2</span>] 。<br>注意，输出的顺序和三元组的顺序并不重要。<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：nums = [<span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">1</span>]<br>输出：[]<br>解释：唯一可能的三元组和不为 <span class="hljs-number">0</span> 。<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：nums = [<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]<br>输出：[[<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>]]<br>解释：唯一可能的三元组和为 <span class="hljs-number">0</span> 。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-13"><a href="#题解-13" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">threeSum</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        List&lt;List&lt;Integer&gt;&gt; result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        Arrays.sort(nums);<br>        <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>            <span class="hljs-keyword">if</span> (nums[i] &gt; <span class="hljs-number">0</span>) &#123; <br>                <span class="hljs-keyword">return</span> result;<br>            &#125;<br><br>            <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] == nums[i - <span class="hljs-number">1</span>]) &#123;  <span class="hljs-comment">// 去重a</span><br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br><br>            <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> i + <span class="hljs-number">1</span>;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> nums.length - <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">while</span> (right &gt; left) &#123;<br>                <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> nums[i] + nums[left] + nums[right];<br>                <span class="hljs-keyword">if</span> (sum &gt; <span class="hljs-number">0</span>) &#123;<br>                    right--;<br>                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &lt; <span class="hljs-number">0</span>) &#123;<br>                    left++;<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    result.add(Arrays.asList(nums[i], nums[left], nums[right]));<br>                    <span class="hljs-keyword">while</span> (right &gt; left &amp;&amp; nums[right] == nums[right - <span class="hljs-number">1</span>]) right--;<br>                    <span class="hljs-keyword">while</span> (right &gt; left &amp;&amp; nums[left] == nums[left + <span class="hljs-number">1</span>]) left++;<br>                    <br>                    right--; <br>                    left++;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="18、四数之和"><a href="#18、四数之和" class="headerlink" title="18、四数之和"></a>18、四数之和</h2><h3 id="题目-19"><a href="#题目-19" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给你一个由 <code>n</code> 个整数组成的数组 <code>nums</code> ，和一个目标值 <code>target</code> 。请你找出并返回满足下述全部条件且<strong>不重复</strong>的四元组 <code>[nums[a], nums[b], nums[c], nums[d]]</code> （若两个四元组元素一一对应，则认为两个四元组重复）：</p>
+<ul>
+<li><code>0 &lt;= a, b, c, d &lt; n</code></li>
+<li><code>a</code>、<code>b</code>、<code>c</code> 和 <code>d</code> <strong>互不相同</strong></li>
+<li><code>nums[a] + nums[b] + nums[c] + nums[d] == target</code></li>
+</ul>
+<p>你可以按 <strong>任意顺序</strong> 返回答案 。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/">https://leetcode.cn/problems/4sum/</a></p>
+</blockquote>
+<h3 id="示例-19"><a href="#示例-19" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：nums = [<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,-<span class="hljs-number">2</span>,<span class="hljs-number">2</span>], target = <span class="hljs-number">0</span><br>输出：[[-<span class="hljs-number">2</span>,-<span class="hljs-number">1</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>],[-<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>],[-<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>]]<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：nums = [<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>], target = <span class="hljs-number">8</span><br>输出：[[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]]<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-14"><a href="#题解-14" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> List&lt;List&lt;Integer&gt;&gt; <span class="hljs-title function_">fourSum</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> target)</span> &#123;<br>        List&lt;List&lt;Integer&gt;&gt; result = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        Arrays.sort(nums);<br>       <br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.length; i++) &#123;<br>		<br>            <span class="hljs-comment">// nums[i] &gt; target 直接返回, 剪枝操作</span><br>            <span class="hljs-keyword">if</span> (nums[i] &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i] &gt; target) &#123;<br>                <span class="hljs-keyword">return</span> result;<br>            &#125;<br>		<br>            <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span> &amp;&amp; nums[i - <span class="hljs-number">1</span>] == nums[i]) &#123;    <span class="hljs-comment">// 对nums[i]去重</span><br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            <br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> i + <span class="hljs-number">1</span>; j &lt; nums.length; j++) &#123;<br><br>                <span class="hljs-keyword">if</span> (j &gt; i + <span class="hljs-number">1</span> &amp;&amp; nums[j - <span class="hljs-number">1</span>] == nums[j]) &#123;  <span class="hljs-comment">// 对nums[j]去重</span><br>                    <span class="hljs-keyword">continue</span>;<br>                &#125;<br><br>                <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> j + <span class="hljs-number">1</span>;<br>                <span class="hljs-type">int</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> nums.length - <span class="hljs-number">1</span>;<br>                <span class="hljs-keyword">while</span> (right &gt; left) &#123;<br>                    <span class="hljs-type">long</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> (<span class="hljs-type">long</span>) nums[i] + nums[j] + nums[left] + nums[right];<br>                    <span class="hljs-keyword">if</span> (sum &gt; target) &#123;<br>                        right--;<br>                    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (sum &lt; target) &#123;<br>                        left++;<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        result.add(Arrays.asList(nums[i], nums[j], nums[left], nums[right]));<br>                        <span class="hljs-comment">// 对nums[left]和nums[right]去重</span><br>                        <span class="hljs-keyword">while</span> (right &gt; left &amp;&amp; nums[right] == nums[right - <span class="hljs-number">1</span>]) right--;<br>                        <span class="hljs-keyword">while</span> (right &gt; left &amp;&amp; nums[left] == nums[left + <span class="hljs-number">1</span>]) left++;<br><br>                        left++;<br>                        right--;<br>                    &#125;<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> result;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
                 
               </div>
             
@@ -792,7 +880,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>LeetCode</div>
-      <div>https://rkl71.github.io/2024/01/27/LeetCode/</div>
+      <div>https://rkl71.github.io/2024/01/30/LeetCode/</div>
     </div>
     <div class="license-meta">
       
@@ -804,7 +892,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>January 27, 2024</div>
+          <div>January 30, 2024</div>
         </div>
       
       
