@@ -19,7 +19,7 @@
     <meta name="description" content="每日刷题记录与心得">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode">
-<meta property="og:url" content="https://rkl71.github.io/2024/01/30/LeetCode/index.html">
+<meta property="og:url" content="https://rkl71.github.io/2024/01/31/LeetCode/index.html">
 <meta property="og:site_name" content="Kolin&#39;s space">
 <meta property="og:description" content="每日刷题记录与心得">
 <meta property="og:locale" content="en_US">
@@ -36,8 +36,8 @@
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png">
 <meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png">
 <meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png">
-<meta property="article:published_time" content="2024-01-29T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-01-30T15:11:36.462Z">
+<meta property="article:published_time" content="2024-01-30T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-01-31T02:27:25.795Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="LeetCode">
@@ -238,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-30 00:00" pubdate>
-          January 30, 2024 am
+        <time datetime="2024-01-31 00:00" pubdate>
+          January 31, 2024 am
         </time>
       </span>
     
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          22k words
+          23k words
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          182 mins
+          193 mins
         
       </span>
     
@@ -833,6 +833,44 @@
 
 
 
+<h1 id="第八天-力扣-344-541-54-151-55"><a href="#第八天-力扣-344-541-54-151-55" class="headerlink" title="第八天 | 力扣  344 &amp; 541  &amp; 54  &amp; 151 &amp; 55"></a>第八天 | 力扣  344 &amp; 541  &amp; 54  &amp; 151 &amp; 55</h1><h2 id="344、反转字符串"><a href="#344、反转字符串" class="headerlink" title="344、反转字符串"></a>344、反转字符串</h2><h3 id="题目-20"><a href="#题目-20" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 <code>s</code> 的形式给出。</p>
+<p>不要给另外的数组分配额外的空间，你必须**<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8E%9F%E5%9C%B0%E7%AE%97%E6%B3%95">原地</a>修改输入数组**、使用 O(1) 的额外空间解决这一问题。</p>
+<p> 链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-string/">https://leetcode.cn/problems/reverse-string/</a></p>
+</blockquote>
+<h3 id="示例-20"><a href="#示例-20" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：s = [<span class="hljs-string">&quot;h&quot;</span>,<span class="hljs-string">&quot;e&quot;</span>,<span class="hljs-string">&quot;l&quot;</span>,<span class="hljs-string">&quot;l&quot;</span>,<span class="hljs-string">&quot;o&quot;</span>]<br>输出：[<span class="hljs-string">&quot;o&quot;</span>,<span class="hljs-string">&quot;l&quot;</span>,<span class="hljs-string">&quot;l&quot;</span>,<span class="hljs-string">&quot;e&quot;</span>,<span class="hljs-string">&quot;h&quot;</span>]<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：s = [<span class="hljs-string">&quot;H&quot;</span>,<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;n&quot;</span>,<span class="hljs-string">&quot;n&quot;</span>,<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;h&quot;</span>]<br>输出：[<span class="hljs-string">&quot;h&quot;</span>,<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;n&quot;</span>,<span class="hljs-string">&quot;n&quot;</span>,<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&quot;H&quot;</span>]<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-15"><a href="#题解-15" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reverseString</span><span class="hljs-params">(<span class="hljs-type">char</span>[] s)</span> &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> s.length;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, j = len - <span class="hljs-number">1</span>; i &lt; len / <span class="hljs-number">2</span>; i++, j--)&#123;<br>            <span class="hljs-type">char</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> s[i];<br>            s[i] =  s[j];<br>            s[j] = temp;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="541、反转字符串Ⅱ"><a href="#541、反转字符串Ⅱ" class="headerlink" title="541、反转字符串Ⅱ"></a>541、反转字符串Ⅱ</h2><h3 id="题目-21"><a href="#题目-21" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给定一个字符串 <code>s</code> 和一个整数 <code>k</code>，从字符串开头算起，每计数至 <code>2k</code> 个字符，就反转这 <code>2k</code> 字符中的前 <code>k</code> 个字符。</p>
+<ul>
+<li>如果剩余字符少于 <code>k</code> 个，则将剩余字符全部反转。</li>
+<li>如果剩余字符小于 <code>2k</code> 但大于或等于 <code>k</code> 个，则反转前 <code>k</code> 个字符，其余字符保持原样。</li>
+</ul>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reverse-string-ii/">https://leetcode.cn/problems/reverse-string-ii/</a></p>
+</blockquote>
+<h3 id="示例-21"><a href="#示例-21" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：s = <span class="hljs-string">&quot;abcdefg&quot;</span>, k = <span class="hljs-number">2</span><br>输出：<span class="hljs-string">&quot;bacdfeg&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：s = <span class="hljs-string">&quot;abcd&quot;</span>, k = <span class="hljs-number">2</span><br>输出：<span class="hljs-string">&quot;bacd&quot;</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-16"><a href="#题解-16" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">reverseStr</span><span class="hljs-params">(String s, <span class="hljs-type">int</span> k)</span> &#123;<br>        <span class="hljs-type">char</span>[] ch = s.toCharArray();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; ch.length; i+= <span class="hljs-number">2</span> * k)&#123;<br>            <span class="hljs-keyword">if</span>(i + k &lt;= ch.length)&#123;<br>                reverse(ch, i, i + k - <span class="hljs-number">1</span>);<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            reverse(ch,  i, ch.length - <span class="hljs-number">1</span>);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(ch);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">reverse</span><span class="hljs-params">(<span class="hljs-type">char</span>[] ch, <span class="hljs-type">int</span> i, <span class="hljs-type">int</span> j)</span> &#123;<br>        <span class="hljs-keyword">for</span>(; i &lt; j; i++, j--)&#123;<br>            <span class="hljs-type">char</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> ch[i];<br>            ch[i] =  ch[j];<br>            ch[j] = temp;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
                 
               </div>
             
@@ -880,7 +918,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>LeetCode</div>
-      <div>https://rkl71.github.io/2024/01/30/LeetCode/</div>
+      <div>https://rkl71.github.io/2024/01/31/LeetCode/</div>
     </div>
     <div class="license-meta">
       
@@ -892,7 +930,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>January 30, 2024</div>
+          <div>January 31, 2024</div>
         </div>
       
       
