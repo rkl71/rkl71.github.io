@@ -19,7 +19,7 @@
     <meta name="description" content="每日刷题记录与心得">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode">
-<meta property="og:url" content="https://rkl71.github.io/2024/01/31/LeetCode/index.html">
+<meta property="og:url" content="https://rkl71.github.io/2024/02/03/LeetCode/index.html">
 <meta property="og:site_name" content="Kolin&#39;s space">
 <meta property="og:description" content="每日刷题记录与心得">
 <meta property="og:locale" content="en_US">
@@ -36,8 +36,8 @@
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2018/12/07/circularlinkedlist.png">
 <meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test2.png">
 <meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/07/circularlinkedlist_test3.png">
-<meta property="article:published_time" content="2024-01-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-01T14:26:50.777Z">
+<meta property="article:published_time" content="2024-02-02T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-02T16:14:16.153Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="LeetCode">
@@ -238,8 +238,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-31 00:00" pubdate>
-          January 31, 2024 am
+        <time datetime="2024-02-03 00:00" pubdate>
+          February 3, 2024 am
         </time>
       </span>
     
@@ -250,7 +250,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          28k words
+          29k words
         
       </span>
     
@@ -261,7 +261,7 @@
         
         
         
-          232 mins
+          245 mins
         
       </span>
     
@@ -966,6 +966,31 @@
 <li>双指针是字符串处理的常客</li>
 <li>KMP 算法是字符串查找最重要的算法</li>
 </ul>
+<h1 id="第十天-力扣-232-225"><a href="#第十天-力扣-232-225" class="headerlink" title="第十天 | 力扣 232 &amp; 225"></a>第十天 | 力扣 232 &amp; 225</h1><h2 id="232、用栈实现队列"><a href="#232、用栈实现队列" class="headerlink" title="232、用栈实现队列"></a>232、用栈实现队列</h2><h3 id="题目-27"><a href="#题目-27" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>请你仅使用两个栈实现先入先出队列。队列应当支持一般队列支持的所有操作（<code>push</code>、<code>pop</code>、<code>peek</code>、<code>empty</code>）：</p>
+<p>实现 <code>MyQueue</code> 类：</p>
+<ul>
+<li><code>void push(int x)</code> 将元素 x 推到队列的末尾</li>
+<li><code>int pop()</code> 从队列的开头移除并返回元素</li>
+<li><code>int peek()</code> 返回队列开头的元素</li>
+<li><code>boolean empty()</code> 如果队列为空，返回 <code>true</code> ；否则，返回 <code>false</code></li>
+</ul>
+<p><strong>说明：</strong></p>
+<ul>
+<li>你 <strong>只能</strong> 使用标准的栈操作 —— 也就是只有 <code>push to top</code>, <code>peek/pop from top</code>, <code>size</code>, 和 <code>is empty</code> 操作是合法的。</li>
+<li>你所使用的语言也许不支持栈。你可以使用 list 或者 deque（双端队列）来模拟一个栈，只要是标准的栈操作即可。</li>
+</ul>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/implement-queue-using-stacks/">https://leetcode.cn/problems/implement-queue-using-stacks/</a></p>
+</blockquote>
+<h3 id="示例-27"><a href="#示例-27" class="headerlink" title="示例"></a>示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：<br>[<span class="hljs-string">&quot;MyQueue&quot;</span>, <span class="hljs-string">&quot;push&quot;</span>, <span class="hljs-string">&quot;push&quot;</span>, <span class="hljs-string">&quot;peek&quot;</span>, <span class="hljs-string">&quot;pop&quot;</span>, <span class="hljs-string">&quot;empty&quot;</span>]<br>[[], [<span class="hljs-number">1</span>], [<span class="hljs-number">2</span>], [], [], []]<br>输出：<br>[<span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-literal">null</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-literal">false</span>]<br><br>解释：<br><span class="hljs-type">MyQueue</span> <span class="hljs-variable">myQueue</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyQueue</span>();<br>myQueue.push(<span class="hljs-number">1</span>); <span class="hljs-comment">// queue is: [1]</span><br>myQueue.push(<span class="hljs-number">2</span>); <span class="hljs-comment">// queue is: [1, 2] (leftmost is front of the queue)</span><br>myQueue.peek(); <span class="hljs-comment">// return 1</span><br>myQueue.pop(); <span class="hljs-comment">// return 1, queue is [2]</span><br>myQueue.empty(); <span class="hljs-comment">// return false</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-22"><a href="#题解-22" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">MyQueue</span> &#123;<br>    Stack&lt;Integer&gt; stackIn;<br>    Stack&lt;Integer&gt; stackOut;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">MyQueue</span><span class="hljs-params">()</span> &#123;<br>        stackIn = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stack</span>&lt;&gt;(); <span class="hljs-comment">// 负责进栈</span><br>        stackOut = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stack</span>&lt;&gt;(); <span class="hljs-comment">// 负责出栈</span><br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">push</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> &#123;<br>        stackIn.push(x);<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">pop</span><span class="hljs-params">()</span> &#123;<br>        dumpstackIn();<br>        <span class="hljs-keyword">return</span> stackOut.pop();<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">peek</span><span class="hljs-params">()</span> &#123;<br>        dumpstackIn();<br>        <span class="hljs-keyword">return</span> stackOut.peek();<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">empty</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> stackIn.isEmpty() &amp;&amp; stackOut.isEmpty();<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dumpstackIn</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">if</span>(!stackOut.isEmpty())&#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">while</span>(!stackIn.isEmpty())&#123;<br>            stackOut.push(stackIn.pop());<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your MyQueue object will be instantiated and called as such:</span><br><span class="hljs-comment"> * MyQueue obj = new MyQueue();</span><br><span class="hljs-comment"> * obj.push(x);</span><br><span class="hljs-comment"> * int param_2 = obj.pop();</span><br><span class="hljs-comment"> * int param_3 = obj.peek();</span><br><span class="hljs-comment"> * boolean param_4 = obj.empty();</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+
+
+
 
                 
               </div>
@@ -1014,7 +1039,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>LeetCode</div>
-      <div>https://rkl71.github.io/2024/01/31/LeetCode/</div>
+      <div>https://rkl71.github.io/2024/02/03/LeetCode/</div>
     </div>
     <div class="license-meta">
       
@@ -1026,7 +1051,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>January 31, 2024</div>
+          <div>February 3, 2024</div>
         </div>
       
       
