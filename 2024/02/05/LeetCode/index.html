@@ -44,8 +44,10 @@
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2021/02/19/tree1.jpg">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2021/03/14/invert1-tree.jpg">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2021/03/14/invert2-tree.jpg">
+<meta property="og:image" content="https://pic.leetcode.cn/1698026966-JDYPDU-image.png">
+<meta property="og:image" content="https://pic.leetcode.cn/1698027008-nPFLbM-image.png">
 <meta property="article:published_time" content="2024-02-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-07T15:35:39.776Z">
+<meta property="article:modified_time" content="2024-02-08T15:25:51.230Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="LeetCode">
@@ -258,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          41k words
+          42k words
         
       </span>
     
@@ -269,7 +271,7 @@
         
         
         
-          345 mins
+          353 mins
         
       </span>
     
@@ -1307,6 +1309,24 @@
 
 
 <h3 id="题解-33"><a href="#题解-33" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">invertTree</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">null</span>)&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br>        invertTree(root.left);<br>        invertTree(root.right);<br>        swapChildren(root);<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">swapChildren</span><span class="hljs-params">(TreeNode root)</span>&#123;<br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> root.left;<br>        root.left = root.right;<br>        root.right = tmp;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="101、对称二叉树"><a href="#101、对称二叉树" class="headerlink" title="101、对称二叉树"></a>101、对称二叉树</h2><h3 id="题目-39"><a href="#题目-39" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给你一个二叉树的根节点 <code>root</code> ， 检查它是否轴对称。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/symmetric-tree/">https://leetcode.cn/problems/symmetric-tree/</a></p>
+</blockquote>
+<h3 id="示例-39"><a href="#示例-39" class="headerlink" title="示例"></a>示例</h3><p>‘<strong>示例 1：</strong></p>
+<p><img src="https://pic.leetcode.cn/1698026966-JDYPDU-image.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">3</span>]<br>输出：<span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://pic.leetcode.cn/1698027008-nPFLbM-image.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">2</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">3</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">3</span>]<br>输出：<span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-34"><a href="#题解-34" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> * int val;</span><br><span class="hljs-comment"> * TreeNode left;</span><br><span class="hljs-comment"> * TreeNode right;</span><br><span class="hljs-comment"> * TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> * TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> * TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> * this.val = val;</span><br><span class="hljs-comment"> * this.left = left;</span><br><span class="hljs-comment"> * this.right = right;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isSymmetric</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        <span class="hljs-keyword">return</span> compare(root.left, root.right);<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">compare</span><span class="hljs-params">(TreeNode left, TreeNode right)</span> &#123;<br>        <span class="hljs-keyword">if</span> (left == <span class="hljs-literal">null</span> &amp;&amp; right != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (left != <span class="hljs-literal">null</span> &amp;&amp; right == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (left == <span class="hljs-literal">null</span> &amp;&amp; right == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (left.val != right.val) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">compareOuside</span> <span class="hljs-operator">=</span> compare(left.left, right.right);<br>        <span class="hljs-type">boolean</span> <span class="hljs-variable">compareInside</span> <span class="hljs-operator">=</span> compare(left.right, right.left);<br>        <span class="hljs-keyword">return</span> compareOuside &amp;&amp; compareInside;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
