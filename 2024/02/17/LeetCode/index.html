@@ -19,7 +19,7 @@
     <meta name="description" content="每日刷题记录与心得">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode">
-<meta property="og:url" content="https://rkl71.github.io/2024/02/05/LeetCode/index.html">
+<meta property="og:url" content="https://rkl71.github.io/2024/02/17/LeetCode/index.html">
 <meta property="og:site_name" content="Kolin&#39;s space">
 <meta property="og:description" content="每日刷题记录与心得">
 <meta property="og:locale" content="en_US">
@@ -53,11 +53,23 @@
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2020/10/06/balance_2.jpg">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2021/03/12/paths-tree.jpg">
 <meta property="og:image" content="https://assets.leetcode.com/uploads/2021/04/08/leftsum-tree.jpg">
-<meta property="article:published_time" content="2024-02-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-02-16T16:05:09.641Z">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/12/14/tree1.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/12/14/tree2.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2021/01/18/pathsum1.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2021/01/18/pathsum2.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2021/02/19/tree.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/12/24/tree1.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/12/24/tree2.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2021/02/05/merge.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2021/01/12/tree1.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2021/01/12/tree2.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/12/01/tree1.jpg">
+<meta property="og:image" content="https://assets.leetcode.com/uploads/2020/12/01/tree2.jpg">
+<meta property="article:published_time" content="2024-02-16T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-02-17T11:01:19.170Z">
 <meta property="article:author" content="Kolin">
-<meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="LeetCode">
+<meta property="article:tag" content="Algorithm">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://assets.leetcode.com/uploads/2020/11/13/spiraln.jpg">
   
@@ -255,8 +267,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-02-05 00:00" pubdate>
-          February 5, 2024 am
+        <time datetime="2024-02-17 00:00" pubdate>
+          February 17, 2024 am
         </time>
       </span>
     
@@ -267,7 +279,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          48k words
+          57k words
         
       </span>
     
@@ -278,7 +290,7 @@
         
         
         
-          402 mins
+          472 mins
         
       </span>
     
@@ -1460,6 +1472,161 @@
 
 
 
+<h1 id="第十八天-力扣-513-112-106"><a href="#第十八天-力扣-513-112-106" class="headerlink" title="第十八天 | 力扣 513 &amp; 112 &amp; 106"></a>第十八天 | 力扣 513 &amp; 112 &amp; 106</h1><h2 id="513、找树左下角的值"><a href="#513、找树左下角的值" class="headerlink" title="513、找树左下角的值"></a>513、找树左下角的值</h2><h3 id="题目-46"><a href="#题目-46" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给定一个二叉树的 <strong>根节点</strong> <code>root</code>，请找出该二叉树的 <strong>最底层 最左边</strong> 节点的值。</p>
+<p>假设二叉树中至少有一个节点。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-bottom-left-tree-value/">https://leetcode.cn/problems/find-bottom-left-tree-value/</a></p>
+</blockquote>
+<h3 id="示例-46"><a href="#示例-46" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/14/tree1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入: root = [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]<br>输出: <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/14/tree2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入: [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>]<br>输出: <span class="hljs-number">7</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-41"><a href="#题解-41" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">Deep</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">findBottomLeftValue</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        value = root.val;<br>        findLeftValue(root,<span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> value;<br>    &#125;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">findLeftValue</span> <span class="hljs-params">(TreeNode root,<span class="hljs-type">int</span> deep)</span> &#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;<br>        <span class="hljs-keyword">if</span> (root.left == <span class="hljs-literal">null</span> &amp;&amp; root.right == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">if</span> (deep &gt; Deep) &#123;<br>                value = root.val;<br>                Deep = deep;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (root.left != <span class="hljs-literal">null</span>) findLeftValue(root.left,deep + <span class="hljs-number">1</span>);<br>        <span class="hljs-keyword">if</span> (root.right != <span class="hljs-literal">null</span>) findLeftValue(root.right,deep + <span class="hljs-number">1</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="112、路径总和"><a href="#112、路径总和" class="headerlink" title="112、路径总和"></a>112、路径总和</h2><h3 id="题目-47"><a href="#题目-47" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给你二叉树的根节点 <code>root</code> 和一个表示目标和的整数 <code>targetSum</code> 。判断该树中是否存在 <strong>根节点到叶子节点</strong> 的路径，这条路径上所有节点值相加等于目标和 <code>targetSum</code> 。如果存在，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+<p><strong>叶子节点</strong> 是指没有子节点的节点。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/path-sum/">https://leetcode.cn/problems/path-sum/</a></p>
+</blockquote>
+<h3 id="示例-47"><a href="#示例-47" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/18/pathsum1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root = [<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-number">8</span>,<span class="hljs-number">11</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">13</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>,<span class="hljs-number">2</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">1</span>], targetSum = <span class="hljs-number">22</span><br>输出：<span class="hljs-literal">true</span><br>解释：等于目标和的根节点到叶节点路径如上图所示。<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/18/pathsum2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>], targetSum = <span class="hljs-number">5</span><br>输出：<span class="hljs-literal">false</span><br>解释：树中存在两条根节点到叶子节点的路径：<br>(<span class="hljs-number">1</span> --&gt; <span class="hljs-number">2</span>): 和为 <span class="hljs-number">3</span><br>(<span class="hljs-number">1</span> --&gt; <span class="hljs-number">3</span>): 和为 <span class="hljs-number">4</span><br>不存在 sum = <span class="hljs-number">5</span> 的根节点到叶子节点的路径。<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root = [], targetSum = <span class="hljs-number">0</span><br>输出：<span class="hljs-literal">false</span><br>解释：由于树是空的，所以不存在根节点到叶子节点的路径。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-42"><a href="#题解-42" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">hasPathSum</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> targetSum)</span> &#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        targetSum -= root.val;<br>        <span class="hljs-comment">// 叶子结点</span><br>        <span class="hljs-keyword">if</span> (root.left == <span class="hljs-literal">null</span> &amp;&amp; root.right == <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> targetSum == <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (root.left != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-type">boolean</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> hasPathSum(root.left, targetSum);<br>            <span class="hljs-keyword">if</span> (left) &#123;      <span class="hljs-comment">// 已经找到</span><br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (root.right != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-type">boolean</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> hasPathSum(root.right, targetSum);<br>            <span class="hljs-keyword">if</span> (right) &#123;     <span class="hljs-comment">// 已经找到</span><br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="106、从中序与后序遍历序列构造二叉树"><a href="#106、从中序与后序遍历序列构造二叉树" class="headerlink" title="106、从中序与后序遍历序列构造二叉树"></a>106、从中序与后序遍历序列构造二叉树</h2><h3 id="题目-48"><a href="#题目-48" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给定两个整数数组 <code>inorder</code> 和 <code>postorder</code> ，其中 <code>inorder</code> 是二叉树的中序遍历， <code>postorder</code> 是同一棵树的后序遍历，请你构造并返回这颗 <em>二叉树</em> 。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/">https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/</a></p>
+</blockquote>
+<h3 id="示例-48"><a href="#示例-48" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/19/tree.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：inorder = [<span class="hljs-number">9</span>,<span class="hljs-number">3</span>,<span class="hljs-number">15</span>,<span class="hljs-number">20</span>,<span class="hljs-number">7</span>], postorder = [<span class="hljs-number">9</span>,<span class="hljs-number">15</span>,<span class="hljs-number">7</span>,<span class="hljs-number">20</span>,<span class="hljs-number">3</span>]<br>输出：[<span class="hljs-number">3</span>,<span class="hljs-number">9</span>,<span class="hljs-number">20</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">15</span>,<span class="hljs-number">7</span>]<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：inorder = [-<span class="hljs-number">1</span>], postorder = [-<span class="hljs-number">1</span>]<br>输出：[-<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-43"><a href="#题解-43" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    Map&lt;Integer, Integer&gt; map;  <span class="hljs-comment">// 方便根据数值查找位置</span><br>    <span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">buildTree</span><span class="hljs-params">(<span class="hljs-type">int</span>[] inorder, <span class="hljs-type">int</span>[] postorder)</span> &#123;<br>        map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; inorder.length; i++) &#123; <span class="hljs-comment">// 用map保存中序序列的数值对应位置</span><br>            map.put(inorder[i], i);<br>        &#125;<br><br>        <span class="hljs-keyword">return</span> findNode(inorder,  <span class="hljs-number">0</span>, inorder.length, postorder,<span class="hljs-number">0</span>, postorder.length);  <span class="hljs-comment">// 前闭后开</span><br>    &#125;<br><br>    <span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">findNode</span><span class="hljs-params">(<span class="hljs-type">int</span>[] inorder, <span class="hljs-type">int</span> inBegin, <span class="hljs-type">int</span> inEnd, <span class="hljs-type">int</span>[] postorder, <span class="hljs-type">int</span> postBegin, <span class="hljs-type">int</span> postEnd)</span> &#123;<br>        <span class="hljs-comment">// 参数里的范围都是前闭后开</span><br>        <span class="hljs-keyword">if</span> (inBegin &gt;= inEnd || postBegin &gt;= postEnd) &#123;  <span class="hljs-comment">// 不满足左闭右开，说明没有元素，返回空树</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">rootIndex</span> <span class="hljs-operator">=</span> map.get(postorder[postEnd - <span class="hljs-number">1</span>]);  <span class="hljs-comment">// 找到后序遍历的最后一个元素在中序遍历中的位置</span><br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">root</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(inorder[rootIndex]);  <span class="hljs-comment">// 构造结点</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">lenOfLeft</span> <span class="hljs-operator">=</span> rootIndex - inBegin;  <span class="hljs-comment">// 保存中序左子树个数，用来确定后序数列的个数</span><br>        root.left = findNode(inorder, inBegin, rootIndex,<br>                            postorder, postBegin, postBegin + lenOfLeft);<br>        root.right = findNode(inorder, rootIndex + <span class="hljs-number">1</span>, inEnd,<br>                            postorder, postBegin + lenOfLeft, postEnd - <span class="hljs-number">1</span>);<br><br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="第十九天-力扣-654-617-700-98"><a href="#第十九天-力扣-654-617-700-98" class="headerlink" title="第十九天 | 力扣 654 &amp; 617 &amp; 700 &amp; 98"></a>第十九天 | 力扣 654 &amp; 617 &amp; 700 &amp; 98</h1><h2 id="654、最大二叉树"><a href="#654、最大二叉树" class="headerlink" title="654、最大二叉树"></a>654、最大二叉树</h2><h3 id="题目-49"><a href="#题目-49" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给定一个不重复的整数数组 <code>nums</code> 。 <strong>最大二叉树</strong> 可以用下面的算法从 <code>nums</code> 递归地构建:</p>
+<ol>
+<li>创建一个根节点，其值为 <code>nums</code> 中的最大值。</li>
+<li>递归地在最大值 <strong>左边</strong> 的 <strong>子数组前缀上</strong> 构建左子树。</li>
+<li>递归地在最大值 <strong>右边</strong> 的 <strong>子数组后缀上</strong> 构建右子树。</li>
+</ol>
+<p>返回 <em><code>nums</code> 构建的</em> <strong>最大二叉树</strong> 。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-binary-tree/">https://leetcode.cn/problems/maximum-binary-tree/</a></p>
+</blockquote>
+<h3 id="示例-49"><a href="#示例-49" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/24/tree1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：nums = [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">6</span>,<span class="hljs-number">0</span>,<span class="hljs-number">5</span>]<br>输出：[<span class="hljs-number">6</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">2</span>,<span class="hljs-number">0</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">1</span>]<br>解释：递归调用如下所示：<br>- [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">6</span>,<span class="hljs-number">0</span>,<span class="hljs-number">5</span>] 中的最大值是 <span class="hljs-number">6</span> ，左边部分是 [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>] ，右边部分是 [<span class="hljs-number">0</span>,<span class="hljs-number">5</span>] 。<br>    - [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>] 中的最大值是 <span class="hljs-number">3</span> ，左边部分是 [] ，右边部分是 [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>] 。<br>        - 空数组，无子节点。<br>        - [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>] 中的最大值是 <span class="hljs-number">2</span> ，左边部分是 [] ，右边部分是 [<span class="hljs-number">1</span>] 。<br>            - 空数组，无子节点。<br>            - 只有一个元素，所以子节点是一个值为 <span class="hljs-number">1</span> 的节点。<br>    - [<span class="hljs-number">0</span>,<span class="hljs-number">5</span>] 中的最大值是 <span class="hljs-number">5</span> ，左边部分是 [<span class="hljs-number">0</span>] ，右边部分是 [] 。<br>        - 只有一个元素，所以子节点是一个值为 <span class="hljs-number">0</span> 的节点。<br>        - 空数组，无子节点。<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/24/tree2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：nums = [<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">1</span>]<br>输出：[<span class="hljs-number">3</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">2</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-44"><a href="#题解-44" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">constructMaximumBinaryTree</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>        <span class="hljs-keyword">return</span> constructMaximumBinaryTree1(nums, <span class="hljs-number">0</span>, nums.length);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">constructMaximumBinaryTree1</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> leftIndex, <span class="hljs-type">int</span> rightIndex)</span> &#123;<br>        <span class="hljs-keyword">if</span> (rightIndex - leftIndex &lt; <span class="hljs-number">1</span>) &#123;<span class="hljs-comment">// 没有元素了</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (rightIndex - leftIndex == <span class="hljs-number">1</span>) &#123;<span class="hljs-comment">// 只有一个元素</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(nums[leftIndex]);<br>        &#125;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">maxIndex</span> <span class="hljs-operator">=</span> leftIndex;<span class="hljs-comment">// 最大值所在位置</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">maxVal</span> <span class="hljs-operator">=</span> nums[maxIndex];<span class="hljs-comment">// 最大值</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> leftIndex + <span class="hljs-number">1</span>; i &lt; rightIndex; i++) &#123;<br>            <span class="hljs-keyword">if</span> (nums[i] &gt; maxVal)&#123;<br>                maxVal = nums[i];<br>                maxIndex = i;<br>            &#125;<br>        &#125;<br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">root</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(maxVal);<br>        <span class="hljs-comment">// 根据maxIndex划分左右子树</span><br>        root.left = constructMaximumBinaryTree1(nums, leftIndex, maxIndex);<br>        root.right = constructMaximumBinaryTree1(nums, maxIndex + <span class="hljs-number">1</span>, rightIndex);<br>        <span class="hljs-keyword">return</span> root;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="617、合并二叉树"><a href="#617、合并二叉树" class="headerlink" title="617、合并二叉树"></a>617、合并二叉树</h2><h3 id="题目-50"><a href="#题目-50" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给你两棵二叉树： <code>root1</code> 和 <code>root2</code> 。</p>
+<p>想象一下，当你将其中一棵覆盖到另一棵之上时，两棵树上的一些节点将会重叠（而另一些不会）。你需要将这两棵树合并成一棵新二叉树。合并的规则是：如果两个节点重叠，那么将这两个节点的值相加作为合并后节点的新值；否则，<strong>不为</strong> null 的节点将直接作为新二叉树的节点。</p>
+<p>返回合并后的二叉树。</p>
+<p><strong>注意:</strong> 合并过程必须从两个树的根节点开始。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-binary-trees/">https://leetcode.cn/problems/merge-two-binary-trees/</a></p>
+</blockquote>
+<h3 id="示例-50"><a href="#示例-50" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/02/05/merge.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root1 = [<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">2</span>,<span class="hljs-number">5</span>], root2 = [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">4</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>]<br>输出：[<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">5</span>,<span class="hljs-number">4</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">7</span>]<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root1 = [<span class="hljs-number">1</span>], root2 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>]<br>输出：[<span class="hljs-number">2</span>,<span class="hljs-number">2</span>]<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-45"><a href="#题解-45" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-comment">// 递归</span><br>    <span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">mergeTrees</span><span class="hljs-params">(TreeNode root1, TreeNode root2)</span> &#123;<br>        <span class="hljs-keyword">if</span> (root1 == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> root2;<br>        <span class="hljs-keyword">if</span> (root2 == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> root1;<br><br>        root1.val += root2.val;<br>        root1.left = mergeTrees(root1.left,root2.left);<br>        root1.right = mergeTrees(root1.right,root2.right);<br>        <span class="hljs-keyword">return</span> root1;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="700、二叉搜索树中的搜索"><a href="#700、二叉搜索树中的搜索" class="headerlink" title="700、二叉搜索树中的搜索"></a>700、二叉搜索树中的搜索</h2><h3 id="题目-51"><a href="#题目-51" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给定二叉搜索树（BST）的根节点 <code>root</code> 和一个整数值 <code>val</code>。</p>
+<p>你需要在 BST 中找到节点值等于 <code>val</code> 的节点。 返回以该节点为根的子树。 如果节点不存在，则返回 <code>null</code> 。</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/search-in-a-binary-search-tree/">https://leetcode.cn/problems/search-in-a-binary-search-tree/</a></p>
+</blockquote>
+<h3 id="示例-51"><a href="#示例-51" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/12/tree1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root = [<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">7</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>], val = <span class="hljs-number">2</span><br>输出：[<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2021/01/12/tree2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root = [<span class="hljs-number">4</span>,<span class="hljs-number">2</span>,<span class="hljs-number">7</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>], val = <span class="hljs-number">5</span><br>输出：[]<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-46"><a href="#题解-46" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-comment">// 递归，普通二叉树</span><br>    <span class="hljs-keyword">public</span> TreeNode <span class="hljs-title function_">searchBST</span><span class="hljs-params">(TreeNode root, <span class="hljs-type">int</span> val)</span> &#123;<br>        <span class="hljs-keyword">if</span> (root == <span class="hljs-literal">null</span> || root.val == val) &#123;<br>            <span class="hljs-keyword">return</span> root;<br>        &#125;<br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> searchBST(root.left, val);<br>        <span class="hljs-keyword">if</span> (left != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">return</span> left;<br>        &#125;<br>        <span class="hljs-keyword">return</span> searchBST(root.right, val);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="98、验证二叉搜索树"><a href="#98、验证二叉搜索树" class="headerlink" title="98、验证二叉搜索树"></a>98、验证二叉搜索树</h2><h3 id="题目-52"><a href="#题目-52" class="headerlink" title="题目"></a>题目</h3><blockquote>
+<p>给你一个二叉树的根节点 <code>root</code> ，判断其是否是一个有效的二叉搜索树。</p>
+<p><strong>有效</strong> 二叉搜索树定义如下：</p>
+<ul>
+<li>节点的左子树只包含 <strong>小于</strong> 当前节点的数。</li>
+<li>节点的右子树只包含 <strong>大于</strong> 当前节点的数。</li>
+<li>所有左子树和右子树自身必须也是二叉搜索树。</li>
+</ul>
+<p>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/validate-binary-search-tree/">https://leetcode.cn/problems/validate-binary-search-tree/</a></p>
+</blockquote>
+<h3 id="示例-52"><a href="#示例-52" class="headerlink" title="示例"></a>示例</h3><p><strong>示例 1：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/01/tree1.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root = [<span class="hljs-number">2</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>]<br>输出：truejava<br></code></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<p><img src="https://assets.leetcode.com/uploads/2020/12/01/tree2.jpg" srcset="/img/loading.gif" lazyload alt="img"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">输入：root = [<span class="hljs-number">5</span>,<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-literal">null</span>,<span class="hljs-literal">null</span>,<span class="hljs-number">3</span>,<span class="hljs-number">6</span>]<br>输出：<span class="hljs-literal">false</span><br>解释：根节点的值是 <span class="hljs-number">5</span> ，但是右子节点的值是 <span class="hljs-number">4</span> 。<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="题解-47"><a href="#题解-47" class="headerlink" title="题解"></a>题解</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Definition for a binary tree node.</span><br><span class="hljs-comment"> * public class TreeNode &#123;</span><br><span class="hljs-comment"> *     int val;</span><br><span class="hljs-comment"> *     TreeNode left;</span><br><span class="hljs-comment"> *     TreeNode right;</span><br><span class="hljs-comment"> *     TreeNode() &#123;&#125;</span><br><span class="hljs-comment"> *     TreeNode(int val) &#123; this.val = val; &#125;</span><br><span class="hljs-comment"> *     TreeNode(int val, TreeNode left, TreeNode right) &#123;</span><br><span class="hljs-comment"> *         this.val = val;</span><br><span class="hljs-comment"> *         this.left = left;</span><br><span class="hljs-comment"> *         this.right = right;</span><br><span class="hljs-comment"> *     &#125;</span><br><span class="hljs-comment"> * &#125;</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isValidBST</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>        Stack&lt;TreeNode&gt; stack = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Stack</span>&lt;&gt;();<br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">pre</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br>        <span class="hljs-keyword">if</span>(root != <span class="hljs-literal">null</span>)<br>            stack.add(root);        <br>        <span class="hljs-keyword">while</span>(!stack.isEmpty())&#123;<br>            <span class="hljs-type">TreeNode</span> <span class="hljs-variable">curr</span> <span class="hljs-operator">=</span> stack.peek();<br>            <span class="hljs-keyword">if</span>(curr != <span class="hljs-literal">null</span>)&#123;<br>                stack.pop();<br>                <span class="hljs-keyword">if</span>(curr.right != <span class="hljs-literal">null</span>)<br>                    stack.add(curr.right);<br>                stack.add(curr);<br>                stack.add(<span class="hljs-literal">null</span>);<br>                <span class="hljs-keyword">if</span>(curr.left != <span class="hljs-literal">null</span>)<br>                    stack.add(curr.left);<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                stack.pop();<br>                <span class="hljs-type">TreeNode</span> <span class="hljs-variable">temp</span> <span class="hljs-operator">=</span> stack.pop();<br>                <span class="hljs-keyword">if</span>(pre != <span class="hljs-literal">null</span> &amp;&amp; pre.val &gt;= temp.val)<br>                    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>                pre = temp;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
                 
               </div>
@@ -1493,9 +1660,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
-      
         <a href="/tags/LeetCode/" class="print-no-link">#LeetCode</a>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
       
     </div>
   
@@ -1508,7 +1675,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>LeetCode</div>
-      <div>https://rkl71.github.io/2024/02/05/LeetCode/</div>
+      <div>https://rkl71.github.io/2024/02/17/LeetCode/</div>
     </div>
     <div class="license-meta">
       
@@ -1520,7 +1687,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>February 5, 2024</div>
+          <div>February 17, 2024</div>
         </div>
       
       
@@ -1552,18 +1719,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/02/07/RabbitMQ/" title="RabbitMQ">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">RabbitMQ</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/30/SpringSecurity/" title="SpringSecurity">
-                        <span class="hidden-mobile">SpringSecurity</span>
+                      <a href="/2024/02/17/RabbitMQ/" title="RabbitMQ">
+                        <span class="hidden-mobile">RabbitMQ</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
