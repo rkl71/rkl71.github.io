@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>Design Pattern</title>
+    <link href="/2024/03/24/design-patterns/"/>
+    <url>/2024/03/24/design-patterns/</url>
+    
+    <content type="html"><![CDATA[<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><blockquote><p><strong>适配器模式</strong>是一种结构性设计模式，它能使接口不兼容的对象能够相互合作</p></blockquote><ul><li>对象适配器模式：在这种适配器模式下，适配器关联一个它包裹的类的实例。</li></ul><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403242326046.png"></p><ol><li><strong>客户端</strong>（Client）是包含当前程序业务逻辑的类。</li><li><strong>客户端接口</strong> （Client Interface） 描述了其他类与客户端代码合作时必须遵循的协议。</li><li><strong>服务</strong> （Service） 中有一些功能类 （通常来自第三方或遗留系统）。 客户端与其接口不兼容， 因此无法直接调用其功能。</li><li><strong>适配器</strong> （Adapter） 是一个可以同时与客户端和服务交互的类： 它在实现客户端接口的同时封装了服务对象。 适配器接受客户端通过适配器接口发起的调用， 并将其转换为适用于被封装服务对象的调用。</li><li>客户端代码只需通过接口与适配器交互即可， 无需与具体的适配器类耦合。 因此， 你可以向程序中添加新类型的适配器而无需修改已有代码。 这在服务类的接口被更改或替换时很有用： 你无需修改客户端代码就可以创建新的适配器类。</li></ol><ul><li>类适配器模式：在这种适配器模式下，适配器继承被适配的类（一般采用继承）</li></ul><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403242334635.png"></p><ol><li><strong>类适配器</strong>不需要封装任何对象， 因为它同时继承了客户端和服务的行为。 适配功能在重写的方法中完成。 最后生成的适配器可替代已有的客户端类进行使用。</li></ol><h2 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h2><blockquote><p><strong>桥接模式</strong>是一种结构型设计模式，可将一个大类或一系列紧密相关的类拆分为抽象和实现两个独立的层次结构，从而能在开发时分别使用</p></blockquote><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403242339068.png"></p><ol><li><p><strong>抽象部分</strong> （Abstraction） 提供高层控制逻辑， 依赖于完成底层实际工作的实现对象。</p></li><li><p><strong>实现部分</strong> （Implementation） 为所有具体实现声明通用接口。 抽象部分仅能通过在这里声明的方法与实现对象交互。抽象部分可以列出和实现部分一样的方法， 但是抽象部分通常声明一些复杂行为， 这些行为依赖于多种由实现部分声明的原语操作。</p></li><li><p><strong>具体实现</strong> （Concrete Implementations） 中包括特定于平台的代码。</p></li><li><p><strong>精确抽象</strong> （Refined Abstraction） 提供控制逻辑的变体。 与其父类一样， 它们通过通用实现接口与不同的实现进行交互。</p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Design Pattern</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>LeetCode</title>
     <link href="/2024/02/17/LeetCode/"/>
     <url>/2024/02/17/LeetCode/</url>

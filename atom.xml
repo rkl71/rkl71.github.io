@@ -6,7 +6,7 @@
   <link href="https://rkl71.github.io/atom.xml" rel="self"/>
   
   <link href="https://rkl71.github.io/"/>
-  <updated>2024-02-17T11:01:19.170Z</updated>
+  <updated>2024-03-24T15:49:37.664Z</updated>
   <id>https://rkl71.github.io/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Design Pattern</title>
+    <link href="https://rkl71.github.io/2024/03/24/design-patterns/"/>
+    <id>https://rkl71.github.io/2024/03/24/design-patterns/</id>
+    <published>2024-03-23T16:00:00.000Z</published>
+    <updated>2024-03-24T15:49:37.664Z</updated>
+    
+    
+    <summary type="html">设计模式是软件设计中常见问题的典型解决方案。 它们就像能根据需求进行调整的预制蓝图， 可用于解决代码中反复出现的设计问题。</summary>
+    
+    
+    
+    <category term="设计模式" scheme="https://rkl71.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="Design Pattern" scheme="https://rkl71.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode</title>
