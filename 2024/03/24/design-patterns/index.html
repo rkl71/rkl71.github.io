@@ -31,8 +31,13 @@
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403251132097.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403251138816.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403251146437.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261507711.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261513590.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261518857.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261519338.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261525235.png">
 <meta property="article:published_time" content="2024-03-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-25T03:52:03.323Z">
+<meta property="article:modified_time" content="2024-03-26T07:30:20.550Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="Design Pattern">
 <meta name="twitter:card" content="summary_large_image">
@@ -244,7 +249,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k words
+          5.5k words
         
       </span>
     
@@ -255,7 +260,7 @@
         
         
         
-          27 mins
+          46 mins
         
       </span>
     
@@ -397,6 +402,64 @@
 <li><strong>具体命令</strong> （Concrete Commands） 会实现各种类型的请求。 具体命令自身并不完成工作， 而是会将调用委派给一个业务逻辑对象。 但为了简化代码， 这些类可以进行合并。接收对象执行方法所需的参数可以声明为具体命令的成员变量。 你可以将命令对象设为不可变， 仅允许通过构造函数对这些成员变量进行初始化。</li>
 <li><strong>接收者</strong> （Receiver） 类包含部分业务逻辑。 几乎任何对象都可以作为接收者。 绝大部分命令只处理如何将请求传递到接收者的细节， 接收者自己会完成实际的工作。</li>
 <li><strong>客户端</strong> （Client） 会创建并配置具体命令对象。 客户端必须将包括接收者实体在内的所有请求参数传递给命令的构造函数。 此后， 生成的命令就可以与一个或多个发送者相关联了。</li>
+</ol>
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><blockquote>
+<p><strong>策略模式</strong>是一种行为设计模式， 它能让你定义一系列算法， 并将每种算法分别放入独立的类中， 以使算法的对象能够相互替换。</p>
+<p>旨对象有某个行为，但是在不同的场景中，该行为有不同的实现逻辑，即不同的策略，实现方式不同。</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261507711.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>上下文</strong> （Context） 维护指向具体策略的引用， 且仅通过策略接口与该对象进行交流。</li>
+<li><strong>策略</strong> （Strategy） 接口是所有具体策略的通用接口， 它声明了一个上下文用于执行策略的方法。</li>
+<li><strong>具体策略</strong> （Concrete Strategies） 实现了上下文所用算法的各种不同变体。</li>
+<li>当上下文需要运行算法时， 它会在其已连接的策略对象上调用执行方法。 上下文不清楚其所涉及的策略类型与算法的执行方式。</li>
+<li><strong>客户端</strong> （Client） 会创建一个特定策略对象并将其传递给上下文。 上下文则会提供一个设置器以便客户端在运行时替换相关联的策略。</li>
+</ol>
+<h2 id="门面模式"><a href="#门面模式" class="headerlink" title="门面模式"></a>门面模式</h2><blockquote>
+<p><strong>门面模式</strong>是一种结构型设计模式， 能为程序库、 框架或其他复杂类提供一个简单的接口。</p>
+<p>又称外观模式，旨在封装。可以封装一个需求模块。</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261513590.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>外观</strong> （Facade） 提供了一种访问特定子系统功能的便捷方式， 其了解如何重定向客户端请求， 知晓如何操作一切活动部件。</li>
+<li>创建<strong>附加外观</strong> （Additional Facade） 类可以避免多种不相关的功能污染单一外观， 使其变成又一个复杂结构。 客户端和其他外观都可使用附加外观。</li>
+<li><strong>复杂子系统</strong> （Complex Subsystem） 由数十个不同对象构成。 如果要用这些对象完成有意义的工作， 你必须深入了解子系统的实现细节， 比如按照正确顺序初始化对象和为其提供正确格式的数据。子系统类不会意识到外观的存在， 它们在系统内运作并且相互之间可直接进行交互。</li>
+<li><strong>客户端</strong> （Client） 使用外观代替对子系统对象的直接调用。</li>
+</ol>
+<h2 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h2><blockquote>
+<p><strong>工厂方法模式</strong>是一种创建型设计模式， 其在父类中提供一个创建对象的方法， 允许子类决定实例化对象的类型。</p>
+<p>旨在对象的创建。</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261518857.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>产品</strong> （Product） 将会对接口进行声明。 对于所有由创建者及其子类构建的对象， 这些接口都是通用的。</li>
+<li><strong>具体产品</strong> （Concrete Products） 是产品接口的不同实现。</li>
+<li><strong>创建者</strong> （Creator） 类声明返回产品对象的工厂方法。 该方法的返回对象类型必须与产品接口相匹配。你可以将工厂方法声明为抽象方法， 强制要求每个子类以不同方式实现该方法。 或者， 你也可以在基础工厂方法中返回默认产品类型。注意， 尽管它的名字是创建者， 但它最主要的职责并<strong>不是</strong>创建产品。 一般来说， 创建者类包含一些与产品相关的核心业务逻辑。 工厂方法将这些逻辑处理从具体产品类中分离出来。 打个比方， 大型软件开发公司拥有程序员培训部门。 但是， 这些公司的主要工作还是编写代码， 而非生产程序员。</li>
+<li><strong>具体创建者</strong> （Concrete Creators） 将会重写基础工厂方法， 使其返回不同类型的产品。注意， 并不一定每次调用工厂方法都会<strong>创建</strong>新的实例。 工厂方法也可以返回缓存、 对象池或其他来源的已有对象。</li>
+</ol>
+<h2 id="享元模式"><a href="#享元模式" class="headerlink" title="享元模式"></a>享元模式</h2><blockquote>
+<p><strong>享元模式</strong>是一种结构型设计模式， 它摒弃了在每个对象中保存所有数据的方式， 通过共享多个对象所共有的相同状态， 让你能在有限的内存容量中载入更多对象。</p>
+<p>旨在解决重复对象的内存浪费问题，为重复的对象创建缓冲池。</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261519338.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li>享元模式只是一种优化。 在应用该模式之前， 你要确定程序中存在与大量类似对象同时占用内存相关的内存消耗问题， 并且确保该问题无法使用其他更好的方式来解决。</li>
+<li><strong>享元</strong> （Flyweight） 类包含原始对象中部分能在多个对象中共享的状态。 同一享元对象可在许多不同情景中使用。 享元中存储的状态被称为 “内在状态”。 传递给享元方法的状态被称为 “外在状态”。</li>
+<li><strong>情景</strong> （Context） 类包含原始对象中各不相同的外在状态。 情景与享元对象组合在一起就能表示原始对象的全部状态。</li>
+<li>通常情况下， 原始对象的行为会保留在享元类中。 因此调用享元方法必须提供部分外在状态作为参数。 但你也可将行为移动到情景类中， 然后将连入的享元作为单纯的数据对象。</li>
+<li><strong>客户端</strong> （Client） 负责计算或存储享元的外在状态。 在客户端看来， 享元是一种可在运行时进行配置的模板对象， 具体的配置方式为向其方法中传入一些情景数据参数。</li>
+<li><strong>享元工厂</strong> （Flyweight Factory） 会对已有享元的缓存池进行管理。 有了工厂后， 客户端就无需直接创建享元， 它们只需调用工厂并向其传递目标享元的一些内在状态即可。 工厂会根据参数在之前已创建的享元中进行查找， 如果找到满足条件的享元就将其返回； 如果没有找到就根据参数新建享元。</li>
+</ol>
+<h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2><blockquote>
+<p><strong>责任链模式</strong>是一种行为设计模式， 允许你将请求沿着处理者链进行发送。 收到请求后， 每个处理者均可对请求进行处理， 或将其传递给链上的下个处理者。</p>
+<p>旨在将一系列的责任对象连成一个处理链，将请求沿着这条处理链传递，直到有对象处理它为止。责任链模式能够使多个对象都有机会处理消息请求，避免请求的发送者和接收者之间的耦合关系。</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261525235.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>处理者</strong> （Handler） 声明了所有具体处理者的通用接口。 该接口通常仅包含单个方法用于请求处理， 但有时其还会包含一个设置链上下个处理者的方法。</li>
+<li><strong>基础处理者</strong> （Base Handler） 是一个可选的类， 你可以将所有处理者共用的样本代码放置在其中。通常情况下， 该类中定义了一个保存对于下个处理者引用的成员变量。 客户端可通过将处理者传递给上个处理者的构造函数或设定方法来创建链。 该类还可以实现默认的处理行为： 确定下个处理者存在后再将请求传递给它。</li>
+<li><strong>具体处理者</strong> （Concrete Handlers） 包含处理请求的实际代码。 每个处理者接收到请求后， 都必须决定是否进行处理， 以及是否沿着链传递请求。处理者通常是独立且不可变的， 需要通过构造函数一次性地获得所有必要地数据。</li>
+<li><strong>客户端</strong> （Client） 可根据程序逻辑一次性或者动态地生成链。 值得注意的是， 请求可发送给链上的任意一个处理者， 而非必须是第一个处理者。</li>
 </ol>
 
                 
