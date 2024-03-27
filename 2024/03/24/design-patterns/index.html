@@ -36,8 +36,15 @@
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261518857.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261519338.png">
 <meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403261525235.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271726740.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271732988.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271735892.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271739465.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271742913.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271745274.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271747973.png">
 <meta property="article:published_time" content="2024-03-23T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-03-26T07:30:20.550Z">
+<meta property="article:modified_time" content="2024-03-27T09:48:37.100Z">
 <meta property="article:author" content="Kolin">
 <meta property="article:tag" content="Design Pattern">
 <meta name="twitter:card" content="summary_large_image">
@@ -249,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.5k words
+          8.3k words
         
       </span>
     
@@ -260,7 +267,7 @@
         
         
         
-          46 mins
+          69 mins
         
       </span>
     
@@ -460,6 +467,83 @@
 <li><strong>基础处理者</strong> （Base Handler） 是一个可选的类， 你可以将所有处理者共用的样本代码放置在其中。通常情况下， 该类中定义了一个保存对于下个处理者引用的成员变量。 客户端可通过将处理者传递给上个处理者的构造函数或设定方法来创建链。 该类还可以实现默认的处理行为： 确定下个处理者存在后再将请求传递给它。</li>
 <li><strong>具体处理者</strong> （Concrete Handlers） 包含处理请求的实际代码。 每个处理者接收到请求后， 都必须决定是否进行处理， 以及是否沿着链传递请求。处理者通常是独立且不可变的， 需要通过构造函数一次性地获得所有必要地数据。</li>
 <li><strong>客户端</strong> （Client） 可根据程序逻辑一次性或者动态地生成链。 值得注意的是， 请求可发送给链上的任意一个处理者， 而非必须是第一个处理者。</li>
+</ol>
+<h2 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h2><blockquote>
+<p><strong>装饰器模式</strong>是一种结构型设计模式， 允许你通过将对象放入包含行为的特殊封装对象中来为原对象绑定新的行为。</p>
+<p>旨在不改变一个对象逻辑的前提下，为这个对象添加其他额外的职责。</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271726740.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>部件</strong> （Component） 声明封装器和被封装对象的公用接口。</li>
+<li><strong>具体部件</strong> （Concrete Component） 类是被封装对象所属的类。 它定义了基础行为， 但装饰类可以改变这些行为。</li>
+<li><strong>基础装饰</strong> （Base Decorator） 类拥有一个指向被封装对象的引用成员变量。 该变量的类型应当被声明为通用部件接口， 这样它就可以引用具体的部件和装饰。 装饰基类会将所有操作委派给被封装的对象。</li>
+<li><strong>具体装饰类</strong> （Concrete Decorators） 定义了可动态添加到部件的额外行为。 具体装饰类会重写装饰基类的方法， 并在调用父类方法之前或之后进行额外的行为。</li>
+<li><strong>客户端</strong> （Client） 可以使用多层装饰来封装部件， 只要它能使用通用接口与所有对象互动即可。</li>
+</ol>
+<h2 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h2><blockquote>
+<p><strong>建造者模式</strong>是一种创建型设计模式， 使你能够分步骤创建复杂对象。 该模式允许你使用相同的创建代码生成不同类型和形式的对象。</p>
+<p>又叫生成器模式，旨在将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。简单来说，建造者模式就是将不同的组件进行组装，最终生成一个完整的对象。</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271732988.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>生成器</strong> （Builder） 接口声明在所有类型生成器中通用的产品构造步骤。</li>
+<li><strong>具体生成器</strong> （Concrete Builders） 提供构造过程的不同实现。 具体生成器也可以构造不遵循通用接口的产品。</li>
+<li><strong>产品</strong> （Products） 是最终生成的对象。 由不同生成器构造的产品无需属于同一类层次结构或接口。</li>
+<li><strong>主管</strong> （Director） 类定义调用构造步骤的顺序， 这样你就可以创建和复用特定的产品配置。</li>
+<li><strong>客户端</strong> （Client） 必须将某个生成器对象与主管类关联。 一般情况下， 你只需通过主管类构造函数的参数进行一次性关联即可。 此后主管类就能使用生成器对象完成后续所有的构造任务。 但在客户端将生成器对象传递给主管类制造方法时还有另一种方式。 在这种情况下， 你在使用主管类生产产品时每次都可以使用不同的生成器。</li>
+</ol>
+<h2 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h2><blockquote>
+<p><strong>原型模式</strong>是一种创建型设计模式， 使你能够复制已有对象， 而又无需使代码依赖它们所属的类。</p>
+<p>旨在新对象的创建可以通过克隆进行拷贝。</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271735892.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>原型</strong> （Prototype） 接口将对克隆方法进行声明。 在绝大多数情况下， 其中只会有一个名为 <code>clone</code>克隆的方法。</li>
+<li><strong>具体原型</strong> （Concrete Prototype） 类将实现克隆方法。 除了将原始对象的数据复制到克隆体中之外， 该方法有时还需处理克隆过程中的极端情况， 例如克隆关联对象和梳理递归依赖等等。</li>
+<li><strong>客户端</strong> （Client） 可以复制实现了原型接口的任何对象。</li>
+</ol>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><blockquote>
+<p><strong>代理模式</strong>是一种结构型设计模式， 让你能够提供对象的替代品或其占位符。 代理控制着对于原对象的访问， 并允许在将请求提交给对象前后进行一些处理。</p>
+<p>旨在代理某个对象的职责，并且可以在职责代理过程中，新增其他辅助方法，代理模式也叫委托模式。</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271739465.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>服务接口</strong> （Service Interface） 声明了服务接口。 代理必须遵循该接口才能伪装成服务对象。</li>
+<li><strong>服务</strong> （Service） 类提供了一些实用的业务逻辑。</li>
+<li><strong>代理</strong> （Proxy） 类包含一个指向服务对象的引用成员变量。 代理完成其任务 （例如延迟初始化、 记录日志、 访问控制和缓存等） 后会将请求传递给服务对象。通常情况下， 代理会对其服务对象的整个生命周期进行管理。</li>
+<li><strong>客户端</strong> （Client） 能通过同一接口与服务或代理进行交互， 所以你可在一切需要服务对象的代码中使用代理。</li>
+</ol>
+<h2 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h2><blockquote>
+<p><strong>中介者模式</strong>是一种行为设计模式， 能让你减少对象之间混乱无序的依赖关系。 该模式会限制对象之间的直接交互， 迫使它们通过一个中介者对象进行合作。</p>
+<p>旨在通过中介者对象来封装一系列的对象交互，将对象间复杂的关系网状结构变成结构简单的以中介者为核心的星型结构，简化对象间的关系</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271742913.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>组件</strong> （Component） 是各种包含业务逻辑的类。 每个组件都有一个指向中介者的引用， 该引用被声明为中介者接口类型。 组件不知道中介者实际所属的类， 因此你可通过将其连接到不同的中介者以使其能在其他程序中复用。</li>
+<li><strong>中介者</strong> （Mediator） 接口声明了与组件交流的方法， 但通常仅包括一个通知方法。 组件可将任意上下文 （包括自己的对象） 作为该方法的参数， 只有这样接收组件和发送者类之间才不会耦合。</li>
+<li><strong>具体中介者</strong> （Concrete Mediator） 封装了多种组件间的关系。 具体中介者通常会保存所有组件的引用并对其进行管理， 甚至有时会对其生命周期进行管理。</li>
+<li>组件并不知道其他组件的情况。 如果组件内发生了重要事件， 它只能通知中介者。 中介者收到通知后能轻易地确定发送者， 这或许已足以判断接下来需要触发的组件了。对于组件来说， 中介者看上去完全就是一个黑箱。 发送者不知道最终会由谁来处理自己的请求， 接收者也不知道最初是谁发出了请求。</li>
+</ol>
+<h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><blockquote>
+<p><strong>模板方法模式</strong>是一种行为设计模式， 它在超类中定义了一个算法的框架， 允许子类在不修改结构的情况下重写算法的特定步骤。</p>
+<p>旨在定义一个操作中的算法框架，而将一些步骤延迟到子类中，使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271745274.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>抽象类</strong> （Abstract­Class） 会声明作为算法步骤的方法， 以及依次调用它们的实际模板方法。 算法步骤可以被声明为 <code>抽象</code>类型， 也可以提供一些默认实现。</li>
+<li><strong>具体类</strong> （Concrete­Class） 可以重写所有步骤， 但不能重写模板方法自身。</li>
+</ol>
+<h2 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h2><blockquote>
+<p><strong>迭代器模式</strong>是一种行为设计模式， 让你能在不暴露集合底层表现形式 （列表、 栈和树等） 的情况下遍历集合中所有的元素。</p>
+<p>旨在对数据结构中的所有数据进行迭代（遍历）查询，直到所有的数据完成迭代（遍历）</p>
+</blockquote>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202403271747973.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>迭代器</strong> （Iterator） 接口声明了遍历集合所需的操作： 获取下一个元素、 获取当前位置和重新开始迭代等。</li>
+<li><strong>具体迭代器</strong> （Concrete Iterators） 实现遍历集合的一种特定算法。 迭代器对象必须跟踪自身遍历的进度。 这使得多个迭代器可以相互独立地遍历同一集合。</li>
+<li><strong>集合</strong> （Collection） 接口声明一个或多个方法来获取与集合兼容的迭代器。 请注意， 返回方法的类型必须被声明为迭代器接口， 因此具体集合可以返回各种不同种类的迭代器。</li>
+<li><strong>具体集合</strong> （Concrete Collections） 会在客户端请求迭代器时返回一个特定的具体迭代器类实体。 你可能会琢磨， 剩下的集合代码在什么地方呢？ 不用担心， 它也会在同一个类中。 只是这些细节对于实际模式来说并不重要， 所以我们将其省略了而已。</li>
+<li><strong>客户端</strong> （Client） 通过集合和迭代器的接口与两者进行交互。 这样一来客户端无需与具体类进行耦合， 允许同一客户端代码使用各种不同的集合和迭代器。客户端通常不会自行创建迭代器， 而是会从集合中获取。 但在特定情况下， 客户端可以直接创建一个迭代器 （例如当客户端需要自定义特殊迭代器时）。</li>
 </ol>
 
                 
