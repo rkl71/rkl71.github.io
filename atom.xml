@@ -6,7 +6,7 @@
   <link href="https://rkl71.github.io/atom.xml" rel="self"/>
   
   <link href="https://rkl71.github.io/"/>
-  <updated>2024-03-27T10:01:53.347Z</updated>
+  <updated>2024-07-29T08:14:30.234Z</updated>
   <id>https://rkl71.github.io/</id>
   
   <author>
@@ -17,9 +17,28 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Relearning Design Pattern</title>
+    <link href="https://rkl71.github.io/2024/07/29/Relearning-design-patterns/"/>
+    <id>https://rkl71.github.io/2024/07/29/Relearning-design-patterns/</id>
+    <published>2024-07-28T16:00:00.000Z</published>
+    <updated>2024-07-29T08:14:30.234Z</updated>
+    
+    
+    <summary type="html">重学设计模式，案例+源码实践</summary>
+    
+    
+    
+    <category term="设计模式" scheme="https://rkl71.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+    <category term="Design Pattern" scheme="https://rkl71.github.io/tags/Design-Pattern/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Design Pattern</title>
-    <link href="https://rkl71.github.io/2024/03/24/design-patterns/"/>
-    <id>https://rkl71.github.io/2024/03/24/design-patterns/</id>
+    <link href="https://rkl71.github.io/2024/03/24/Design-patterns/"/>
+    <id>https://rkl71.github.io/2024/03/24/Design-patterns/</id>
     <published>2024-03-23T16:00:00.000Z</published>
     <updated>2024-03-27T10:01:53.347Z</updated>
     
