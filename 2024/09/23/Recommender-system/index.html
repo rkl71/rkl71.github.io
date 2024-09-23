@@ -16,30 +16,30 @@
   <meta name="author" content="Kolin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Hadoop是大数据技术中重要的框架之一，在Hadoop平台之上，可以更容易地开发和运行其他处理大规模数据的框架">
+    <meta name="description" content="深入解析推荐系统：如何帮助我们发现感兴趣的内容？">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hadoop">
-<meta property="og:url" content="https://rkl71.github.io/2023/11/01/Hadoop/index.html">
+<meta property="og:title" content="Recommender System">
+<meta property="og:url" content="https://rkl71.github.io/2024/09/23/Recommender-system/index.html">
 <meta property="og:site_name" content="Kolin&#39;s space">
-<meta property="og:description" content="Hadoop是大数据技术中重要的框架之一，在Hadoop平台之上，可以更容易地开发和运行其他处理大规模数据的框架">
+<meta property="og:description" content="深入解析推荐系统：如何帮助我们发现感兴趣的内容？">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312044806.png">
-<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312217693.png">
-<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312231879.png">
-<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312231289.png">
-<meta property="article:published_time" content="2023-10-31T15:00:00.000Z">
-<meta property="article:modified_time" content="2023-10-31T16:07:40.378Z">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232046895.jpg">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232047792.jpg">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232048841.jpg">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232050419.jpg">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232050784.jpg">
+<meta property="article:published_time" content="2024-09-22T15:00:00.000Z">
+<meta property="article:modified_time" content="2024-09-23T11:58:44.599Z">
 <meta property="article:author" content="Kolin">
-<meta property="article:tag" content="Hadoop">
-<meta property="article:tag" content="Big Data">
+<meta property="article:tag" content="Recommender System">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312044806.png">
+<meta name="twitter:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232046895.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Hadoop - Kolin&#39;s space</title>
+  <title>Recommender System - Kolin&#39;s space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -218,7 +218,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Hadoop"></span>
+            <span id="subtitle" data-typed-text="Recommender System"></span>
           
         </div>
 
@@ -229,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-01 00:00" pubdate>
-          November 1, 2023 am
+        <time datetime="2024-09-23 00:00" pubdate>
+          September 23, 2024 am
         </time>
       </span>
     
@@ -241,7 +241,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k words
+          1.7k words
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
         
-          11 mins
+          15 mins
         
       </span>
     
@@ -289,52 +289,45 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Hadoop</h1>
+            <h1 id="seo-header">Recommender System</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h1><h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="Hadoop-是什么"><a href="#Hadoop-是什么" class="headerlink" title="Hadoop 是什么"></a>Hadoop 是什么</h3><ul>
-<li>Hadoop 是一个由 Apache 基金会所开发的<font color = '#DC143C'><strong>分布式系统基础架构</strong></font></li>
-<li>主要解决，海量数据的<font color = '#DC143C'><strong>存储</strong></font>和海量数据的<font color = '#DC143C'><strong>分析计算</strong></font>问题</li>
-<li>广义上来说，Hadoop 通常是指一个更广泛的概念——<font color = '#DC143C'><strong>Hadoop 生态圈</strong></font></li>
-</ul>
-<h3 id="Hadoop-优势"><a href="#Hadoop-优势" class="headerlink" title="Hadoop 优势"></a>Hadoop 优势</h3><ul>
-<li>高可靠性：Hadoop 底层维护多个数据副本，所以即使 Hadoop 某个计算元素或存储出现故障，也不会导致数据的丢失</li>
-<li>高扩展性：在集群间分配任务数据，可方便的扩展数以千计的节点</li>
-<li>高效性：在 MapReduce 的思想下，Hadoop 是并行工作的，以加快任务处理速度</li>
-<li>高容错性：能够自动将失败的任务重新分配</li>
-</ul>
-<h3 id="Hadoop1-x、2-x、3-x-区别"><a href="#Hadoop1-x、2-x、3-x-区别" class="headerlink" title="Hadoop1.x、2.x、3.x 区别"></a>Hadoop1.x、2.x、3.x 区别</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312044806.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="HDFS-概述"><a href="#HDFS-概述" class="headerlink" title="HDFS 概述"></a>HDFS 概述</h3><blockquote>
-<p>Hadoop Distributed File System，简称 HDFS，是一个分布式文件系统</p>
-</blockquote>
+                <h1 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a>推荐系统</h1><h2 id="什么是推荐系统？"><a href="#什么是推荐系统？" class="headerlink" title="什么是推荐系统？"></a>什么是推荐系统？</h2><p>推荐系统是一种机器学习系统，它根据用户过去的行为、偏好和模式向用户提供个性化推荐。它是信息过滤系统的一个子类，它使用算法根据用户的兴趣或行为向用户推荐项目。</p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232046895.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>推荐系统广泛应用于电子商务、社交媒体、娱乐和其他在线平台，以提高用户参与度和保留率、提高客户满意度并推动销售和收入。</p>
+<h2 id="推荐系统如何运作？"><a href="#推荐系统如何运作？" class="headerlink" title="推荐系统如何运作？"></a>推荐系统如何运作？</h2><ol>
+<li><strong>收集用户数据</strong>：构建推荐系统的第一步是收集用户数据。这可以包括用户评分、评论、点击流数据、购买历史记录和其他用户行为数据。数据可以通过用户调查和反馈表显式收集，也可以通过用户与平台的交互隐式收集。</li>
+<li><strong>存储数据</strong>：收集用户数据后，需要将其存储在存储在数据库或数据仓库中以供分析。数据可以以结构化或非结构化格式存储，具体取决于数据的类型和数量。</li>
+<li><strong>分析数据</strong>：下一步是分析用户数据以识别模式和趋势。这可以使用各种数据分析技术（例如聚类、分类和回归）来完成。目标是了解用户的偏好、行为和兴趣，并利用这些信息做出个性化推荐。</li>
+<li><strong>过滤和推荐</strong>：最后一步是过滤数据并向用户提出建议。这可以使用各种推荐算法来完成，例如协作、基于内容和混合过滤。该算法使用用户数据和分析结果生成用户可能感兴趣的推荐项目列表。然后以个性化方式将推荐呈现给用户，例如通过推荐小部件、电子邮件或推送通知。</li>
+</ol>
+<h2 id="推荐系统的类型"><a href="#推荐系统的类型" class="headerlink" title="推荐系统的类型"></a>推荐系统的类型</h2><h3 id="基于内容的过滤-（Content-Based-Filtering）"><a href="#基于内容的过滤-（Content-Based-Filtering）" class="headerlink" title="基于内容的过滤 （Content-Based Filtering）"></a>基于内容的过滤 （Content-Based Filtering）</h3><p>基于内容的推荐系统根据用户过去的偏好和行为向他们推荐项目。此类系统分析用户的历史数据，例如搜索历史记录、浏览历史记录或购买历史记录，并推荐与用户之前交互过的商品类似的商品。</p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232047792.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>例如，如果用户过去看过几部动作电影，基于内容的推荐系统可能会像用户推荐类似的动作电影。如果用户喜欢看《钢铁侠》等电影，推荐系统会推荐超级英雄类型的电影或描述托尼·斯塔克的电影。</p>
+<h3 id="协同过滤-（Collaborative-Filtering）"><a href="#协同过滤-（Collaborative-Filtering）" class="headerlink" title="协同过滤 （Collaborative Filtering）"></a>协同过滤 （Collaborative Filtering）</h3><p>协同过滤推荐系统根据其他类似用户的偏好和行为向用户推荐项目。此类系统会分析用户的历史数据以及具有相似偏好的其他用户的数据，并推荐相似用户之前喜欢或互动过的项目。例如，如果两个用户具有相似的购买历史，则协同过滤推荐系统可能会将一个用户以购买的商品推荐给另一用户。</p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232048841.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>例如，如果用户 A 喜欢苹果、香蕉和芒果，而用户 B 喜欢苹果、香蕉和波罗蜜，则他们有相似的兴趣。因此，A 很可能喜欢波罗蜜，而 B 喜欢芒果。这就是协同过滤的发生方式。</p>
+<p>使用的两种协同过滤技术是：</p>
 <ul>
-<li>NameNode（nn）：存储文件的<font color = '#DC143C'><strong>元数据</strong></font>，如<font color = '#DC143C'><strong>文件名</strong></font>，<font color = '#DC143C'><strong>文件目录结构</strong></font>，<font color = '#DC143C'><strong>文件属性</strong></font>（生成时间、副本数、 文件权限），以及每个文件的<font color = '#DC143C'><strong>块列表</strong></font>和<font color = '#DC143C'><strong>块所在的DataNode</strong></font>等</li>
-<li>DataNode(dn)：在本地文件系统<font color = '#DC143C'><strong>存储文件块数据</strong></font>，以及<font color = '#DC143C'><strong>块数据的校验和</strong></font></li>
-<li>Secondary NameNode(2nn)：<font color = '#DC143C'><strong>每隔一段时间对NameNode元数据备份</strong></font></li>
+<li>用户对用户协同过滤</li>
+<li>项目对项目协同过滤</li>
 </ul>
-<h3 id="YARN-概述"><a href="#YARN-概述" class="headerlink" title="YARN 概述"></a>YARN 概述</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312217693.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="MapReduce-概述"><a href="#MapReduce-概述" class="headerlink" title="MapReduce 概述"></a>MapReduce 概述</h3><blockquote>
-<p>MapReduce 将计算过程分为两个阶段：Map 和 Reduce</p>
-</blockquote>
-<ul>
-<li>Map 阶段并行处理输入数据</li>
-<li>Reduce 阶段对 Map 结果进行汇总</li>
-</ul>
-<h3 id="HDFS、YARN、MapReduce-三者关系"><a href="#HDFS、YARN、MapReduce-三者关系" class="headerlink" title="HDFS、YARN、MapReduce 三者关系"></a>HDFS、YARN、MapReduce 三者关系</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312231879.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="大数据技术生态体系"><a href="#大数据技术生态体系" class="headerlink" title="大数据技术生态体系"></a>大数据技术生态体系</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202310312231289.png" srcset="/img/loading.gif" lazyload></p>
-<ul>
-<li>Sqoop： Sqoop 是一款开源的工具，主要用于在 Hadoop、Hive 与传统的数据库（MySQL）间进行数据的传递，可以将一个关系型数据库（例如 ：MySQL，Oracle 等）中的数据导进到 Hadoop 的 HDFS 中，也可以将 HDFS 的数据导进到关系型数据库中</li>
-<li>Flume： Flume 是一个高可用的，高可靠的，分布式的海量日志采集、聚合和传输的系统，Flume 支持在日志系统中定制各类数据发送方，用于收集数据</li>
-<li>Kafka： Kafka 是一种高吞吐量的分布式发布订阅消息系统</li>
-<li>Spark： Spark 是当前最流行的开源大数据内存计算框架。可以基于 Hadoop 上存储的大数据进行计算</li>
-<li>Flink： Flink 是当前最流行的开源大数据内存计算框架。用于实时计算的场景较多</li>
-<li>Oozie： Oozie 是一个管理 Hadoop 作业（job）的工作流程调度管理系统</li>
-<li>Hbase： HBase 是一个分布式的、面向列的开源数据库。HBase 不同于一般的关系数据库，它是一个适合于非结构化数据存储的数据库</li>
-<li>Hive： Hive 是基于 Hadoop 的一个数据仓库工具，可以将结构化的数据文件映射为一张数据库表，并提供简单的 SQL 查询功能，可以将 SQL 语句转换为 MapReduce 任务进行运行。其优点是学习成本低，可以通过类 SQL 语句快速实现简单的 MapReduce 统计，不必开发专门的 MapReduce 应用，十分适合数据仓库的统计分析</li>
-<li>ZooKeeper： 它是一个针对大型分布式系统的可靠协调系统，提供的功能包括：配置维护、名字服务、分布式同步、组服务等</li>
-</ul>
+<p>用户对用户协同过滤是一种推荐系统，它根据相似用户的偏好对用户进行预测。它的原理是找到具有类似品味的用户并向目标用户推荐他们喜欢的商品。另一方面，项目对项目协同过滤根据相似项目的偏好向用户推荐项目。它的原理是识别与用户过去喜欢的项目相似的项目并将其推荐给用户。</p>
+<h3 id="混合推荐系统（Hybrid-Recommendation-Systems）"><a href="#混合推荐系统（Hybrid-Recommendation-Systems）" class="headerlink" title="混合推荐系统（Hybrid Recommendation Systems）"></a>混合推荐系统（Hybrid Recommendation Systems）</h3><p>混合推荐系统结合了基于内容和协同过滤技术，以提供更准确和多样化的推荐。此类系统使用用户数据、项目数据和其他上下文信息的组合来生成推荐。</p>
+<p>混合推荐系统可能使用基于内容的过滤来推荐与用户之间交互过的项目相似的项目，并使用协作过滤来推荐其他类似用户喜欢或交互过的项目。通过结合这两种方法的优势，混合推荐系统可以提供比单独基于内容或协同过滤更准确和更多样化的推荐。</p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232050419.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>Netflix 是混合推荐系统的一个很好的例子。它通过并列用户的观看和搜索习惯并在该平台上查找相似用户来提供推荐。这样，Netflix 就使用了协同过滤。</p>
+<h3 id="YouTube-算法是如何工作的？"><a href="#YouTube-算法是如何工作的？" class="headerlink" title="YouTube 算法是如何工作的？"></a>YouTube 算法是如何工作的？</h3><p>YouTube 推荐算法是一个复杂的系统，它结合了协同过滤、深度学习和其他技术，为每个用户提供个性化的视频推荐。</p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202409232050784.jpg" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><strong>用户参与度</strong>：该算法会考虑用户观看、喜欢、评论或分享的视频，以了解他们的偏好和兴趣。</li>
+<li><strong>相似度</strong>：算法识别与用户观看历史相似的视频，例如来自同一频道或相关主题的视频。</li>
+<li><strong>受欢迎程度</strong>：该算法考虑了视频的整体受欢迎程度，例如观看次数、点赞数和评论数。</li>
+<li><strong>新鲜度</strong>：该算法还考虑视频的近况，以确保向用户推荐最新、最相关的内容。</li>
+<li><strong>多样性</strong>：该算法试图推荐多样化的内容，以确保用户在其典型观看习惯之外接触到新的、有趣的视频。</li>
+</ol>
 
                 
               </div>
@@ -353,7 +346,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%A1%86%E6%9E%B6/" class="category-chain-item">框架</a>
+  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="category-chain-item">机器学习</a>
   
   
 
@@ -368,9 +361,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Hadoop/" class="print-no-link">#Hadoop</a>
-      
-        <a href="/tags/Big-Data/" class="print-no-link">#Big Data</a>
+        <a href="/tags/Recommender-System/" class="print-no-link">#Recommender System</a>
       
     </div>
   
@@ -382,8 +373,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Hadoop</div>
-      <div>https://rkl71.github.io/2023/11/01/Hadoop/</div>
+      <div>Recommender System</div>
+      <div>https://rkl71.github.io/2024/09/23/Recommender-system/</div>
     </div>
     <div class="license-meta">
       
@@ -395,7 +386,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>November 1, 2023</div>
+          <div>September 23, 2024</div>
         </div>
       
       
@@ -427,18 +418,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/05/Newsletter/" title="Newsletter">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Newsletter</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/10/26/Network/" title="Computer Network">
-                        <span class="hidden-mobile">Computer Network</span>
+                      <a href="/2024/07/29/Relearning-design-patterns/" title="Relearning Design Pattern">
+                        <span class="hidden-mobile">Relearning Design Pattern</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
