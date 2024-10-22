@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Kolin&#39;s space</title>
-  <icon>https://rkl71.github.io/images/favicon.png</icon>
+  <icon>https://rkl71.github.io/icon.png</icon>
   
   <link href="https://rkl71.github.io/atom.xml" rel="self"/>
   
