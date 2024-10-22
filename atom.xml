@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Kolin&#39;s space</title>
-  <icon>https://rkl71.github.io/icon.png</icon>
+  <icon>https://www.renkelin.vip/icon.png</icon>
   
-  <link href="https://rkl71.github.io/atom.xml" rel="self"/>
+  <link href="https://www.renkelin.vip/atom.xml" rel="self"/>
   
-  <link href="https://rkl71.github.io/"/>
+  <link href="https://www.renkelin.vip/"/>
   <updated>2024-10-12T06:05:23.135Z</updated>
-  <id>https://rkl71.github.io/</id>
+  <id>https://www.renkelin.vip/</id>
   
   <author>
     <name>Kolin</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Machine Learning</title>
-    <link href="https://rkl71.github.io/2024/10/12/ML/"/>
-    <id>https://rkl71.github.io/2024/10/12/ML/</id>
+    <link href="https://www.renkelin.vip/2024/10/12/ML/"/>
+    <id>https://www.renkelin.vip/2024/10/12/ML/</id>
     <published>2024-10-11T15:00:00.000Z</published>
     <updated>2024-10-12T06:05:23.135Z</updated>
     
@@ -28,17 +28,17 @@
     
     
     
-    <category term="人工智能" scheme="https://rkl71.github.io/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    <category term="人工智能" scheme="https://www.renkelin.vip/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
     
     
-    <category term="Machine Learning" scheme="https://rkl71.github.io/tags/Machine-Learning/"/>
+    <category term="Machine Learning" scheme="https://www.renkelin.vip/tags/Machine-Learning/"/>
     
   </entry>
   
   <entry>
     <title>Recommender System</title>
-    <link href="https://rkl71.github.io/2024/09/23/RS/"/>
-    <id>https://rkl71.github.io/2024/09/23/RS/</id>
+    <link href="https://www.renkelin.vip/2024/09/23/RS/"/>
+    <id>https://www.renkelin.vip/2024/09/23/RS/</id>
     <published>2024-09-22T15:00:00.000Z</published>
     <updated>2024-10-12T06:05:23.143Z</updated>
     
@@ -47,17 +47,17 @@
     
     
     
-    <category term="人工智能" scheme="https://rkl71.github.io/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    <category term="人工智能" scheme="https://www.renkelin.vip/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
     
     
-    <category term="Recommender System" scheme="https://rkl71.github.io/tags/Recommender-System/"/>
+    <category term="Recommender System" scheme="https://www.renkelin.vip/tags/Recommender-System/"/>
     
   </entry>
   
   <entry>
     <title>Relearning Design Pattern</title>
-    <link href="https://rkl71.github.io/2024/07/29/Relearning-design-patterns/"/>
-    <id>https://rkl71.github.io/2024/07/29/Relearning-design-patterns/</id>
+    <link href="https://www.renkelin.vip/2024/07/29/Relearning-design-patterns/"/>
+    <id>https://www.renkelin.vip/2024/07/29/Relearning-design-patterns/</id>
     <published>2024-07-28T15:00:00.000Z</published>
     <updated>2024-07-29T08:14:30.234Z</updated>
     
@@ -66,17 +66,17 @@
     
     
     
-    <category term="设计模式" scheme="https://rkl71.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <category term="设计模式" scheme="https://www.renkelin.vip/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-    <category term="Design Pattern" scheme="https://rkl71.github.io/tags/Design-Pattern/"/>
+    <category term="Design Pattern" scheme="https://www.renkelin.vip/tags/Design-Pattern/"/>
     
   </entry>
   
   <entry>
     <title>Design Pattern</title>
-    <link href="https://rkl71.github.io/2024/03/24/Design-patterns/"/>
-    <id>https://rkl71.github.io/2024/03/24/Design-patterns/</id>
+    <link href="https://www.renkelin.vip/2024/03/24/Design-patterns/"/>
+    <id>https://www.renkelin.vip/2024/03/24/Design-patterns/</id>
     <published>2024-03-23T15:00:00.000Z</published>
     <updated>2024-03-27T10:01:53.347Z</updated>
     
@@ -85,17 +85,17 @@
     
     
     
-    <category term="设计模式" scheme="https://rkl71.github.io/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <category term="设计模式" scheme="https://www.renkelin.vip/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
     
-    <category term="Design Pattern" scheme="https://rkl71.github.io/tags/Design-Pattern/"/>
+    <category term="Design Pattern" scheme="https://www.renkelin.vip/tags/Design-Pattern/"/>
     
   </entry>
   
   <entry>
     <title>LeetCode</title>
-    <link href="https://rkl71.github.io/2024/02/17/LeetCode/"/>
-    <id>https://rkl71.github.io/2024/02/17/LeetCode/</id>
+    <link href="https://www.renkelin.vip/2024/02/17/LeetCode/"/>
+    <id>https://www.renkelin.vip/2024/02/17/LeetCode/</id>
     <published>2024-02-16T15:00:00.000Z</published>
     <updated>2024-02-17T11:01:19.170Z</updated>
     
@@ -104,19 +104,19 @@
     
     
     
-    <category term="算法" scheme="https://rkl71.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+    <category term="算法" scheme="https://www.renkelin.vip/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-    <category term="Algorithm" scheme="https://rkl71.github.io/tags/Algorithm/"/>
+    <category term="Algorithm" scheme="https://www.renkelin.vip/tags/Algorithm/"/>
     
-    <category term="LeetCode" scheme="https://rkl71.github.io/tags/LeetCode/"/>
+    <category term="LeetCode" scheme="https://www.renkelin.vip/tags/LeetCode/"/>
     
   </entry>
   
   <entry>
     <title>RabbitMQ</title>
-    <link href="https://rkl71.github.io/2024/02/07/RabbitMQ/"/>
-    <id>https://rkl71.github.io/2024/02/07/RabbitMQ/</id>
+    <link href="https://www.renkelin.vip/2024/02/07/RabbitMQ/"/>
+    <id>https://www.renkelin.vip/2024/02/07/RabbitMQ/</id>
     <published>2024-02-06T15:00:00.000Z</published>
     <updated>2024-02-19T12:37:26.307Z</updated>
     
@@ -125,19 +125,19 @@
     
     
     
-    <category term="消息队列" scheme="https://rkl71.github.io/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    <category term="消息队列" scheme="https://www.renkelin.vip/categories/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
     
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
     
-    <category term="RabbitMQ" scheme="https://rkl71.github.io/tags/RabbitMQ/"/>
+    <category term="RabbitMQ" scheme="https://www.renkelin.vip/tags/RabbitMQ/"/>
     
   </entry>
   
   <entry>
     <title>SpringSecurity</title>
-    <link href="https://rkl71.github.io/2024/01/30/SpringSecurity/"/>
-    <id>https://rkl71.github.io/2024/01/30/SpringSecurity/</id>
+    <link href="https://www.renkelin.vip/2024/01/30/SpringSecurity/"/>
+    <id>https://www.renkelin.vip/2024/01/30/SpringSecurity/</id>
     <published>2024-01-29T15:00:00.000Z</published>
     <updated>2024-01-30T13:42:33.874Z</updated>
     
@@ -146,19 +146,19 @@
     
     
     
-    <category term="框架" scheme="https://rkl71.github.io/categories/%E6%A1%86%E6%9E%B6/"/>
+    <category term="框架" scheme="https://www.renkelin.vip/categories/%E6%A1%86%E6%9E%B6/"/>
     
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
     
-    <category term="SpringSecurity" scheme="https://rkl71.github.io/tags/SpringSecurity/"/>
+    <category term="SpringSecurity" scheme="https://www.renkelin.vip/tags/SpringSecurity/"/>
     
   </entry>
   
   <entry>
     <title>Redis</title>
-    <link href="https://rkl71.github.io/2024/01/22/Redis/"/>
-    <id>https://rkl71.github.io/2024/01/22/Redis/</id>
+    <link href="https://www.renkelin.vip/2024/01/22/Redis/"/>
+    <id>https://www.renkelin.vip/2024/01/22/Redis/</id>
     <published>2024-01-21T15:00:00.000Z</published>
     <updated>2024-01-24T03:58:53.215Z</updated>
     
@@ -167,19 +167,19 @@
     
     
     
-    <category term="数据库" scheme="https://rkl71.github.io/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    <category term="数据库" scheme="https://www.renkelin.vip/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
     
-    <category term="Redis" scheme="https://rkl71.github.io/tags/Redis/"/>
+    <category term="Redis" scheme="https://www.renkelin.vip/tags/Redis/"/>
     
   </entry>
   
   <entry>
     <title>Newsletter</title>
-    <link href="https://rkl71.github.io/2023/11/05/Newsletter/"/>
-    <id>https://rkl71.github.io/2023/11/05/Newsletter/</id>
+    <link href="https://www.renkelin.vip/2023/11/05/Newsletter/"/>
+    <id>https://www.renkelin.vip/2023/11/05/Newsletter/</id>
     <published>2023-11-04T15:00:00.000Z</published>
     <updated>2023-11-10T04:26:35.185Z</updated>
     
@@ -188,17 +188,17 @@
     
     
     
-    <category term="知识宝库" scheme="https://rkl71.github.io/categories/%E7%9F%A5%E8%AF%86%E5%AE%9D%E5%BA%93/"/>
+    <category term="知识宝库" scheme="https://www.renkelin.vip/categories/%E7%9F%A5%E8%AF%86%E5%AE%9D%E5%BA%93/"/>
     
     
-    <category term="Q&amp;A" scheme="https://rkl71.github.io/tags/Q-A/"/>
+    <category term="Q&amp;A" scheme="https://www.renkelin.vip/tags/Q-A/"/>
     
   </entry>
   
   <entry>
     <title>Hadoop</title>
-    <link href="https://rkl71.github.io/2023/11/01/Hadoop/"/>
-    <id>https://rkl71.github.io/2023/11/01/Hadoop/</id>
+    <link href="https://www.renkelin.vip/2023/11/01/Hadoop/"/>
+    <id>https://www.renkelin.vip/2023/11/01/Hadoop/</id>
     <published>2023-10-31T15:00:00.000Z</published>
     <updated>2023-10-31T16:07:40.378Z</updated>
     
@@ -207,19 +207,19 @@
     
     
     
-    <category term="框架" scheme="https://rkl71.github.io/categories/%E6%A1%86%E6%9E%B6/"/>
+    <category term="框架" scheme="https://www.renkelin.vip/categories/%E6%A1%86%E6%9E%B6/"/>
     
     
-    <category term="Hadoop" scheme="https://rkl71.github.io/tags/Hadoop/"/>
+    <category term="Hadoop" scheme="https://www.renkelin.vip/tags/Hadoop/"/>
     
-    <category term="Big Data" scheme="https://rkl71.github.io/tags/Big-Data/"/>
+    <category term="Big Data" scheme="https://www.renkelin.vip/tags/Big-Data/"/>
     
   </entry>
   
   <entry>
     <title>Computer Network</title>
-    <link href="https://rkl71.github.io/2023/10/26/Network/"/>
-    <id>https://rkl71.github.io/2023/10/26/Network/</id>
+    <link href="https://www.renkelin.vip/2023/10/26/Network/"/>
+    <id>https://www.renkelin.vip/2023/10/26/Network/</id>
     <published>2023-10-25T15:00:00.000Z</published>
     <updated>2023-12-01T13:37:59.190Z</updated>
     
@@ -228,17 +228,17 @@
     
     
     
-    <category term="计算机网络" scheme="https://rkl71.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    <category term="计算机网络" scheme="https://www.renkelin.vip/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
     
     
-    <category term="Network" scheme="https://rkl71.github.io/tags/Network/"/>
+    <category term="Network" scheme="https://www.renkelin.vip/tags/Network/"/>
     
   </entry>
   
   <entry>
     <title>Algorithm</title>
-    <link href="https://rkl71.github.io/2023/10/20/Algorithm/"/>
-    <id>https://rkl71.github.io/2023/10/20/Algorithm/</id>
+    <link href="https://www.renkelin.vip/2023/10/20/Algorithm/"/>
+    <id>https://www.renkelin.vip/2023/10/20/Algorithm/</id>
     <published>2023-10-19T15:00:00.000Z</published>
     <updated>2024-01-30T15:11:36.454Z</updated>
     
@@ -247,17 +247,17 @@
     
     
     
-    <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
+    <category term="Java" scheme="https://www.renkelin.vip/categories/Java/"/>
     
     
-    <category term="Algorithm" scheme="https://rkl71.github.io/tags/Algorithm/"/>
+    <category term="Algorithm" scheme="https://www.renkelin.vip/tags/Algorithm/"/>
     
   </entry>
   
   <entry>
     <title>JVM</title>
-    <link href="https://rkl71.github.io/2023/10/16/JVM/"/>
-    <id>https://rkl71.github.io/2023/10/16/JVM/</id>
+    <link href="https://www.renkelin.vip/2023/10/16/JVM/"/>
+    <id>https://www.renkelin.vip/2023/10/16/JVM/</id>
     <published>2023-10-15T15:00:00.000Z</published>
     <updated>2024-01-30T13:43:18.550Z</updated>
     
@@ -266,17 +266,17 @@
     
     
     
-    <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
+    <category term="Java" scheme="https://www.renkelin.vip/categories/Java/"/>
     
     
-    <category term="JVM" scheme="https://rkl71.github.io/tags/JVM/"/>
+    <category term="JVM" scheme="https://www.renkelin.vip/tags/JVM/"/>
     
   </entry>
   
   <entry>
     <title>Docker</title>
-    <link href="https://rkl71.github.io/2023/10/07/Docker/"/>
-    <id>https://rkl71.github.io/2023/10/07/Docker/</id>
+    <link href="https://www.renkelin.vip/2023/10/07/Docker/"/>
+    <id>https://www.renkelin.vip/2023/10/07/Docker/</id>
     <published>2023-10-06T15:00:00.000Z</published>
     <updated>2023-10-07T08:14:18.882Z</updated>
     
@@ -285,19 +285,19 @@
     
     
     
-    <category term="微服务" scheme="https://rkl71.github.io/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    <category term="微服务" scheme="https://www.renkelin.vip/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
     
-    <category term="Docker" scheme="https://rkl71.github.io/tags/Docker/"/>
+    <category term="Docker" scheme="https://www.renkelin.vip/tags/Docker/"/>
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
     
   </entry>
   
   <entry>
     <title>SpringCloud</title>
-    <link href="https://rkl71.github.io/2023/07/10/SpringCloud/"/>
-    <id>https://rkl71.github.io/2023/07/10/SpringCloud/</id>
+    <link href="https://www.renkelin.vip/2023/07/10/SpringCloud/"/>
+    <id>https://www.renkelin.vip/2023/07/10/SpringCloud/</id>
     <published>2023-07-09T15:00:00.000Z</published>
     <updated>2023-10-16T14:01:51.467Z</updated>
     
@@ -306,19 +306,19 @@
     
     
     
-    <category term="微服务" scheme="https://rkl71.github.io/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
+    <category term="微服务" scheme="https://www.renkelin.vip/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
     
-    <category term="SpringCloud" scheme="https://rkl71.github.io/tags/SpringCloud/"/>
+    <category term="SpringCloud" scheme="https://www.renkelin.vip/tags/SpringCloud/"/>
     
   </entry>
   
   <entry>
     <title>Spring6</title>
-    <link href="https://rkl71.github.io/2023/06/11/Spring/"/>
-    <id>https://rkl71.github.io/2023/06/11/Spring/</id>
+    <link href="https://www.renkelin.vip/2023/06/11/Spring/"/>
+    <id>https://www.renkelin.vip/2023/06/11/Spring/</id>
     <published>2023-06-10T15:00:00.000Z</published>
     <updated>2023-09-30T11:59:50.714Z</updated>
     
@@ -327,19 +327,19 @@
     
     
     
-    <category term="框架" scheme="https://rkl71.github.io/categories/%E6%A1%86%E6%9E%B6/"/>
+    <category term="框架" scheme="https://www.renkelin.vip/categories/%E6%A1%86%E6%9E%B6/"/>
     
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
     
-    <category term="Spring" scheme="https://rkl71.github.io/tags/Spring/"/>
+    <category term="Spring" scheme="https://www.renkelin.vip/tags/Spring/"/>
     
   </entry>
   
   <entry>
     <title>JavaWeb</title>
-    <link href="https://rkl71.github.io/2023/04/29/JavaWeb/"/>
-    <id>https://rkl71.github.io/2023/04/29/JavaWeb/</id>
+    <link href="https://www.renkelin.vip/2023/04/29/JavaWeb/"/>
+    <id>https://www.renkelin.vip/2023/04/29/JavaWeb/</id>
     <published>2023-04-28T15:00:00.000Z</published>
     <updated>2023-09-30T11:59:50.706Z</updated>
     
@@ -348,12 +348,12 @@
     
     
     
-    <category term="Java" scheme="https://rkl71.github.io/categories/Java/"/>
+    <category term="Java" scheme="https://www.renkelin.vip/categories/Java/"/>
     
     
-    <category term="Backend" scheme="https://rkl71.github.io/tags/Backend/"/>
+    <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
     
-    <category term="JavaWeb" scheme="https://rkl71.github.io/tags/JavaWeb/"/>
+    <category term="JavaWeb" scheme="https://www.renkelin.vip/tags/JavaWeb/"/>
     
   </entry>
   
