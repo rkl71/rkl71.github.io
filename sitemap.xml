@@ -180,14 +180,7 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/tags/Docker/</loc>
-    <lastmod>2024-10-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.renkelin.vip/tags/Backend/</loc>
+    <loc>https://www.renkelin.vip/tags/Design-Pattern/</loc>
     <lastmod>2024-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -208,13 +201,6 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/tags/Design-Pattern/</loc>
-    <lastmod>2024-10-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.renkelin.vip/tags/JVM/</loc>
     <lastmod>2024-10-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -222,7 +208,14 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/tags/Machine-Learning/</loc>
+    <loc>https://www.renkelin.vip/tags/Docker/</loc>
+    <lastmod>2024-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.renkelin.vip/tags/Backend/</loc>
     <lastmod>2024-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -243,7 +236,7 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/tags/Recommender-System/</loc>
+    <loc>https://www.renkelin.vip/tags/Machine-Learning/</loc>
     <lastmod>2024-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -264,6 +257,13 @@
   </url>
   
   <url>
+    <loc>https://www.renkelin.vip/tags/Recommender-System/</loc>
+    <lastmod>2024-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.renkelin.vip/tags/Redis/</loc>
     <lastmod>2024-10-27</lastmod>
     <changefreq>weekly</changefreq>
@@ -272,13 +272,6 @@
   
   <url>
     <loc>https://www.renkelin.vip/tags/Network/</loc>
-    <lastmod>2024-10-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.renkelin.vip/tags/Spring/</loc>
     <lastmod>2024-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -298,24 +291,17 @@
     <priority>0.2</priority>
   </url>
   
+  <url>
+    <loc>https://www.renkelin.vip/tags/Spring/</loc>
+    <lastmod>2024-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
 
   
   <url>
     <loc>https://www.renkelin.vip/categories/Java/</loc>
-    <lastmod>2024-10-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.renkelin.vip/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
-    <lastmod>2024-10-27</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.renkelin.vip/categories/%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2024-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -329,7 +315,14 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
+    <loc>https://www.renkelin.vip/categories/%E6%A1%86%E6%9E%B6/</loc>
+    <lastmod>2024-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.renkelin.vip/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/</loc>
     <lastmod>2024-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -337,6 +330,13 @@
   
   <url>
     <loc>https://www.renkelin.vip/categories/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2024-10-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.renkelin.vip/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/</loc>
     <lastmod>2024-10-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
