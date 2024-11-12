@@ -1,0 +1,2372 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta name="google-site-verification" content="7TXW9ttER52MwKw3U6lTa3NKEZw2koxmAO7iJcMTT8c" />
+  <meta name="baidu-site-verification" content="codeva-1kmvb8u2lB" />
+  <meta charset="UTF-8">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202309302055622.jpg">
+  <link rel="icon" href="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202309302055622.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kolin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="小红书推荐系统公开课学习笔记 - 王树森">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Real Recommender System For Industry">
+<meta property="og:url" content="https://www.renkelin.vip/2024/11/12/RS2/index.html">
+<meta property="og:site_name" content="Kolin&#39;s space">
+<meta property="og:description" content="小红书推荐系统公开课学习笔记 - 王树森">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072227329.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072229398.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072229498.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072230294.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072232713.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122027708.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072235517.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072236840.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072237757.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072238206.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072240314.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072238312.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072239533.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122031302.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122033924.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122032318.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122034481.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122036470.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122038324.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122039864.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122041874.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122037490.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122042959.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122043154.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122044135.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122044004.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122046689.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122046178.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122047234.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122049114.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122049645.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122051477.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122051654.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122052557.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122053190.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122054850.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122056131.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122055591.png">
+<meta property="article:published_time" content="2024-11-11T15:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-12T14:22:51.220Z">
+<meta property="article:author" content="Kolin">
+<meta property="article:tag" content="Recommender System">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072227329.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Real Recommender System For Industry - Kolin&#39;s space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.renkelin.vip","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Kolin's space" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Kolin&#39;s space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202410271527438.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Real Recommender System For Industry"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-12 00:00" pubdate>
+          November 12, 2024 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          24k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          201 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Real Recommender System For Industry</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a>推荐系统</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h4 id="转化流程"><a href="#转化流程" class="headerlink" title="转化流程"></a>转化流程</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072227329.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="消费指标"><a href="#消费指标" class="headerlink" title="消费指标"></a>消费指标</h4><ul>
+<li>点击率 &#x3D; 点击次数 &#x2F; 曝光次数</li>
+<li>点赞率 &#x3D; 点赞次数 &#x2F; 点击次数</li>
+<li>收藏率 &#x3D; 收藏次数 &#x2F; 点击次数</li>
+<li>转发率 &#x3D; 转发次数 &#x2F; 点击次数</li>
+<li>阅读完成率 &#x3D; 滑动到底次数 &#x2F; 点击次数 X <code>f</code>（笔记长度）</li>
+</ul>
+<h4 id="北极星指标"><a href="#北极星指标" class="headerlink" title="北极星指标"></a>北极星指标</h4><ul>
+<li>用户规模：<ul>
+<li>日活用户数（DAU）、月活用户数（MAU）。</li>
+</ul>
+</li>
+<li>消费：<ul>
+<li>人均使用推荐的时长、人均阅读笔记的数量。</li>
+</ul>
+</li>
+<li>发布：<ul>
+<li>发布渗透率、人均发布量。</li>
+</ul>
+</li>
+</ul>
+<h4 id="实验流程"><a href="#实验流程" class="headerlink" title="实验流程"></a>实验流程</h4><ul>
+<li>离线实验：收集历史数据，在历史数据上做训练、测试。算法没有部署到产品中，没有跟用户交互。</li>
+<li>小流量 AB 测试：把算法部署到实际产品中，用户实际跟算法做交互。</li>
+<li>全流量上线</li>
+</ul>
+<h3 id="推荐系统的链路"><a href="#推荐系统的链路" class="headerlink" title="推荐系统的链路"></a>推荐系统的链路</h3><ul>
+<li>召回：从物品的数据库中快速取回一些物品，比如小红书有上亿篇笔记，当用户刷新小红书的时候，系统会同时调用几十条召回通道，每条召回通道取回几十到几百篇笔记，一共取回几千篇笔记。做完召回之后，接下来要从几千篇笔记中选出用户最感兴趣的。</li>
+<li>粗排：用规模比较小的机器学习模型，给几千篇笔记逐一打分，按照分数做排序和截断，保留分数最高的几百篇笔记。</li>
+<li>精排：用大规模的深度神经网络给几百篇笔记逐一打分，精排的分数反映出用户对笔记的兴趣，在精排之后可以做截断，也可以不做截断。</li>
+<li>重排：根据精排分数和多样性分数做随机抽样，得到几十篇笔记，然后把相似内容打散，并且插入广告和运营内容。</li>
+</ul>
+<p><strong>召回通道</strong>：推荐系统有很多条召回通道，常见的包括协同过滤、双塔模型、关注的作者等。小红书的推荐系统有几十条召回通道，每条召回通道取回几十到几百篇笔记，这些召回通道一共会返回几千篇笔记。然后推荐系统会融合这些笔记，并写作去重和过滤，过滤的意思是排除掉用户不喜欢的作者、不喜欢的笔记、不喜欢的话题。</p>
+<p><strong>排序</strong>：用机器学习模型预估用户对笔记的兴趣，保留分数最高的笔记。如果直接用一个大规模的神经网络，逐一对几千篇笔记打分，花费的代价会很大。为了解决计算量的问题，通常把排序分为粗排和精排两步骤。粗排用比较简单的模型快速给几千篇笔记打分，保留分数最高的几百篇笔记。精排用一个较大的神经网络给几百篇笔记打分，不用做截断。精排模型比粗排模型大很多，用的特征也更多，所以精排模型打的分数更可靠。但是精排的计算量很大，先用粗排做筛选，然后才用精排，可以比较好的平衡计算量和准确性。做完粗排和精排得到几百篇笔记，每篇笔记有一个分数，表示用户对笔记的兴趣有多高，可以直接把笔记按照模型打的分数做排序，然后展示给用户。但此时的结果还存在一些不足，需要做一些调整，这一步叫做重排。重排主要是考虑多样性，要根据多样性做随机抽样，从几百篇笔记中选出几十篇，然后还要用规则把内容相似的笔记打散。稍后我会解释重排。重排的结果就是最终展示给用户的物品，比如把前 80 的物品展示给用户，其中包括笔记和广告。</p>
+<p><strong>粗排和精排模型</strong>：粗排和精排非常相似，唯一的区别就是精排模型更大，用的特征更多。模型的输入包括用户特征、候选物品的特征，还有统计特征。假如想要判断小王同学是否对某篇笔记感兴趣，就要把笔记的特征、小王的特征还有很多统计特征输入神经网络。神经网络会输出很多数值，比如点击率、点赞率、收藏率、转发率，这些数值都是神经网络对用户行为的预估，这些数值越大，说明用户对笔记越感兴趣。最后把多个预估值做融合，得到最终的分数，比如求加权和这个分数决定了笔记会不会被展示给用户，以及笔记展示的位置是靠前还是靠后。</p>
+<p><strong>重排</strong>：最重要的功能是多样性抽样，需要从几百篇笔记中选出几十篇笔记，常见的方法有 MMR 和DPP。抽样的时候有两个依据，一个依据是精排分数的大小，另一个依据是多样性。做完抽样之后会用规则打散相似内容，不能把内容过于相似的笔记排在相邻的位置上。举个例子，根据精排得到的分数，排前五的笔记全都是 NBA 的内容。即使用户是个篮球迷，他也未必希望看到同质化的内容。如果排第一的是 NBA 的笔记，那么接下来几个位置就不能放 NBA 的内容。相似的笔记会往后挪。重排的另一个目的是插入广告和运营推广的内容，还要根据生态的要求调整排序。</p>
+<h3 id="AB-测试"><a href="#AB-测试" class="headerlink" title="AB 测试"></a>AB 测试</h3><ul>
+<li>召回团队实现了一种 GNN 召回通道，离线实验结果正向。</li>
+<li>下一步是做线上的小流量的 A&#x2F;B 测试，考察新的召回通道对线上指标的影响。</li>
+<li>模型中有一些参数，比如 GNN 的深度取值 ∈{1，2，3}，需要用 A&#x2F;B 测试选取最优参数</li>
+</ul>
+<h4 id="随机分桶"><a href="#随机分桶" class="headerlink" title="随机分桶"></a>随机分桶</h4><ul>
+<li>分 b &#x3D; 10 个桶，每个桶中有 10% 的用户</li>
+<li>首先用哈希函数把用户 ID 映射成某个区间内的整数，然后把这些整数均匀随机分成 b 个桶。</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072229398.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072229498.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>计算每个桶的业务指标，比如 DAU、人均使用推荐的时长、点击率等。</li>
+<li>如果某个实验组指标显著优于对照组，则说明对应的策略有效，值得推全。推全的意思是把流量扩大到 100%，给所有用户都使用两层 GNN 召回通道。</li>
+</ul>
+<h4 id="分层实验"><a href="#分层实验" class="headerlink" title="分层实验"></a>分层实验</h4><ul>
+<li><strong>分层实验</strong>：召回、粗排、精排、重排、用户页面、广告，例如 GNN 召回通道属于召回层。</li>
+<li><strong>同层互斥</strong>：GNN 实验占了召回层的 4 个桶，其他召回实验只能用剩余的 6 个桶。</li>
+<li><strong>不同层正交</strong>：每一层独立随机对用户做分桶。每一层都可以独立用 100% 的用户做实验。</li>
+</ul>
+<h4 id="互斥-VS-正交"><a href="#互斥-VS-正交" class="headerlink" title="互斥 VS 正交"></a>互斥 VS 正交</h4><ul>
+<li>如果所有实验都正交，则可以同时做无数次实验。</li>
+<li>同类的策略（例如精排模型的两种结构）天然互斥，对于一个用户，只能用其中一种。</li>
+<li>同类的策略（例如添加两条召回通道）效果会相互增强（1 + 1 &gt; 2）或相互抵消（1 + 1 &lt; 2）。互斥可以避免同类策略相互干扰。</li>
+<li>不同类型的策略（例如添加召回通道、优化粗排模型）通常不会相互干扰（1 + 1 &#x3D; 2），可以作为正交的两层。</li>
+</ul>
+<h4 id="Holdout-机制"><a href="#Holdout-机制" class="headerlink" title="Holdout 机制"></a>Holdout 机制</h4><ul>
+<li>每个实验（召回、粗排、精排、重排）独立汇报对业务指标的提升。</li>
+<li>公司考察一个部门（比如推荐系统）在一段时间内对业务指标总体的提升。</li>
+<li>取 10% 的用户作为 holdout 桶，推荐系统使用剩余 90% 的用户做实验，两者互斥。</li>
+<li>10% holdout 桶 VS 90% 实验桶的 diff（需要归一化）为整个部门的业务指标收益。</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072230294.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>每个考核周期结束之后，清除 holdout 桶，让推全实验从 90% 用户扩大到 100% 用户。</li>
+<li>重新随机划分用户，得到 holdout 桶和实验桶，开始下一轮考核周期。</li>
+<li>新的 holdout 桶与实验桶各种业务指标的 diff 接近 0。</li>
+<li>随着召回、粗排、精排、重排实验上线和推全，diff 会逐渐扩大。</li>
+</ul>
+<h4 id="反转实验"><a href="#反转实验" class="headerlink" title="反转实验"></a>反转实验</h4><ul>
+<li>有的指标（点击、交互）立刻受到新策略影响，有的指标（留存）有滞后性，需要长期观测。</li>
+<li>实验观测到显著收益后尽快推全新策略。目的是腾出桶供其他实验使用，或需要基于新策略做后续的开发。</li>
+<li>用反转实验解决上述矛盾，既可以尽快推全，也可以长期观测实验指标。</li>
+<li>在推全的新层中开一个旧策略的桶，长期观测实验指标。</li>
+</ul>
+<h2 id="召回"><a href="#召回" class="headerlink" title="召回"></a>召回</h2><h3 id="基于物品的协同过滤"><a href="#基于物品的协同过滤" class="headerlink" title="基于物品的协同过滤"></a>基于物品的协同过滤</h3><h4 id="物品相似度"><a href="#物品相似度" class="headerlink" title="物品相似度"></a>物品相似度</h4><ul>
+<li>两个物品的受众重合度越高，两个物品越相似。</li>
+<li>例如：<ul>
+<li>喜欢《射雕英雄传》和《神雕侠侣》的读者重合度很高。</li>
+<li>可以认为《射雕英雄传》和《神雕侠侣》相似。</li>
+</ul>
+</li>
+</ul>
+<h4 id="计算物品的相似度"><a href="#计算物品的相似度" class="headerlink" title="计算物品的相似度"></a>计算物品的相似度</h4><ul>
+<li>喜欢物品 i1 的用户记作集合 W1。</li>
+<li>喜欢物品 i2 的用户记作集合 W2。</li>
+<li>定义交集 V &#x3D; W1 ∩ W2。</li>
+<li>两个物品的相似度：</li>
+</ul>
+<p>$$<br>sim(i_1, i_2) &#x3D; \frac{|V|}{\sqrt{|W_1| \cdot{|W_2|}}}<br>$$</p>
+<ul>
+<li>考虑喜欢的程度 like(user, item)：</li>
+</ul>
+<p>$$<br>sim(i_1, i_2) &#x3D; \frac{\sum_{s \in V} \text{like}(v,i_1) \cdot \text{like}(v,i_2)}{\sqrt{\sum_{u_1 \in W_1} \text{like}^2(u_1,i_1)} \cdot \sqrt{\sum_{u_2 \in W_2} \text{like}^2(u_2, i_2)}}<br>$$</p>
+<h4 id="ItemCF"><a href="#ItemCF" class="headerlink" title="ItemCF"></a>ItemCF</h4><ul>
+<li><p>基本思想：</p>
+<ul>
+<li>如果用户喜欢物品 item1，而且物品 item1 与 item2 相似，那么用户很可能喜欢物品 item2</li>
+</ul>
+</li>
+<li><p>预估用户对候选物品的兴趣：<br>$$<br>\sum_{j} \text{like}(\text{user}, \text{item}_j) \times \text{sim}(\text{item}_j, \text{item})<br>$$</p>
+</li>
+<li><p>计算两个物品的相似度：</p>
+<ul>
+<li>把每个物品表示为一个稀疏向量，向量每个元素对应一个用户。</li>
+<li>相似度 sim 就是两个向量夹角的余弦。</li>
+</ul>
+</li>
+</ul>
+<h4 id="事先离线计算"><a href="#事先离线计算" class="headerlink" title="事先离线计算"></a>事先离线计算</h4><p>建立“用户 -&gt; 物品” 的索引</p>
+<ul>
+<li>记录每个用户最近点击、交互过的物品 ID。</li>
+<li>给定任意用户 ID，可以找到近期感兴趣的物品列表。</li>
+</ul>
+<p>建立 “物品 -&gt; 物品” 的索引</p>
+<ul>
+<li>计算物品之间两两相似度。</li>
+<li>对于每个物品，索引它最相似的 k 个物品。</li>
+<li>给定任意物品 ID，可以快速找到它最相似的 k 个物品。</li>
+</ul>
+<h4 id="线上做召回"><a href="#线上做召回" class="headerlink" title="线上做召回"></a>线上做召回</h4><ul>
+<li>给定用户 ID，通过 “用户 -&gt; 物品” 索引，找到用户近期感兴趣的物品列表（last-n）。</li>
+<li>对于 last-n 列表中每个物品，通过 “物品 -&gt; 物品” 的索引，找到 top-k 相似物品。</li>
+<li>对于取回的相似物品（最多有 nk 个），用公式预估用户对物品的兴趣分数。</li>
+<li>返回分数最高的 100 个物品，作为推荐结果。</li>
+</ul>
+<p>索引的意义在于避免枚举所有的物品。</p>
+<p>用索引，离线计算量大，线上计算量小。</p>
+<h3 id="Swing-模型"><a href="#Swing-模型" class="headerlink" title="Swing 模型"></a>Swing 模型</h3><ul>
+<li><p>用户 u1 喜欢的物品记作集合 J1。</p>
+</li>
+<li><p>用户 u2 喜欢的物品记作集合 J2。</p>
+</li>
+<li><p>定义两个用户的重合度：<br>$$<br>\text{overlap}(u_1,u_2) &#x3D; |J_1 \cap J_2|<br>$$</p>
+</li>
+<li><p>用户 u1 和 u2 的重合度高，则他们可能来自一个小圈子，要降低他们的权重。</p>
+</li>
+<li><p>两个物品相似度：<br>$$<br>sim(i_1,i_2) &#x3D; \sum_{u_1 \in V} \sum_{u_2 \in V} \frac{1}{\alpha + \text{overlap}(u_1,u_2)}<br>$$</p>
+</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>Swing 和 ItemCF 唯一的区别在于物品相似度。</li>
+<li>ItemCF：两个物品重合的用户比例高，则判定两个物品相似。</li>
+<li>Swing：额外考虑重合的用户是否来自一个小圈子。<ul>
+<li>同时喜欢两个物品的用户记作集合 V。</li>
+<li>对于 V 中的用户 u1 和 u2，重合度记作 overlap(u1,u2)。</li>
+<li>两个用户重合度大，则可能来自一个小圈子，权重降低。</li>
+</ul>
+</li>
+</ul>
+<h3 id="基于用户的协同过滤"><a href="#基于用户的协同过滤" class="headerlink" title="基于用户的协同过滤"></a>基于用户的协同过滤</h3><h4 id="计算用户相似度"><a href="#计算用户相似度" class="headerlink" title="计算用户相似度"></a>计算用户相似度</h4><ul>
+<li>用户 u1 喜欢的物品记作集合 J1。</li>
+<li>用户 u2 喜欢的物品记作集合 J2。</li>
+<li>定义交集 I &#x3D; J1 ∩ J2。</li>
+<li>两个用户的相似度：</li>
+</ul>
+<p>$$<br>sim(u_1, u_2) &#x3D; \frac{|I|}{\sqrt{|J_1| \cdot{|J_2|}}}<br>$$</p>
+<ul>
+<li><p>降低热门物品权重：<br>$$<br>sim(u_1, u_2) &#x3D; \frac{\sum_{l \in I} \frac{1}{\text log (1 + n_l)}}{\sqrt{|J_1| \cdot{|J_2|}}}<br>$$</p>
+</li>
+<li><p>n_l：喜欢物品 l 的用户数量，反应物品的热门程度。</p>
+</li>
+</ul>
+<h4 id="UserCF"><a href="#UserCF" class="headerlink" title="UserCF"></a>UserCF</h4><ul>
+<li><p>基本思想：</p>
+<ul>
+<li>如果用户 user1 跟用户 user2 相似，而且 user2 喜欢某物品，那么用户 user1 也可能喜欢该物品。</li>
+</ul>
+</li>
+<li><p>预估用户 user 对候选物品 item 的兴趣：<br>$$<br>\sum_{j} \text{sim}(\text{user}, \text{item}_j) \times \text{like}(\text{item}_j, \text{item})<br>$$</p>
+</li>
+<li><p>计算两个用户的相似度：</p>
+<ul>
+<li>把每个用户表示为一个稀疏向量，向量每个元素对应一个物品。</li>
+</ul>
+</li>
+</ul>
+<h4 id="事先离线计算-1"><a href="#事先离线计算-1" class="headerlink" title="事先离线计算"></a>事先离线计算</h4><p>建立“用户 -&gt; 物品” 的索引</p>
+<ul>
+<li>记录每个用户最近点击、交互过的物品 ID。</li>
+<li>给定任意用户 ID，可以找到近期感兴趣的物品列表。</li>
+</ul>
+<p>建立 “用户 -&gt; 用户” 的索引</p>
+<ul>
+<li>对于每个用户，索引他最相似的 k 个用户。</li>
+<li>给定任意物品 ID，可以快速找到他最相似的 k 个用户。</li>
+</ul>
+<h4 id="线上做召回-1"><a href="#线上做召回-1" class="headerlink" title="线上做召回"></a>线上做召回</h4><ul>
+<li>给定用户 ID，通过 “用户 -&gt; 用户” 索引，找到 top-k 相似用户。</li>
+<li>对于每个 top-k 相似用户，通过 “用户-&gt; 物品” 的索引，找到用户近期感兴趣的物品列表（last-n）。</li>
+<li>对于召回的 nk 个相似物品，用公式预估用户对每个物品的兴趣分数。</li>
+<li>返回分数最高的 100 个物品，作为召回结果。</li>
+</ul>
+<h3 id="离散特征处理"><a href="#离散特征处理" class="headerlink" title="离散特征处理"></a>离散特征处理</h3><h4 id="离散特征"><a href="#离散特征" class="headerlink" title="离散特征"></a>离散特征</h4><ul>
+<li><strong>性别</strong>：男、女两种类别。</li>
+<li><strong>国籍</strong>：中国、美国、印度等 200 个国家。</li>
+<li><strong>英文单词</strong>：常见的英文单词有几万个。</li>
+<li><strong>物品 ID</strong>：小红书有几亿篇笔记，每篇笔记有一个 ID。</li>
+<li><strong>用户 ID</strong>：小红书有几亿个用户，每个用户有一个 ID。</li>
+</ul>
+<ol>
+<li><strong>建立字典</strong>：把类别映射成序号。<ul>
+<li>中国 -&gt; 1</li>
+<li>美国 -&gt; 2</li>
+<li>印度 -&gt; 3</li>
+</ul>
+</li>
+<li><strong>向量化</strong>：把序号映射成向量。<ul>
+<li><strong>One-hot 编码</strong>：把序号映射成高维稀疏向量。</li>
+<li><strong>Embedding</strong>：把序号映射成低维度稠密向量。</li>
+</ul>
+</li>
+</ol>
+<h4 id="One-hot-编码的局限"><a href="#One-hot-编码的局限" class="headerlink" title="One-hot 编码的局限"></a>One-hot 编码的局限</h4><ul>
+<li>自然语言处理中，对单词做编码。<ul>
+<li>英文有几万个常见单词。</li>
+<li>那么 one-hot 向量的维度是几万。</li>
+</ul>
+</li>
+<li>推荐系统中，对物品 ID 做编码。<ul>
+<li>小红书有几亿篇笔记。</li>
+<li>那么 one-hot 向量的维度是几亿。</li>
+</ul>
+</li>
+</ul>
+<h4 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h4><ul>
+<li><strong>参数数量</strong>：向量维度 X 类别数量。<ul>
+<li>设 embedding 得到的向量都是 4维的。</li>
+<li>一共有 200 个国籍。</li>
+<li>参数数量 &#x3D; 4 X 200 &#x3D; 800</li>
+</ul>
+</li>
+<li><strong>编程实现</strong>：TensorFlow、PyTorch 提供 embedding 层。<ul>
+<li>参数以矩阵的形式保存，矩阵大小是 <strong>向量维度 X 类别数量</strong>。</li>
+<li>输入是序号，比如 “美国” 的序号是 2。</li>
+<li>输出是向量，比如 “美国” 对应参数矩阵的第 2 列。</li>
+</ul>
+</li>
+</ul>
+<h4 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>离散特征处理：one-hot 编码、embedding。</li>
+<li>类别数量很大时，用 embedding。<ul>
+<li>Word embedding。</li>
+<li>用户 ID embedding。</li>
+<li>物品 ID embedding。</li>
+</ul>
+</li>
+</ul>
+<h3 id="矩阵补充"><a href="#矩阵补充" class="headerlink" title="矩阵补充"></a>矩阵补充</h3><h4 id="基本想法"><a href="#基本想法" class="headerlink" title="基本想法"></a>基本想法</h4><ul>
+<li>用户 embedding 参数矩阵记作 A。第 u 号 用户对应矩阵第 u 列，记作向量 a_u。</li>
+<li>物品 embedding 参数矩阵记作 B。第 i 号物品对应矩阵第 i 列，记作向量 b_i。</li>
+<li>内积 &lt;a_u, b_i&gt; 是第 u 号用户对第 i 号物品兴趣的预估值。</li>
+<li>训练模型的目的是学习矩阵 A 和 B，使得预估值拟合真实观测的兴趣分数。</li>
+</ul>
+<h4 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h4><ul>
+<li>数据集：（用户ID，物品ID，兴趣分数）的集合，记作 Ω &#x3D; {(u，i，y)}。</li>
+<li>数据集中的兴趣分数是系统记录的，比如：<ul>
+<li>曝光但是没有点击 -&gt; 0 分。</li>
+<li>点击、点赞、收藏、转发 -&gt; 各算 1 分。</li>
+<li>分数最低是 0，最高是 4。</li>
+</ul>
+</li>
+</ul>
+<h4 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h4><ul>
+<li><p>把用户ID、物品ID 映射成向量。</p>
+<ul>
+<li>第 u 号用户 -&gt; 向量 a_u。</li>
+<li>第 i 号物品 -&gt; 向量 b_i。</li>
+</ul>
+</li>
+<li><p>求解优化问题，得到参数 A 和 B。<br>$$<br>\underset{A,B}{\text{min}} \sum_{(u,i,y) \in \Omega}(y - &lt;a_u, b_i&gt;)^2<br>$$</p>
+</li>
+</ul>
+<h4 id="模型存储"><a href="#模型存储" class="headerlink" title="模型存储"></a>模型存储</h4><ol>
+<li>训练得到矩阵 A 和 B。<ul>
+<li>A 的每一列对应一个用户。</li>
+<li>B 的每一列对应一个物品。</li>
+</ul>
+</li>
+<li>把矩阵 A 的列存储到 key-value 表。<ul>
+<li>key 是用户 ID，value 是 A 的一列。</li>
+<li>给定用户 ID，返回一个向量（用户的 embedding）。</li>
+</ul>
+</li>
+<li>矩阵 B 的存储和索引比较复杂。</li>
+</ol>
+<h4 id="线上召回"><a href="#线上召回" class="headerlink" title="线上召回"></a>线上召回</h4><ul>
+<li>把用户向量 a 作为 query，查找使得 &lt;a， b_i&gt; 最大化的物品 i。</li>
+<li>暴力枚举速度太慢。实践中用近似最近邻查找。</li>
+<li>Milvus、Faiss、HnswLib 等向量数据库支持近似最近邻查找。</li>
+</ul>
+<h4 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>把物品ID、用户ID 做 embedding，映射成向量。</li>
+<li>两个向量的内积 &lt;a_u，b_i&gt; 作为用户 u 对物品 i 兴趣的预估。</li>
+<li>让 &lt;a_u，b_i&gt; 拟合真实观测的兴趣分数，学习模型的 embedding 层参数。</li>
+<li>矩阵补充模型有很多缺点，效果不好。</li>
+</ul>
+<h3 id="双塔模型-模型结构、训练方法"><a href="#双塔模型-模型结构、训练方法" class="headerlink" title="双塔模型 - 模型结构、训练方法"></a>双塔模型 - 模型结构、训练方法</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072232713.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="训练-1"><a href="#训练-1" class="headerlink" title="训练"></a>训练</h4><ul>
+<li>Pointwise：独立看待每个正样本、负样本，做简单的二元分类。</li>
+<li>Pairwise：每次取一个正样本、一个负样本 [1]。</li>
+<li>Listwise：每次取一个正样本、多个负样本 [2]。</li>
+</ul>
+<h4 id="正负样本的选择"><a href="#正负样本的选择" class="headerlink" title="正负样本的选择"></a>正负样本的选择</h4><ul>
+<li>正样本：用户点击的物品。</li>
+<li>负样本 [1, 2]：<ul>
+<li>没有被召回的？</li>
+<li>召回但是被粗排、精排淘汰的？</li>
+<li>曝光但是未点击的？</li>
+</ul>
+</li>
+</ul>
+<h4 id="Pointwise-训练"><a href="#Pointwise-训练" class="headerlink" title="Pointwise  训练"></a>Pointwise  训练</h4><ul>
+<li>把召回看作二元分类任务。</li>
+<li>对于正样本，鼓励 cos(a, b) 接近 + 1。</li>
+<li>对于负样本，鼓励 cos(a, b) 接近 - 1。</li>
+<li>控制正负样本数量为 1：2 或者 1：3。</li>
+</ul>
+<h4 id="Pairwise-训练"><a href="#Pairwise-训练" class="headerlink" title="Pairwise 训练"></a>Pairwise 训练</h4><ul>
+<li><p>如果 cos(a, b+) 大于 co(a, b-) + m，则没有损失。</p>
+</li>
+<li><p>否则，损失等于 cos(a, b-) + m - cos(a, b+)。</p>
+</li>
+<li><p>Triplet hinge loss:<br>$$<br>L(a, b^+, b^-) &#x3D; \text{max} \lbrace 0, \cos(a, b^-) + m - \cos(a, b^+) \rbrace<br>$$</p>
+</li>
+<li><p>Triplet logistic loss:<br>$$<br>L(a, b^+, b^-) &#x3D; \log(1 + \exp[\sigma \cdot(\cos(a, b^-)- \cos(a, b^+))])<br>$$</p>
+</li>
+</ul>
+<h4 id="Listwise-训练"><a href="#Listwise-训练" class="headerlink" title="Listwise 训练"></a>Listwise 训练</h4><ul>
+<li>一条数据包含：<ul>
+<li>一个用户，特征向量记作 a。</li>
+<li>一个正样本，特征向量记作 b+。</li>
+<li>多个负样本，特征向量记作 b1-, …, bn-。</li>
+</ul>
+</li>
+<li>鼓励 cos(a, b+) 尽量大。</li>
+<li>鼓励 cos(a, b1+), …, cos(a, bn+) 尽量小。</li>
+</ul>
+<h4 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>用户塔、物品塔各输出一个向量。</li>
+<li>两个向量的余弦相似度作为兴趣的预估值。</li>
+<li>三种训练方式：<ul>
+<li>Pointwise：每次用一个用户、一个物品（可正可负）。</li>
+<li>Pairwise：每次用一个用户、一个正样本、一个负样本。</li>
+<li>Listwise：每次用一个用户、一个正样本、多个负样本。</li>
+</ul>
+</li>
+</ul>
+<h3 id="双塔模型-正负样本"><a href="#双塔模型-正负样本" class="headerlink" title="双塔模型 - 正负样本"></a>双塔模型 - 正负样本</h3><h4 id="正样本"><a href="#正样本" class="headerlink" title="正样本"></a>正样本</h4><ul>
+<li>正样本：曝光而且有点击率的<strong>用户-物品</strong>二元组（用户对物品感兴趣）。</li>
+<li>问题：少部分物品占据大部分点击，导致正样本大多是热门物品。</li>
+<li>解决方案：过采样冷门物品，或降采样热门物品。<ul>
+<li>过采样（up-sampling）：一个样本出现多次。</li>
+<li>降采样（down-sampling）：一些样本被抛弃。</li>
+</ul>
+</li>
+</ul>
+<h4 id="简单负样本：全体物品"><a href="#简单负样本：全体物品" class="headerlink" title="简单负样本：全体物品"></a>简单负样本：全体物品</h4><p>均匀抽样：对冷门物品不公平</p>
+<ul>
+<li>正样本大多是热门物品、</li>
+<li>如果均匀抽样产生负样本，负样本大多是冷门物品。</li>
+</ul>
+<p>非均抽采样：目的是打压热门物品</p>
+<ul>
+<li>负样本抽样概率与热门程度（点击次数）正相关。</li>
+<li><strong>抽样概率</strong> ∝<strong>（点击次数）^ 0.75</strong></li>
+</ul>
+<h4 id="简单负样本：Batch内负样本"><a href="#简单负样本：Batch内负样本" class="headerlink" title="简单负样本：Batch内负样本"></a>简单负样本：Batch内负样本</h4><ul>
+<li><p>一个物品出现在 batch 内的概率 <strong>∝（点击次数）</strong>。</p>
+</li>
+<li><p>物品成为负样本的概率本该是 <strong>∝（点击次数）^ 0.75</strong>，但在这里是 <strong>∝（点击次数）。</strong></p>
+</li>
+<li><p>热门物品成为负样本的概率过大。</p>
+</li>
+</ul>
+<h4 id="困难负样本"><a href="#困难负样本" class="headerlink" title="困难负样本"></a>困难负样本</h4><ul>
+<li>困难负样本：<ul>
+<li>被粗排淘汰的物品（比较困难）。</li>
+<li>精排分数靠后的物品（非常困难）。</li>
+</ul>
+</li>
+<li>对正负样本做二元分类：<ul>
+<li>全体物品（简单）分类准确率高。</li>
+<li>被粗排淘汰的物品（比较困难）容易分错。</li>
+<li>精排分数靠后的物品（非常困难）更容易分错。</li>
+</ul>
+</li>
+</ul>
+<h4 id="训练数据"><a href="#训练数据" class="headerlink" title="训练数据"></a>训练数据</h4><ul>
+<li>混合几种负样本。</li>
+<li>50% 的负样本是全体物品（简单负样本）。</li>
+<li>50% 的负样本是没通过排序的物品（困难负样本）。</li>
+</ul>
+<h4 id="选择负样本的原理"><a href="#选择负样本的原理" class="headerlink" title="选择负样本的原理"></a>选择负样本的原理</h4><p>召回的目标：快速找到用户可能感兴趣的物品。</p>
+<ul>
+<li><strong>全体物品（easy）</strong>：绝大多数是用户根本不感兴趣的。</li>
+<li><strong>被排序淘汰（hard）</strong>：用户可能感兴趣，但是不够感兴趣。</li>
+<li><strong>有曝光没点击（没用）</strong>：用户感兴趣，可能碰巧没有点击。（可以作为<strong>排序</strong>的负样本，不能作为<strong>召回</strong>的负样本）</li>
+</ul>
+<h4 id="总结-4"><a href="#总结-4" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><strong>正样本</strong>：曝光而且有点击。</li>
+<li><strong>简单负样本</strong>：<ul>
+<li>全体物品。</li>
+<li>batch 内负样本。</li>
+</ul>
+</li>
+<li><strong>困难负样本</strong>：被召回，但是被排序淘汰。</li>
+<li><strong>错误</strong>：曝光、但是未点击的物品做召回的负样本。</li>
+</ul>
+<h3 id="双塔模型-线上服务、模型更新"><a href="#双塔模型-线上服务、模型更新" class="headerlink" title="双塔模型 - 线上服务、模型更新"></a>双塔模型 - 线上服务、模型更新</h3><h4 id="召回-1"><a href="#召回-1" class="headerlink" title="召回"></a>召回</h4><p>离线存储：把物品向量 b 存入向量数据库。</p>
+<ol>
+<li>完成训练之后，用物品塔计算每个物品的特征向量 b。</li>
+<li>把几亿个物品向量 b 存入向量数据库（比如 Milvus、Faiss、HnswLib）。</li>
+<li>向量数据库建索引，以便加速最近邻查找。</li>
+</ol>
+<p>线上召回：查找用户最感兴趣的 k 个物品。</p>
+<ol>
+<li>给定用户ID 和画像，线上用神经网络算用户向量 a。</li>
+<li>最近邻查找：<ul>
+<li>把向量 a 作为 query，调用向量数据库做最近邻查找。</li>
+<li>返回余弦相似度最大的 k 个物品，作为召回结果。</li>
+</ul>
+</li>
+</ol>
+<p>事先存储物品向量 b，线上现算用户向量 a，why？</p>
+<ul>
+<li>每做一次召回，用到一个用户向量 a，几亿物品向量 b。（线上算物品向量的代价过大）</li>
+<li>用户兴趣动态变化，而物品特征相对稳定。（可以离线存储用户向量，但不利于推荐效果）</li>
+</ul>
+<h4 id="更新模型"><a href="#更新模型" class="headerlink" title="更新模型"></a>更新模型</h4><p>全量更新：今天凌晨，用昨天的数据训练模型。</p>
+<ul>
+<li>在昨天模型参数的基础上做训练。（不是随机初始化）</li>
+<li>用昨天的数据，训练 1 epoch，即每天数据只用一遍。</li>
+<li>发布新的 <strong>用户塔神经网络</strong>和<strong>物品向量</strong>，供线上召回使用。</li>
+<li>全量更新对数据流、系统的要求比较低。</li>
+</ul>
+<p>增量更新：做 online learning 更新模型参数。</p>
+<ul>
+<li>用户兴趣会随时发生变化。</li>
+<li>实时收集线上数据，做流式处理，生成 TFRecord 文件。</li>
+<li>对模型做 online learning，增量更新 ID Embedding 参数。（不更新神经网络其他部分的参数）</li>
+<li>发布用户 ID Embedding，供用户塔在线上计算用户向量。</li>
+</ul>
+<p>能否只做增量更新，不做全量更新？</p>
+<ul>
+<li>小时级数据有偏；分钟级数据偏差更大。</li>
+<li>全量更新：random shuffle 一天的数据，做 1 epoch 训练。</li>
+<li>增量更新：按照数据从早到晚的顺序，做 1 epoch 训练。</li>
+<li><strong>随机打乱</strong>优于<strong>按顺序排列数据</strong>，<strong>全量训练</strong>优于<strong>增量训练</strong>。</li>
+</ul>
+<h3 id="自监督模型"><a href="#自监督模型" class="headerlink" title="自监督模型"></a>自监督模型</h3><h4 id="双塔模型的问题"><a href="#双塔模型的问题" class="headerlink" title="双塔模型的问题"></a>双塔模型的问题</h4><ul>
+<li>推荐系统的头部效应严重：<ul>
+<li>少部分物品占据大部分点击。</li>
+<li>大部分物品的点击次数不高。</li>
+</ul>
+</li>
+<li>高点击物品的表征学得好，长尾物品的表征学得不好。</li>
+<li>自监督学习：做 data augmentation，更好地学习长尾物品的向量特征。</li>
+</ul>
+<h4 id="特征变换"><a href="#特征变换" class="headerlink" title="特征变换"></a>特征变换</h4><p>Random Mask：</p>
+<ul>
+<li>随机选一些离散特征（比如<strong>类目</strong>），把它们遮住。</li>
+<li>例：<ul>
+<li>某物品的<strong>类目</strong>特征是 u &#x3D; {数码，摄影}。</li>
+<li>Mask 后的<strong>类目</strong>特征是 u’ &#x3D; {default}。</li>
+</ul>
+</li>
+</ul>
+<p>Dropout：</p>
+<ul>
+<li>一个物品可以有多个<strong>类目</strong>，那么<strong>类目</strong>是一个多值离散特征。</li>
+<li>Dropout：随机丢弃特征中 50% 的值。</li>
+<li>例：<ul>
+<li>某物品的<strong>类目</strong>特征是 u &#x3D; {美妆，摄影}。</li>
+<li>Mask 后的<strong>类目</strong>特征是 u’ &#x3D; {美妆}。</li>
+</ul>
+</li>
+</ul>
+<p>互补特征（complementary）：</p>
+<ul>
+<li>假设物品一共有 4 种特征：<ul>
+<li>ID，类目，关键词，城市</li>
+</ul>
+</li>
+<li>随机分成两组：<ul>
+<li>{ID，关键词} 和 {类目，城市}</li>
+</ul>
+</li>
+<li>{ID，default，关键词，default} -&gt; 物品表征</li>
+<li>{default，类目，default，城市} -&gt; 物品表征</li>
+</ul>
+<p>Mask 一组关联的特征：</p>
+<ul>
+<li><p>p(u)：某特征取值为 u 的概率。</p>
+</li>
+<li><p>p(u, v)：某特征取值为 u，另一个特征取值为 v，同时发生的概率。</p>
+</li>
+<li><p>离线计算特征两两之间的关联，用互信息（mutual information）衡量：<br>$$<br>\text{MI}(U,V) &#x3D; \sum_{u \in U} \sum_{v \in V}p(u,v) \cdot \log \frac{p(u,v)}{p(u) \cdot p(v)}<br>$$</p>
+</li>
+<li><p>好处：比 random mask、dropout、互补特征等方法效果更好。</p>
+</li>
+<li><p>坏处：方法复杂，实现的难度大，不容易维护。</p>
+</li>
+</ul>
+<h4 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h4><ul>
+<li><p>对点击做随机抽样，得到 n 对<strong>用户-物品</strong>二元组，作为一个 batch。</p>
+</li>
+<li><p>从全体<strong>物品</strong>中均匀抽样，得到 m 个<strong>物品</strong>，作为一个 batch。</p>
+</li>
+<li><p>做梯度下降，使得损失减少：<br>$$<br>\frac{1}{n} \sum_{i&#x3D;1}^n \text{L}<em>{\text{main}}[i] + \alpha \cdot \frac{1}{m} \sum</em>{j&#x3D;1}^m \text{L}_\text{self}[j]<br>$$</p>
+</li>
+</ul>
+<h4 id="总结-5"><a href="#总结-5" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>双塔模型学不好低曝光物品的向量表征。</li>
+<li>自监督学习：<ul>
+<li>对物品做随机特征变换。</li>
+<li>特征向量 b_i’ 和 b_i’’ 相似度高（相同物品）。</li>
+<li>特征向量 b_i’ 和 b_j’’ 相似度低（不同物品）。</li>
+</ul>
+</li>
+<li>实验效果：低曝光物品、新物品的推荐变得更准。</li>
+</ul>
+<h3 id="Deep-Retrieval-召回"><a href="#Deep-Retrieval-召回" class="headerlink" title="Deep Retrieval 召回"></a>Deep Retrieval 召回</h3><ul>
+<li>经典的双塔模型把用户、物品表示为向量，线上做最近邻查找。</li>
+<li>Deep Retrieval [1] 把物品表征为路径（path），线上查找用户最匹配的路径。</li>
+<li>Deep Retrieval 类似于阿里的 TDM [2]。</li>
+</ul>
+<h4 id="物品到路径的索引"><a href="#物品到路径的索引" class="headerlink" title="物品到路径的索引"></a>物品到路径的索引</h4><p>索引：item -&gt; List<path></p>
+<ul>
+<li>一个物品对应多条路径。</li>
+<li>用 3 个节点表示一条路径：path &#x3D; [a, b, c]。</li>
+</ul>
+<p>索引：path -&gt; List<item></p>
+<ul>
+<li>一条路径对应多个物品。</li>
+</ul>
+<h4 id="预估用户对路径的兴趣"><a href="#预估用户对路径的兴趣" class="headerlink" title="预估用户对路径的兴趣"></a>预估用户对路径的兴趣</h4><ul>
+<li><p>用 3 个节点表示一条路径：path &#x3D; [a,b,c]。</p>
+</li>
+<li><p>给定用户特征 x，预估用户对节点 a 的兴趣 p_1(a|x)。</p>
+</li>
+<li><p>给定 x 和 a，预估用户对节点 b 的兴趣 p_2(b|a;x)。</p>
+</li>
+<li><p>给定 x,a,b，预估用户对节点 c 的兴趣 p_3(c|a,b;x)。</p>
+</li>
+<li><p>预估用户对 path &#x3D; [a,b,c] 兴趣：<br>$$<br>p(a,b,c|X) &#x3D; p_1(a|X) \times p_2(b|a;X) \times p_3(c|a,b;X)<br>$$</p>
+</li>
+</ul>
+<h4 id="线上召回-1"><a href="#线上召回-1" class="headerlink" title="线上召回"></a>线上召回</h4><p>召回：用户 -&gt; 路径 -&gt; 物品</p>
+<ul>
+<li>第一步：给定用户特征，用 beam search 召回一批路径。</li>
+<li>第二步：利用索引 “path -&gt; List<item>”，召回一批物品。</li>
+<li>第三步：对物品做打分和排序，选出一个子集。</li>
+</ul>
+<h4 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h4><ul>
+<li>假设有 3 层，每层 K 个节点，那么一共有 K^3 条路径。</li>
+<li>用神经网络给所有 K^3 条路径打分，计算量太大。</li>
+<li>用 beam search，可以减少计算量。</li>
+<li>需要设置超参数 beam size。</li>
+</ul>
+<h4 id="训练-2"><a href="#训练-2" class="headerlink" title="训练"></a>训练</h4><blockquote>
+<p>同时学习神经网络参数和物品表征</p>
+</blockquote>
+<ul>
+<li>神经网络 p(a,b,c|x) 预估用户对路径 [a,b,c] 的兴趣。</li>
+<li>把一个物品表征为多条路径 {[a,b,c]}，建立索引：<ul>
+<li>item -&gt; List<path></li>
+<li>path -&gt; List<item></li>
+</ul>
+</li>
+<li>正样本（user, item）: click(user, item) &#x3D; 1。</li>
+</ul>
+<h4 id="学习物品表征"><a href="#学习物品表征" class="headerlink" title="学习物品表征"></a>学习物品表征</h4><ul>
+<li><p>用户 user 对路径 path &#x3D; [a,b,c] 的兴趣记作：<br>$$<br>p(\text{path}|\text{user}) &#x3D; p(a,b,c|X)<br>$$</p>
+</li>
+<li><p>物品 item 与路径 path 的相关性：<br>$$<br>\text{score(item, path)} &#x3D; \sum_{\text{user}}p(\text{path | user}) \times \text{click(user, item)}<br>$$</p>
+</li>
+<li><p>根据 score(item, path) 选出 J 条路径作为 item 的表征。</p>
+</li>
+<li><p>损失函数（选择与 item 高度相关的 path）：<br>$$<br>\text{loss(item,Π)} &#x3D; -\text{log}(\sum_{j&#x3D;1}^J\text{score}(item,path_j))<br>$$</p>
+</li>
+<li><p>正则项（避免过多的 item 集中在一条 path 上）：<br>$$<br>\text{reg}(\text{path}_j) &#x3D; \left(\text{number of items on } \text{path}_j\right)^4<br>$$</p>
+</li>
+</ul>
+<h3 id="地理位置、作者、缓存召回"><a href="#地理位置、作者、缓存召回" class="headerlink" title="地理位置、作者、缓存召回"></a>地理位置、作者、缓存召回</h3><h4 id="GeoHash-召回"><a href="#GeoHash-召回" class="headerlink" title="GeoHash 召回"></a>GeoHash 召回</h4><ul>
+<li><p>用户可能对<strong>附近</strong>发生的事感兴趣。</p>
+</li>
+<li><p>GeoHash：对经纬度的编码，地图上一个长方形区域。</p>
+</li>
+<li><p>索引：<strong>GeoHash</strong> -&gt; <strong>优质笔记列表</strong>（按时间倒排）。</p>
+</li>
+<li><p>这条召回通道没有个性化。</p>
+</li>
+</ul>
+<h4 id="同城召回"><a href="#同城召回" class="headerlink" title="同城召回"></a>同城召回</h4><ul>
+<li>用户可能对<strong>同城</strong>发生的事感兴趣。</li>
+<li>索引：<strong>城市</strong> -&gt; <strong>优质笔记列表</strong>（按时间倒排）。</li>
+<li>这条召回通道没有个性化。</li>
+</ul>
+<h4 id="关注作者召回"><a href="#关注作者召回" class="headerlink" title="关注作者召回"></a>关注作者召回</h4><ul>
+<li>用户对关注的作者发布的笔记感兴趣。</li>
+<li>索引：<ul>
+<li><strong>用户</strong> -&gt; <strong>关注的作者</strong></li>
+<li><strong>作者</strong> -&gt; <strong>发布的笔记</strong></li>
+</ul>
+</li>
+<li>召回：<ul>
+<li><strong>用户</strong> -&gt; <strong>关注的作者</strong> -&gt; <strong>最新的笔记</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="有交互的作者召回"><a href="#有交互的作者召回" class="headerlink" title="有交互的作者召回"></a>有交互的作者召回</h4><ul>
+<li>如果用户对某笔记感兴趣（点赞、收藏、转发），那么用户可能对该作者的其他笔记感兴趣。</li>
+<li>索引：<strong>用户</strong> -&gt; <strong>有交互的作者</strong></li>
+<li>召回：<strong>用户</strong> -&gt; <strong>有交互的作者</strong> -&gt; <strong>最新的笔记</strong></li>
+</ul>
+<h4 id="相似作者召回"><a href="#相似作者召回" class="headerlink" title="相似作者召回"></a>相似作者召回</h4><ul>
+<li>如果用户喜欢某作者，那么用户喜欢相似的作者。</li>
+<li>索引：<strong>作者</strong> -&gt; <strong>相似作者</strong>（k 个作者）</li>
+<li>召回：<strong>用户</strong> -&gt; <strong>感兴趣的作者</strong>（n 个作者） -&gt; <strong>相似作者</strong>（nk 个作者）-&gt; <strong>最新的笔记</strong>（nk 篇笔记）</li>
+</ul>
+<h4 id="缓存召回"><a href="#缓存召回" class="headerlink" title="缓存召回"></a>缓存召回</h4><blockquote>
+<p>想法：复用前 n 次推荐精排的结果。</p>
+</blockquote>
+<ul>
+<li>背景：<ul>
+<li>精排输出几百篇笔记，送入重排。</li>
+<li>重排做多样性抽样，选出几十篇。</li>
+<li>精排结果一大半没有曝光，被浪费。</li>
+</ul>
+</li>
+<li>精排前 50，但是没有曝光的，缓存起来，作为一条召回通道。</li>
+</ul>
+<blockquote>
+<p>缓存大小固定，需要退场机制。</p>
+</blockquote>
+<ul>
+<li>一旦笔记成功曝光，就从缓存退场。</li>
+<li>如果超出缓存大小，就移除最先进入缓存的笔记。</li>
+<li>笔记最多被召回 10 次，达到 10 次就退场。</li>
+<li>每篇笔记最多保存 3 天，达到 3 天就退场。</li>
+</ul>
+<h4 id="总结-6"><a href="#总结-6" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><p>地理位置召回</p>
+<ul>
+<li>GeoHash 召回、同城召回。</li>
+</ul>
+</li>
+<li><p>作者召回：</p>
+<ul>
+<li>关注的作者、有交互的作者、相似的作者。</li>
+</ul>
+</li>
+<li><p>缓存召回</p>
+</li>
+</ul>
+<h3 id="曝光过滤-Bloom-Filter"><a href="#曝光过滤-Bloom-Filter" class="headerlink" title="曝光过滤 &amp; Bloom Filter"></a>曝光过滤 &amp; Bloom Filter</h3><h4 id="曝光过滤问题"><a href="#曝光过滤问题" class="headerlink" title="曝光过滤问题"></a>曝光过滤问题</h4><ul>
+<li>如果用户看过某个物品，则不再把该物品曝光给该用户。</li>
+<li>对于每个用户，记录已经曝光给他的物品。（小红书只召回 1 个月以内的笔记，因此只需要记录每个用户最近 1 个月的曝光历史。）</li>
+<li>对于每个召回的物品，判断它是否已经给该用户曝光过，排除掉曾经曝光过的物品。</li>
+<li>一位用户看过 <strong>n</strong> 个物品，本次召回 <strong>r</strong> 个物品，如果暴力对比，需要 <strong>O（nr）</strong>的时间。</li>
+</ul>
+<h4 id="Bloom-Filter"><a href="#Bloom-Filter" class="headerlink" title="Bloom Filter"></a>Bloom Filter</h4><ul>
+<li><p>Bloom filter 判断一个物品 ID 是否在已曝光的物品集合中。</p>
+</li>
+<li><p>如果判断为 no，那么该物品一定不在集合中。</p>
+</li>
+<li><p>如果判断为 yes，那么该物品很可能在集合中。（可能误伤，错误判断未曝光物品为已曝光，将其过滤掉）</p>
+</li>
+<li><p>Bloom filter 把物品集合表征为一个 <strong>m</strong> 维二进制向量。</p>
+</li>
+<li><p>每个用户有一个曝光物品的集合，表征为一个向量，需要 <strong>m</strong> bit 的存储。</p>
+</li>
+<li><p>Bloom filter 有 <strong>k</strong> 个哈希函数，每个哈希函数把物品 ID 映射成介于 <strong>0</strong> 和 <strong>m - 1</strong> 之间的整数。</p>
+</li>
+<li><p>曝光物品集合大小为 <strong>n</strong>，二进制向量维度为 <strong>m</strong>，使用 <strong>k</strong> 个哈希函数。</p>
+</li>
+<li><p>Bloom filter 误伤的概率为：<br>$$<br>\delta \approx (1 - \text{exp}(-\frac{kn}{m}))^k<br>$$</p>
+<ul>
+<li><strong>n</strong> 越大，向量中的 1 越多，误伤概率越大。（未曝光物品的 <strong>k</strong> 个位置恰好都是 1 的概率大）</li>
+<li><strong>m</strong> 越大，向量越长，越不容易发生哈希碰撞。</li>
+<li><strong>k</strong> 太大、大小都不好，<strong>k</strong> 有最优取值。</li>
+</ul>
+</li>
+<li><p>设定可容忍的误伤概率为 <strong>δ</strong>，那么最优参数为：<br>$$<br>k &#x3D; 1.44 \cdot \ln(\frac{1}{\delta}), \qquad m &#x3D; 2n \cdot \ln(\frac{1}{\delta})<br>$$</p>
+</li>
+</ul>
+<h4 id="Bloom-Filter-缺点"><a href="#Bloom-Filter-缺点" class="headerlink" title="Bloom Filter 缺点"></a>Bloom Filter 缺点</h4><ul>
+<li>Bloom filter 把物品的集合表示成一个二进制向量。</li>
+<li>每往集合中添加一个物品，只需要把向量 <strong>k</strong> 个位置的元素置为 1。（如果原本就是 1，则不变）</li>
+<li>Bloom filter 只支持添加物品，不支持删除物品。从集合中移除物品，无法消除它对向量的影响。</li>
+<li>每天都需要从物品集合中移除年龄大于 1 个月的物品。（超龄物品不可能被召回，没必要把它们记录在 Bloom filter，降低 n 可以降低误伤率）</li>
+</ul>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><h3 id="多目标排序模型"><a href="#多目标排序模型" class="headerlink" title="多目标排序模型"></a>多目标排序模型</h3><h4 id="用户-笔记的交互"><a href="#用户-笔记的交互" class="headerlink" title="用户-笔记的交互"></a>用户-笔记的交互</h4><ul>
+<li>对于每篇笔记，系统记录：<ul>
+<li>曝光次数（number of impressions）</li>
+<li>点击次数（number of clicks）</li>
+<li>点赞次数（number of likes）</li>
+<li>收藏次数（number of collects）</li>
+<li>转发次数（number of shares）</li>
+</ul>
+</li>
+</ul>
+<h4 id="排序的依据"><a href="#排序的依据" class="headerlink" title="排序的依据"></a>排序的依据</h4><ul>
+<li>排序模型预估点击率、点赞率、收藏率、转发率等多种分数。</li>
+<li>融合这些预估分数。（比如加权和）</li>
+<li>根据融合的分数做排序、截断。</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122027708.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="训练-3"><a href="#训练-3" class="headerlink" title="训练"></a>训练</h4><ul>
+<li>困难：类别不平衡<ul>
+<li>每 100 次曝光，约有 10 次点击、90 次无点击。</li>
+<li>每 100 次点击，约有 10 次收藏、90 次无收藏。</li>
+</ul>
+</li>
+<li>解决方案：负样本降采样（down-sampling）<ul>
+<li>保留一小部分负样本。</li>
+<li>让正负样本数量平衡，节约计算。</li>
+</ul>
+</li>
+</ul>
+<h4 id="预估值校准"><a href="#预估值校准" class="headerlink" title="预估值校准"></a>预估值校准</h4><ul>
+<li><p>正样本、负样本数量为 n+ 和 n-。</p>
+</li>
+<li><p>对负样本做降采样，抛弃一部分负样本。</p>
+</li>
+<li><p>使用 α · n- 个负样本，α∈（0，1）是采样率。</p>
+</li>
+<li><p>由于负样本变少，<strong>预估点击率</strong>大于<strong>真实点击率</strong>。</p>
+</li>
+<li><p>真实点击率和预估点击率：<br>$$<br>\text{p}<em>\text{true} &#x3D; \frac{n</em>+}{n_+ + n_-}(期望) \qquad \text{p}<em>\text{pred} &#x3D; \frac{n</em>+}{n_+ + \alpha \cdot n_-}(期望)<br>$$</p>
+</li>
+<li><p>由上面两个等式可得校准公式：<br>$$<br>\text{p}_\text{true} &#x3D; \frac{\alpha \cdot \text{p}_\text{pred}}{(1-\text{p}_\text{pred}) + \alpha \cdot \text{p}_\text{pred}}<br>$$</p>
+</li>
+</ul>
+<h3 id="Multi-gate-Mixture-of-Experts（MMoE）"><a href="#Multi-gate-Mixture-of-Experts（MMoE）" class="headerlink" title="Multi-gate Mixture-of-Experts（MMoE）"></a>Multi-gate Mixture-of-Experts（MMoE）</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072235517.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072236840.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="极化现象（Polarization）"><a href="#极化现象（Polarization）" class="headerlink" title="极化现象（Polarization）"></a>极化现象（Polarization）</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072237757.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="解决极化问题"><a href="#解决极化问题" class="headerlink" title="解决极化问题"></a>解决极化问题</h4><ul>
+<li>如果有 n 个 “专家”，那么每个 softmax 的输入和输出都是 n 维向量。</li>
+<li>在训练时，对 softmax 的输出使用 dropout<ul>
+<li>Softmax 输出的 n 个数值被 mask 的概率都是 10%。</li>
+<li>每个 “专家” 被随机丢弃的概率都是 10%。</li>
+</ul>
+</li>
+</ul>
+<h3 id="预估分数融合"><a href="#预估分数融合" class="headerlink" title="预估分数融合"></a>预估分数融合</h3><h4 id="融合预估分数"><a href="#融合预估分数" class="headerlink" title="融合预估分数"></a>融合预估分数</h4><blockquote>
+<p>简单的加权和</p>
+</blockquote>
+<p>$$<br>\text{p}_\text{click} + w_1 \cdot \text{p}_\text{like} + w_2 \cdot \text{p}_\text{collect} + …<br>$$</p>
+<blockquote>
+<p>点击率乘以其他项的加权和</p>
+</blockquote>
+<p>$$<br>\text{p}_\text{click} \cdot (1 + w_1 \cdot \text{p}_\text{like} + w_2 \cdot \text{p}_\text{coolect} + …)<br>$$</p>
+<blockquote>
+<p>短视频 APP 融分公式</p>
+</blockquote>
+<p>$$<br>(1 + w_1 \cdot \text{p}_\text{time})^{\alpha_1} \cdot (1 + w_2 \cdot \text{p}_\text{like})^{\alpha_2} \quad…<br>$$</p>
+<ul>
+<li><p>根据预估时长 p_time，对 n 篇候选视频做排序。</p>
+</li>
+<li><p>最终融合分数：<br>$$<br>\frac{w_1}{r_{time}^{\alpha_1} + \beta_1} + \frac{w_2}{r_{time}^{\alpha_2} + \beta_2} + \frac{w_3}{r_{time}^{\alpha_3} + \beta_3} + …<br>$$</p>
+</li>
+</ul>
+<blockquote>
+<p>电商的融分公式</p>
+</blockquote>
+<ul>
+<li><p>电商的转换流程：</p>
+<ul>
+<li>曝光 -&gt; 点击 -&gt; 加购物车 -&gt; 付款</li>
+</ul>
+</li>
+<li><p>模型预估：p_click、p_cart、p_pay</p>
+</li>
+<li><p>最终融分公式：<br>$$<br>p_{click}^{\alpha_1} \times p_{cart}^{\alpha_2} \times p_{pay}^{\alpha_3} \times price^{\alpha_4}<br>$$</p>
+</li>
+</ul>
+<h3 id="视频播放建模"><a href="#视频播放建模" class="headerlink" title="视频播放建模"></a>视频播放建模</h3><h4 id="图文-VS-视频"><a href="#图文-VS-视频" class="headerlink" title="图文 VS 视频"></a>图文 VS 视频</h4><ul>
+<li><p>图文笔记排序的主要依据：</p>
+<ul>
+<li>点击、点赞、收藏、转发、评论 ……</li>
+</ul>
+</li>
+<li><p>视频排序的依据还有播放时长和完播。</p>
+</li>
+<li><p>直接用回归拟合播放时长效果不好。建议用 YouTube 的时长建模。</p>
+</li>
+</ul>
+<h4 id="视频播放时长"><a href="#视频播放时长" class="headerlink" title="视频播放时长"></a>视频播放时长</h4><ul>
+<li><p>把最后一个全连接层的输出记作 z。设 p &#x3D; sigmoid(z)。</p>
+</li>
+<li><p>实际观测的播放时长记作 t。（如果没有点击，则 t &#x3D; 0）</p>
+</li>
+<li><p>做训练：最小化交叉熵损失<br>$$<br>-(\frac{t}{1+t}\cdot logp + \frac{1}{1+t}\cdot log(1-p))<br>$$</p>
+</li>
+<li><p>做推理：把 exp(z) 作为播放时长的预估。</p>
+</li>
+<li><p>把 exp(z) 作为融分公式中的一项。</p>
+</li>
+</ul>
+<h4 id="视频完播"><a href="#视频完播" class="headerlink" title="视频完播"></a>视频完播</h4><blockquote>
+<p>回归方法</p>
+</blockquote>
+<ul>
+<li><p>例：视频长度 10 分钟，实际播放 4 分钟，则实际播放率为 y &#x3D; 0.4。</p>
+</li>
+<li><p>让预估播放率 p 拟合 y：<br>$$<br>\text{loss} &#x3D; y \cdot logp + (1-y) \cdot log(1-p)<br>$$</p>
+</li>
+<li><p>线上预估完播率，模型输出 p &#x3D; 0.73，意思是预计播放 73%。</p>
+</li>
+</ul>
+<blockquote>
+<p>二元分类方法</p>
+</blockquote>
+<ul>
+<li><p>定义完播指标，比如完播 80%。</p>
+</li>
+<li><p>例：视频长度 10 分钟，<strong>播放 &gt;8 分钟</strong>作为正样本，<strong>播放 &lt; 8 分钟</strong>作为负样本。</p>
+</li>
+<li><p>做二元分类训练模型：<strong>播放 &gt;8 分钟</strong> vs <strong>播放 &lt; 8 分钟</strong></p>
+</li>
+<li><p>线上预估完播率，模型输出 p &#x3D; 0.73<br>$$<br>\mathbb{P}(\text{播放} &gt; 80%) &#x3D; 0.73<br>$$</p>
+</li>
+<li><p>线上预估完播率，然后做调整：<br>$$<br>\text{p}_\text{finish} &#x3D; \frac{\text{预估完播率}}{f(视频长度)}<br>$$</p>
+</li>
+<li><p>把 p_finish 作为融分公式中的一项。</p>
+</li>
+</ul>
+<h3 id="排序模型的特征"><a href="#排序模型的特征" class="headerlink" title="排序模型的特征"></a>排序模型的特征</h3><h4 id="用户画像（User-Profile）"><a href="#用户画像（User-Profile）" class="headerlink" title="用户画像（User Profile）"></a>用户画像（User Profile）</h4><ul>
+<li>用户 ID（在召回、排序中做 embedding）。</li>
+<li>人口统计学属性：性别、年龄。</li>
+<li>账号信息：新老、活跃度 ……</li>
+<li>感兴趣的类目、关键词、品牌。</li>
+</ul>
+<h4 id="物品画像（Item-Profile）"><a href="#物品画像（Item-Profile）" class="headerlink" title="物品画像（Item Profile）"></a>物品画像（Item Profile）</h4><ul>
+<li>物品 ID（在召回、排序中做 embedding）。</li>
+<li>发布时间（或者年龄）。</li>
+<li>GeoHash（经纬度编码）、所在城市。</li>
+<li>标题、类目、关键词、品牌 ……</li>
+<li>字数、图片数、视频清晰度、标签数 ……</li>
+<li>内容信息量、图片美学 ……</li>
+</ul>
+<h4 id="用户统计特征"><a href="#用户统计特征" class="headerlink" title="用户统计特征"></a>用户统计特征</h4><ul>
+<li>用户最近 30 天（7天、1天、1小时）的曝光数、点击数、点赞率、收藏数 ……</li>
+<li>按照笔记图文&#x2F;视频分桶。（比如最近 7 天，该用户对图文笔记的点赞率、对视频笔记的点击率）</li>
+<li>按照笔记类目分桶。（比如最近 30 天，用户对美妆笔记的点击率、对美食笔记的点击率、对科技数据笔记的点击率）</li>
+</ul>
+<h4 id="笔记统计特征"><a href="#笔记统计特征" class="headerlink" title="笔记统计特征"></a>笔记统计特征</h4><ul>
+<li>笔记最近 30 天（7天、1天、1小时）的曝光数、点击数、点赞数、收藏数 ……</li>
+<li>按照用户性别分桶、按照用户年龄分桶 ……</li>
+<li>作者特征：<ul>
+<li>发布笔记数</li>
+<li>粉丝数</li>
+<li>消费指标（曝光数、点击数、点赞数、收藏数）</li>
+</ul>
+</li>
+</ul>
+<h4 id="场景特征（Context）"><a href="#场景特征（Context）" class="headerlink" title="场景特征（Context）"></a>场景特征（Context）</h4><ul>
+<li>用户定位 GeoHash（经纬度编码）、城市。</li>
+<li>当前时刻（分段，做 embedding）。</li>
+<li>是否是周末、是否是节假日。</li>
+<li>收集品牌、手机型号、操作系统。</li>
+</ul>
+<h4 id="特征处理"><a href="#特征处理" class="headerlink" title="特征处理"></a>特征处理</h4><ul>
+<li>离散特征：做 embedding。<ul>
+<li>用户 ID、笔记 ID、作者 ID。</li>
+<li>类目、关键词、城市、收集品牌。</li>
+</ul>
+</li>
+<li>连续特征：做分桶，变成离散特征。<ul>
+<li>年龄、笔记字数、视频长度。</li>
+</ul>
+</li>
+<li>连续特征：其他变换。<ul>
+<li>曝光数、点击数、点赞数等数值做 log(1+x)。</li>
+<li>转化为点击率、点击率等值，并做平滑。</li>
+</ul>
+</li>
+</ul>
+<h4 id="特征覆盖率"><a href="#特征覆盖率" class="headerlink" title="特征覆盖率"></a>特征覆盖率</h4><ul>
+<li>很多特征无法覆盖 100% 样本。</li>
+<li>例：很多用户不填年龄，因此用户年龄特征的覆盖率远小于 100%。</li>
+<li>例：很多用户设置隐私权限，APP 不能获得用户地理定位，因此场景特征有缺失。</li>
+<li>提高特征覆盖率，可以让精排模型更准。</li>
+</ul>
+<h4 id="数据服务"><a href="#数据服务" class="headerlink" title="数据服务"></a>数据服务</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072238206.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="粗排模型"><a href="#粗排模型" class="headerlink" title="粗排模型"></a>粗排模型</h3><h4 id="粗排-VS-精排"><a href="#粗排-VS-精排" class="headerlink" title="粗排 VS 精排"></a>粗排 VS 精排</h4><blockquote>
+<p>粗排</p>
+</blockquote>
+<ul>
+<li>给几千篇笔记打分。</li>
+<li>单次推理代价必须小。</li>
+<li>预估的准确性不高。</li>
+</ul>
+<blockquote>
+<p>精排</p>
+</blockquote>
+<ul>
+<li>给几百篇笔记打分。</li>
+<li>单次推理代价很大。</li>
+<li>预估的准确性更高。</li>
+</ul>
+<h4 id="精排模型"><a href="#精排模型" class="headerlink" title="精排模型"></a>精排模型</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072240314.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>前期融合：先对所有特征做 concatenation，再输入神经网络。</li>
+<li>线上推理代价大：如果有 n 篇候选笔记，整个大模型要做 n 次推理。</li>
+</ul>
+<h4 id="双塔模型"><a href="#双塔模型" class="headerlink" title="双塔模型"></a>双塔模型</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072238312.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>后期融合：把用户、物品特征分别输入不同的神经网络，不对用户、物品特征做融合。</li>
+<li>线上计算量小：<ul>
+<li>用户塔只需要做一次线上推理，计算用户表征 a。</li>
+<li>物品表征 b 事先储存再向量数据库中，物品塔在线上不做推理。</li>
+</ul>
+</li>
+<li>预估准确性不如精排模型。</li>
+</ul>
+<h4 id="粗排的三塔模型"><a href="#粗排的三塔模型" class="headerlink" title="粗排的三塔模型"></a>粗排的三塔模型</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411072239533.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="三塔模型的推理"><a href="#三塔模型的推理" class="headerlink" title="三塔模型的推理"></a>三塔模型的推理</h4><ul>
+<li>从多个数据源取特征：<ul>
+<li>1 个用户的画像、统计特征。</li>
+<li>n 个物品的画像、统计特征。</li>
+</ul>
+</li>
+<li>用户塔：只做 1 次推理。</li>
+<li>物品塔：未命中缓存时需要做推理。</li>
+<li>交叉塔：必须做 n 次推理。</li>
+<li>上层网络做 n 次推理，给 n 个物品打分。</li>
+</ul>
+<h2 id="特征交叉"><a href="#特征交叉" class="headerlink" title="特征交叉"></a>特征交叉</h2><h3 id="因式分解机（FM）"><a href="#因式分解机（FM）" class="headerlink" title="因式分解机（FM）"></a>因式分解机（FM）</h3><h4 id="线性模型"><a href="#线性模型" class="headerlink" title="线性模型"></a>线性模型</h4><ul>
+<li><p>有 d 个特征，记作 x &#x3D; [x_1, …, x_d]。</p>
+</li>
+<li><p>线性模型：<br>$$<br>p &#x3D; b + \sum_{i&#x3D;1}^d w_ix_i<br>$$</p>
+</li>
+<li><p>模型有 d + 1 个参数：w &#x3D; [w_1, …, w_d] 和 b。</p>
+</li>
+<li><p>预测是特征的加权和。（只有加，没有乘）</p>
+</li>
+</ul>
+<h4 id="二阶交叉特征"><a href="#二阶交叉特征" class="headerlink" title="二阶交叉特征"></a>二阶交叉特征</h4><ul>
+<li><p>有 d 个特征，记作 x &#x3D; [x_1, …, x_d]。</p>
+</li>
+<li><p>线性模型 + 二阶交叉特征：<br>$$<br>p &#x3D; b + \sum_{i&#x3D;1}^d w_ix_i + \sum_{i&#x3D;1}^d\sum_{j&#x3D;i+1}^d u_{ij} x_i x_j<br>$$</p>
+</li>
+<li><p>模型有 O（d^2）个参数。</p>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122031302.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>Factorized Machine（FM）：<br>$$<br>p &#x3D; b + \sum_{i&#x3D;1}^d w_ix_i + \sum_{i&#x3D;1}^d\sum_{j&#x3D;i+1}^d (v_i^Tv_j) x_i x_j<br>$$</p>
+</li>
+<li><p>FM 模型有 O（kd）个参数。（k &lt;&lt; d）</p>
+</li>
+</ul>
+<h4 id="Factorized-Machine"><a href="#Factorized-Machine" class="headerlink" title="Factorized Machine"></a>Factorized Machine</h4><ul>
+<li>FM 是线性模型的替代品，能用线性回归、逻辑回归的场景，都可以用 FM。</li>
+<li>FM 使用二阶交叉特征，表达能力比线性模型更强。</li>
+<li>通过做近似 u_{ij} ≈ v_i^T v_j，FM 把二阶交叉权重的数量从 O(d^2) 降低到 O(d)。</li>
+</ul>
+<h3 id="深度交叉网络（DCN）"><a href="#深度交叉网络（DCN）" class="headerlink" title="深度交叉网络（DCN）"></a>深度交叉网络（DCN）</h3><h4 id="交叉层"><a href="#交叉层" class="headerlink" title="交叉层"></a>交叉层</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122033924.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="Deep-Cross-Network"><a href="#Deep-Cross-Network" class="headerlink" title="Deep &amp; Cross Network"></a>Deep &amp; Cross Network</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122032318.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="LHUC（PPNet）"><a href="#LHUC（PPNet）" class="headerlink" title="LHUC（PPNet）"></a>LHUC（PPNet）</h3><h4 id="语音识别中的-LHUC"><a href="#语音识别中的-LHUC" class="headerlink" title="语音识别中的 LHUC"></a>语音识别中的 LHUC</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122034481.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="SENet-和-Bilinear-交叉"><a href="#SENet-和-Bilinear-交叉" class="headerlink" title="SENet 和 Bilinear 交叉"></a>SENet 和 Bilinear 交叉</h3><h4 id="SENet"><a href="#SENet" class="headerlink" title="SENet"></a>SENet</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122036470.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>SENet 对离散特征做 field-wise 加权。</li>
+<li>Field：<ul>
+<li>用户 ID Embedding 是 64 维向量。</li>
+<li>64 个元素算一个 field，获得相同的权重。</li>
+</ul>
+</li>
+<li>如果有 m 个 fields，那么权重向量是 m 维。</li>
+</ul>
+<h4 id="Field-特征交叉"><a href="#Field-特征交叉" class="headerlink" title="Field 特征交叉"></a>Field 特征交叉</h4><ul>
+<li>向量内积</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122038324.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>哈达玛乘积</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122039864.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>Bilinear cross</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122041874.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="FiBiNet"><a href="#FiBiNet" class="headerlink" title="FiBiNet"></a>FiBiNet</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122037490.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="行为序列"><a href="#行为序列" class="headerlink" title="行为序列"></a>行为序列</h2><h3 id="用户历史行为序列建模"><a href="#用户历史行为序列建模" class="headerlink" title="用户历史行为序列建模"></a>用户历史行为序列建模</h3><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122042959.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="LastN-特征"><a href="#LastN-特征" class="headerlink" title="LastN 特征"></a>LastN 特征</h4><ul>
+<li>LastN：用户最近的 n 次交互（点击、点赞等）的物品 ID。</li>
+<li>对 LastN 物品 ID 做 embedding，得到 n 个向量。</li>
+<li>把 n 个向量取平均，作为用户的一种特征。</li>
+<li>适用于召回双塔模型、粗排三塔模型、精排模型。</li>
+</ul>
+<h4 id="小红书的实践"><a href="#小红书的实践" class="headerlink" title="小红书的实践"></a>小红书的实践</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122043154.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="DIN-模型（注意力机制）"><a href="#DIN-模型（注意力机制）" class="headerlink" title="DIN 模型（注意力机制）"></a>DIN 模型（注意力机制）</h3><h4 id="DIN-模型"><a href="#DIN-模型" class="headerlink" title="DIN 模型"></a>DIN 模型</h4><ul>
+<li>DIN 用 <strong>加权平均</strong>代替<strong>平均</strong>，即注意力机制（attention）。</li>
+<li>权重：候选物品与用户 LastN 物品的相似度。</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122044135.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>对于某候选物品，计算它与用户 LastN 物品的相似度。</p>
+</li>
+<li><p>以相似度为权重，求用户 LastN 物品向量的加权和，结果是一个向量。</p>
+</li>
+<li><p>把得到的向量作为一种用户特征，输入排序模型，预估（用户，候选物品）的点击率、点赞率等指标。</p>
+</li>
+<li><p>本质是注意力机制（attention）</p>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122044004.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="简单平均-VS-注意力机制"><a href="#简单平均-VS-注意力机制" class="headerlink" title="简单平均 VS 注意力机制"></a>简单平均 VS 注意力机制</h4><ul>
+<li><strong>简单平均</strong>和<strong>注意力机制</strong>都适用于精排模型。</li>
+<li><strong>简单平均</strong>适用于双塔模型、三塔模型。<ul>
+<li><strong>简单平均</strong>只需要用到 LastN，属于用户自身的特征。</li>
+<li>把 LastN 向量的平均作为用户塔的输入。</li>
+</ul>
+</li>
+<li><strong>注意力机制</strong>不适用于双塔模型、三塔模型。<ul>
+<li><strong>注意力机制</strong>需要用到 LastN + 候选物品。</li>
+<li>用户塔看不到候选物品，不能把<strong>注意力机制</strong>用在用户塔。</li>
+</ul>
+</li>
+</ul>
+<h3 id="SIM-模型（长序列模型）"><a href="#SIM-模型（长序列模型）" class="headerlink" title="SIM 模型（长序列模型）"></a>SIM 模型（长序列模型）</h3><h4 id="DIN-模型的特点"><a href="#DIN-模型的特点" class="headerlink" title="DIN 模型的特点"></a>DIN 模型的特点</h4><ul>
+<li>注意力层的计算量 ∝n（用户行为序列的长度）。</li>
+<li>只能记录最近几百个物品，否则计算量太大。</li>
+<li>缺点：关注短期兴趣，遗忘长期兴趣。</li>
+</ul>
+<h4 id="如何改进-DIN？"><a href="#如何改进-DIN？" class="headerlink" title="如何改进 DIN？"></a>如何改进 DIN？</h4><ul>
+<li>目标：保留用户长期行为序列（n 很大），而且计算量不会过大。</li>
+<li>改进 DIN：<ul>
+<li>DIN 对 LastN 向量做加权平均，权重是相似度。</li>
+<li>如果某 LastN 物品于候选物品差异很大，则权重接近零。</li>
+<li>快速排除掉与候选物品无关的 LastN 物品，降低注意力层的计算量。</li>
+</ul>
+</li>
+</ul>
+<h4 id="SIM-模型"><a href="#SIM-模型" class="headerlink" title="SIM 模型"></a>SIM 模型</h4><ul>
+<li>保留用户长期行为记录，n 的大小可以是几千。</li>
+<li>对于每个候选物品，在用户 LastN 记录中做快速查找，找到 k 个相似物品。</li>
+<li>把 LastN 变成 TopK，然后输入到注意力层。</li>
+<li>SIM 模型减小计算量（从 n 降到 k）。</li>
+</ul>
+<h4 id="第一步：查找"><a href="#第一步：查找" class="headerlink" title="第一步：查找"></a>第一步：查找</h4><ul>
+<li>方法一：Hard Search<ul>
+<li>根据候选物品的类目，保留 LastN 物品中类目相同的。</li>
+<li>简单，快速，无需训练。</li>
+</ul>
+</li>
+<li>方法二：Soft Search<ul>
+<li>把物品做 embedding，变成向量。</li>
+<li>把候选物品向量作为 query，做 k 近邻查找，保留 LastN 物品中最接近的 k 个。</li>
+<li>效果更好，编程实现更复杂。</li>
+</ul>
+</li>
+</ul>
+<h4 id="第二步：注意力机制"><a href="#第二步：注意力机制" class="headerlink" title="第二步：注意力机制"></a>第二步：注意力机制</h4><blockquote>
+<p>使用时间信息</p>
+</blockquote>
+<ul>
+<li>用户与某个 LastN 物品的交互时刻距今为 δ。</li>
+<li>对 δ 做离散化，再做 embedding，变成向量 d。</li>
+<li>把两个向量做 concatenation，表征一个 LastN 物品。<ul>
+<li>向量 x 是物品 embedding。</li>
+<li>向量 d 是时间的 embedding。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>为什么 SIM 使用时间信息？</p>
+</blockquote>
+<ul>
+<li>DIN 的序列短，记录用户近期行为。</li>
+<li>SIM 的序列长，记录用户长期行为。</li>
+<li>时间越久远，重要性越低。</li>
+</ul>
+<h4 id="总结-7"><a href="#总结-7" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>长序列（长期兴趣）优于短序列（近期兴趣）。</li>
+<li>注意力机制优于简单平均。</li>
+<li>Soft search 还是 hard search？取决于工程基建。</li>
+</ul>
+<h2 id="重排"><a href="#重排" class="headerlink" title="重排"></a>重排</h2><h3 id="推荐系统中的多样性"><a href="#推荐系统中的多样性" class="headerlink" title="推荐系统中的多样性"></a>推荐系统中的多样性</h3><h4 id="相似性的度量"><a href="#相似性的度量" class="headerlink" title="相似性的度量"></a>相似性的度量</h4><ul>
+<li>基于物品属性标签<ul>
+<li>类目、品牌、关键词 ……</li>
+</ul>
+</li>
+<li>基于物品向量表征<ul>
+<li>用于召回的双塔模型学到的物品向量（不好）。</li>
+<li>基于内容的向量表征（好）。</li>
+</ul>
+</li>
+</ul>
+<h4 id="基于物品属性标签"><a href="#基于物品属性标签" class="headerlink" title="基于物品属性标签"></a>基于物品属性标签</h4><ul>
+<li><p>物品属性标签：类目、品牌、关键词 ……</p>
+</li>
+<li><p>根据<strong>一级类目、二级类目、品牌</strong>计算相似度。</p>
+<ul>
+<li><p>物品 i：<strong>美妆、彩妆、香奈儿</strong>。</p>
+</li>
+<li><p>物品 j：<strong>美妆、香水、香奈儿</strong>。</p>
+</li>
+<li><p>相似度：<br>$$<br>sim_1(i, j) &#x3D; 1, sim_2(i, j) &#x3D; 0, sim_3(i, j) &#x3D; 1<br>$$</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="基于图文内容的物品向量表征"><a href="#基于图文内容的物品向量表征" class="headerlink" title="基于图文内容的物品向量表征"></a>基于图文内容的物品向量表征</h4><ul>
+<li>CLIP 是当前公认最有效的预训练方法。</li>
+<li>思想：对于<strong>图片-文本</strong>二元组，预测图文是否匹配。</li>
+<li>优势：无需人工标记。小红书的笔记天然包含图片 + 文字，大部分笔记图文相关。</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122046689.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122046178.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>一个 batch 内有 m 对正样本。</li>
+<li>一张图片和 m - 1 条文本组成负样本。</li>
+<li>这个 batch 内一共有 m(m - 1) 对负样本。</li>
+</ul>
+<h3 id="MMR-多样性算法"><a href="#MMR-多样性算法" class="headerlink" title="MMR 多样性算法"></a>MMR 多样性算法</h3><h4 id="多样性"><a href="#多样性" class="headerlink" title="多样性"></a>多样性</h4><ul>
+<li>精排给 <strong>n</strong> 个候选物品打分，融合之后的分数为：reward_1, …, reward_n</li>
+<li>把第 <strong>i</strong> 和 <strong>j</strong> 个物品的相似度记作 **sim(i, j)**。</li>
+<li>从 <strong>n</strong> 个物品中选出 <strong>k</strong> 个，既要有高精排分数，也要有多样性。</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122047234.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li><p>计算集合 R 中每个物品 i 的 Marginal Relevance 分数：<br>$$<br>\text{MR}_i &#x3D; \theta \cdot \text{reward}<em>i - (1 - \theta) \cdot \max</em>{j \in S} \text{sim}(i, j)<br>$$</p>
+</li>
+<li><p>Maximal Marginal Relevance（MMR）：<br>$$<br>\text{argmax}_{i \in R} \text{MR}_i<br>$$</p>
+</li>
+</ul>
+<h4 id="MMR-多样性算法-1"><a href="#MMR-多样性算法-1" class="headerlink" title="MMR 多样性算法"></a>MMR 多样性算法</h4><ol>
+<li><p>已选中的物品 S 初始化为空集，未选中的物品 R 初始化为全集 {1, …, n}。</p>
+</li>
+<li><p>选择精排分数 reward_i 最高的物品，从集合 R 移到 S。</p>
+</li>
+<li><p>做 k - 1 轮循环：</p>
+<p>a. 计算集合 R 中所有物品的分数 {MR_i}_{i ∈ R}。</p>
+<p>b. 选出分数最高的物品，将其从 R 移到 S。</p>
+</li>
+</ol>
+<h4 id="滑动窗口"><a href="#滑动窗口" class="headerlink" title="滑动窗口"></a>滑动窗口</h4><ul>
+<li>已选中的物品越多（即集合 S 越大），越难找出物品 i ∈ R，使得 i 与 S 中的物品都不相似。</li>
+<li>设 sim 的取值范围是 [0, 1]。当 S 很大时，多样性分数 max_{j ∈ S} sim(i, j) 总是等于 1，导致 MMR 算法失效。</li>
+<li>解决方案：设置一个滑动窗口 W，比如最近选中的 10 个物品，用 W 代替 MMR 公式中的 S。</li>
+</ul>
+<h4 id="总结-8"><a href="#总结-8" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><p>标准 MMR：<br>$$<br>\text{argmax}_{i \in R} \left{ \theta \cdot \text{reward}<em>i - (1 - \theta) \cdot \max</em>{j \in S} \text{sim}(i, j) \right}<br>$$</p>
+</li>
+<li><p>用滑动窗口：<br>$$<br>\text{argmax}_{i \in R} \left{ \theta \cdot \text{reward}<em>i - (1 - \theta) \cdot \max</em>{j \in W} \text{sim}(i, j) \right}<br>$$</p>
+</li>
+</ul>
+<h3 id="业务规则约束下的多样性算法"><a href="#业务规则约束下的多样性算法" class="headerlink" title="业务规则约束下的多样性算法"></a>业务规则约束下的多样性算法</h3><h4 id="重排的规则"><a href="#重排的规则" class="headerlink" title="重排的规则"></a>重排的规则</h4><blockquote>
+<p>规则：最多连续出现 k 篇某种笔记</p>
+</blockquote>
+<ul>
+<li>小红书推荐系统的物品分为图文笔记、视频笔记。</li>
+<li>最多连续出现 k &#x3D; 5 篇图文笔记，最多连续出现 k &#x3D; 5 篇视频笔记。</li>
+<li>如果排 i 到 i + 4 的全都是图文笔记，那么排在 i + 5 的必须是视频笔记。</li>
+</ul>
+<blockquote>
+<p>规则：每 k 篇笔记最多出现 1 篇某种笔记</p>
+</blockquote>
+<ul>
+<li>运营推广笔记的精排分会乘以大于 1 的系数（boost），帮助笔记获得更多曝光。</li>
+<li>为了防止 boost 影响体验，限制每 k &#x3D; 9 篇笔记最多出现 1 篇运营推广笔记。</li>
+<li>如果排第 i 位的是运营推广笔记，那么排 i + 1 到 i + 8 的不能是运营推广笔记。</li>
+</ul>
+<blockquote>
+<p>规则：前 t 篇笔记最多出现 k 篇某种笔记</p>
+</blockquote>
+<ul>
+<li>排名前 t 篇笔记最容易被看到，对用户体验最重要。（小红书的 top 4 为首屏）</li>
+<li>小红书推荐系统有带电商卡片的笔记，过多可能会影响体验。</li>
+<li>前 t &#x3D; 1 篇笔记最多出现 k &#x3D; 0 篇带电商卡片的笔记。</li>
+<li>前 t &#x3D; 4 篇笔记最多出现 k &#x3D; 1 篇带电商卡片的笔记。</li>
+</ul>
+<h4 id="MMR-重排规则"><a href="#MMR-重排规则" class="headerlink" title="MMR + 重排规则"></a>MMR + 重排规则</h4><ul>
+<li>重排结合 MMR 与规则，在满足规则的前提下最大化 MR。</li>
+<li>每一轮先用规则排除掉 <strong>R</strong> 中的部分物品，得到子集 **R’**。</li>
+<li>MMR 公式中的 <strong>R</strong> 替换成 **R’**，选中的物品符合规则。</li>
+</ul>
+<h3 id="DPP-多样性算法"><a href="#DPP-多样性算法" class="headerlink" title="DPP 多样性算法"></a>DPP 多样性算法</h3><h4 id="多样性问题"><a href="#多样性问题" class="headerlink" title="多样性问题"></a>多样性问题</h4><ul>
+<li>精排给 n 个物品打分：reward_1, …, reward_n。</li>
+<li>n 个物品的向量表征：v_1, …, v_n ∈ R^d。</li>
+<li>从 n 个物品中选出 k 个物品，组成集合 S。<ul>
+<li>价值大：分数之和 Σj∈s reward_j 越大越好。</li>
+<li>多样性好：S 中 k 个向量组成的超平形体 P(S) 的体积越大越好。</li>
+</ul>
+</li>
+</ul>
+<h4 id="行列式点过程（DPP）"><a href="#行列式点过程（DPP）" class="headerlink" title="行列式点过程（DPP）"></a>行列式点过程（DPP）</h4><ul>
+<li><p>DPP 是一种传统的统计机器学习方法：<br>$$<br>\text{argmax}_{S:|S|&#x3D;k} \log \det(V_S^T V_S)<br>$$</p>
+</li>
+<li><p>Hulu 的论文将 DPP 应用在推荐系统：<br>$$<br>\text{argmax}<em>{S : |S| &#x3D; k} , \theta \cdot \left( \sum</em>{j \in S} \text{reward}_j \right) + (1 - \theta) \cdot \log \det \left( V_S^T V_S \right)<br>$$</p>
+</li>
+<li><p>DPP 是个组合优化问题，从集合 {1, …, n} 中选出一个大小为 k 的子集 S。</p>
+</li>
+<li><p>用 S 表示已选中的物品，用 R 表示未选中的物品，贪心算法求解：<br>$$<br>\text{argmax}_{i \in R} , \theta \cdot \text{reward}<em>i + (1 - \theta) \cdot \log \det(A</em>{S \cup{i}})<br>$$</p>
+</li>
+</ul>
+<h4 id="规则约束"><a href="#规则约束" class="headerlink" title="规则约束"></a>规则约束</h4><ul>
+<li><p>贪心算法每轮从 R 中选出一个物品：<br>$$<br>\text{argmax}_{i \in R} , \theta \cdot \text{reward}<em>i + (1 - \theta) \cdot \log \det(A</em>{W \cup{i}})<br>$$</p>
+</li>
+<li><p>有很多规则约束，例如最多连续出 5 篇视频笔记（如果已经连续出了 5 篇视频笔记，下一篇必须是图文笔记）。</p>
+</li>
+<li><p>用规则排除掉 R 中的部分物品，得到子集 R’，然后求解：<br>$$<br>\text{argmax}_{i \in R’} , \theta \cdot \text{reward}<em>i + (1 - \theta) \cdot \log \det(A</em>{W \cup{i}})<br>$$</p>
+</li>
+</ul>
+<h2 id="物品冷启动"><a href="#物品冷启动" class="headerlink" title="物品冷启动"></a>物品冷启动</h2><h3 id="优化目标-评价指标"><a href="#优化目标-评价指标" class="headerlink" title="优化目标 &amp; 评价指标"></a>优化目标 &amp; 评价指标</h3><h4 id="物品冷启动-1"><a href="#物品冷启动-1" class="headerlink" title="物品冷启动"></a>物品冷启动</h4><blockquote>
+<p>研究 UGC 的物品冷启</p>
+</blockquote>
+<ul>
+<li>小红书上用户新发布的笔记。</li>
+<li>B 站上用户新上传的视频。</li>
+<li>今日头条上作者新发布的文章。</li>
+</ul>
+<h4 id="新笔记冷启动"><a href="#新笔记冷启动" class="headerlink" title="新笔记冷启动"></a>新笔记冷启动</h4><blockquote>
+<p>为什么要特殊对待新笔记？</p>
+</blockquote>
+<ul>
+<li>新笔记缺少与用户的交互，导致推荐的难度大、效果差。</li>
+<li>扶持新发布、低曝光的笔记，可以增强作者发布意愿。</li>
+</ul>
+<h4 id="优化冷启的目标"><a href="#优化冷启的目标" class="headerlink" title="优化冷启的目标"></a>优化冷启的目标</h4><ol>
+<li><strong>精准推荐</strong>：克服冷启的困难，把新笔记推荐给合适的用户，不引起用户反感。</li>
+<li><strong>激励发布</strong>：流量向低曝光新笔记倾斜，激励作者发布。</li>
+<li><strong>挖掘高潜</strong>：通过初期小流量的试探，找到高质量的笔记，给与流量倾斜。</li>
+</ol>
+<h4 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h4><ul>
+<li>作者侧指标：<ul>
+<li>发布渗透率、人均发布量。</li>
+</ul>
+</li>
+<li>用户侧指标：<ul>
+<li>新笔记指标：新笔记的点击率、交互率。</li>
+<li>大盘指标：消费时长、日活、月活。</li>
+</ul>
+</li>
+<li>内容侧指标：<ul>
+<li>高热笔记占比。</li>
+</ul>
+</li>
+</ul>
+<h5 id="作者侧指标"><a href="#作者侧指标" class="headerlink" title="作者侧指标"></a>作者侧指标</h5><blockquote>
+<p>发布渗透率（penetration rate）</p>
+</blockquote>
+<ul>
+<li>发布渗透率 &#x3D; 当日发布人数 &#x2F; 日活人数</li>
+<li>发布一篇或以上，就算一个发布人数。</li>
+<li>例：<ul>
+<li>当日发布人数 &#x3D; 100万</li>
+<li>日活人数 &#x3D; 2000万</li>
+<li>发布渗透率 &#x3D; 100 &#x2F; 200 &#x3D; 5%</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>人均发布量</p>
+</blockquote>
+<ul>
+<li><p>人均发布量 &#x3D; 当日发布笔记数 &#x2F; 日活人数</p>
+</li>
+<li><p>例：</p>
+<ul>
+<li>每日发布笔记数 &#x3D; 200万</li>
+<li>日活人数 &#x3D; 2000万</li>
+<li>人居发布量 &#x3D; 200 &#x2F; 2000 &#x3D; 0.1</li>
+</ul>
+</li>
+<li><p>发布渗透率、人均发布量反应出作者的发布积极性。</p>
+</li>
+<li><p>冷启的重要优化目标是促进发布，增大内容池。</p>
+</li>
+<li><p>新笔记获得的曝光越多，首次曝光和交互出现得越早，作者发布积极性越高。</p>
+</li>
+</ul>
+<h5 id="用户侧指标"><a href="#用户侧指标" class="headerlink" title="用户侧指标"></a>用户侧指标</h5><blockquote>
+<p>新笔记的消费指标</p>
+</blockquote>
+<ul>
+<li>新笔记的点击率、交互率。<ul>
+<li>问题：曝光的基尼系数很大。</li>
+<li>少数头部新笔记占据了大部分的曝光。</li>
+</ul>
+</li>
+<li>分别考察高曝光、低曝光新笔记。<ul>
+<li>高曝光：比如 &gt; 1000 次曝光。</li>
+<li>低曝光：比如 &lt; 1000 次曝光。</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>大盘消费指标</p>
+</blockquote>
+<ul>
+<li>大盘的消费时长、日活、月活。</li>
+<li>大力扶持低曝光新笔记会发生什么？<ul>
+<li>作者侧发布指标变好。</li>
+<li>用户侧大盘消费指标变差。</li>
+</ul>
+</li>
+</ul>
+<h5 id="内容侧指标"><a href="#内容侧指标" class="headerlink" title="内容侧指标"></a>内容侧指标</h5><blockquote>
+<p>高热笔记占比</p>
+</blockquote>
+<ul>
+<li>高热笔记：前 30 天获得 1000+ 次点击。</li>
+<li>高热笔记占比越高，说明冷启阶段挖掘优质笔记的能力越强。</li>
+</ul>
+<h4 id="冷启动的优化点"><a href="#冷启动的优化点" class="headerlink" title="冷启动的优化点"></a>冷启动的优化点</h4><ul>
+<li>优化全链路（包括召回和排序）。</li>
+<li>流量调控（流量怎么在新物品、老物品中分配）。</li>
+</ul>
+<h3 id="简单的召回通道"><a href="#简单的召回通道" class="headerlink" title="简单的召回通道"></a>简单的召回通道</h3><h4 id="召回的依据"><a href="#召回的依据" class="headerlink" title="召回的依据"></a>召回的依据</h4><p>✔ 自带图片、文字、地点。</p>
+<p>✔ 算法或人工标注的标签。</p>
+<p>❌ 没有用户点击、点赞等信息。</p>
+<p>❌ 没有笔记 ID embedding</p>
+<h4 id="冷启召回的困难"><a href="#冷启召回的困难" class="headerlink" title="冷启召回的困难"></a>冷启召回的困难</h4><ul>
+<li>缺少用户交互，还没学好笔记 ID embedding，导致双塔模型效果不好。</li>
+<li>缺少用户交互，导致 ItemCF 不适用。</li>
+</ul>
+<h4 id="召回通道"><a href="#召回通道" class="headerlink" title="召回通道"></a>召回通道</h4><p>❌ ItemCF 召回（不适用）</p>
+<p>❓ 双塔模型（改造后适用）</p>
+<p>✔ 类目、关键词召回（适用）</p>
+<p>✔ 聚类召回（适用）</p>
+<p>✔ Look-Alike 召回（适用）</p>
+<h5 id="ID-Embedding"><a href="#ID-Embedding" class="headerlink" title="ID Embedding"></a>ID Embedding</h5><blockquote>
+<p>改进方案1：新笔记使用 default embedding</p>
+</blockquote>
+<ul>
+<li>物品塔做 ID embedding 时，让所有新笔记共享一个 ID，而不是用自己真正的 ID。</li>
+<li>Default embedding：共享的 ID 对应的 embedding 向量。</li>
+<li>到下次模型训练的时候，新笔记才有自己的 ID embedding 向量。</li>
+</ul>
+<blockquote>
+<p>改进方案2：利用相似笔记 embedding 向量</p>
+</blockquote>
+<ul>
+<li>查找 top k 内容最相似的高曝笔记。</li>
+<li>把 k 个高曝笔记的 embedding 向量取平均，作为新笔记的 embedding。</li>
+</ul>
+<h5 id="多个向量召回池"><a href="#多个向量召回池" class="headerlink" title="多个向量召回池"></a>多个向量召回池</h5><ul>
+<li>多个召回池，让新笔记有更多曝光机会。<ul>
+<li>1 小时新笔记</li>
+<li>6 小时新笔记</li>
+<li>24 小时新笔记</li>
+<li>30 天笔记</li>
+</ul>
+</li>
+<li>共享同一个双塔模型，那么多个召回池不增加训练的代价。</li>
+</ul>
+<h5 id="用户画像"><a href="#用户画像" class="headerlink" title="用户画像"></a>用户画像</h5><ul>
+<li><p>感兴趣的<strong>类目</strong>：</p>
+<p>美食、科技数码、电影 ……</p>
+</li>
+<li><p>感兴趣的<strong>关键词</strong>：</p>
+<p>纽约、职场、搞笑、程序员、大学 ……</p>
+</li>
+</ul>
+<h5 id="基于类目"><a href="#基于类目" class="headerlink" title="基于类目"></a>基于类目</h5><ul>
+<li>系统维护类目索引：<ul>
+<li>类目 -&gt; 笔记列表（按时间倒排）</li>
+</ul>
+</li>
+<li>用类目索引做召回：<ul>
+<li>用户画像 -&gt; 类目 -&gt; 笔记列表</li>
+</ul>
+</li>
+<li>取回笔记列表上前 k 篇笔记（即最新的 k 篇）。</li>
+</ul>
+<h5 id="基于关键词"><a href="#基于关键词" class="headerlink" title="基于关键词"></a>基于关键词</h5><ul>
+<li><p>系统维护关键词索引：</p>
+<ul>
+<li>关键词 -&gt; 笔记列表（按时间倒排）</li>
+</ul>
+</li>
+<li><p>根据用户画像上的关键词做召回。</p>
+</li>
+</ul>
+<h5 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h5><ul>
+<li>只对刚刚发布的新笔记有效。<ul>
+<li>取回某类目 &#x2F; 关键词下最新的 k 篇笔记。</li>
+<li>发布几小时之后，就再没有机会被召回。</li>
+</ul>
+</li>
+<li>弱个性化，不够精准。</li>
+</ul>
+<h4 id="聚类召回"><a href="#聚类召回" class="headerlink" title="聚类召回"></a>聚类召回</h4><blockquote>
+<p>聚类索引</p>
+</blockquote>
+<ul>
+<li>一篇新笔记发布之后，用神经网络把它映射到一个特征向量。</li>
+<li>从 1000 个向量（对应 1000 个 cluster）中找到最相似的向量，作为新笔记的 cluster。</li>
+<li>索引：<ul>
+<li>cluster -&gt; 笔记 ID 列表（按时间倒排）</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>线上召回</p>
+</blockquote>
+<ul>
+<li>给定用户 ID，找到他的 last-n 交互的笔记列表，把这些笔记作为种子笔记。</li>
+<li>把每篇种子笔记映射到向量，寻找最相似的 cluster。（知道了用户对哪些 cluster 感兴趣）</li>
+<li>从每个 cluster 的笔记列表中，取回最新的 <strong>m</strong> 篇笔记。</li>
+<li>最多取回 <strong>mn</strong> 篇新笔记。</li>
+</ul>
+<h5 id="内容相似度"><a href="#内容相似度" class="headerlink" title="内容相似度"></a>内容相似度</h5><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122049114.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="模型的训练"><a href="#模型的训练" class="headerlink" title="模型的训练"></a>模型的训练</h5><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122049645.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id=""><a href="#" class="headerlink" title="&lt;种子笔记，正样本&gt;"></a>&lt;种子笔记，正样本&gt;</h5><blockquote>
+<p>方法一：人工标注二元组的相似度</p>
+</blockquote>
+<blockquote>
+<p>方法二：算法自动选正样本</p>
+</blockquote>
+<ul>
+<li><p>筛选条件：</p>
+<ul>
+<li>只用高曝光笔记作为二元组（因为有充足的用户交互信息）。</li>
+<li>两篇笔记有相同的二级类目，比如都是 “菜谱教程”。</li>
+</ul>
+</li>
+<li><p>用 ItemCF 的物品相似度选正样本。</p>
+</li>
+<li><p>从全体笔记中随机选出满足条件的：</p>
+<ul>
+<li>字数较多（神经网络提取的文本信息有效）。</li>
+<li>笔记质量高，避免图文无关。</li>
+</ul>
+</li>
+</ul>
+<h5 id="总结-9"><a href="#总结-9" class="headerlink" title="总结"></a>总结</h5><ul>
+<li>基本思想：根据用户的点赞、收藏、转发记录，推荐内容相似的笔记。</li>
+<li>线下训练：多模态神经网络把图文内容映射到向量。</li>
+<li>线上服务：<ul>
+<li>用户喜欢的笔记 -&gt; 特征向量 -&gt; 最近的 Cluster -&gt; 新笔记</li>
+</ul>
+</li>
+</ul>
+<h4 id="Look-Alike-召回"><a href="#Look-Alike-召回" class="headerlink" title="Look-Alike 召回"></a>Look-Alike 召回</h4><ul>
+<li>点击、点赞、收藏、转发 —— 用户对笔记可能感兴趣。</li>
+<li>把有交互的用户作为新笔记的种子用户。</li>
+<li>用 look-alike 在相似用户中扩散。</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122051477.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="流量调控"><a href="#流量调控" class="headerlink" title="流量调控"></a>流量调控</h3><h4 id="扶持新笔记的目的"><a href="#扶持新笔记的目的" class="headerlink" title="扶持新笔记的目的"></a>扶持新笔记的目的</h4><ul>
+<li>促进发布，增大内容池。<ul>
+<li>新笔记获得的曝光越多，作者创作积极性越高。</li>
+<li>反映在发布渗透率、人均发布量。</li>
+</ul>
+</li>
+<li>挖掘优质笔记。<ul>
+<li>做探索，让每篇新笔记都能获得足够曝光。</li>
+<li>挖掘的能力反映在高热笔记占比。</li>
+</ul>
+</li>
+</ul>
+<h4 id="工业界做法"><a href="#工业界做法" class="headerlink" title="工业界做法"></a>工业界做法</h4><ul>
+<li>假设推荐系统只分发年龄 &lt; 30 天的笔记。</li>
+<li>假设采用自然分发，新笔记（年龄 &lt; 24小时）的曝光占比为 1 &#x2F; 30。</li>
+<li>扶持新笔记，让新笔记的曝光占比远大于 1 &#x2F; 30。</li>
+</ul>
+<h4 id="流量调控技术的发展"><a href="#流量调控技术的发展" class="headerlink" title="流量调控技术的发展"></a>流量调控技术的发展</h4><ol>
+<li>在推荐结果中强插新笔记。</li>
+<li>对新笔记的排序分数做提权（boost）。</li>
+<li>通过提权，对新笔记做保量。</li>
+<li>差异化保量。</li>
+</ol>
+<h4 id="新笔记提权"><a href="#新笔记提权" class="headerlink" title="新笔记提权"></a>新笔记提权</h4><ul>
+<li><p>目标：让新笔记有更多机会曝光。</p>
+<ul>
+<li>如果做自然分发，24 小时新笔记占比为 1&#x2F; 30。</li>
+<li>做人为干涉，让新笔记占比大幅提升。</li>
+</ul>
+</li>
+<li><p>干涉粗排、重排环节，给新笔记提权。</p>
+</li>
+<li><p>优点：容易实现，投入产出比好。</p>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>曝光量对提权系数很敏感。</li>
+<li>很难精确控制曝光量，容易过度曝光和不充分曝光。</li>
+</ul>
+</li>
+</ul>
+<h4 id="新笔记保量"><a href="#新笔记保量" class="headerlink" title="新笔记保量"></a>新笔记保量</h4><ul>
+<li><p>保量：不论笔记质量高低，都保证 24 小时获得 100 次曝光。</p>
+</li>
+<li><p>在原有提权系数的基础上，乘以额外的提权的系数，比如：</p>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122051654.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ul>
+<h4 id="动态提权保量"><a href="#动态提权保量" class="headerlink" title="动态提权保量"></a>动态提权保量</h4><blockquote>
+<p>用下面四个值计算提权系数</p>
+</blockquote>
+<ul>
+<li>目标时间：比如 24 小时。</li>
+<li>目标曝光：比如 100 次。</li>
+<li>发布时间：比如笔记已经发布 12 小时。</li>
+<li>已有曝光：比如笔记已经获得 20 次曝光。</li>
+</ul>
+<p>$$<br>提权系数 &#x3D; f \left(\frac{发布时间}{目标时间}，\frac{已有曝光}{目标曝光} \right) &#x3D; f(0.5, 0.2)<br>$$</p>
+<h4 id="保量的难点"><a href="#保量的难点" class="headerlink" title="保量的难点"></a>保量的难点</h4><blockquote>
+<p>保量成功率远低于 100%</p>
+</blockquote>
+<ul>
+<li><p>很多笔记在 24 小时达不到 100 次曝光。</p>
+</li>
+<li><p>召回、排序存在不足。</p>
+</li>
+<li><p>提权系数调得不好</p>
+</li>
+</ul>
+<blockquote>
+<p>线上环境变化会导致保量失败</p>
+</blockquote>
+<ul>
+<li>线上环境变化：新增召回通道、升级排序模型、改变重排打散规则 ……</li>
+<li>线上环境变化后，需要调整提权系数。</li>
+</ul>
+<h4 id="差异化保量"><a href="#差异化保量" class="headerlink" title="差异化保量"></a>差异化保量</h4><ul>
+<li>保量：不论新笔记质量高低，都做扶持，在前 24 小时给 100 次曝光。</li>
+<li>差异化保量：不同笔记有不同保量目标，普通笔记保 100 次曝光，内容优质的笔记保 100 ~ 500 次曝光。</li>
+<li>基础保量：24 小时 100 次曝光。</li>
+<li>内容质量：用模型评价内容质量高低，给予额外保量目标，上限是加 200 次曝光。</li>
+<li>作者质量：根据作者历史上的笔记质量，给与额外保量目标，上限是加 200 次曝光。</li>
+<li>一篇笔记最少有 100 次保量，最多有 500 次保量。</li>
+</ul>
+<h4 id="总结-10"><a href="#总结-10" class="headerlink" title="总结"></a>总结</h4><ul>
+<li>流量调控：流量怎么在新老笔记之间分配。</li>
+<li>扶持新笔记：单独的召回通道、在排序阶段提权。</li>
+<li>保量：帮助新笔记在前 24 小时获得 100 次曝光。</li>
+<li>差异化保量：根据内容质量、作者质量，决定保量目标。</li>
+</ul>
+<h3 id="冷启的-AB-测试"><a href="#冷启的-AB-测试" class="headerlink" title="冷启的 AB 测试"></a>冷启的 AB 测试</h3><h4 id="用户侧实验"><a href="#用户侧实验" class="headerlink" title="用户侧实验"></a>用户侧实验</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122052557.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>缺点</p>
+</blockquote>
+<ul>
+<li>限定：保量 100 次曝光。</li>
+<li>假设：新笔记曝光越多，用户使用 APP 时长越低。</li>
+<li>新策略：把新笔记排序时的权重增大两倍。</li>
+<li>结果（只看用户消费指标）：<ul>
+<li>AB 测试的 diff 是负数（实验组不如对照组）。</li>
+<li>如果推全，diff 会缩小（比如 -2% -&gt; -1%）。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122053190.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="作者侧实验：方案一"><a href="#作者侧实验：方案一" class="headerlink" title="作者侧实验：方案一"></a>作者侧实验：方案一</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122054850.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>缺点：新笔记之间会抢流量</p>
+</blockquote>
+<ul>
+<li>设定：<ul>
+<li>新老笔记走各自队列，没有竞争。</li>
+<li>重排分给新笔记 1 &#x2F; 3 流量，分给老笔记 2 &#x2F; 3 流量。</li>
+</ul>
+</li>
+<li>新策略：把新笔记的权重增大两倍。</li>
+<li>结果（只看作者发布指标）：<ul>
+<li>AB 测试的 diff 是正数（实验组优于对照组）。</li>
+<li>如果推全，diff 会消失（比如 2% -&gt; 0）。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122056131.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>缺点：新笔记和老笔记抢流量</p>
+</blockquote>
+<ul>
+<li>设定：新老笔记自由竞争。</li>
+<li>新策略：把新笔记排序时的权重增大两倍。</li>
+<li>AB 测试时，50%新笔记（带策略）跟 100% 老笔记抢流量。</li>
+<li>推全后，100% 新笔记（带策略）跟 100% 老笔记抢流量。</li>
+<li>AB 测试结果与推全结果有差异。</li>
+</ul>
+<h4 id="作者侧实验：方案二"><a href="#作者侧实验：方案二" class="headerlink" title="作者侧实验：方案二"></a>作者侧实验：方案二</h4><blockquote>
+<p>方案二比方案一的优缺点</p>
+</blockquote>
+<ul>
+<li>优点：新笔记的两个桶不抢流量，实验结果更可信。</li>
+<li>相同：新笔记和老笔记抢流量，AB 测试结果与推全结果有差异。</li>
+<li>缺点：新笔记池减小一半，对用户体验造成负面影响。</li>
+</ul>
+<h4 id="作者侧实验：方案三"><a href="#作者侧实验：方案三" class="headerlink" title="作者侧实验：方案三"></a>作者侧实验：方案三</h4><p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202411122055591.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="总结-11"><a href="#总结-11" class="headerlink" title="总结"></a>总结</h4><ul>
+<li><p>冷启的 AB 测试需要观测<strong>作者发布指标</strong>和<strong>用户消费指标</strong>。</p>
+</li>
+<li><p>各种 AB 测试的方案都有缺点。</p>
+</li>
+<li><p>设计方案的时候，问自己几个问题：</p>
+<ul>
+<li><p>实验组、对照组新笔记会不会抢流量？</p>
+<p>在进行新笔记的AB测试时，实验组和对照组的新笔记可能会出现<strong>流量竞争</strong>的情况。如果实验组的新笔记通过提权等策略获得更多曝光，可能会抢占对照组新笔记的流量，导致实验结果出现偏差。这种竞争可能使实验组的发布指标上升，而对照组的发布指标下降，从而产生差异。</p>
+</li>
+<li><p>新笔记、老笔记怎么抢流量？</p>
+<p>在推荐系统中，新发布的笔记（新笔记）和已有的笔记（老笔记）在获取用户曝光时可能存在竞争关系。由于老笔记通常已积累一定的用户反馈数据，推荐系统更容易评估其质量，从而在排序中占据优势。相比之下，新笔记缺乏用户交互数据，可能在推荐中处于劣势，导致曝光机会减少。</p>
+</li>
+<li><p>同时隔离笔记、用户，会不会让内容池变小？</p>
+<p>在AB测试中，同时对用户和笔记进行隔离，即将用户和新笔记分别分配到实验组和对照组，确实会导致每个组内的内容池缩小。具体而言，实验组用户只能访问实验组的新笔记，对照组用户只能访问对照组的新笔记。这种隔离方式减少了每个用户可接触的内容数量，可能影响推荐效果，进而降低用户体验。</p>
+</li>
+<li><p>如果对新笔记做保量，会发生什么？</p>
+<p><strong>实验结果偏差</strong>：在AB测试中，如果对实验组的新笔记进行保量，而对照组未实施相同策略，实验组的新笔记可能获得更多曝光，导致实验结果不准确。</p>
+<p><strong>流量竞争</strong>：新笔记的保量曝光可能与老笔记争夺用户注意力，影响老笔记的曝光机会，进而影响整体推荐效果。</p>
+<p><strong>用户体验影响</strong>：如果保量策略导致低质量的新笔记频繁曝光，可能降低用户体验，影响用户对平台的满意度。</p>
+</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Recommender-System/" class="print-no-link">#Recommender System</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Real Recommender System For Industry</div>
+      <div>https://www.renkelin.vip/2024/11/12/RS2/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Kolin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>November 12, 2024</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/12/ML/" title="Machine Learning">
+                        <span class="hidden-mobile">Machine Learning</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"VNSy36PGiQCPwyRb6AukmG4w-gzGzoHsz","appKey":"yzHhLZjFMNqrtHhPeHVoWzF2","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="mailto:renkelin00@gmail.com?subject=Interested+In+Your+Blog" target="_blank" rel="nofollow noopener"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:renkelin00@gmail.com?subject=Interested+In+Your+Blog" target="_blank" rel="nofollow noopener"><span>renkelin00@gmail.com</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
