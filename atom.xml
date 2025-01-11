@@ -6,7 +6,7 @@
   <link href="https://www.renkelin.vip/atom.xml" rel="self"/>
   
   <link href="https://www.renkelin.vip/"/>
-  <updated>2024-11-12T14:22:51.220Z</updated>
+  <updated>2025-01-11T04:26:01.288Z</updated>
   <id>https://www.renkelin.vip/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Deep Learning from Scratch</title>
+    <link href="https://www.renkelin.vip/2025/01/10/DL/"/>
+    <id>https://www.renkelin.vip/2025/01/10/DL/</id>
+    <published>2025-01-09T15:00:00.000Z</published>
+    <updated>2025-01-11T04:26:01.288Z</updated>
+    
+    
+    <summary type="html">对鱼书每章节进行总结，深入浅出地剖析了深度学习的原理和相关技术</summary>
+    
+    
+    
+    <category term="人工智能" scheme="https://www.renkelin.vip/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    
+    <category term="Deep Learning" scheme="https://www.renkelin.vip/tags/Deep-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>Real Recommender System For Industry</title>
@@ -40,7 +59,7 @@
     <link href="https://www.renkelin.vip/2024/10/12/ML/"/>
     <id>https://www.renkelin.vip/2024/10/12/ML/</id>
     <published>2024-10-11T15:00:00.000Z</published>
-    <updated>2024-10-27T06:21:41.276Z</updated>
+    <updated>2025-01-11T04:25:20.878Z</updated>
     
     
     <summary type="html">详细介绍机器学习中出现的基本术语，参考西瓜书</summary>
@@ -116,7 +135,7 @@
     <link href="https://www.renkelin.vip/2024/02/17/LeetCode/"/>
     <id>https://www.renkelin.vip/2024/02/17/LeetCode/</id>
     <published>2024-02-16T15:00:00.000Z</published>
-    <updated>2024-02-17T11:01:19.170Z</updated>
+    <updated>2025-01-11T04:26:47.835Z</updated>
     
     
     <summary type="html">每日刷题记录与心得</summary>

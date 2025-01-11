@@ -20,24 +20,24 @@
   <meta name="author" content="Kolin">
   <meta name="keywords" content="">
   
-    <meta name="description" content="详细介绍机器学习中出现的基本术语，参考西瓜书">
+    <meta name="description" content="对鱼书每章节进行总结，深入浅出地剖析了深度学习的原理和相关技术">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Machine Learning">
-<meta property="og:url" content="https://www.renkelin.vip/2024/10/12/ML/index.html">
+<meta property="og:title" content="Deep Learning from Scratch">
+<meta property="og:url" content="https://www.renkelin.vip/2025/01/10/DL/index.html">
 <meta property="og:site_name" content="Kolin&#39;s space">
-<meta property="og:description" content="详细介绍机器学习中出现的基本术语，参考西瓜书">
+<meta property="og:description" content="对鱼书每章节进行总结，深入浅出地剖析了深度学习的原理和相关技术">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-10-11T15:00:00.000Z">
-<meta property="article:modified_time" content="2025-01-11T04:25:20.878Z">
+<meta property="article:published_time" content="2025-01-09T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-01-11T04:26:01.288Z">
 <meta property="article:author" content="Kolin">
-<meta property="article:tag" content="Machine Learning">
+<meta property="article:tag" content="Deep Learning">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Machine Learning - Kolin&#39;s space</title>
+  <title>Deep Learning from Scratch - Kolin&#39;s space</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -216,7 +216,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Machine Learning"></span>
+            <span id="subtitle" data-typed-text="Deep Learning from Scratch"></span>
           
         </div>
 
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-10-12 00:00" pubdate>
-          October 12, 2024 am
+        <time datetime="2025-01-10 00:00" pubdate>
+          January 10, 2025 am
         </time>
       </span>
     
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k words
+          1.3k words
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          19 mins
+          11 mins
         
       </span>
     
@@ -287,75 +287,77 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Machine Learning</h1>
+            <h1 id="seo-header">Deep Learning from Scratch</h1>
             
             
               <div class="markdown-body">
                 
-                <h1>机器学习</h1>
+                <h1>深度学习入门</h1>
 <blockquote>
-<p>详细介绍机器学习中出现的基本术语，适合小白入门</p>
+<p>Deep Learning from Scratch</p>
 </blockquote>
-<h2 id="基本术语">基本术语</h2>
-<h3 id="算法">算法</h3>
-<p>“算法” 是指从数据中学得 “模型” 的具体方法，例如线性回归、对数几率回归、决策树等。</p>
-<p>“算法” 产出的结果称为 “模型”，通常是具体的函数或者可抽象地看作为函数，例如一元线性回归算法产出的模型即为形如 f(x) = wx + b 的一元一次函数。</p>
-<p>不过由于严格区分这两者的意义不大，因此多数文献和资料会将其混用，当遇到这两个概念时，其具体指代根据上下文判断即可。</p>
-<h3 id="样本">样本</h3>
-<p>也称为 “示例”，是关于一个事件或对象的描述。</p>
-<p>一个 “色泽青绿，根蒂蜷缩，敲声脆响” 的西瓜用向量来表示即为：x = (青绿; 蜷缩; 清脆)</p>
-<p>向量中的各个维度称为 “特征” 或者 “属性”</p>
-<p>向量中的元素用分号 “;” 分隔时表示此向量为列向量，用逗号 “,” 分隔时表示为行向量</p>
-<h3 id="标记">标记</h3>
-<p>机器学习的本质就是在学习样本在某个方面的表现是否存在潜在的规律，我们称该方面的信息为 “标记”</p>
-<p>标记通常也看作为样本的一部分，因此，一个完整的样本通常表示为 (x, y)</p>
+<h2 id="感知机">感知机</h2>
 <ul>
-<li>
-<p>一条西瓜样本：x = (青绿; 蜷缩; 清脆)，y = 好瓜</p>
-</li>
-<li>
-<p>一条房价样本：x = (1所)，y = 1万 / m^2</p>
-</li>
+<li>感知机是具有输入和输出的算法。给定一个输入后，将输出一个既定的值。</li>
+<li>感知机将权重和偏置设定为参数。</li>
+<li>使用感知机可以表示与门和或门等逻辑电路。</li>
+<li>异或门无法通过单层感知机来表示。</li>
+<li>使用两层感知机可以表示异或门。</li>
+<li>单层感知机只能表示线性空间，而多层感知机可以表示非线性空间。</li>
+<li>多层感知机（在理论上）可以表示计算机。</li>
 </ul>
-<h3 id="样本空间">样本空间</h3>
-<p>也称为 “输入空间” 或 “属性空间“。由于样本采用的是标明各个特征取值的 ”特征向量“ 来进行表示，根据线性代数的知识可知，有向量便会有所在的空间，因此称表示样本的特征向量所在的空间为样本空间，通常用花式大写的 X 表示。</p>
-<h3 id="标记空间">标记空间</h3>
-<p>标记所在的空间称为 ”标记空间“ 或 ”输出空间“，数学表示为花式大写的 Y</p>
-<h3 id="机器学习任务">机器学习任务</h3>
-<p>根据标记的取值类型不同，可将机器学习任务分为以下两类：</p>
+<h2 id="神经网络">神经网络</h2>
 <ul>
-<li>当标记取值为离散型时，称此类任务为 ”分类“，例如学习西瓜是好瓜还是坏瓜、学习猫的图片是白猫还是黑猫等。当分类的类别只有两个时，称此类任务为 ”二分类“，通常称其中一个为 ”正类“，另一个为 ”反类“ 或 ”负类“；当分类的类别超过两个时，称此类任务为 ”多分类“。</li>
-<li>当标记取值为连续型时，称此类任务为 ”回归“，例如学习预测西瓜的成熟度、学习预测未来的房价等。</li>
+<li>神经网络中的激活函数使用平滑变化的 sigmoid 函数或 ReLU 函数。</li>
+<li>通过巧妙地使用 NumPy 多维数组，可以高效地实现神经网络。</li>
+<li>机器学习的问题大体上可以分为回归问题和分类问题。</li>
+<li>关于输出层的激活函数，回归问题中一般用恒等函数，分类问题中一般用 softmax 函数。</li>
+<li>分类问题中，输出层的神经元的数量设置为要分类的类别数。</li>
+<li>输入数据的集合称为批。通过以批为单位进行推理处理，能够实现高速的运算。</li>
 </ul>
-<p>根据是否有用到标记信息，可将机器学习任务分为以下两类：</p>
+<h2 id="神经网络的学习">神经网络的学习</h2>
 <ul>
-<li>模型训练阶段有用到标记信息时，称此类任务为 ”监督学习“。</li>
-<li>在模型训练阶段没用到标记信息时，称此类任务为 ”无监督学习“。</li>
+<li>机器学习中使用的数据集分为训练数据和测试数据。</li>
+<li>神经网络用训练数据进行学习，并用测试数据评价学习到的模型的泛化能力。</li>
+<li>神经网络的学习以损失函数为指标，更新权重参数，以使损失函数的值减小。</li>
+<li>利用某个给定的微小值的差分求导数的过程，称为数值微分。</li>
+<li>利用数值微分，可以计算权重参数的梯度。</li>
+<li>数值微分虽然费时间，但是实现起来很简单。</li>
 </ul>
-<h3 id="数据集">数据集</h3>
-<p>数据集通常用集合来表示，令集合 D = {x1, x2, …, xm} 来表示包含 m 个样本的数据集，一般同一份数据集中的每个样本都含有相同个数的特征。</p>
-<h3 id="模型">模型</h3>
-<p>机器学习的一般流程如下：</p>
-<p>首先收集若干样本（假设此时有 100 个），然后将其分为训练样本（80 个）和测试样本（20 个），其中 80 个训练样本构成的集合称为 ”训练集“， 20 个测试样本构成的集合称为 ”测试集“，接着选用某个机器学习算法，让其在训练集上进行 ”学习“（或称为 ”训练“），然后产出得到 ”模型“（或称为 ”学习器“），最后用测试集来测试模型的效果。</p>
-<p>执行以上流程时，表示我们已经默认样本的背后是存在某种潜在的规律，我们称这种潜在的规律为 ”真相“ 或者 ”真实“，例如样本是一堆好西瓜和坏西瓜时，我们默认的便是好西瓜和坏西瓜背后必然存在某种规律能将其区分开。</p>
-<p>当我们应用某个机器学习算法来学习时，产出得到的模型便是该算法所找到的它自己认为的规律，由于该规律通常并不一定就是所谓的真相，所以也将其称为 ”假设“。通常机器学习算法都有可配置的参数，同一个机器学习算法，使用不同的参数配置或者不同的训练集，训练得到的模型通常都不同。</p>
-<h3 id="泛化">泛化</h3>
-<p>由于机器学习的目标是根据已知来对未知做出尽可能准确的判断，因此对未知事物判断的准确与否才是衡量一个模型好坏的关键，我们称此为 ”泛化“ 能力。</p>
-<h3 id="分布">分布</h3>
-<p>此处的 ”分布“ 指的是概率论中的概率分布，通常假设样本空间服从一个未知 ”分布“ D，而我们收集到的每个样本都是独立地从该分布中采样得到，即 ”独立同分布“。通常收集到的样本越多，越能从样本中反推出 D 的信息，即越接近真相。</p>
-<h3 id="归纳偏好">归纳偏好</h3>
-<p>在 ”房价预测“ 的例子中，当选用一元线性回归算法时，学得的模型是一元一次函数，当选用多项式回归算法时，学得的模型是一元二次函数，所以不同的机器学习算法有不同的偏好，我们称为 ”归纳偏好“。</p>
-<p>这两个算法学得的模型哪个更好呢？</p>
-<p>著名的 ”奥卡姆剃刀“ 原则认为 ”若有多个假设与观察一致，则选最简单的那个“，但是何为 ”简单“ 便见仁见智了，如果认为函数的幂次越低越简单，则此时一元线性回归算法更好，如果认为幂次越高越简单，则此时多项式回归算法更好，因此该方法其实并不 ”简单“，所以不常用，而最常用的方法则是基于模型在测试集上的表现来评判模型之间的优劣。</p>
-<h3 id="总结">总结</h3>
-<blockquote>
-<p>数据决定模型的上限，而算法则是让模型无限逼近上限</p>
-</blockquote>
-<p>数据决定模型效果的上限：</p>
-<p>其中数据是指从数据量和特征工程两个角度考虑。从数据量的角度来说，通常数据量越大模型效果越好，因为数据量大即表示累计的经验多，因此模型学习到的经验也多，自然表现效果越好。</p>
-<p>例如如果训练集中含有相同颜色但根蒂不蜷缩的坏瓜，模型 a 学到真相的概率也会增大；从特征工程的角度来说，通常对特征数据化越合理，特征收集越全越细致，模型效果通常越好，因为此时模型更容易学得样本之间潜在的规律。例如学习区分亚洲人和非洲人时，此时样本即为人，在进行特征工程时，如果收集到每个样本的肤色特征，则其他特征如年龄、身高和体重等便可省略，因为只需靠肤色这一特征就足以区分亚洲人和非洲人。</p>
-<p>算法则是让模型无限逼近上限：</p>
-<p>是指当数据相关的工作已准备充分时，接下来可用各种可适用的算法从数据中学习其潜在的规律进而得到模型，不同的算法学习得到的模型效果自然有高低之分，效果越好则越逼近上限，即逼近真相。</p>
+<h2 id="误差反向传播法">误差反向传播法</h2>
+<ul>
+<li>通过使用计算图，可以直观地把握计算过程。</li>
+<li>计算图的节点是由局部计算构成的。局部计算构成全局计算。</li>
+<li>计算图的正向传播进行一般的计算。通过计算图的反向传播，可以计算各个节点的导数。</li>
+<li>通过将神经网络的组成元素实现为层，可以高效地计算梯度（反向传播法）。</li>
+<li>通过比较数值微分和误差反向传播法的结果，可以确认误差反向传播法的实现是否正确（梯度确认）。</li>
+</ul>
+<h2 id="与学习相关的技巧">与学习相关的技巧</h2>
+<ul>
+<li>参数的更新方法，除了 SGD 之外，还有 Momentum、AdaGrad、Adam 等方法。</li>
+<li>权重初始值的赋值方法对进行正确的学习非常重要。</li>
+<li>作为权重初始值，Xavier 初始值、He 初始值等比较有效。</li>
+<li>通过使用 Batch Normalization，可以加速学习，并且对初始值变得健壮。</li>
+<li>抑制过拟合的正则化技术有权值衰减、Dropout 等。</li>
+<li>逐渐缩小 “好值” 存在的范围是搜索超参数的一个有效方法。</li>
+</ul>
+<h2 id="卷积神经网络">卷积神经网络</h2>
+<ul>
+<li>CNN 在此前的全连接层的网络中新增了卷积层和池化层。</li>
+<li>使用 im2col 函数可以简单、高效地实现卷积层和池化层。</li>
+<li>通过 CNN 的可视化，可知随着层次变深，提取的信息愈加高级。</li>
+<li>LeNet 和 AlexNet 是 CNN 的代表性网络。</li>
+<li>在深度学习的发展中，大数据和 GPU 做出了很大的贡献。</li>
+</ul>
+<h2 id="深度学习">深度学习</h2>
+<ul>
+<li>对于大多数的问题，都可以期待通过加深网络来提高性能。</li>
+<li>在最近的图像识别大赛 ILSVRC 中，基于深度学习的方法独占鳌头，使用的网络也在深化。</li>
+<li>VGG、GoogLeNet、ResNet 等是几个著名的网络。</li>
+<li>基于 GPU、分布式学习、位数精度的缩减，可以实现深度学习的高速化。</li>
+<li>深度学习（神经网络）不仅可以用于物体识别，还可以用于物体检测、图像分割。</li>
+<li>深度学习的应用包括图像标题的生成、图像的生成、强化学习等。最近，深度学习在自动驾驶上的应用也备受期待。</li>
+</ul>
 
                 
               </div>
@@ -389,7 +391,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Machine-Learning/" class="print-no-link">#Machine Learning</a>
+        <a href="/tags/Deep-Learning/" class="print-no-link">#Deep Learning</a>
       
     </div>
   
@@ -401,8 +403,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Machine Learning</div>
-      <div>https://www.renkelin.vip/2024/10/12/ML/</div>
+      <div>Deep Learning from Scratch</div>
+      <div>https://www.renkelin.vip/2025/01/10/DL/</div>
     </div>
     <div class="license-meta">
       
@@ -414,7 +416,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>October 12, 2024</div>
+          <div>January 10, 2025</div>
         </div>
       
       
@@ -446,18 +448,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/11/12/RS2/" title="Real Recommender System For Industry">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Real Recommender System For Industry</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/09/23/RS/" title="Recommendation Systems Explained">
-                        <span class="hidden-mobile">Recommendation Systems Explained</span>
+                      <a href="/2024/11/12/RS2/" title="Real Recommender System For Industry">
+                        <span class="hidden-mobile">Real Recommender System For Industry</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
