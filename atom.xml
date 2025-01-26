@@ -6,7 +6,7 @@
   <link href="https://www.renkelin.vip/atom.xml" rel="self"/>
   
   <link href="https://www.renkelin.vip/"/>
-  <updated>2025-01-11T04:26:01.288Z</updated>
+  <updated>2025-01-26T16:22:59.628Z</updated>
   <id>https://www.renkelin.vip/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Statistical Learning Method</title>
+    <link href="https://www.renkelin.vip/2025/01/27/SLM/"/>
+    <id>https://www.renkelin.vip/2025/01/27/SLM/</id>
+    <published>2025-01-26T16:19:57.403Z</published>
+    <updated>2025-01-26T16:22:59.628Z</updated>
+    
+    
+    <summary type="html">对统计学习方法（第二版）进行总结</summary>
+    
+    
+    
+    <category term="人工智能" scheme="https://www.renkelin.vip/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    
+    <category term="Machine Learning" scheme="https://www.renkelin.vip/tags/Machine-Learning/"/>
+    
+  </entry>
   
   <entry>
     <title>Deep Learning from Scratch</title>
