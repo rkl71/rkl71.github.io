@@ -6,7 +6,7 @@
   <link href="https://www.renkelin.vip/atom.xml" rel="self"/>
   
   <link href="https://www.renkelin.vip/"/>
-  <updated>2025-01-26T16:22:59.628Z</updated>
+  <updated>2025-02-15T02:59:46.293Z</updated>
   <id>https://www.renkelin.vip/</id>
   
   <author>
@@ -17,11 +17,32 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>LeetCode Notes</title>
+    <link href="https://www.renkelin.vip/2025/02/15/Algorithm-note/"/>
+    <id>https://www.renkelin.vip/2025/02/15/Algorithm-note/</id>
+    <published>2025-02-14T15:00:00.000Z</published>
+    <updated>2025-02-15T02:59:46.293Z</updated>
+    
+    
+    <summary type="html">参考代码随想录提炼解题思想，每日刷题记录与心得</summary>
+    
+    
+    
+    <category term="算法" scheme="https://www.renkelin.vip/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+    <category term="Algorithm" scheme="https://www.renkelin.vip/tags/Algorithm/"/>
+    
+    <category term="LeetCode" scheme="https://www.renkelin.vip/tags/LeetCode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Statistical Learning Method</title>
-    <link href="https://www.renkelin.vip/2025/01/27/SLM/"/>
-    <id>https://www.renkelin.vip/2025/01/27/SLM/</id>
-    <published>2025-01-26T16:19:57.403Z</published>
-    <updated>2025-01-26T16:22:59.628Z</updated>
+    <link href="https://www.renkelin.vip/2025/01/12/SLM/"/>
+    <id>https://www.renkelin.vip/2025/01/12/SLM/</id>
+    <published>2025-01-11T15:00:00.000Z</published>
+    <updated>2025-02-15T02:58:14.823Z</updated>
     
     
     <summary type="html">对统计学习方法（第二版）进行总结</summary>
@@ -154,7 +175,7 @@
     <link href="https://www.renkelin.vip/2024/02/17/LeetCode/"/>
     <id>https://www.renkelin.vip/2024/02/17/LeetCode/</id>
     <published>2024-02-16T15:00:00.000Z</published>
-    <updated>2025-01-11T04:26:47.835Z</updated>
+    <updated>2025-02-15T02:58:14.791Z</updated>
     
     
     <summary type="html">每日刷题记录与心得</summary>
@@ -390,27 +411,6 @@
     <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
     
     <category term="Spring" scheme="https://www.renkelin.vip/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaWeb</title>
-    <link href="https://www.renkelin.vip/2023/04/29/JavaWeb/"/>
-    <id>https://www.renkelin.vip/2023/04/29/JavaWeb/</id>
-    <published>2023-04-28T15:00:00.000Z</published>
-    <updated>2023-09-30T11:59:50.706Z</updated>
-    
-    
-    <summary type="html">基于主流的SpringBoot，涵盖整个Web开发的知识点</summary>
-    
-    
-    
-    <category term="Java" scheme="https://www.renkelin.vip/categories/Java/"/>
-    
-    
-    <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
-    
-    <category term="JavaWeb" scheme="https://www.renkelin.vip/tags/JavaWeb/"/>
     
   </entry>
   
