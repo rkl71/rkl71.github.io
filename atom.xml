@@ -6,7 +6,7 @@
   <link href="https://www.renkelin.vip/atom.xml" rel="self"/>
   
   <link href="https://www.renkelin.vip/"/>
-  <updated>2025-02-15T02:59:46.293Z</updated>
+  <updated>2025-02-19T12:08:08.188Z</updated>
   <id>https://www.renkelin.vip/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Deep Learning Recommender System</title>
+    <link href="https://www.renkelin.vip/2025/02/19/DL-RS/"/>
+    <id>https://www.renkelin.vip/2025/02/19/DL-RS/</id>
+    <published>2025-02-18T15:00:00.000Z</published>
+    <updated>2025-02-19T12:08:08.188Z</updated>
+    
+    
+    <summary type="html">深度学习在推荐领域掀起了一场技术革命，此笔记从深度学习推荐模型、Embedding技术、推荐系统工程实现、模型评估体系、业界前沿实践等几方面介绍了这场技术革命中的主流技术要点</summary>
+    
+    
+    
+    <category term="人工智能" scheme="https://www.renkelin.vip/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    
+    <category term="Recommender System" scheme="https://www.renkelin.vip/tags/Recommender-System/"/>
+    
+  </entry>
   
   <entry>
     <title>LeetCode Notes</title>
@@ -390,27 +409,6 @@
     <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
     
     <category term="SpringCloud" scheme="https://www.renkelin.vip/tags/SpringCloud/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring6</title>
-    <link href="https://www.renkelin.vip/2023/06/11/Spring/"/>
-    <id>https://www.renkelin.vip/2023/06/11/Spring/</id>
-    <published>2023-06-10T15:00:00.000Z</published>
-    <updated>2023-09-30T11:59:50.714Z</updated>
-    
-    
-    <summary type="html">Spring框架是一款极其优秀的轻量级开源框架，为了解决企业应用开发的复杂性而出现</summary>
-    
-    
-    
-    <category term="框架" scheme="https://www.renkelin.vip/categories/%E6%A1%86%E6%9E%B6/"/>
-    
-    
-    <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
-    
-    <category term="Spring" scheme="https://www.renkelin.vip/tags/Spring/"/>
     
   </entry>
   

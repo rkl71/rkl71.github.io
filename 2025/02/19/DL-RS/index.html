@@ -1,0 +1,982 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta name="google-site-verification" content="7TXW9ttER52MwKw3U6lTa3NKEZw2koxmAO7iJcMTT8c" />
+  <meta name="baidu-site-verification" content="codeva-1kmvb8u2lB" />
+  <meta charset="UTF-8">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202309302055622.jpg">
+  <link rel="icon" href="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202309302055622.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kolin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="深度学习在推荐领域掀起了一场技术革命，此笔记从深度学习推荐模型、Embedding技术、推荐系统工程实现、模型评估体系、业界前沿实践等几方面介绍了这场技术革命中的主流技术要点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning Recommender System">
+<meta property="og:url" content="https://www.renkelin.vip/2025/02/19/DL-RS/index.html">
+<meta property="og:site_name" content="Kolin&#39;s space">
+<meta property="og:description" content="深度学习在推荐领域掀起了一场技术革命，此笔记从深度学习推荐模型、Embedding技术、推荐系统工程实现、模型评估体系、业界前沿实践等几方面介绍了这场技术革命中的主流技术要点">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-02-18T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-19T12:08:08.188Z">
+<meta property="article:author" content="Kolin">
+<meta property="article:tag" content="Recommender System">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Deep Learning Recommender System - Kolin&#39;s space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.renkelin.vip","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Kolin's space" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Kolin&#39;s space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202410271527438.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Deep Learning Recommender System"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-19 00:00" pubdate>
+          February 19, 2025 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          42 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Deep Learning Recommender System</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>深度学习推荐系统</h1>
+<blockquote>
+<p>本文主要参考了深度学习推荐系统这本书，对推荐系统的发展历程、深度学习推荐模型、Embedding技术、推荐系统工程实现、模型评估体系、业界前沿实践等几方面进行了梳理，并进行了总结。</p>
+</blockquote>
+<h2 id="推荐系统的进化之路">推荐系统的进化之路</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模型名称</th>
+<th style="text-align:center">基本原理</th>
+<th style="text-align:center">特点</th>
+<th style="text-align:center">局限性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">协同过滤</td>
+<td style="text-align:center">根据用户的行为历史生成用户-物品共现矩阵，利用用户相似性和物品相似性进行推荐</td>
+<td style="text-align:center">原理简单、直接，应用广泛</td>
+<td style="text-align:center">泛化能力差，处理稀疏矩阵的能力差，推荐结果的头部效应较明显</td>
+</tr>
+<tr>
+<td style="text-align:center">矩阵分解</td>
+<td style="text-align:center">将协同过滤算法中的共现矩阵分解为用户矩阵和物品矩阵，利用用户隐向量和物品隐向量的内积进行排序并推荐</td>
+<td style="text-align:center">相较协同过滤，泛化能力有所加强，对稀疏矩阵的处理能力有所加强</td>
+<td style="text-align:center">除了用户历史行为数据，难以利用其他用户、物品特征及上下文特征</td>
+</tr>
+<tr>
+<td style="text-align:center">逻辑回归</td>
+<td style="text-align:center">将推荐问题转换成类似 CTR 预估的二分类问题，将用户、物品、上下文等不同特征转换成特征向量，输入逻辑回归模型得到 CTR，再按照预估 CTR 进行排序并推荐</td>
+<td style="text-align:center">能够融合多种类型的不同特征</td>
+<td style="text-align:center">模型不具备特征组合的能力，表达能力较差</td>
+</tr>
+<tr>
+<td style="text-align:center">FM</td>
+<td style="text-align:center">在逻辑回归的基础上，在模型中加入二阶特征交叉部分，为每一维特征训练得到相应特征隐向量，通过隐向量间的内积运算得到交叉特征权重</td>
+<td style="text-align:center">相比逻辑回归，具备了二阶特征交叉能力，模型的表达能力增强</td>
+<td style="text-align:center">由于组合爆炸问题的限制，模型不易扩展到三阶特征交叉阶段</td>
+</tr>
+<tr>
+<td style="text-align:center">FFM</td>
+<td style="text-align:center">在 FM 模型的基础上，加入 “特征域” 的概念，使每个特征在与不同域的特征交叉时采用不同的隐向量</td>
+<td style="text-align:center">相比 FM，进一步加强了特征交叉的能力</td>
+<td style="text-align:center">模型的训练开销达到了 <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathnormal">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 的量级，训练开销较大</td>
+</tr>
+<tr>
+<td style="text-align:center">GBDT+LR</td>
+<td style="text-align:center">利用 GBDT 进行 “自动化” 的特征组合，将原始特征向量转换成离散型特征向量。并输入逻辑回归模型，进行最终的 CTR 预估</td>
+<td style="text-align:center">特征工程模型化，使模型具备了更高阶特征组合的能力</td>
+<td style="text-align:center">GBDT 无法进行完全并行的训练，更新所需的训练时长较长</td>
+</tr>
+<tr>
+<td style="text-align:center">LS-PLM</td>
+<td style="text-align:center">首先对样本进行 “分片”，在每个 “分片” 内部构建逻辑回归模型，将每个样本的各 “分片” 概率与逻辑回归的得分进行加权平均，得到最终的预估值</td>
+<td style="text-align:center">模型结构类似三层神经网络，具备了较强的表达能力</td>
+<td style="text-align:center">模型结构相比深度学习模型仍比较简单，有进一步提高的空间</td>
+</tr>
+</tbody>
+</table>
+<h2 id="深度学习在推荐系统中的应用">深度学习在推荐系统中的应用</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">模型名称</th>
+<th>基本原理</th>
+<th>特点</th>
+<th>局限性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">AutoRec</td>
+<td>基于自编码器，对用户或者物品进行编码，利用自编码器的泛化能力进行推荐</td>
+<td>单隐层神经网络结构简单，可实现快速训练和部署</td>
+<td>表达能力较差</td>
+</tr>
+<tr>
+<td style="text-align:center">Deep Crossing</td>
+<td>利用 “Embedding 层 + 多隐层 + 输出层” 的经典深度学习框架，预完成特征的自动深度交叉</td>
+<td>经典的深度学习推荐模型框架</td>
+<td>利用全连接隐层进行特征交叉，针对性不强</td>
+</tr>
+<tr>
+<td style="text-align:center">NeuralCF</td>
+<td>将传统的矩阵分解中用户向量和物品向量的点积操作，换成由神经网络代替的互操作</td>
+<td>表达能力加强版的矩阵分解模型</td>
+<td>只使用了用户和物品的 id 特征，没有加入更多其他特征</td>
+</tr>
+<tr>
+<td style="text-align:center">PNN</td>
+<td>针对不同特征域之间的交叉操作，定义 “内积” “外积” 等多种积操作</td>
+<td>在经典深度学习框架上模型会提高特征交叉能力</td>
+<td>“外积” 操作进行了近似化，一定程度上影响了其表达能力</td>
+</tr>
+<tr>
+<td style="text-align:center">Wide&amp;Deep</td>
+<td>利用 Wide 部分加强模型的 “记忆能力”，利用 Deep 部分加强模型的 “泛化能力”</td>
+<td>开创了组合模型的构造方法，对深度学习推荐模型的后续发展产生重大影响</td>
+<td>Wide 部分需要人工进行特征组合的筛选</td>
+</tr>
+<tr>
+<td style="text-align:center">Deep&amp;Cross</td>
+<td>用 Cross 网络替代 Wide&amp;Deep 模型中的 Wide 部分</td>
+<td>解决了 Wide&amp;Deep 模型人工组合特征的问题</td>
+<td>Cross 网络的复杂度较高</td>
+</tr>
+<tr>
+<td style="text-align:center">FNN</td>
+<td>利用 FM 的参数来初始化深度神经网络的 Embedding 层参数</td>
+<td>利用 FM 初始化参数，加快整个网络的收敛速度</td>
+<td>模型的主结构比较简单，没有针对性的特征交叉层</td>
+</tr>
+<tr>
+<td style="text-align:center">DeepFM</td>
+<td>在 Wide&amp;Deep 模型的基础上，用 FM 替代原来的线性 Wide 部分</td>
+<td>加强了 Wide 部分的特征交叉能力</td>
+<td>与经典的 Wide&amp;Deep 模型相比，结构差别不明显</td>
+</tr>
+<tr>
+<td style="text-align:center">NFM</td>
+<td>用神经网络代替 FM 中二阶隐向量交叉的操作</td>
+<td>相比 FM，NFM 的表达能力和特征交叉能力更强</td>
+<td>与 PNN 模型的结构非常相似</td>
+</tr>
+<tr>
+<td style="text-align:center">AFM</td>
+<td>在 FM 的基础上，在二阶隐向量交叉的基础上对每个交叉结果加入了注意力得分，并使用注意力网络学习注意力得分</td>
+<td>不同交叉特征的重要性不同</td>
+<td>注意力网络的训练过程比较复杂</td>
+</tr>
+<tr>
+<td style="text-align:center">DIN</td>
+<td>在传统深度学习推荐模型的基础上引入注意力机制，并利用用户行为历史物品和目标广告物品的相关性计算注意力得分</td>
+<td>根据目标广告物品的不同，进行更有针对性的推荐</td>
+<td>并没有充分利用除 “历史行为” 以外的其他特征</td>
+</tr>
+<tr>
+<td style="text-align:center">DIEN</td>
+<td>将序列模型与深度学习推荐模型结合，使用序列模型模拟用户的兴趣进化过程</td>
+<td>序列模型增强了系统对用户兴趣变迁的表达能力，使推荐系统开始考虑时间相关的行为序列中包含的有价值信息</td>
+<td>序列模型的训练复杂，线上服务的延迟较长，需要进行工程上的优化</td>
+</tr>
+<tr>
+<td style="text-align:center">DRN</td>
+<td>将强化学习的思路应用于推荐系统，进行推荐模型的线上实时学习和更新</td>
+<td>模型对数据实时性的利用能力大大加强</td>
+<td>线上部分较复杂，工程实现难度较大</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Embedding-技术在推荐系统中的应用">Embedding 技术在推荐系统中的应用</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Embedding</th>
+<th style="text-align:center">基本原理</th>
+<th style="text-align:center">特点</th>
+<th>局限性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">word2vec</td>
+<td style="text-align:center">利用句子中的相关性建模，利用单隐层神经网络获得词的 Embedding 向量</td>
+<td style="text-align:center">经典 Embedding 方法</td>
+<td>仅能针对词序列样本进行训练</td>
+</tr>
+<tr>
+<td style="text-align:center">Item2vec</td>
+<td style="text-align:center">把 Word2vec 的思想扩展到任何序列数据上</td>
+<td style="text-align:center">将 Word2vec 应用于推荐领域</td>
+<td>仅能针对序列样本进行训练</td>
+</tr>
+<tr>
+<td style="text-align:center">DeepWalk</td>
+<td style="text-align:center">在图结构上进行随机游走，生成序列样本后，利用 Word2vec 的思想建模</td>
+<td style="text-align:center">易用的 Graph Embedding 方法</td>
+<td>随机游走进行抽样的针对性不强</td>
+</tr>
+<tr>
+<td style="text-align:center">Node2vec</td>
+<td style="text-align:center">在 DeepWalk 的基础上，通过调整随机游走权重的方法使 Graph Embedding 的结果在网络的同质性和结构性之间进行权衡</td>
+<td style="text-align:center">可以有针对性地挖掘不同的网络特征</td>
+<td>需要较多的人工调参工作</td>
+</tr>
+<tr>
+<td style="text-align:center">EGES</td>
+<td style="text-align:center">将不同信息对应的 Embedding 加权融合后生成最终的 Embedding 向量</td>
+<td style="text-align:center">融合多种补充信息，解决 Embedding 地冷启动问题</td>
+<td>没有较大的学术创新，更多是从工程角度解决多 Embedding 融合问题</td>
+</tr>
+<tr>
+<td style="text-align:center">局部敏感哈希</td>
+<td style="text-align:center">利用局部敏感哈希的原理进行快速的 Embedding 向量最近邻搜索</td>
+<td style="text-align:center">解决利用 Embedding 作为推荐系统召回层的快速计算问题</td>
+<td>存在小概率的最近邻遗漏的可能，需要进行较多的人工调参</td>
+</tr>
+</tbody>
+</table>
+<h2 id="多角度审视推荐系统">多角度审视推荐系统</h2>
+<ol>
+<li>推荐系统如何选取和处理特征？（How Do Recommender Systems Select and Process Features?）</li>
+<li>推荐系统召回层的主要策略有哪些？（What Are the Main Strategies in the Recall Stage of Recommender Systems?）</li>
+<li>推荐系统实时性的重要性体现在哪儿？有哪些提高实时性的方法？（How Is the Importance of Real-Time Performance Reflected in Recommender Systems, and What Methods Can Be Used to Improve It?）</li>
+<li>如何根据具体场景构建推荐模型的优化目标？（How to Construct Optimization Objectives for Recommendation Models Based on Specific Scenarios?）</li>
+<li>如何基于用户动机改进模型结构？（How to Improve Model Architecture Based on User Motivation?）</li>
+<li>推荐系统冷启动问题的解决方法有哪些？（What Are the Solutions to the Cold Start Problem in Recommender Systems?）</li>
+<li>什么是 “探索与利用” 问题？有哪些主流的解决方法？（What Is the “Exploration-Exploitation” Problem and What Are the Mainstream Solutions?）</li>
+</ol>
+<h3 id="“探索与利用”-机制在推荐系统中的应用">“探索与利用” 机制在推荐系统中的应用</h3>
+<ol>
+<li><strong>物品冷启动</strong>：对新加入的物品或者长久没有互动信息的长尾物品来说，探索与利用算法对新物品和长尾物品有天然的倾向性，因此可以帮助这类物品快速收集用户反馈，快速度过冷启动期，并在较少伤害系统整体收益的前提下，快速找到有潜力的物品，丰富优质的物品候选集。</li>
+<li><strong>发掘用户新兴趣</strong>：如果推荐系统总是利用现有数据为用户推荐物品，相当于对用户的已发掘兴趣进行 “涸泽而渔” 的利用，短期内用户可能满足于当前的推荐结果，但很可能快速疲倦离开。为了发掘用户兴趣，推荐系统有必要进行一定程度的探索，维持用户的长期兴趣。另外，用户兴趣本身也在不断的改变和进化，需要通过探索不断抓住用户兴趣改变的趋势。</li>
+<li><strong>增加结果多样性</strong>：探索与利用也是增加推荐结果多样性的手段。增加结果多样性对于推荐系统的好处主要有两方面，一方面是让用户能明显感觉到结果的丰富性；另一方面是减少大量同质化内容同时出现时用户的厌倦情绪。</li>
+</ol>
+<h2 id="深度学习推荐系统的工程实现">深度学习推荐系统的工程实现</h2>
+<p>从工程的角度看推荐系统，可以将其分为两大部分：数据部分和模型部分。数据部分主要指推荐系统所需数据流的相关工程实现；模型部分指的是推荐模型的相关工程实现，根据模型应用阶段的不同，可进一步分为离线训练部分和线上服务部分。</p>
+<ol>
+<li><strong>推荐系统的数据流</strong>：与推荐系统数据流相关的大数据平台的主要框架和实现大数据平台的主流技术。</li>
+<li><strong>深度学习推荐模型的离线训练</strong>：训练深度学习推荐系统的主流平台，如 Spark MLlib、Parameter Server（参数服务器）、TensorFlow、PyTorch 的主要原理。</li>
+<li><strong>深度学习推荐模型的上线部署</strong>：部署深度学习推荐模型的技术途径和模型线上服务的过程。</li>
+</ol>
+<h2 id="推荐系统的评估">推荐系统的评估</h2>
+<p>推荐系统评估相关的重要性应摆在与推荐系统构建同样的位置。主要有以下三点：</p>
+<ol>
+<li>推荐系统评估所采用的指标直接决定了推荐系统的优化方向是否符合客观合理。</li>
+<li>推荐系统评估是机器学习团队与其他团队沟通合作的接口性工作。</li>
+<li>推荐系统评估指标的选取直接决定了推荐系统是否符合公司的商业目标和发展愿景。</li>
+</ol>
+<p>聚焦推荐系统的评估问题，从离线评估到线上测试，从多个层级探讨推荐系统评估的方法和指标，具体包括以下内容：</p>
+<ol>
+<li>离线评估的方法和指标。</li>
+<li>离线仿真评估方法 ---- Replay（重播评估法）。</li>
+<li>线上 A/B 测试方法和线上评估指标。</li>
+<li>快速线上评估测试方法 ---- Interleaving（间隔插值测试法）。</li>
+</ol>
+<h2 id="深度学习推荐系统的前沿实践">深度学习推荐系统的前沿实践</h2>
+<h3 id="Facebook-深度学习推荐系统总结">Facebook 深度学习推荐系统总结</h3>
+<p>无论是 GBDT+LR 组合模型，还是最新的 DLRM 模型，Facebook 的技术选择总给人非常工业化的感觉，简单直接，以解决问题为主。虽然从学术角度看模型的创新性不足，但业界的从业者却能从中借鉴非常多的工程实践经验。DLRM 模型是非常标准且实用的深度学习推荐模型。如果公司刚开始从传统机器学习模型转到深度学习模型，则完全可以采用 DLRM 作为标准实现。而 GDBT+LR 组合模型传递出的特征工程模型化及模型组合的思路，对推荐系统技术发展有更深远的影响。</p>
+<h3 id="Airbnb-实时搜索推荐系统总结">Airbnb 实时搜索推荐系统总结</h3>
+<ol>
+<li>
+<p>工程与理论结合得极佳</p>
+<p>通过对经典的 Word2vec 方法进行改造，完成对用户和房源的 Embedding，并针对数据稀疏的问题，利用用户属性和房源属性聚合稀疏数据。</p>
+</li>
+<li>
+<p>业务与知识结合得极佳</p>
+<p>在对 Embedding 目标函数的改造过程中，不止一次引入了与业务强相关的目标项，使算法的改造与公司业务和商业模型紧密结合。</p>
+</li>
+</ol>
+<h3 id="YouTube-深度学习视频推荐系统总结">YouTube 深度学习视频推荐系统总结</h3>
+<p>YouTube 分享的关于其深度学习推荐系统的论文使迄今为止看到的包含实践内容最丰富的一篇工程导向的推荐系统论文。</p>
+<h3 id="阿里巴巴推荐技术架构总结">阿里巴巴推荐技术架构总结</h3>
+<ol>
+<li>
+<p>工程实践性很强</p>
+<p>一是应用场景来源于实际，二是解决问题的方案更容易落地。这得益于阿里巴巴得天独厚的业务和数据环境，再加上有优秀工程师的持续输出，看到很多 “实践出真知” 的解决方案。</p>
+</li>
+<li>
+<p>对用户行为的观察非常精准</p>
+<p>在改进推荐系统的过程中，只有将用户的行为和习惯揣摩到位，才能以此出发，从技术上映射用户的习惯。DIN、DIEN、MIMN 等一系列针对用户兴趣的推荐模型，精准地抓住了用户的行为习惯，这样的工作是细致且有效的。</p>
+</li>
+<li>
+<p>模型的微创新</p>
+<p>从低维到高维是创新，从离散到连续是创新，从单一到融合也是创新，阿里巴巴的一系列模型将在自然语言处理领域大行其道的注意力机制、序列模型引入推荐领域，是另一种典型且有效的创新手段。除此之外，每次模型的迭代更新都不是推导重建，而是基于之前模型的微创新，这往往是一个成熟团队进行高效技术迭代的成果。</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Recommender-System/" class="print-no-link">#Recommender System</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Deep Learning Recommender System</div>
+      <div>https://www.renkelin.vip/2025/02/19/DL-RS/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Kolin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 19, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/15/Algorithm-note/" title="LeetCode Notes">
+                        <span class="hidden-mobile">LeetCode Notes</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"VNSy36PGiQCPwyRb6AukmG4w-gzGzoHsz","appKey":"yzHhLZjFMNqrtHhPeHVoWzF2","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="mailto:renkelin00@gmail.com?subject=Interested+In+Your+Blog" target="_blank" rel="nofollow noopener"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:renkelin00@gmail.com?subject=Interested+In+Your+Blog" target="_blank" rel="nofollow noopener"><span>renkelin00@gmail.com</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
