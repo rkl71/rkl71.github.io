@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta name="google-site-verification" content="7TXW9ttER52MwKw3U6lTa3NKEZw2koxmAO7iJcMTT8c" />
+  <meta name="baidu-site-verification" content="codeva-1kmvb8u2lB" />
+  <meta charset="UTF-8">
+  <!-- 通过 CDN 引入霞鹜文楷字体 -->
+  <link rel="stylesheet" href="https://npm.elemecdn.com/lxgw-wenkai-screen-webfont/style.css" media="print" onload="this.media='all'">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202309302055622.jpg">
+  <link rel="icon" href="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202309302055622.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Kolin">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="多模态推荐系统的比较框架（A Comparative Framework for Multimodal Recommender Systems）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cornac Framework">
+<meta property="og:url" content="https://www.renkelin.vip/2025/02/21/Cornac-framework/index.html">
+<meta property="og:site_name" content="Kolin&#39;s space">
+<meta property="og:description" content="多模态推荐系统的比较框架（A Comparative Framework for Multimodal Recommender Systems）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202502212021625.png">
+<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202502212022006.png">
+<meta property="article:published_time" content="2025-02-20T15:00:00.000Z">
+<meta property="article:modified_time" content="2025-02-21T11:26:36.626Z">
+<meta property="article:author" content="Kolin">
+<meta property="article:tag" content="Recommender System">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202502212021625.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Cornac Framework - Kolin&#39;s space</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"www.renkelin.vip","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Kolin's space" type="application/atom+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Kolin&#39;s space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202410271527438.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Cornac Framework"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-21 00:00" pubdate>
+          February 21, 2025 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.9k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          58 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Cornac Framework</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>Cornac 框架</h1>
+<blockquote>
+<p><strong>Cornac</strong> 是多模态推荐系统的比较框架。它侧重于使利用<strong>辅助数据</strong>（例如，项目描述性文本和图像、社交网络等）的模型<strong>变得方便</strong>。<strong>Cornac</strong> 支持<strong>快速</strong>实验和<strong>直接</strong>实施新模型。它与现有的机器学习库（例如 TensorFlow、PyTorch）<strong>高度兼容</strong>。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/PreferredAI/cornac">Cornac</a></p>
+</blockquote>
+<h2 id="快速开始">快速开始</h2>
+<p>实验分为五个步骤：</p>
+<ol>
+<li>数据加载</li>
+<li>数据分割</li>
+<li>定义模型</li>
+<li>定义指标</li>
+<li>运行</li>
+</ol>
+<h3 id="1、数据加载">1、数据加载</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Load a sample dataset (e.g., MovieLens)</span><br>ml_100k = cornac.datasets.movielens.load_feedback()<br></code></pre></td></tr></table></figure>
+<h3 id="2、数据分割">2、数据分割</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Split the data into training and testing sets</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    test_size=0.2: 将数据分成 80% 用于训练，20% 用于测试。</span><br><span class="hljs-string">    data=ml_100k: 使用 MovieLens 100K 数据集。</span><br><span class="hljs-string">    rating_threshold: 仅将大于或等于 4.0 的评分视为正面评分。其他评分将被视为用户不喜欢的内容。</span><br><span class="hljs-string">    seed=123: 以确保结果可重现。将种子设置为特定值将始终产生相同的结果。</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br>rs = RatioSplit(data=ml_100k, test_size=<span class="hljs-number">0.2</span>, rating_threshold=<span class="hljs-number">4.0</span>, seed=<span class="hljs-number">123</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="3、定义模型">3、定义模型</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Instantiate a recommender model(BPR)</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    k=10: 将潜在因子的数量设置为10。这意味着每个用户和项目将由 10 个数字的向量表示。</span><br><span class="hljs-string">    max_iter=200: 将最大迭代次数设置为200。这意味着模型最多将进行 200 次迭代训练。</span><br><span class="hljs-string">    learning_reg=0.001: 将学习率设置为0.001。这控制模型从每次迭代中学习多少。</span><br><span class="hljs-string">    lambda_reg=0.01: 将正则化参数设置为0.01。这控制模型对用户和项目向量中较大值的惩罚程度。</span><br><span class="hljs-string">    seed=123: 以确保结果可重现。将种子设置为特定值将始终产生相同的结果，这是用于 RatioSplit 对象的相同种子。</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br>models = [<br>    BPR(k=<span class="hljs-number">10</span>, max_iter=<span class="hljs-number">200</span>, learning_rate=<span class="hljs-number">0.001</span>, lambda_reg=<span class="hljs-number">0.01</span>, seed=<span class="hljs-number">123</span>),<br>    PMF(k=<span class="hljs-number">10</span>, max_iter=<span class="hljs-number">100</span>, learning_rate=<span class="hljs-number">0.001</span>, lambda_reg=<span class="hljs-number">0.001</span>, seed=<span class="hljs-number">123</span>)<br>]<br></code></pre></td></tr></table></figure>
+<h3 id="4、定义指标">4、定义指标</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Define metrics to evaluate the models</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    Precision: 精度指标衡量与用户相关的推荐商品的比例。精度越高，模型越好。</span><br><span class="hljs-string">    Recall: 召回率指标衡量推荐给用户的相关商品的比例。召回率越高，模型越好。</span><br><span class="hljs-string">    此实例中计算将基于针对每个用户的 10 条建议进行。</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br>metrics = [Precision(k=<span class="hljs-number">10</span>), Recall(k=<span class="hljs-number">10</span>)]<br></code></pre></td></tr></table></figure>
+<h3 id="5、运行">5、运行</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Put it together in an experiment</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    eval_method=rs: 使用 RatioSplit 之前定义的对象。</span><br><span class="hljs-string">    models=models: 使用 BPR 之前定义的模型。</span><br><span class="hljs-string">    metrics=metrics: 使用之前定义的 Precision 和 Recall。</span><br><span class="hljs-string">    user_based=True: 根据单个用户评估模型。这意味着将计算每个用户的平均表现，并在所有用户之间取平均值以获得最终结果（用户权重相等）。</span><br><span class="hljs-string">    user_based=False: 这与通过设置基于所有评分进行评估相反。</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br>cornac.Experiment(eval_method=rs, models=models, metrics=metrics, user_based=<span class="hljs-literal">True</span>).run()<br></code></pre></td></tr></table></figure>
+<h3 id="全部代码">全部代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cornac<br><span class="hljs-keyword">from</span> cornac.eval_methods <span class="hljs-keyword">import</span> RatioSplit<br><span class="hljs-keyword">from</span> cornac.models <span class="hljs-keyword">import</span> BPR, PMF<br><span class="hljs-keyword">from</span> cornac.metrics <span class="hljs-keyword">import</span> Precision, Recall<br><br><span class="hljs-comment"># Load a sample dataset (e.g., MovieLens)</span><br>ml_100k = cornac.datasets.movielens.load_feedback()<br><br><span class="hljs-comment"># Split the data into training and testing sets</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    test_size=0.2: 将数据分成 80% 用于训练，20% 用于测试。</span><br><span class="hljs-string">    data=ml_100k: 使用 MovieLens 100K 数据集。</span><br><span class="hljs-string">    rating_threshold: 仅将大于或等于 4.0 的评分视为正面评分。其他评分将被视为用户不喜欢的内容。</span><br><span class="hljs-string">    seed=123: 以确保结果可重现。将种子设置为特定值将始终产生相同的结果。</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br>rs = RatioSplit(data=ml_100k, test_size=<span class="hljs-number">0.2</span>, rating_threshold=<span class="hljs-number">4.0</span>, seed=<span class="hljs-number">123</span>)<br><br><span class="hljs-comment"># Instantiate a recommender model(BPR)</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    k=10: 将潜在因子的数量设置为10。这意味着每个用户和项目将由 10 个数字的向量表示。</span><br><span class="hljs-string">    max_iter=200: 将最大迭代次数设置为200。这意味着模型最多将进行 200 次迭代训练。</span><br><span class="hljs-string">    learning_reg=0.001: 将学习率设置为0.001。这控制模型从每次迭代中学习多少。</span><br><span class="hljs-string">    lambda_reg=0.01: 将正则化参数设置为0.01。这控制模型对用户和项目向量中较大值的惩罚程度。</span><br><span class="hljs-string">    seed=123: 以确保结果可重现。将种子设置为特定值将始终产生相同的结果，这是用于 RatioSplit 对象的相同种子。</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br>models = [<br>    BPR(k=<span class="hljs-number">10</span>, max_iter=<span class="hljs-number">200</span>, learning_rate=<span class="hljs-number">0.001</span>, lambda_reg=<span class="hljs-number">0.01</span>, seed=<span class="hljs-number">123</span>),<br>    PMF(k=<span class="hljs-number">10</span>, max_iter=<span class="hljs-number">100</span>, learning_rate=<span class="hljs-number">0.001</span>, lambda_reg=<span class="hljs-number">0.001</span>, seed=<span class="hljs-number">123</span>)<br>]<br><br><span class="hljs-comment"># Define metrics to evaluate the models</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    Precision: 精度指标衡量与用户相关的推荐商品的比例。精度越高，模型越好。</span><br><span class="hljs-string">    Recall: 召回率指标衡量推荐给用户的相关商品的比例。召回率越高，模型越好。</span><br><span class="hljs-string">    此实例中计算将基于针对每个用户的 10 条建议进行。</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br>metrics = [Precision(k=<span class="hljs-number">10</span>), Recall(k=<span class="hljs-number">10</span>)]<br><br><span class="hljs-comment"># Put it together in an experiment</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    eval_method=rs: 使用 RatioSplit 之前定义的对象。</span><br><span class="hljs-string">    models=models: 使用 BPR 之前定义的模型。</span><br><span class="hljs-string">    metrics=metrics: 使用之前定义的 Precision 和 Recall。</span><br><span class="hljs-string">    user_based=True: 根据单个用户评估模型。这意味着将计算每个用户的平均表现，并在所有用户之间取平均值以获得最终结果（用户权重相等）。</span><br><span class="hljs-string">    user_based=False: 这与通过设置基于所有评分进行评估相反。</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br>cornac.Experiment(eval_method=rs, models=models, metrics=metrics, user_based=<span class="hljs-literal">True</span>).run()<br></code></pre></td></tr></table></figure>
+<h3 id="实验结果">实验结果</h3>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202502212021625.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="研究工作">研究工作</h2>
+<p>研究分为四个步骤：</p>
+<ol>
+<li>进行实验</li>
+<li>调整超参数</li>
+<li>优化超参数</li>
+<li>定义超参数并运行</li>
+</ol>
+<h3 id="1、进行实验">1、进行实验</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cornac<br><span class="hljs-keyword">from</span> cornac.eval_methods <span class="hljs-keyword">import</span> RatioSplit<br><span class="hljs-keyword">from</span> cornac.models <span class="hljs-keyword">import</span> BPR, PMF<br><span class="hljs-keyword">from</span> cornac.metrics <span class="hljs-keyword">import</span> Precision, Recall<br><br><span class="hljs-comment"># Load a sample dataset (e.g., MovieLens)</span><br>ml_100k = cornac.datasets.movielens.load_feedback()<br><br><span class="hljs-comment"># Split the data into training and testing sets</span><br>rs = RatioSplit(data=ml_100k, test_size=<span class="hljs-number">0.2</span>, rating_threshold=<span class="hljs-number">4.0</span>, seed=<span class="hljs-number">123</span>)<br><br><span class="hljs-comment"># Instantiate a matrix factorization model (e.g., BPR)</span><br>models = [<br>    BPR(k=<span class="hljs-number">10</span>, max_iter=<span class="hljs-number">200</span>, learning_rate=<span class="hljs-number">0.001</span>, lambda_reg=<span class="hljs-number">0.01</span>, seed=<span class="hljs-number">123</span>),<br>    PMF(k=<span class="hljs-number">10</span>, max_iter=<span class="hljs-number">100</span>, learning_rate=<span class="hljs-number">0.001</span>, lambda_reg=<span class="hljs-number">0.001</span>, seed=<span class="hljs-number">123</span>),<br>]<br><br><span class="hljs-comment"># Define metrics to evaluate the models</span><br>metrics = [Precision(k=<span class="hljs-number">10</span>), Recall(k=<span class="hljs-number">10</span>)]<br><br><span class="hljs-comment"># put it together in an experiment, voilà!</span><br>cornac.Experiment(eval_method=rs, models=models, metrics=metrics, user_based=<span class="hljs-literal">True</span>).run()<br></code></pre></td></tr></table></figure>
+<h3 id="2、调整超参数">2、调整超参数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cornac<br><span class="hljs-keyword">from</span> cornac.eval_methods <span class="hljs-keyword">import</span> RatioSplit<br><span class="hljs-keyword">from</span> cornac.models <span class="hljs-keyword">import</span> BPR<br><span class="hljs-keyword">from</span> cornac.hyperopt <span class="hljs-keyword">import</span> Discrete, Continuous<br><span class="hljs-keyword">from</span> cornac.hyperopt <span class="hljs-keyword">import</span> GridSearch, RandomSearch<br><br><span class="hljs-comment"># Load a sample dataset (e.g., MovieLens)</span><br>ml_100k = cornac.datasets.movielens.load_feedback()<br><br><span class="hljs-comment"># Split the data into training, validation and testing sets</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    在 RatioSplit 方法中添加了验证集。</span><br><span class="hljs-string">    实例化用于跟踪模型性能的 Recall@100 指标</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br>rs = RatioSplit(data=ml_100k, test_size=<span class="hljs-number">0.1</span>, val_size=<span class="hljs-number">0.1</span>, rating_threshold=<span class="hljs-number">4.0</span>, seed=<span class="hljs-number">123</span>)<br><br><span class="hljs-comment"># Instantiate Recall100 for evaluation</span><br>rec100 = cornac.metrics.Recall(<span class="hljs-number">100</span>)<br><br><span class="hljs-comment"># Instantiate a matrix factorization model(BPR)</span><br>bpr = BPR(k=<span class="hljs-number">10</span>, max_iter=<span class="hljs-number">200</span>, learning_rate=<span class="hljs-number">0.001</span>, lambda_reg=<span class="hljs-number">0.01</span>, seed=<span class="hljs-number">123</span>)<br></code></pre></td></tr></table></figure>
+<h3 id="3、优化超参数">3、优化超参数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    想要优化 k 和 learning_rate 超参数。为此，可以使用 cornac.hyperopt 模块来执行搜索</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-comment"># Grid Search</span><br>gs_bpr = GridSearch(<br>    model=bpr,<br>    space=[<br>        Discrete(name=<span class="hljs-string">&#x27;k&#x27;</span>, values=[<span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">50</span>]),<br>        Discrete(name=<span class="hljs-string">&quot;learning_rate&quot;</span>, values=[<span class="hljs-number">0.001</span>, <span class="hljs-number">0.05</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>])<br>    ],<br>    metric=rec100,<br>    eval_method=rs,<br>)<br><br><span class="hljs-comment"># Random Search</span><br>rs_bpr = RandomSearch(<br>    model=bpr,<br>    space=[<br>        Discrete(name=<span class="hljs-string">&#x27;k&#x27;</span>, values=[<span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">50</span>]),<br>        Continuous(name=<span class="hljs-string">&quot;learning_rate&quot;</span>, low=<span class="hljs-number">0.001</span>, high=<span class="hljs-number">0.01</span>)<br>    ],<br>    metric=rec100,<br>    eval_method=rs,<br>    n_trails=<span class="hljs-number">20</span>,<br>)<br></code></pre></td></tr></table></figure>
+<h3 id="4、-定义超参数并运行">4、 定义超参数并运行</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># Define the experiment</span><br>cornac.Experiment(<br>    eval_method=rs,<br>    models=[gs_bpr, rs_bpr],<br>    metrics=[rec100],<br>    user_based=<span class="hljs-literal">False</span>,<br>).run()<br><br><span class="hljs-comment"># Obtain the best params</span><br><span class="hljs-built_in">print</span>(gs_bpr.best_params)<br><span class="hljs-built_in">print</span>(rs_bpr.best_params)<br></code></pre></td></tr></table></figure>
+<h3 id="全部代码-2">全部代码</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> cornac<br><span class="hljs-keyword">from</span> cornac.eval_methods <span class="hljs-keyword">import</span> RatioSplit<br><span class="hljs-keyword">from</span> cornac.models <span class="hljs-keyword">import</span> BPR<br><span class="hljs-keyword">from</span> cornac.hyperopt <span class="hljs-keyword">import</span> Discrete, Continuous<br><span class="hljs-keyword">from</span> cornac.hyperopt <span class="hljs-keyword">import</span> GridSearch, RandomSearch<br><br><span class="hljs-comment"># Load a sample dataset (e.g., MovieLens)</span><br>ml_100k = cornac.datasets.movielens.load_feedback()<br><br><span class="hljs-comment"># Split the data into training, validation and testing sets</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    在 RatioSplit 方法中添加了验证集。</span><br><span class="hljs-string">    实例化用于跟踪模型性能的 Recall@100 指标</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br>rs = RatioSplit(data=ml_100k, test_size=<span class="hljs-number">0.1</span>, val_size=<span class="hljs-number">0.1</span>, rating_threshold=<span class="hljs-number">4.0</span>, seed=<span class="hljs-number">123</span>)<br><br><span class="hljs-comment"># Instantiate Recall100 for evaluation</span><br>rec100 = cornac.metrics.Recall(<span class="hljs-number">100</span>)<br><br><span class="hljs-comment"># Instantiate a matrix factorization model(BPR)</span><br>bpr = BPR(k=<span class="hljs-number">10</span>, max_iter=<span class="hljs-number">200</span>, learning_rate=<span class="hljs-number">0.001</span>, lambda_reg=<span class="hljs-number">0.01</span>, seed=<span class="hljs-number">123</span>)<br><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    想要优化 k 和 learning_rate 超参数。为此，可以使用 cornac.hyperopt 模块来执行搜索</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-comment"># Grid Search</span><br>gs_bpr = GridSearch(<br>    model=bpr,<br>    space=[<br>        Discrete(name=<span class="hljs-string">&#x27;k&#x27;</span>, values=[<span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">50</span>]),<br>        Discrete(name=<span class="hljs-string">&quot;learning_rate&quot;</span>, values=[<span class="hljs-number">0.001</span>, <span class="hljs-number">0.05</span>, <span class="hljs-number">0.01</span>, <span class="hljs-number">0.1</span>])<br>    ],<br>    metric=rec100,<br>    eval_method=rs,<br>)<br><br><span class="hljs-comment"># Random Search</span><br>rs_bpr = RandomSearch(<br>    model=bpr,<br>    space=[<br>        Discrete(name=<span class="hljs-string">&#x27;k&#x27;</span>, values=[<span class="hljs-number">5</span>, <span class="hljs-number">10</span>, <span class="hljs-number">50</span>]),<br>        Continuous(name=<span class="hljs-string">&quot;learning_rate&quot;</span>, low=<span class="hljs-number">0.001</span>, high=<span class="hljs-number">0.01</span>)<br>    ],<br>    metric=rec100,<br>    eval_method=rs,<br>    n_trails=<span class="hljs-number">20</span>,<br>)<br><br><span class="hljs-comment"># Define the experiment</span><br>cornac.Experiment(<br>    eval_method=rs,<br>    models=[gs_bpr, rs_bpr],<br>    metrics=[rec100],<br>    user_based=<span class="hljs-literal">False</span>,<br>).run()<br><br><span class="hljs-comment"># Obtain the best params</span><br><span class="hljs-built_in">print</span>(gs_bpr.best_params)<br><span class="hljs-built_in">print</span>(rs_bpr.best_params)<br></code></pre></td></tr></table></figure>
+<h3 id="实验结果-2">实验结果</h3>
+<p><img src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202502212022006.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Recommender-System/" class="print-no-link">#Recommender System</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Cornac Framework</div>
+      <div>https://www.renkelin.vip/2025/02/21/Cornac-framework/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Kolin</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>February 21, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/19/DL-RS/" title="Deep Learning Recommender System">
+                        <span class="hidden-mobile">Deep Learning Recommender System</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"VNSy36PGiQCPwyRb6AukmG4w-gzGzoHsz","appKey":"yzHhLZjFMNqrtHhPeHVoWzF2","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="mailto:renkelin00@gmail.com?subject=Interested+In+Your+Blog" target="_blank" rel="nofollow noopener"><span>Contact me</span></a> <i class="iconfont icon-love"></i> <a href="mailto:renkelin00@gmail.com?subject=Interested+In+Your+Blog" target="_blank" rel="nofollow noopener"><span>renkelin00@gmail.com</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
