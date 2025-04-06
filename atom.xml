@@ -6,7 +6,7 @@
   <link href="https://www.renkelin.vip/atom.xml" rel="self"/>
   
   <link href="https://www.renkelin.vip/"/>
-  <updated>2025-02-21T11:26:36.626Z</updated>
+  <updated>2025-04-06T14:25:18.584Z</updated>
   <id>https://www.renkelin.vip/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Multimodal Recommendation System</title>
+    <link href="https://www.renkelin.vip/2025/04/06/MMRS/"/>
+    <id>https://www.renkelin.vip/2025/04/06/MMRS/</id>
+    <published>2025-04-05T15:00:00.000Z</published>
+    <updated>2025-04-06T14:25:18.584Z</updated>
+    
+    
+    <summary type="html">通过将现有的多模态推荐系统模型分为四个关键领域：特征提取、编码器、多模态融合和损失函数来介绍这些模型</summary>
+    
+    
+    
+    <category term="人工智能" scheme="https://www.renkelin.vip/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    
+    <category term="Recommender System" scheme="https://www.renkelin.vip/tags/Recommender-System/"/>
+    
+  </entry>
   
   <entry>
     <title>Cornac Framework</title>
@@ -69,9 +88,9 @@
     <category term="算法" scheme="https://www.renkelin.vip/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-    <category term="Algorithm" scheme="https://www.renkelin.vip/tags/Algorithm/"/>
-    
     <category term="LeetCode" scheme="https://www.renkelin.vip/tags/LeetCode/"/>
+    
+    <category term="Algorithm" scheme="https://www.renkelin.vip/tags/Algorithm/"/>
     
   </entry>
   
@@ -223,9 +242,9 @@
     <category term="算法" scheme="https://www.renkelin.vip/categories/%E7%AE%97%E6%B3%95/"/>
     
     
-    <category term="Algorithm" scheme="https://www.renkelin.vip/tags/Algorithm/"/>
-    
     <category term="LeetCode" scheme="https://www.renkelin.vip/tags/LeetCode/"/>
+    
+    <category term="Algorithm" scheme="https://www.renkelin.vip/tags/Algorithm/"/>
     
   </entry>
   
@@ -386,27 +405,6 @@
     
     
     <category term="JVM" scheme="https://www.renkelin.vip/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker</title>
-    <link href="https://www.renkelin.vip/2023/10/07/Docker/"/>
-    <id>https://www.renkelin.vip/2023/10/07/Docker/</id>
-    <published>2023-10-06T15:00:00.000Z</published>
-    <updated>2023-10-07T08:14:18.882Z</updated>
-    
-    
-    <summary type="html">Docker可以解决项目部署的各种环境问题，让开发、运维一体化，真正实现持续集成、持续部署</summary>
-    
-    
-    
-    <category term="微服务" scheme="https://www.renkelin.vip/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
-    
-    
-    <category term="Docker" scheme="https://www.renkelin.vip/tags/Docker/"/>
-    
-    <category term="Backend" scheme="https://www.renkelin.vip/tags/Backend/"/>
     
   </entry>
   
