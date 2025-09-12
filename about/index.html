@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Kolin&#39;s space">
 <meta property="og:description" content="I am currently a second-year Master’s candidate in the Department of Computer Science at Hanyang University, affiliated with the Database Lab and advised by Prof. Dong-Ho Lee. My research primarily f">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-09-12T13:41:27.486Z">
-<meta property="article:modified_time" content="2025-09-12T13:41:27.486Z">
+<meta property="article:published_time" content="2025-09-12T14:33:04.060Z">
+<meta property="article:modified_time" content="2025-09-12T14:33:04.060Z">
 <meta property="article:author" content="Kolin">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -315,93 +315,151 @@
 <p><strong>Kelin Ren</strong>, Chan-Yang Ju, Dong-Ho Lee*, “<a target="_blank" rel="noopener" href="https://huggingface.co/papers/2509.09114">Modality Alignment with Multi-scale Bilateral Attention for Multimodal Recommendation</a>,” In Proc. of the 34th International ACM Conference on Information and Knowledge Management (CIKM 2025), Seoul, Korea, November 10–14, 2025.</p>
 <hr>
 <p><strong><p><strong>My current local time is <span id="time"></span>.</strong></p></strong></p>
-<div id="globe-wrap" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:16px">
-  <div id="globe" style="width:520px;height:520px;border-radius:12px;overflow:hidden;background:radial-gradient(120% 120% at 50% 50%, #0b1221 0%, #03060f 100%);"></div>
-  <div id="globe-stats" style="min-width:260px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial">
-    <div style="font-size:18px;font-weight:600;margin-bottom:8px">Visitors (30 days)</div>
-    <div style="font-size:14px;opacity:0.85;margin-bottom:6px">
-      Total: <b id="vis-total">—</b> · Countries: <b id="vis-cc">—</b>
-    </div>
-    <ol id="vis-top" style="margin:0;padding-left:18px;line-height:1.65;font-size:14px;"></ol>
-  </div>
-</div>
-<script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
-<script src="https://unpkg.com/globe.gl@4.6.9/dist/globe.gl.min.js"></script>
 <script>
-  // 配置：替换为你的域名与只读 API Key
-  const PLAUSIBLE_SITE_ID = 'your-domain.com';
-  const PLAUSIBLE_API_KEY = 'YOUR_STATS_API_KEY'; // Plausible 只读 Key
 
-  // 常见国家质心（ISO2 -> [lat, lng]），可按需扩展
-  const CC = {
-    "KR":[36.5,127.8],"CN":[35.9,104.2],"US":[39.8,-98.6],"JP":[36.2,138.3],
-    "IN":[22.9,79.8],"GB":[54.3,-2.4],"DE":[51.2,10.4],"FR":[46.2,2.2],
-    "BR":[-14.2,-51.9],"CA":[61.1,-113.7],"AU":[-25.3,133.8],"RU":[61.5,105.3],
-    "SG":[1.35,103.82]
-  };
+            function update_localtime() {
 
-  async function fetchCountries() {
-    const res = await fetch('https://plausible.io/api/v2/query', {
-      method: 'POST',
-      headers: {
-        'Authorization': 'Bearer ' + PLAUSIBLE_API_KEY,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        site_id: PLAUSIBLE_SITE_ID,
-        metrics: ['visitors','percentage'],
-        dimensions: ['visit:country','visit:country_name'],
-        date_range: '30d',
-        order_by: [['visitors','desc']]
-      })
+                const time = new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Seoul', timeStyle: 'short'});
+
+                document.getElementById('time').innerHTML = time;
+
+            }
+
+            update_localtime();
+
+            // Updating every second to prevent seconds looking like stood still when timeStyle is ignored.
+
+            setInterval(update_localtime, 1000);
+
+</script>
+<!-- 容器 -->
+<div id="visitor-map" style="width:100%;max-width:1000px;height:520px;border-radius:12px;overflow:hidden;margin-top:16px;border:1px solid #e5e7eb;"></div>
+<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:8px 0 16px">
+  <span>Visitors (30 days) · Total: <b id="vis-total">—</b> · Countries: <b id="vis-cc">—</b></span>
+</div>
+<!-- ECharts 脚本（主库 + 世界地图 JSON），提供双 CDN 兜底 -->
+<script>
+  const PLAUSIBLE_SITE_ID = 'renkelin.vip';            // ←改成你的域名（与 data-domain 一致）
+  const PLAUSIBLE_API_KEY = 'SnvjYen5fj08JGErrwE9nDmsZK4MifrKS2rRX-JsufCbt6XoDeLlU6tGU1do6lUH';  // ←填入新的 Stats API Key（只读）
+
+  // 动态加载脚本/JSON（带双 CDN 兜底）
+  function loadJS(srcs) {
+    return new Promise((resolve, reject) => {
+      const tryLoad = (i) => {
+        if (i >= srcs.length) return reject(new Error('All JS CDNs failed'));
+        const s = document.createElement('script');
+        s.src = srcs[i]; s.async = true;
+        s.onload = () => resolve();
+        s.onerror = () => { s.remove(); tryLoad(i+1); };
+        document.head.appendChild(s);
+      };
+      tryLoad(0);
     });
-    const data = await res.json();
-    return (data.results || []).map(r => ({
-      code: r['visit:country'],
-      name: r['visit:country_name'],
-      count: r.visitors
-    }));
+  }
+  function loadJSON(urls) {
+    return fetch(urls[0]).then(r => r.ok ? r.json() : Promise.reject())
+      .catch(() => fetch(urls[1]).then(r => r.json()));
   }
 
-  function toPoints(countries){
-    return countries.map(c=>{
-      const p = CC[c.code];
-      if(!p) return null; // 未列出的国家可按需扩展 CC
-      const [lat,lng] = p;
-      const size = Math.min(0.35, 0.07 + Math.log10(Math.max(c.count,1))*0.07);
-      return { lat, lng, size, label: `${c.name} · ${c.count}` };
-    }).filter(Boolean);
+  async function fetchCountryStats() {
+    try {
+      const res = await fetch('https://plausible.io/api/v2/query', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + PLAUSIBLE_API_KEY,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          site_id: PLAUSIBLE_SITE_ID,
+          metrics: ['visitors','percentage'],
+          dimensions: ['visit:country_name'],
+          date_range: '30d',
+          order_by: [['visitors','desc']]
+        })
+      });
+      if (!res.ok) {
+        console.error('Plausible API HTTP error:', res.status, await res.text());
+        return { total: 0, list: [] };
+      }
+      const data = await res.json();
+      // 形如：[{ 'visit:country_name':'Korea, Republic of', visitors: 1, percentage: ...}, ...]
+      const rows = Array.isArray(data.results) ? data.results : [];
+      const list = rows.map(r => ({ name: r['visit:country_name'], value: r.visitors || 0 }))
+                       .filter(d => d.name && d.value > 0);
+      const total = list.reduce((s, x) => s + x.value, 0);
+      return { total, list };
+    } catch (e) {
+      console.error('Plausible API fetch failed:', e);
+      return { total: 0, list: [] };
+    }
   }
 
-  (async function init(){
-    const el = document.getElementById('globe');
-    const world = Globe()
-      .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
-      .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
-      .backgroundColor('rgba(0,0,0,0)')
-      .showAtmosphere(true)
-      .atmosphereAltitude(0.18)
-      .pointAltitude('size')
-      .pointRadius(0.8)
-      .pointColor(()=> 'rgba(120,180,255,0.9)')
-      .pointLabel('label')
-      (el);
+  (async function init() {
+    try {
+      // 1) 加载 ECharts 主库
+      await loadJS([
+        'https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js',
+        'https://unpkg.com/echarts@5.5.0/dist/echarts.min.js'
+      ]);
 
-    world.controls().autoRotate = true;
-    world.controls().autoRotateSpeed = 0.6;
+      // 2) 加载 世界地图 geoJSON
+      const worldGeoJSON = await loadJSON([
+        'https://echarts.apache.org/examples/data/asset/geo/world.json',
+        'https://fastly.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/asset/geo/world.json'
+      ]);
 
-    async function refresh(){
-      const list = await fetchCountries();
-      const total = list.reduce((s,x)=>s+x.count,0);
+      // 3) 注册地图
+      echarts.registerMap('world', worldGeoJSON);
+
+      // 4) 取数据
+      const { total, list } = await fetchCountryStats();
       document.getElementById('vis-total').textContent = total.toLocaleString();
       document.getElementById('vis-cc').textContent = list.length;
-      document.getElementById('vis-top').innerHTML =
-        list.slice(0,10).map(c=>`<li>${c.name} · <b>${c.count.toLocaleString()}</b></li>`).join('');
-      world.pointsData(toPoints(list));
-    }
 
-    await refresh();
-    setInterval(refresh, 30000);
+      // 5) 渲染
+      const chart = echarts.init(document.getElementById('visitor-map'));
+      const option = {
+        tooltip: {
+          trigger: 'item',
+          formatter: (p) => {
+            const name = p.name || 'Unknown';
+            const val  = (Array.isArray(p.value) ? p.value[2] : p.value) || 0;
+            return `${name}: ${val}`;
+          }
+        },
+        visualMap: {
+          min: 0,
+          max: Math.max(5, Math.ceil((Math.max(...list.map(d=>d.value)) || 1) * 1.2)),
+          text: ['High','Low'],
+          realtime: false,
+          calculable: true,
+          inRange: { color: ['#dbeafe','#60a5fa','#1d4ed8'] },
+          left: 20,
+          bottom: 20
+        },
+        series: [{
+          type: 'map',
+          map: 'world',
+          roam: true,
+          itemStyle: {
+            borderColor: '#fff',
+            borderWidth: 0.5
+          },
+          emphasis: { label: { show: false } },
+          data: list
+        }]
+      };
+      chart.setOption(option);
+
+      // 响应式
+      window.addEventListener('resize', () => chart.resize());
+    } catch (err) {
+      console.error('Visitor map init error:', err);
+      const box = document.getElementById('visitor-map');
+      if (box) box.innerHTML =
+        '<div style="padding:16px;color:#6b7280;">Map failed to load. Check console for details.</div>';
+    }
   })();
 </script>
 
