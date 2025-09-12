@@ -243,7 +243,14 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/tags/Design-Pattern/</loc>
+    <loc>https://www.renkelin.vip/tags/Algorithm/</loc>
+    <lastmod>2025-09-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.renkelin.vip/tags/Deep-Learning/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -264,13 +271,6 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/tags/Deep-Learning/</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.renkelin.vip/tags/Hadoop/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -285,6 +285,13 @@
   </url>
   
   <url>
+    <loc>https://www.renkelin.vip/tags/Design-Pattern/</loc>
+    <lastmod>2025-09-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.renkelin.vip/tags/JVM/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
@@ -292,7 +299,14 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/tags/Algorithm/</loc>
+    <loc>https://www.renkelin.vip/tags/Machine-Learning/</loc>
+    <lastmod>2025-09-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.renkelin.vip/tags/JavaWeb/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -313,21 +327,7 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/tags/Machine-Learning/</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.renkelin.vip/tags/RabbitMQ/</loc>
-    <lastmod>2025-09-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.renkelin.vip/tags/JavaWeb/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -341,14 +341,14 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/tags/SpringSecurity/</loc>
+    <loc>https://www.renkelin.vip/tags/Network/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/tags/Network/</loc>
+    <loc>https://www.renkelin.vip/tags/SpringSecurity/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -378,7 +378,7 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
+    <loc>https://www.renkelin.vip/categories/Java/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -399,7 +399,7 @@
   </url>
   
   <url>
-    <loc>https://www.renkelin.vip/categories/Java/</loc>
+    <loc>https://www.renkelin.vip/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</loc>
     <lastmod>2025-09-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

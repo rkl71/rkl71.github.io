@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Kolin&#39;s space">
 <meta property="og:description" content="I am currently a second-year Master’s candidate in the Department of Computer Science at Hanyang University, affiliated with the Database Lab and advised by Prof. Dong-Ho Lee. My research primarily f">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-09-12T14:55:57.493Z">
-<meta property="article:modified_time" content="2025-09-12T14:55:57.493Z">
+<meta property="article:published_time" content="2025-09-12T14:58:28.831Z">
+<meta property="article:modified_time" content="2025-09-12T14:58:28.831Z">
 <meta property="article:author" content="Kolin">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -332,50 +332,42 @@
             setInterval(update_localtime, 1000);
 
 </script>
-<!-- 容器 -->
 <div id="visitor-map" style="width:100%;max-width:1000px;height:520px;border-radius:12px;overflow:hidden;margin-top:16px;border:1px solid #e5e7eb;"></div>
 <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:8px 0 16px">
   <span>Visitors (30 days) · Total: <b id="vis-total">—</b> · Countries: <b id="vis-cc">—</b></span>
 </div>
 <script>
-  // === 改成你的站点与“新的”只读 Stats API Key ===
-  const PLAUSIBLE_SITE_ID = 'renkelin.vip';
-  const PLAUSIBLE_API_KEY = '70XXPRpRSeC1cZDOonsTXfFf9iGxPTaNTbMOY_zFa_aDeQOBv5yJ6g5s2ICpQmKv';
+  const PLAUSIBLE_SITE_ID = 'renkelin.vip';            // 与 data-domain 的主站一致
+  const PLAUSIBLE_API_KEY = '70XXPRpRSeC1cZDOonsTXfFf9iGxPTaNTbMOY_zFa_aDeQOBv5yJ6g5s2ICpQmKv';       // 你的“新的”只读 Key
 
-  // 动态加载（带兜底）
   function loadJS(srcs){return new Promise((res,rej)=>{(function t(i){if(i>=srcs.length)return rej();const s=document.createElement('script');s.src=srcs[i];s.async=true;s.onload=()=>res();s.onerror=()=>{s.remove();t(i+1)};document.head.appendChild(s)})(0)})}
   function loadJSON(urls){return fetch(urls[0]).then(r=>r.ok?r.json():Promise.reject()).catch(()=>fetch(urls[1]).then(r=>r.json()))}
 
-  // v1 breakdown：按国家聚合
+  // v1 breakdown：property 必须是 visit:country
   async function fetchCountryStats() {
     const url = new URL('https://plausible.io/api/v1/stats/breakdown');
     url.searchParams.set('site_id', PLAUSIBLE_SITE_ID);
     url.searchParams.set('period', '30d');
-    url.searchParams.set('property', 'visit:country');   // ← 修正这里
+    url.searchParams.set('property', 'visit:country');
     url.searchParams.set('metrics', 'visitors');
 
-    try {
-      const res = await fetch(url.toString(), {
-        headers: { 'Authorization': 'Bearer ' + PLAUSIBLE_API_KEY, 'Accept': 'application/json' }
-      });
-      if (!res.ok) {
-        console.error('Plausible breakdown error:', res.status, await res.text());
-        return { total: 0, list: [] };
-      }
-      const data = await res.json();
-      const rows = Array.isArray(data.results) ? data.results : [];
-      const list = rows
-        .filter(r => r.country && (r.visitors || 0) > 0)
-        .map(r => ({ name: r.country, value: r.visitors || 0 }));
-      const total = list.reduce((s,x)=>s+x.value, 0);
-      return { total, list };
-    } catch (e) {
-      console.error('Plausible breakdown fetch failed:', e);
+    const res = await fetch(url, {
+      headers: { 'Authorization': 'Bearer ' + PLAUSIBLE_API_KEY, 'Accept': 'application/json' }
+    });
+    if (!res.ok) {
+      console.error('Plausible breakdown error:', res.status, await res.text());
       return { total: 0, list: [] };
     }
+    const data = await res.json();
+    console.log('Plausible breakdown data:', data); // 自检：应有 results 数组
+    const rows = Array.isArray(data.results) ? data.results : [];
+    const list = rows.filter(r => r.country && (r.visitors||0)>0)
+                     .map(r => ({ name: r.country, value: r.visitors||0 }));
+    const total = list.reduce((s,x)=>s+x.value, 0);
+    return { total, list };
   }
 
-  // 名称对齐（少量常见差异）
+  // 名称对齐（少量差异）
   const NAME_MAP = {
     'United States': 'United States of America',
     'Russia': 'Russian Federation',
@@ -395,42 +387,31 @@
     'Bolivia': 'Bolivia (Plurinational State of)'
   };
 
-  (async function init() {
-    try {
-      await loadJS([
-        'https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js',
-        'https://unpkg.com/echarts@5.5.0/dist/echarts.min.js'
-      ]);
+  (async function init(){
+    await loadJS([
+      'https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js',
+      'https://unpkg.com/echarts@5.5.0/dist/echarts.min.js'
+    ]);
+    const worldGeoJSON = await loadJSON([
+      'https://fastly.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/asset/geo/world.json',
+      'https://echarts.apache.org/examples/data/asset/geo/world.json'
+    ]);
+    echarts.registerMap('world', worldGeoJSON);
 
-      // 先尝试本地 world.json（推荐把文件放到 source/lib/world.json），失败再走 CDN
-      const worldGeoJSON = await loadJSON([
-        '/lib/world.json',
-        'https://fastly.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/asset/geo/world.json'
-      ]);
+    const { total, list } = await fetchCountryStats();
+    document.getElementById('vis-total').textContent = total.toLocaleString();
+    document.getElementById('vis-cc').textContent = list.length;
 
-      echarts.registerMap('world', worldGeoJSON);
-
-      const { total, list } = await fetchCountryStats();
-      document.getElementById('vis-total').textContent = total.toLocaleString();
-      document.getElementById('vis-cc').textContent = list.length;
-
-      const mapped = list.map(d => ({ name: NAME_MAP[d.name] || d.name, value: d.value }));
-      const chart = echarts.init(document.getElementById('visitor-map'));
-      const maxVal = Math.max(5, Math.ceil((Math.max(...mapped.map(d=>d.value)) || 1) * 1.2));
-      chart.setOption({
-        tooltip: { trigger:'item', formatter: p => `${p.name}: ${Array.isArray(p.value)?p.value[2]:(p.value||0)}` },
-        visualMap: {
-          min: 0, max: maxVal, text:['High','Low'], realtime:false, calculable:true,
-          inRange: { color:['#dbeafe','#60a5fa','#1d4ed8'] }, left: 20, bottom: 20
-        },
-        series: [{ type:'map', map:'world', roam:true, itemStyle:{borderColor:'#fff',borderWidth:0.5}, data: mapped }]
-      });
-      window.addEventListener('resize', () => chart.resize());
-    } catch (err) {
-      console.error('Visitor map init error:', err);
-      const box = document.getElementById('visitor-map');
-      if (box) box.innerHTML = '<div style="padding:16px;color:#6b7280;">Map failed to load. Check console for details.</div>';
-    }
+    const mapped = list.map(d => ({ name: NAME_MAP[d.name] || d.name, value: d.value }));
+    const chart = echarts.init(document.getElementById('visitor-map'));
+    const maxVal = Math.max(5, Math.ceil((Math.max(...mapped.map(d=>d.value)) || 1) * 1.2));
+    chart.setOption({
+      tooltip: { trigger:'item', formatter: p => `${p.name}: ${Array.isArray(p.value)?p.value[2]:(p.value||0)}` },
+      visualMap: { min:0, max:maxVal, text:['High','Low'], realtime:false, calculable:true,
+                   inRange:{ color:['#dbeafe','#60a5fa','#1d4ed8'] }, left:20, bottom:20 },
+      series: [{ type:'map', map:'world', roam:true, itemStyle:{borderColor:'#fff',borderWidth:0.5}, data:mapped }]
+    });
+    window.addEventListener('resize', () => chart.resize());
   })();
 </script>
 
