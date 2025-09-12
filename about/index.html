@@ -27,12 +27,10 @@
 <meta property="og:site_name" content="Kolin&#39;s space">
 <meta property="og:description" content="I am currently a second-year Master’s candidate in the Department of Computer Science at Hanyang University, affiliated with the Database Lab and advised by Prof. Dong-Ho Lee. My research primarily f">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202309302106968.gif">
-<meta property="article:published_time" content="2025-09-12T12:41:55.430Z">
-<meta property="article:modified_time" content="2025-09-12T12:41:55.430Z">
+<meta property="article:published_time" content="2025-09-12T13:41:27.486Z">
+<meta property="article:modified_time" content="2025-09-12T13:41:27.486Z">
 <meta property="article:author" content="Kolin">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202309302106968.gif">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -89,7 +87,7 @@
 
 
   
-<meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Kolin's space" type="application/atom+xml">
+<!-- hexo injector head_end start --><script async defer data-domain="renkelin.vip" src="https://plausible.io/js/plausible.js" ></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/atom.xml" title="Kolin's space" type="application/atom+xml">
 </head>
 
 
@@ -317,15 +315,94 @@
 <p><strong>Kelin Ren</strong>, Chan-Yang Ju, Dong-Ho Lee*, “<a target="_blank" rel="noopener" href="https://huggingface.co/papers/2509.09114">Modality Alignment with Multi-scale Bilateral Attention for Multimodal Recommendation</a>,” In Proc. of the 34th International ACM Conference on Information and Knowledge Management (CIKM 2025), Seoul, Korea, November 10–14, 2025.</p>
 <hr>
 <p><strong><p><strong>My current local time is <span id="time"></span>.</strong></p></strong></p>
-<p><a class="fancybox fancybox.image" target="_blank" href="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202309302106968.gif" itemscope="" itemtype="http://schema.org/ImageObject" itemprop="url" data-fancybox="default" rel="default noopener"><img height="300px" src="https://kolin-blog.oss-cn-shanghai.aliyuncs.com/blog/202309302106968.gif" srcset="/img/loading.gif" lazyload></a></p>
+<div id="globe-wrap" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:16px">
+  <div id="globe" style="width:520px;height:520px;border-radius:12px;overflow:hidden;background:radial-gradient(120% 120% at 50% 50%, #0b1221 0%, #03060f 100%);"></div>
+  <div id="globe-stats" style="min-width:260px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial">
+    <div style="font-size:18px;font-weight:600;margin-bottom:8px">Visitors (30 days)</div>
+    <div style="font-size:14px;opacity:0.85;margin-bottom:6px">
+      Total: <b id="vis-total">—</b> · Countries: <b id="vis-cc">—</b>
+    </div>
+    <ol id="vis-top" style="margin:0;padding-left:18px;line-height:1.65;font-size:14px;"></ol>
+  </div>
+</div>
+<script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+<script src="https://unpkg.com/globe.gl@4.6.9/dist/globe.gl.min.js"></script>
 <script>
-            function update_localtime() {
-                const time = new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Seoul', timeStyle: 'short'});
-                document.getElementById('time').innerHTML = time;
-            }
-            update_localtime();
-            // Updating every second to prevent seconds looking like stood still when timeStyle is ignored.
-            setInterval(update_localtime, 1000);
+  // 配置：替换为你的域名与只读 API Key
+  const PLAUSIBLE_SITE_ID = 'your-domain.com';
+  const PLAUSIBLE_API_KEY = 'YOUR_STATS_API_KEY'; // Plausible 只读 Key
+
+  // 常见国家质心（ISO2 -> [lat, lng]），可按需扩展
+  const CC = {
+    "KR":[36.5,127.8],"CN":[35.9,104.2],"US":[39.8,-98.6],"JP":[36.2,138.3],
+    "IN":[22.9,79.8],"GB":[54.3,-2.4],"DE":[51.2,10.4],"FR":[46.2,2.2],
+    "BR":[-14.2,-51.9],"CA":[61.1,-113.7],"AU":[-25.3,133.8],"RU":[61.5,105.3],
+    "SG":[1.35,103.82]
+  };
+
+  async function fetchCountries() {
+    const res = await fetch('https://plausible.io/api/v2/query', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + PLAUSIBLE_API_KEY,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        site_id: PLAUSIBLE_SITE_ID,
+        metrics: ['visitors','percentage'],
+        dimensions: ['visit:country','visit:country_name'],
+        date_range: '30d',
+        order_by: [['visitors','desc']]
+      })
+    });
+    const data = await res.json();
+    return (data.results || []).map(r => ({
+      code: r['visit:country'],
+      name: r['visit:country_name'],
+      count: r.visitors
+    }));
+  }
+
+  function toPoints(countries){
+    return countries.map(c=>{
+      const p = CC[c.code];
+      if(!p) return null; // 未列出的国家可按需扩展 CC
+      const [lat,lng] = p;
+      const size = Math.min(0.35, 0.07 + Math.log10(Math.max(c.count,1))*0.07);
+      return { lat, lng, size, label: `${c.name} · ${c.count}` };
+    }).filter(Boolean);
+  }
+
+  (async function init(){
+    const el = document.getElementById('globe');
+    const world = Globe()
+      .globeImageUrl('https://unpkg.com/three-globe/example/img/earth-night.jpg')
+      .bumpImageUrl('https://unpkg.com/three-globe/example/img/earth-topology.png')
+      .backgroundColor('rgba(0,0,0,0)')
+      .showAtmosphere(true)
+      .atmosphereAltitude(0.18)
+      .pointAltitude('size')
+      .pointRadius(0.8)
+      .pointColor(()=> 'rgba(120,180,255,0.9)')
+      .pointLabel('label')
+      (el);
+
+    world.controls().autoRotate = true;
+    world.controls().autoRotateSpeed = 0.6;
+
+    async function refresh(){
+      const list = await fetchCountries();
+      const total = list.reduce((s,x)=>s+x.count,0);
+      document.getElementById('vis-total').textContent = total.toLocaleString();
+      document.getElementById('vis-cc').textContent = list.length;
+      document.getElementById('vis-top').innerHTML =
+        list.slice(0,10).map(c=>`<li>${c.name} · <b>${c.count.toLocaleString()}</b></li>`).join('');
+      world.pointsData(toPoints(list));
+    }
+
+    await refresh();
+    setInterval(refresh, 30000);
+  })();
 </script>
 
   </div>
