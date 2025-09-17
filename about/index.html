@@ -27,8 +27,8 @@
 <meta property="og:site_name" content="Kolin&#39;s space">
 <meta property="og:description" content="I am currently a second-year Master’s candidate in the Department of Computer Science at Hanyang University, affiliated with the Database Lab and advised by Prof. Dong-Ho Lee. My research primarily f">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-09-13T02:03:05.751Z">
-<meta property="article:modified_time" content="2025-09-13T02:03:05.751Z">
+<meta property="article:published_time" content="2025-09-17T12:19:38.561Z">
+<meta property="article:modified_time" content="2025-09-17T12:19:38.561Z">
 <meta property="article:author" content="Kolin">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -325,362 +325,48 @@ update_localtime();
 // Updating every second to prevent seconds looking like stood still when timeStyle is ignored.
 setInterval(update_localtime, 1000);
 </script>
-<div id="visitor-map" style="width:100%;max-width:1000px;height:520px;border-radius:12px;overflow:hidden;margin-top:16px;border:1px solid #e5e7eb;"></div>
-<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;margin:8px 0 16px">
-<span>Visitors (30 days) · Total: <b id="vis-total">—</b> · Countries: <b id="vis-cc">—</b></span>
+<!-- Visitor Statistics Section with Map -->
+<div style="margin-top: 40px; margin-bottom: 20px;">
+  <h3 style="text-align: center; color: #333; font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; margin-bottom: 20px;">🌍 Visitors from Around the World</h3>
+  <!-- ClustrMaps Map Widget Container -->
+  <div style="display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+    <div style="transform: scale(0.9); transform-origin: center;">
+      <script type="text/javascript" id="clustrmaps" src="//clustrmaps.com/map_v2.js?d=nzeS0etmCXUkdAHRUkEnRdpNA_Wzm_UUH5HKycgy6yk&cl=ffffff&w=a"></script>
+    </div>
+  </div>
+  <!-- Statistics Link -->
+  <p style="text-align: center; margin-top: 15px; font-size: 14px; color: #666;">
+    <a href="https://clustrmaps.com/site/1c7yu" 
+       target="_blank" 
+       style="color: #3b82f6; text-decoration: none; transition: color 0.3s ease;"
+       onmouseover="this.style.color='#2563eb'" 
+       onmouseout="this.style.color='#3b82f6'">
+       📊 View Detailed Statistics
+    </a>
+  </p>
 </div>
-<script>
-const PLAUSIBLE_SITE_ID = 'renkelin.vip'; // 与 data-domain 的主站一致
-const PLAUSIBLE_API_KEY = '70XXPRpRSeC1cZDOonsTXfFf9iGxPTaNTbMOY_zFa_aDeQOBv5yJ6g5s2ICpQmKv'; // 你的"新的"只读 Key
-
-// 国家代码到名称的映射（ISO 3166-1 alpha-2 到 ECharts 地图名称）
-const COUNTRY_CODE_TO_NAME = {
-  'US': 'United States of America',
-  'GB': 'United Kingdom',
-  'CN': 'China',
-  'JP': 'Japan',
-  'KR': 'Korea',  // 韩国在 ECharts 中是 "Korea"
-  'DE': 'Germany',
-  'FR': 'France',
-  'IN': 'India',
-  'BR': 'Brazil',
-  'CA': 'Canada',
-  'AU': 'Australia',
-  'RU': 'Russian Federation',
-  'IT': 'Italy',
-  'ES': 'Spain',
-  'MX': 'Mexico',
-  'NL': 'Netherlands',
-  'SE': 'Sweden',
-  'CH': 'Switzerland',
-  'BE': 'Belgium',
-  'PL': 'Poland',
-  'AR': 'Argentina',
-  'NO': 'Norway',
-  'FI': 'Finland',
-  'DK': 'Denmark',
-  'AT': 'Austria',
-  'PT': 'Portugal',
-  'CZ': 'Czech Republic',
-  'HU': 'Hungary',
-  'RO': 'Romania',
-  'GR': 'Greece',
-  'IL': 'Israel',
-  'TR': 'Turkey',
-  'ZA': 'South Africa',
-  'EG': 'Egypt',
-  'SA': 'Saudi Arabia',
-  'AE': 'United Arab Emirates',
-  'SG': 'Singapore',
-  'MY': 'Malaysia',
-  'TH': 'Thailand',
-  'VN': 'Vietnam',
-  'ID': 'Indonesia',
-  'PH': 'Philippines',
-  'NZ': 'New Zealand',
-  'CL': 'Chile',
-  'CO': 'Colombia',
-  'PE': 'Peru',
-  'VE': 'Venezuela',
-  'UA': 'Ukraine',
-  'PK': 'Pakistan',
-  'BD': 'Bangladesh',
-  'NG': 'Nigeria',
-  'KE': 'Kenya',
-  'ET': 'Ethiopia',
-  'TZ': 'Tanzania',
-  'IR': 'Iran',
-  'IQ': 'Iraq',
-  'DZ': 'Algeria',
-  'MA': 'Morocco',
-  'TN': 'Tunisia',
-  'LY': 'Libya',
-  'SD': 'Sudan',
-  'GH': 'Ghana',
-  'CM': 'Cameroon',
-  'UG': 'Uganda',
-  'AO': 'Angola',
-  'MZ': 'Mozambique',
-  'ZW': 'Zimbabwe',
-  'BW': 'Botswana',
-  'NA': 'Namibia',
-  'SN': 'Senegal',
-  'ML': 'Mali',
-  'BF': 'Burkina Faso',
-  'NE': 'Niger',
-  'TD': 'Chad',
-  'MG': 'Madagascar',
-  'ZM': 'Zambia',
-  'MW': 'Malawi',
-  'RW': 'Rwanda',
-  'BI': 'Burundi',
-  'SO': 'Somalia',
-  'DJ': 'Djibouti',
-  'ER': 'Eritrea',
-  'MR': 'Mauritania',
-  'GM': 'Gambia',
-  'GW': 'Guinea-Bissau',
-  'GN': 'Guinea',
-  'SL': 'Sierra Leone',
-  'LR': 'Liberia',
-  'CI': "Côte d'Ivoire",
-  'TG': 'Togo',
-  'BJ': 'Benin',
-  'GA': 'Gabon',
-  'CG': 'Republic of the Congo',
-  'CD': 'Democratic Republic of the Congo',
-  'CF': 'Central African Republic',
-  'GQ': 'Equatorial Guinea',
-  'ST': 'Sao Tome and Principe',
-  'SZ': 'Swaziland',
-  'LS': 'Lesotho',
-  'MU': 'Mauritius',
-  'SC': 'Seychelles',
-  'KM': 'Comoros',
-  'CV': 'Cabo Verde',
-  'LK': 'Sri Lanka',
-  'MV': 'Maldives',
-  'NP': 'Nepal',
-  'BT': 'Bhutan',
-  'MM': 'Myanmar',
-  'LA': 'Lao PDR',
-  'KH': 'Cambodia',
-  'TL': 'Timor-Leste',
-  'BN': 'Brunei',
-  'PG': 'Papua New Guinea',
-  'FJ': 'Fiji',
-  'SB': 'Solomon Islands',
-  'VU': 'Vanuatu',
-  'NC': 'New Caledonia',
-  'PF': 'French Polynesia',
-  'WS': 'Samoa',
-  'TO': 'Tonga',
-  'KI': 'Kiribati',
-  'TV': 'Tuvalu',
-  'NR': 'Nauru',
-  'PW': 'Palau',
-  'MH': 'Marshall Islands',
-  'FM': 'Micronesia',
-  'MN': 'Mongolia',
-  'KZ': 'Kazakhstan',
-  'UZ': 'Uzbekistan',
-  'TM': 'Turkmenistan',
-  'TJ': 'Tajikistan',
-  'KG': 'Kyrgyzstan',
-  'AF': 'Afghanistan',
-  'JO': 'Jordan',
-  'LB': 'Lebanon',
-  'SY': 'Syrian Arab Republic',
-  'YE': 'Yemen',
-  'OM': 'Oman',
-  'QA': 'Qatar',
-  'BH': 'Bahrain',
-  'KW': 'Kuwait',
-  'CY': 'Cyprus',
-  'GE': 'Georgia',
-  'AM': 'Armenia',
-  'AZ': 'Azerbaijan',
-  'BY': 'Belarus',
-  'MD': 'Moldova',
-  'LT': 'Lithuania',
-  'LV': 'Latvia',
-  'EE': 'Estonia',
-  'SK': 'Slovakia',
-  'SI': 'Slovenia',
-  'HR': 'Croatia',
-  'BA': 'Bosnia and Herzegovina',
-  'RS': 'Serbia',
-  'ME': 'Montenegro',
-  'MK': 'North Macedonia',
-  'AL': 'Albania',
-  'BG': 'Bulgaria',
-  'MT': 'Malta',
-  'IS': 'Iceland',
-  'IE': 'Ireland',
-  'LU': 'Luxembourg',
-  'LI': 'Liechtenstein',
-  'AD': 'Andorra',
-  'MC': 'Monaco',
-  'SM': 'San Marino',
-  'VA': 'Vatican City',
-  'PS': 'Palestinian Territory',
-  'TW': 'Taiwan',
-  'HK': 'Hong Kong',
-  'MO': 'Macao',
-  'PR': 'Puerto Rico',
-  'DO': 'Dominican Republic',
-  'HT': 'Haiti',
-  'JM': 'Jamaica',
-  'TT': 'Trinidad and Tobago',
-  'BB': 'Barbados',
-  'BS': 'Bahamas',
-  'BZ': 'Belize',
-  'GT': 'Guatemala',
-  'SV': 'El Salvador',
-  'HN': 'Honduras',
-  'NI': 'Nicaragua',
-  'CR': 'Costa Rica',
-  'PA': 'Panama',
-  'CU': 'Cuba',
-  'BO': 'Bolivia (Plurinational State of)',
-  'EC': 'Ecuador',
-  'GY': 'Guyana',
-  'SR': 'Suriname',
-  'GF': 'French Guiana',
-  'PY': 'Paraguay',
-  'UY': 'Uruguay',
-  'FK': 'Falkland Islands',
-  // 添加更多映射...
-};
-
-// 名称对齐（用于 Plausible 返回完整名称时的映射）
-const NAME_MAP = {
-  'United States': 'United States of America',
-  'Russia': 'Russian Federation',
-  'South Korea': 'Korea',
-  'North Korea': 'Dem. Rep. Korea',
-  'Czechia': 'Czech Republic',
-  'DR Congo': 'Democratic Republic of the Congo',
-  'Congo': 'Republic of the Congo',
-  'Ivory Coast': "Côte d'Ivoire",
-  'Syria': 'Syrian Arab Republic',
-  'Laos': 'Lao PDR',
-  'Eswatini': 'Swaziland',
-  'Cape Verde': 'Cabo Verde',
-  'Palestine': 'Palestinian Territory',
-  'Macedonia': 'North Macedonia',
-  'Viet Nam': 'Vietnam',
-  'Bolivia': 'Bolivia (Plurinational State of)'
-};
-
-function loadJS(srcs){
-  return new Promise((res,rej)=>{
-    (function t(i){
-      if(i>=srcs.length)return rej();
-      const s=document.createElement('script');
-      s.src=srcs[i];
-      s.async=true;
-      s.onload=()=>res();
-      s.onerror=()=>{s.remove();t(i+1)};
-      document.head.appendChild(s)
-    })(0)
-  })
+<style>
+/* 优化 ClustrMaps 地图显示 */
+#clustrmaps-widget {
+  max-width: 100% !important;
 }
 
-function loadJSON(urls){
-  return fetch(urls[0])
-    .then(r=>r.ok?r.json():Promise.reject())
-    .catch(()=>fetch(urls[1]).then(r=>r.json()))
-}
-
-// v1 breakdown：property 必须是 visit:country
-async function fetchCountryStats() {
-  const url = new URL('https://plausible.io/api/v1/stats/breakdown');
-  url.searchParams.set('site_id', PLAUSIBLE_SITE_ID);
-  url.searchParams.set('period', '30d');
-  url.searchParams.set('property', 'visit:country');
-  url.searchParams.set('metrics', 'visitors');
-
-  const res = await fetch(url, {
-    headers: { 'Authorization': 'Bearer ' + PLAUSIBLE_API_KEY, 'Accept': 'application/json' }
-  });
-  
-  if (!res.ok) {
-    console.error('Plausible breakdown error:', res.status, await res.text());
-    return { total: 0, list: [] };
+/* 响应式设计：在移动设备上自适应 */
+@media (max-width: 768px) {
+  div[style*="transform: scale"] {
+    transform: scale(0.8) !important;
   }
-  
-  const data = await res.json();
-  console.log('Plausible breakdown data:', data); // 调试信息
-  
-  const rows = Array.isArray(data.results) ? data.results : [];
-  const list = rows.filter(r => r.country && (r.visitors||0)>0)
-    .map(r => {
-      // 处理国家名称或代码
-      let countryName = r.country;
-      
-      // 如果是2个字母的国家代码，转换为完整名称
-      if (countryName.length === 2 && countryName === countryName.toUpperCase()) {
-        countryName = COUNTRY_CODE_TO_NAME[countryName] || countryName;
-        console.log(`Converting country code ${r.country} to ${countryName}`); // 调试信息
-      }
-      
-      return { name: countryName, value: r.visitors||0 };
-    });
-    
-  const total = list.reduce((s,x)=>s+x.value, 0);
-  return { total, list };
 }
 
-(async function init(){
-  try {
-    await loadJS([
-      'https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js',
-      'https://unpkg.com/echarts@5.5.0/dist/echarts.min.js'
-    ]);
-    
-    const worldGeoJSON = await loadJSON([
-      'https://fastly.jsdelivr.net/gh/apache/echarts-website@asf-site/examples/data/asset/geo/world.json',
-      'https://echarts.apache.org/examples/data/asset/geo/world.json'
-    ]);
-    
-    echarts.registerMap('world', worldGeoJSON);
+/* 美化地图容器 */
+div[style*="background: linear-gradient"] {
+  transition: box-shadow 0.3s ease;
+}
 
-    const { total, list } = await fetchCountryStats();
-    document.getElementById('vis-total').textContent = total.toLocaleString();
-    document.getElementById('vis-cc').textContent = list.length;
-
-    // 再次进行名称映射，确保与 ECharts 地图数据匹配
-    const mapped = list.map(d => ({ 
-      name: NAME_MAP[d.name] || d.name, 
-      value: d.value 
-    }));
-    
-    console.log('Final mapped data:', mapped); // 调试信息
-
-    const chart = echarts.init(document.getElementById('visitor-map'));
-    const maxVal = Math.max(5, Math.ceil((Math.max(...mapped.map(d=>d.value)) || 1) * 1.2));
-    
-    chart.setOption({
-      tooltip: { 
-        trigger: 'item', 
-        formatter: p => `${p.name}: ${Array.isArray(p.value) ? p.value[2] : (p.value || 0)}` 
-      },
-      visualMap: { 
-        min: 0, 
-        max: maxVal, 
-        text: ['High','Low'], 
-        realtime: false, 
-        calculable: true,
-        inRange: { 
-          color: ['#dbeafe','#60a5fa','#1d4ed8'] 
-        }, 
-        left: 20, 
-        bottom: 20 
-      },
-      series: [{ 
-        type: 'map', 
-        map: 'world', 
-        roam: true, 
-        itemStyle: {
-          borderColor: '#fff',
-          borderWidth: 0.5
-        }, 
-        emphasis: {
-          itemStyle: {
-            areaColor: '#2563eb'
-          }
-        },
-        data: mapped 
-      }]
-    });
-    
-    window.addEventListener('resize', () => chart.resize());
-  } catch (error) {
-    console.error('Error initializing map:', error);
-  }
-})();
-</script>
+div[style*="background: linear-gradient"]:hover {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+</style>
 
   </div>
 
